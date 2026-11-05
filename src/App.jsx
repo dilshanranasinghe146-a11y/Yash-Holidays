@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import yashLogo from './assets/yash-logo.jpg';
 import {
   Plane,
   Globe,
@@ -51,7 +52,7 @@ const YashLogo = ({ className = "h-12", lightMode = true }) => (
   <div className={`inline-flex items-center gap-2.5 select-none shrink-0 whitespace-nowrap ${className}`}>
     <div className="relative flex items-center justify-center p-1 rounded-xl bg-white shadow-md shadow-sky-500/20 border border-white/40 overflow-hidden shrink-0">
       <img
-        src="/yash-logo.jpg"
+        src={yashLogo}
         alt="Yash Holidays Pvt Ltd"
         className="w-10 h-10 sm:w-11 sm:h-11 object-contain rounded-lg shrink-0"
       />
@@ -3082,7 +3083,7 @@ export default function App() {
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 rounded-lg bg-white p-0.5 shrink-0 flex items-center justify-center">
                 <img
-                  src="/yash-logo.jpg"
+                  src={yashLogo}
                   alt="Yash Holidays"
                   className="w-full h-full object-contain rounded"
                 />
