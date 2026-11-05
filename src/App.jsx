@@ -82,7 +82,7 @@ const DESTINATION_STAGES = {
         days: 'Days 1–2',
         place: 'Seminyak & Kuta',
         img1: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=600&q=80',
-        img2: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=600&q=80'
+        img2: 'https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=600&q=80'
       },
       {
         days: 'Days 3–4',
@@ -107,8 +107,8 @@ const DESTINATION_STAGES = {
       {
         days: 'Days 1–2',
         place: 'Pattaya',
-        img1: 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&w=600&q=80',
-        img2: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80'
+        img1: 'https://images.unsplash.com/photo-1519451241324-20b4ea2c4220?auto=format&fit=crop&w=600&q=80',
+        img2: 'https://images.unsplash.com/photo-1506665531195-3566af2b4dfa?auto=format&fit=crop&w=600&q=80'
       },
       {
         days: 'Days 3–4',
@@ -119,7 +119,7 @@ const DESTINATION_STAGES = {
       {
         days: 'Days 5–6',
         place: 'Coral Island',
-        img1: 'https://images.unsplash.com/photo-1528181304800-259b08848526?auto=format&fit=crop&w=600&q=80',
+        img1: 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&w=600&q=80',
         img2: 'https://images.unsplash.com/photo-1559314809-0d155014e29e?auto=format&fit=crop&w=600&q=80'
       }
     ]
@@ -144,9 +144,9 @@ const DESTINATION_STAGES = {
       },
       {
         days: 'Day 5',
-        place: 'Putrajaya & Sunway',
-        img1: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&q=80',
-        img2: 'https://images.unsplash.com/photo-1508062878650-88b52897f298?auto=format&fit=crop&w=600&q=80'
+        place: 'Putrajaya & Merdeka Square',
+        img1: 'https://images.unsplash.com/photo-1508062878650-88b52897f298?auto=format&fit=crop&w=600&q=80',
+        img2: 'https://images.unsplash.com/photo-1601933973783-43cf8a7d4c5f?auto=format&fit=crop&w=600&q=80'
       }
     ]
   },
@@ -210,21 +210,21 @@ const DESTINATION_STAGES = {
     stages: [
       {
         days: 'Days 1–2',
-        place: 'Hanoi',
+        place: 'Hanoi & Ninh Binh',
         img1: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80',
-        img2: 'https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=600&q=80'
+        img2: 'https://images.unsplash.com/photo-1509030450996-dd1a26dda07a?auto=format&fit=crop&w=600&q=80'
       },
       {
         days: 'Days 3–4',
-        place: 'Ha Long Bay',
+        place: 'Ha Long Bay Cruise',
         img1: 'https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=600&q=80',
-        img2: 'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=600&q=80'
+        img2: 'https://images.unsplash.com/photo-1509030450996-dd1a26dda07a?auto=format&fit=crop&w=600&q=80'
       },
       {
         days: 'Days 5–6',
-        place: 'Da Nang',
-        img1: 'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=600&q=80',
-        img2: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80'
+        place: 'Da Nang & Hoi An',
+        img1: 'https://images.unsplash.com/photo-1583417319070-4a69db38a482?auto=format&fit=crop&w=600&q=80',
+        img2: 'https://images.unsplash.com/photo-1557750255-c76072a7aad1?auto=format&fit=crop&w=600&q=80'
       }
     ]
   },
@@ -236,20 +236,20 @@ const DESTINATION_STAGES = {
     stages: [
       {
         days: 'Days 1–2',
-        place: 'Overwater Villa',
+        place: 'Overwater Villa & Lagoon',
         img1: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=600&q=80',
         img2: 'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?auto=format&fit=crop&w=600&q=80'
       },
       {
         days: 'Days 3–4',
         place: 'Coral Reefs & Safari',
-        img1: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80',
-        img2: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=600&q=80'
+        img1: 'https://images.unsplash.com/photo-1540202404-a2f29016b523?auto=format&fit=crop&w=600&q=80',
+        img2: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=600&q=80'
       },
       {
         days: 'Day 5',
-        place: 'Island Relaxation',
-        img1: 'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?auto=format&fit=crop&w=600&q=80',
+        place: 'Island Relaxation & Sunset',
+        img1: 'https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=600&q=80',
         img2: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80'
       }
     ]
@@ -270,13 +270,13 @@ const DESTINATION_STAGES = {
         days: 'Days 3–4',
         place: 'Agra',
         img1: 'https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=600&q=80',
-        img2: 'https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=600&q=80'
+        img2: 'https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=600&q=80'
       },
       {
         days: 'Days 5–6',
         place: 'Jaipur',
-        img1: 'https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=600&q=80',
-        img2: 'https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=600&q=80'
+        img1: 'https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&w=600&q=80',
+        img2: 'https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=600&q=80'
       }
     ]
   },
@@ -288,21 +288,21 @@ const DESTINATION_STAGES = {
     stages: [
       {
         days: 'Days 1–2',
-        place: 'Baku',
-        img1: 'https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?auto=format&fit=crop&w=600&q=80',
-        img2: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=600&q=80'
+        place: 'Baku & Flame Towers',
+        img1: 'https://images.unsplash.com/photo-1596306499300-0b7b1689b9f6?auto=format&fit=crop&w=600&q=80',
+        img2: 'https://images.unsplash.com/photo-1565008576549-57569a49371d?auto=format&fit=crop&w=600&q=80'
       },
       {
         days: 'Days 3–4',
-        place: 'Gabala & Shahdag',
-        img1: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=600&q=80',
-        img2: 'https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?auto=format&fit=crop&w=600&q=80'
+        place: 'Old City & Gabala Lake',
+        img1: 'https://images.unsplash.com/photo-1622547748225-3fc4abd2cca0?auto=format&fit=crop&w=600&q=80',
+        img2: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80'
       },
       {
         days: 'Day 5',
-        place: 'Ateshgah & Yanar Dag',
-        img1: 'https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?auto=format&fit=crop&w=600&q=80',
-        img2: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=600&q=80'
+        place: 'Shahdag Mountain Resort',
+        img1: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=600&q=80',
+        img2: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80'
       }
     ]
   }
@@ -323,10 +323,10 @@ const DESTINATIONS = [
     introText: "We've planned a simple and convenient 6-day itinerary for your escape to Bali. You'll experience three breathtaking regions: Ubud's lush rainforests, Nusa Penida's dramatic turquoise cliffs, and Seminyak's sunset beach clubs.",
     highlights: [
       { label: '3 regions in Bali', sub: 'Ubud • Penida • Seminyak', img: 'https://images.unsplash.com/photo-1555400038-63f5ba517a47?auto=format&fit=crop&w=600&q=80' },
-      { label: '6 days', sub: 'Curated island pace', img: 'https://images.unsplash.com/photo-1537953773345-d172ccf13cf1?auto=format&fit=crop&w=600&q=80' },
-      { label: 'iconic temples & nature', sub: 'Sacred gates & jungle swings', img: 'https://images.unsplash.com/photo-1573790387438-4da905039392?auto=format&fit=crop&w=600&q=80' },
+      { label: '6 days', sub: 'Curated island pace', img: 'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=600&q=80' },
+      { label: 'iconic temples & nature', sub: 'Sacred gates & water temples', img: 'https://images.unsplash.com/photo-1546484475-7f7bd55792da?auto=format&fit=crop&w=600&q=80' },
       { label: 'island dining', sub: 'Jimbaran seafood dinner', img: 'https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=600&q=80' },
-      { label: 'enjoy the vibe', sub: 'Beach clubs & temples', img: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=600&q=80' }
+      { label: 'enjoy the vibe', sub: 'Beach clubs & sea cliffs', img: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=600&q=80' }
     ],
     timeline: [
       {
@@ -334,7 +334,7 @@ const DESTINATIONS = [
         place: 'Arrival in Bali',
         desc: 'Arrival in Bali – Hotel Check-in.',
         img1: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=500&q=80',
-        img2: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=500&q=80'
+        img2: 'https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=500&q=80'
       },
       {
         days: 'Day 02',
@@ -347,36 +347,36 @@ const DESTINATIONS = [
         days: 'Day 03',
         place: 'Kintamani Volcano & Coffee Plantation Tour',
         desc: 'Kintamani Volcano & Coffee Plantation Tour.',
-        img1: 'https://images.unsplash.com/photo-1570789210967-2cac24afeb00?auto=format&fit=crop&w=500&q=80',
-        img2: 'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=500&q=80'
+        img1: 'https://images.unsplash.com/photo-1512100356356-de1b84283e18?auto=format&fit=crop&w=500&q=80',
+        img2: 'https://images.unsplash.com/photo-1546484475-7f7bd55792da?auto=format&fit=crop&w=500&q=80'
       },
       {
         days: 'Day 04',
         place: 'Nusa Penida Island Tour',
         desc: 'Nusa Penida Island Tour.',
-        img1: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=500&q=80',
-        img2: 'https://images.unsplash.com/photo-1573790387438-4da905039392?auto=format&fit=crop&w=500&q=80'
+        img1: 'https://images.unsplash.com/photo-1570789210967-2cac24afeb00?auto=format&fit=crop&w=500&q=80',
+        img2: 'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=500&q=80'
       },
       {
         days: 'Day 05',
         place: 'Uluwatu Temple & Sunset Tour',
         desc: 'Uluwatu Temple & Sunset Tour.',
-        img1: 'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=500&q=80',
-        img2: 'https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=500&q=80'
+        img1: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=500&q=80',
+        img2: 'https://images.unsplash.com/photo-1573790387438-4da905039392?auto=format&fit=crop&w=500&q=80'
       },
       {
         days: 'Day 06',
         place: 'Free & Easy / Shopping',
         desc: 'Free & Easy / Shopping.',
-        img1: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=500&q=80',
+        img1: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=500&q=80',
         img2: 'https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=500&q=80'
       },
       {
         days: 'Day 07',
         place: 'Departure',
         desc: 'Breakfast – Airport Transfer – Departure.',
-        img1: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=500&q=80',
-        img2: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=500&q=80'
+        img1: 'https://images.unsplash.com/photo-1570789210967-2cac24afeb00?auto=format&fit=crop&w=500&q=80',
+        img2: 'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=500&q=80'
       }
     ]
   },
@@ -388,51 +388,51 @@ const DESTINATIONS = [
     duration: '5 Days / 4 Nights',
     priceFrom: 'LKR 168,000',
     flightRoute: 'Colombo (CMB) — Bangkok (BKK)',
-    heroBg: 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&w=1920&q=85',
-    footerBg: 'https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=1920&q=80',
+    heroBg: 'https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=1920&q=85',
+    footerBg: 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&w=1920&q=80',
     introText: "We've planned a seamless 6-day holiday across Thailand's best highlights. You'll explore three unforgettable hubs: dazzling Bangkok, coastal Pattaya & Coral Island, or the turquoise limestone bays of Phuket & Krabi.",
     highlights: [
       { label: '3 cities in Thailand', sub: 'Bangkok • Pattaya • Phuket', img: 'https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=600&q=80' },
-      { label: '6 days', sub: 'Island & city combo', img: 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&w=600&q=80' },
-      { label: 'private island tours', sub: 'Phi Phi & Grand Palace', img: 'https://images.unsplash.com/photo-1528181304800-259b08848526?auto=format&fit=crop&w=600&q=80' },
-      { label: 'street food & cruises', sub: 'Chao Phraya dinner cruise', img: 'https://images.unsplash.com/photo-1559314809-0d155014e29e?auto=format&fit=crop&w=600&q=80' },
-      { label: 'enjoy the vibe', sub: 'Shopping & beach life', img: 'https://images.unsplash.com/photo-1563492065599-3520f775eeed?auto=format&fit=crop&w=600&q=80' }
+      { label: '6 days', sub: 'Island & city combo', img: 'https://images.unsplash.com/photo-1563492065599-3520f775eeed?auto=format&fit=crop&w=600&q=80' },
+      { label: 'private island tours', sub: 'Phi Phi & Maya Bay', img: 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&w=600&q=80' },
+      { label: 'street food & cruises', sub: 'Bangkok night market', img: 'https://images.unsplash.com/photo-1559314809-0d155014e29e?auto=format&fit=crop&w=600&q=80' },
+      { label: 'enjoy the vibe', sub: 'Sanctuary of Truth Pattaya', img: 'https://images.unsplash.com/photo-1519451241324-20b4ea2c4220?auto=format&fit=crop&w=600&q=80' }
     ],
     timeline: [
       {
         days: 'Day 01',
         place: 'Arrival in Bangkok – Pattaya Transfer',
         desc: 'Arrival in Bangkok – Transfer to Pattaya – Hotel Check-in.',
-        img1: 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&w=500&q=80',
-        img2: 'https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=500&q=80'
+        img1: 'https://images.unsplash.com/photo-1506665531195-3566af2b4dfa?auto=format&fit=crop&w=500&q=80',
+        img2: 'https://images.unsplash.com/photo-1519451241324-20b4ea2c4220?auto=format&fit=crop&w=500&q=80'
       },
       {
         days: 'Day 02',
         place: 'Coral Island Tour with Lunch',
         desc: 'Coral Island Tour with Lunch & speedboat ride.',
-        img1: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=500&q=80',
-        img2: 'https://images.unsplash.com/photo-1528181304800-259b08848526?auto=format&fit=crop&w=500&q=80'
+        img1: 'https://images.unsplash.com/photo-1528181304800-259b08848526?auto=format&fit=crop&w=500&q=80',
+        img2: 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&w=500&q=80'
       },
       {
         days: 'Day 03',
         place: 'Pattaya to Bangkok – City & Temple Tour',
         desc: 'Pattaya to Bangkok – City & Temple Tour.',
         img1: 'https://images.unsplash.com/photo-1563492065599-3520f775eeed?auto=format&fit=crop&w=500&q=80',
-        img2: 'https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=500&q=80'
+        img2: 'https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=500&q=80'
       },
       {
         days: 'Day 04',
         place: 'Free & Easy / Optional Shopping',
         desc: 'Free & Easy / Optional Shopping.',
         img1: 'https://images.unsplash.com/photo-1559314809-0d155014e29e?auto=format&fit=crop&w=500&q=80',
-        img2: 'https://images.unsplash.com/photo-1519451241324-20b4ea2c4220?auto=format&fit=crop&w=500&q=80'
+        img2: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=500&q=80'
       },
       {
         days: 'Day 05',
         place: 'Departure',
         desc: 'Breakfast – Transfer to Airport – Departure.',
-        img1: 'https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=500&q=80',
-        img2: 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&w=500&q=80'
+        img1: 'https://images.unsplash.com/photo-1506665531195-3566af2b4dfa?auto=format&fit=crop&w=500&q=80',
+        img2: 'https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=500&q=80'
       }
     ]
   },
@@ -450,7 +450,7 @@ const DESTINATIONS = [
     highlights: [
       { label: '3 hubs in Malaysia', sub: 'KL • Genting • Sunway', img: 'https://images.unsplash.com/photo-1596422846543-75c6fc197f07?auto=format&fit=crop&w=600&q=80' },
       { label: '5 days', sub: 'Family & couple favorite', img: 'https://images.unsplash.com/photo-1508062878650-88b52897f298?auto=format&fit=crop&w=600&q=80' },
-      { label: 'iconic landmarks', sub: 'Petronas & Batu Caves', img: 'https://images.unsplash.com/photo-1544984243-ec57ea16fe25?auto=format&fit=crop&w=600&q=80' },
+      { label: 'iconic landmarks', sub: 'Merdeka Square heritage', img: 'https://images.unsplash.com/photo-1601933973783-43cf8a7d4c5f?auto=format&fit=crop&w=600&q=80' },
       { label: 'cable car & parks', sub: 'Awana SkyWay & Theme Park', img: 'https://images.unsplash.com/photo-1577948000111-9c970dfe3743?auto=format&fit=crop&w=600&q=80' },
       { label: 'Batu Caves', sub: 'Murugan Temple & rainbow stairs', img: 'https://images.unsplash.com/photo-1544984243-ec57ea16fe25?auto=format&fit=crop&w=600&q=80' }
     ],
@@ -459,15 +459,15 @@ const DESTINATIONS = [
         days: 'Day 01',
         place: 'Arrival in Kuala Lumpur & City Tour',
         desc: 'Arrival in Kuala Lumpur – City Tour – Hotel Check-in.',
-        img1: 'https://images.unsplash.com/photo-1596422846543-75c6fc197f07?auto=format&fit=crop&w=500&q=80',
-        img2: 'https://images.unsplash.com/photo-1508062878650-88b52897f298?auto=format&fit=crop&w=500&q=80'
+        img1: 'https://images.unsplash.com/photo-1583207804784-198ba4353030?auto=format&fit=crop&w=500&q=80',
+        img2: 'https://images.unsplash.com/photo-1596422846543-75c6fc197f07?auto=format&fit=crop&w=500&q=80'
       },
       {
         days: 'Day 02',
         place: 'KL City Tour & Batu Caves',
         desc: 'Kuala Lumpur City Tour & Batu Caves.',
         img1: 'https://images.unsplash.com/photo-1544984243-ec57ea16fe25?auto=format&fit=crop&w=500&q=80',
-        img2: 'https://images.unsplash.com/photo-1596422846543-75c6fc197f07?auto=format&fit=crop&w=500&q=80'
+        img2: 'https://images.unsplash.com/photo-1601933973783-43cf8a7d4c5f?auto=format&fit=crop&w=500&q=80'
       },
       {
         days: 'Day 03',
@@ -480,8 +480,8 @@ const DESTINATIONS = [
         days: 'Day 04',
         place: 'Sunway Lagoon / Free & Easy',
         desc: 'Sunway Lagoon / Free & Easy.',
-        img1: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=500&q=80',
-        img2: 'https://images.unsplash.com/photo-1508062878650-88b52897f298?auto=format&fit=crop&w=500&q=80'
+        img1: 'https://images.unsplash.com/photo-1508062878650-88b52897f298?auto=format&fit=crop&w=500&q=80',
+        img2: 'https://images.unsplash.com/photo-1583207804784-198ba4353030?auto=format&fit=crop&w=500&q=80'
       },
       {
         days: 'Day 05',
@@ -557,7 +557,7 @@ const DESTINATIONS = [
     priceFrom: 'LKR 215,000',
     flightRoute: 'Colombo (CMB) — Hanoi (HAN) / Da Nang',
     heroBg: 'https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=1920&q=85',
-    footerBg: 'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=1920&q=80',
+    footerBg: 'https://images.unsplash.com/photo-1583417319070-4a69db38a482?auto=format&fit=crop&w=1920&q=80',
     introText: "Discover the magic of Vietnam across three iconic regions: historic Hanoi, an overnight luxury cruise on Ha Long Bay, and Central Vietnam's Golden Bridge at Ba Na Hills & Hoi An.",
     highlights: [
       { label: '3 gems in Vietnam', sub: 'Hanoi • Ha Long • Da Nang', img: 'https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=600&q=80' },
@@ -572,20 +572,20 @@ const DESTINATIONS = [
         place: 'Arrival in Hanoi',
         desc: 'Arrival in Hanoi – Hotel Check-in.',
         img1: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=500&q=80',
-        img2: 'https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=500&q=80'
+        img2: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=500&q=80'
       },
       {
         days: 'Day 02',
         place: 'Hanoi City Tour',
         desc: 'Hanoi City Tour.',
         img1: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=500&q=80',
-        img2: 'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=500&q=80'
+        img2: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=500&q=80'
       },
       {
         days: 'Day 03',
         place: 'Ninh Binh – Hoa Lu & Trang An Tour',
         desc: 'Ninh Binh – Hoa Lu & Trang An Tour.',
-        img1: 'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=500&q=80',
+        img1: 'https://images.unsplash.com/photo-1509030450996-dd1a26dda07a?auto=format&fit=crop&w=500&q=80',
         img2: 'https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=500&q=80'
       },
       {
@@ -597,17 +597,17 @@ const DESTINATIONS = [
       },
       {
         days: 'Day 05',
-        place: 'Transfer to Da Nang',
+        place: 'Transfer to Da Nang & Hoi An',
         desc: 'Transfer to Da Nang – Hotel Check-in.',
-        img1: 'https://images.unsplash.com/photo-1570789210967-2cac24afeb00?auto=format&fit=crop&w=500&q=80',
+        img1: 'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=500&q=80',
         img2: 'https://images.unsplash.com/photo-1557750255-c76072a7aad1?auto=format&fit=crop&w=500&q=80'
       },
       {
         days: 'Day 06',
         place: 'Ba Na Hills & Golden Bridge Tour',
         desc: 'Ba Na Hills & Golden Bridge Tour.',
-        img1: 'https://images.unsplash.com/photo-1570789210967-2cac24afeb00?auto=format&fit=crop&w=500&q=80',
-        img2: 'https://images.unsplash.com/photo-1583417319070-4a69db38a482?auto=format&fit=crop&w=500&q=80'
+        img1: 'https://images.unsplash.com/photo-1583417319070-4a69db38a482?auto=format&fit=crop&w=500&q=80',
+        img2: 'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=500&q=80'
       },
       {
         days: 'Day 07',
@@ -634,7 +634,7 @@ const DESTINATIONS = [
       { label: '4 days', sub: 'Pure tropical bliss', img: 'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?auto=format&fit=crop&w=600&q=80' },
       { label: 'luxury water villas', sub: 'Overwater decks & sandbanks', img: 'https://images.unsplash.com/photo-1540202404-a2f29016b523?auto=format&fit=crop&w=600&q=80' },
       { label: 'all-inclusive dining', sub: 'Buffets, cocktails & sunset', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80' },
-      { label: 'enjoy the vibe', sub: 'Reef sharks, rays & spa', img: 'https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=600&q=80' }
+      { label: 'enjoy the vibe', sub: 'Reef sharks, rays & spa', img: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=600&q=80' }
     ],
     timeline: [
       {
@@ -649,14 +649,14 @@ const DESTINATIONS = [
         place: 'Coral Reefs & Sandbank Picnic',
         desc: 'Guided house-reef snorkeling with sea turtles, dolphin sunset cruise, water sports & private sandbank lunch.',
         img1: 'https://images.unsplash.com/photo-1540202404-a2f29016b523?auto=format&fit=crop&w=500&q=80',
-        img2: 'https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=500&q=80'
+        img2: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=500&q=80'
       },
       {
         days: 'Day 4',
         place: 'Overwater Spa & Departure',
         desc: 'Morning ocean swim, relaxing spa session and smooth speedboat transfer back to Malé for your flight home.',
-        img1: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=500&q=80',
-        img2: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=500&q=80'
+        img1: 'https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=500&q=80',
+        img2: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=500&q=80'
       }
     ]
   },
@@ -669,7 +669,7 @@ const DESTINATIONS = [
     priceFrom: 'LKR 149,000',
     flightRoute: 'Colombo (CMB) — Delhi (DEL) / Kochi / Chennai',
     heroBg: 'https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=1920&q=85',
-    footerBg: 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=1920&q=80',
+    footerBg: 'https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&w=1920&q=80',
     introText: "We've crafted rich itineraries across India—from the iconic Golden Triangle (Delhi, Agra & Jaipur) to snowy Kashmir, serene Kerala backwaters, and sacred Buddhist & Hindu pilgrimage tours.",
     highlights: [
       { label: '3 royal cities', sub: 'Delhi • Agra • Jaipur', img: 'https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=600&q=80' },
@@ -718,7 +718,7 @@ const DESTINATIONS = [
       { label: '6 days', sub: 'Euro-Asian luxury', img: 'https://images.unsplash.com/photo-1622547748225-3fc4abd2cca0?auto=format&fit=crop&w=600&q=80' },
       { label: 'architectural icons', sub: 'Flame Towers & Heydar Center', img: 'https://images.unsplash.com/photo-1565008576549-57569a49371d?auto=format&fit=crop&w=600&q=80' },
       { label: 'mountain cable cars', sub: 'Shahdag & Tufandag resorts', img: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=600&q=80' },
-      { label: 'enjoy the vibe', sub: 'Caspian Sea & Nizami Street', img: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&q=80' }
+      { label: 'enjoy the vibe', sub: 'Caspian Sea & Nohur Lake', img: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80' }
     ],
     timeline: [
       {
@@ -732,15 +732,15 @@ const DESTINATIONS = [
         days: 'Days 3–4',
         place: 'Gabala & Nohur Lake',
         desc: 'Scenic drive to the Caucasus Mountains, emerald Nohur Lake & Tufandag Mountain Resort cable car ride.',
-        img1: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=500&q=80',
-        img2: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=500&q=80'
+        img1: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=500&q=80',
+        img2: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=500&q=80'
       },
       {
         days: 'Days 5–6',
         place: 'Shahdag & Fire Mountain',
         desc: 'Shahdag roller coaster & snow activities, Ateshgah Fire Temple, Yanar Dag burning mountain & Nizami Street shopping.',
         img1: 'https://images.unsplash.com/photo-1565008576549-57569a49371d?auto=format&fit=crop&w=500&q=80',
-        img2: 'https://images.unsplash.com/photo-1596306499300-0b7b1689b9f6?auto=format&fit=crop&w=500&q=80'
+        img2: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=500&q=80'
       }
     ]
   }
