@@ -953,9 +953,9 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#050B16] text-white font-sans selection:bg-sky-500 selection:text-white overflow-x-hidden pb-16 md:pb-0">
+    <div className="min-h-screen bg-[#050B16] text-white font-sans selection:bg-sky-500 selection:text-white overflow-x-hidden">
       {/* ================= STICKY GLASSMORPHIC NAVBAR (DESKTOP & MOBILE RESPONSIVE) ================= */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-[#050B16]/90 backdrop-blur-xl border-b border-white/10 transition-all">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-[#050B16]/95 backdrop-blur-xl border-b border-white/10 transition-all">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-3 xl:gap-6">
           <button
             type="button"
@@ -965,7 +965,7 @@ export default function App() {
             <YashLogo />
           </button>
 
-          {/* Separate Single-Line Navigation Tabs (Only shown on xl+ screens to prevent any overlap) */}
+          {/* PC Desktop Navigation Bar (Only on xl+ screens: Single-Line Horizontal Pills) */}
           <nav className="hidden xl:flex items-center gap-1.5 bg-white/[0.03] p-1.5 rounded-full border border-white/10 text-xs xl:text-sm font-medium text-slate-200 shrink-0">
             {/* 1. Home Tab */}
             <button
@@ -1110,141 +1110,165 @@ export default function App() {
             </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-xl bg-white/10 text-white hover:bg-white/20 border border-white/15 active:scale-95 flex items-center justify-center"
-              aria-label="Toggle Menu"
+              className={`p-2 rounded-xl border transition-all active:scale-95 flex items-center gap-1.5 ${
+                mobileMenuOpen
+                  ? 'bg-sky-500 text-[#050B16] border-sky-400 shadow-md shadow-sky-500/30'
+                  : 'bg-white/10 text-white hover:bg-white/20 border-white/15'
+              }`}
+              aria-label="Toggle Navigation Menu"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
         </div>
 
-        {/* Mobile & Tablet Drawer with Standalone 6-Tab Grid & Quick Actions */}
-        {mobileMenuOpen && (
-          <div className="xl:hidden bg-[#081226]/98 backdrop-blur-2xl border-b border-white/10 px-5 py-5 space-y-4">
-            <div className="grid grid-cols-2 gap-2.5">
-              <button
-                type="button"
-                onClick={() => {
-                  setActiveNavSection('home');
-                  navigateToTab('home');
-                }}
-                className={`p-3 rounded-xl text-left text-xs font-bold border flex items-center gap-2 whitespace-nowrap transition-all ${
-                  activeTab === 'home' && activeNavSection === 'home'
-                    ? 'bg-sky-500 text-[#050B16] border-sky-400 shadow-md shadow-sky-500/30'
-                    : 'bg-white/5 text-white border-white/10'
-                }`}
-              >
-                <Globe className="w-4 h-4 shrink-0" />
-                <span className="whitespace-nowrap">Home</span>
-              </button>
+        {/* Mobile & Tablet Animated Slide-Down Navigation Drawer ("ඇදිලා එන" Navigation Drawer) */}
+        <div
+          className={`xl:hidden transition-all duration-300 ease-in-out overflow-hidden border-sky-400/20 bg-[#081226]/98 backdrop-blur-2xl ${
+            mobileMenuOpen
+              ? 'max-h-[700px] opacity-100 border-b shadow-2xl py-5 px-4 sm:px-6'
+              : 'max-h-0 opacity-0 border-b-0 py-0 px-4 sm:px-6 pointer-events-none'
+          }`}
+        >
+          {/* Exactly 6 Buttons in 2 Columns matching User Screenshot */}
+          <div className="grid grid-cols-2 gap-2.5 sm:gap-3 max-w-lg mx-auto">
+            {/* 1. Home */}
+            <button
+              type="button"
+              onClick={() => {
+                setActiveNavSection('home');
+                navigateToTab('home');
+              }}
+              className={`p-3.5 rounded-xl text-left text-xs sm:text-sm font-bold border flex items-center gap-2.5 whitespace-nowrap transition-all active:scale-95 ${
+                activeTab === 'home' && activeNavSection === 'home'
+                  ? 'bg-sky-500 text-[#050B16] border-sky-400 shadow-lg shadow-sky-500/30'
+                  : 'bg-[#0c1830] text-white border-white/15 hover:border-sky-400/50 hover:bg-[#102244]'
+              }`}
+            >
+              <Globe className="w-4 h-4 shrink-0" />
+              <span className="whitespace-nowrap">Home</span>
+            </button>
 
-              <button
-                type="button"
-                onClick={() => {
-                  setActiveNavSection('tours');
-                  navigateToTab('home', 'about-tour');
-                }}
-                className={`p-3 rounded-xl text-left text-xs font-bold border flex items-center gap-2 whitespace-nowrap transition-all ${
-                  activeTab === 'home' && activeNavSection === 'tours'
-                    ? 'bg-sky-500 text-[#050B16] border-sky-400 shadow-md shadow-sky-500/30'
-                    : 'bg-white/5 text-white border-white/10'
-                }`}
-              >
-                <Compass className="w-4 h-4 shrink-0" />
-                <span className="whitespace-nowrap">Outbound Tours</span>
-              </button>
+            {/* 2. Outbound Tours */}
+            <button
+              type="button"
+              onClick={() => {
+                setActiveNavSection('tours');
+                navigateToTab('home', 'about-tour');
+              }}
+              className={`p-3.5 rounded-xl text-left text-xs sm:text-sm font-bold border flex items-center gap-2.5 whitespace-nowrap transition-all active:scale-95 ${
+                activeTab === 'home' && activeNavSection === 'tours'
+                  ? 'bg-sky-500 text-[#050B16] border-sky-400 shadow-lg shadow-sky-500/30'
+                  : 'bg-[#0c1830] text-white border-white/15 hover:border-sky-400/50 hover:bg-[#102244]'
+              }`}
+            >
+              <Compass className="w-4 h-4 shrink-0" />
+              <span className="whitespace-nowrap">Outbound Tours</span>
+            </button>
 
-              <button
-                type="button"
-                onClick={() => {
-                  setActiveNavSection('');
-                  navigateToTab('visa');
-                }}
-                className={`p-3 rounded-xl text-left text-xs font-bold border flex items-center gap-2 whitespace-nowrap transition-all ${
-                  activeTab === 'visa'
-                    ? 'bg-sky-500 text-[#050B16] border-sky-400 shadow-md shadow-sky-500/30'
-                    : 'bg-white/5 text-white border-white/10'
-                }`}
-              >
-                <FileCheck className="w-4 h-4 shrink-0" />
-                <span className="whitespace-nowrap">Visa Services</span>
-              </button>
+            {/* 3. Visa Services */}
+            <button
+              type="button"
+              onClick={() => {
+                setActiveNavSection('');
+                navigateToTab('visa');
+              }}
+              className={`p-3.5 rounded-xl text-left text-xs sm:text-sm font-bold border flex items-center gap-2.5 whitespace-nowrap transition-all active:scale-95 ${
+                activeTab === 'visa'
+                  ? 'bg-sky-500 text-[#050B16] border-sky-400 shadow-lg shadow-sky-500/30'
+                  : 'bg-[#0c1830] text-white border-white/15 hover:border-sky-400/50 hover:bg-[#102244]'
+              }`}
+            >
+              <FileCheck className="w-4 h-4 shrink-0" />
+              <span className="whitespace-nowrap">Visa Services</span>
+            </button>
 
-              <button
-                type="button"
-                onClick={() => {
-                  setActiveNavSection('');
-                  navigateToTab('airtickets');
-                }}
-                className={`p-3 rounded-xl text-left text-xs font-bold border flex items-center gap-2 whitespace-nowrap transition-all ${
-                  activeTab === 'airtickets'
-                    ? 'bg-sky-500 text-[#050B16] border-sky-400 shadow-md shadow-sky-500/30'
-                    : 'bg-white/5 text-white border-white/10'
-                }`}
-              >
-                <Plane className="w-4 h-4 shrink-0" />
-                <span className="whitespace-nowrap">Air Tickets</span>
-              </button>
+            {/* 4. Air Tickets */}
+            <button
+              type="button"
+              onClick={() => {
+                setActiveNavSection('');
+                navigateToTab('airtickets');
+              }}
+              className={`p-3.5 rounded-xl text-left text-xs sm:text-sm font-bold border flex items-center gap-2.5 whitespace-nowrap transition-all active:scale-95 ${
+                activeTab === 'airtickets'
+                  ? 'bg-sky-500 text-[#050B16] border-sky-400 shadow-lg shadow-sky-500/30'
+                  : 'bg-[#0c1830] text-white border-white/15 hover:border-sky-400/50 hover:bg-[#102244]'
+              }`}
+            >
+              <Plane className="w-4 h-4 shrink-0" />
+              <span className="whitespace-nowrap">Air Tickets</span>
+            </button>
 
-              <button
-                type="button"
-                onClick={() => {
-                  setActiveNavSection('');
-                  navigateToTab('about');
-                }}
-                className={`p-3 rounded-xl text-left text-xs font-bold border flex items-center gap-2 whitespace-nowrap transition-all ${
-                  activeTab === 'about'
-                    ? 'bg-sky-500 text-[#050B16] border-sky-400 shadow-md shadow-sky-500/30'
-                    : 'bg-white/5 text-white border-white/10'
-                }`}
-              >
-                <Award className="w-4 h-4 shrink-0" />
-                <span className="whitespace-nowrap">About Us</span>
-              </button>
+            {/* 5. About Us */}
+            <button
+              type="button"
+              onClick={() => {
+                setActiveNavSection('');
+                navigateToTab('about');
+              }}
+              className={`p-3.5 rounded-xl text-left text-xs sm:text-sm font-bold border flex items-center gap-2.5 whitespace-nowrap transition-all active:scale-95 ${
+                activeTab === 'about'
+                  ? 'bg-sky-500 text-[#050B16] border-sky-400 shadow-lg shadow-sky-500/30'
+                  : 'bg-[#0c1830] text-white border-white/15 hover:border-sky-400/50 hover:bg-[#102244]'
+              }`}
+            >
+              <Award className="w-4 h-4 shrink-0" />
+              <span className="whitespace-nowrap">About Us</span>
+            </button>
 
-              <button
-                type="button"
-                onClick={() => navigateToTab(activeTab, 'contact')}
-                className="p-3 rounded-xl text-left text-xs font-bold border border-white/10 bg-white/5 text-white flex items-center gap-2 whitespace-nowrap transition-all hover:border-sky-400/50"
-              >
-                <MapPin className="w-4 h-4 text-sky-400 shrink-0" />
-                <span className="whitespace-nowrap">Contact & Office</span>
-              </button>
-            </div>
+            {/* 6. Contact & Office */}
+            <button
+              type="button"
+              onClick={() => navigateToTab(activeTab, 'contact')}
+              className="p-3.5 rounded-xl text-left text-xs sm:text-sm font-bold border border-white/15 bg-[#0c1830] text-white flex items-center gap-2.5 whitespace-nowrap transition-all hover:border-sky-400/50 hover:bg-[#102244] active:scale-95"
+            >
+              <MapPin className="w-4 h-4 text-sky-400 shrink-0" />
+              <span className="whitespace-nowrap">Contact & Office</span>
+            </button>
+          </div>
 
-            {/* Direct Quick Action Buttons in Drawer */}
-            <div className="pt-2 border-t border-white/10 flex flex-col gap-2">
-              <button
-                type="button"
-                onClick={() => navigateToTab('home', 'customizer')}
-                className="w-full py-2.5 rounded-xl bg-gradient-to-r from-[#0047AB] to-sky-500 text-center text-xs font-bold uppercase tracking-wider text-white shadow-md shadow-sky-500/30 flex items-center justify-center gap-2"
-              >
-                <Sliders className="w-4 h-4" />
-                <span>Customize Your Tour</span>
-              </button>
+          {/* Quick Action Buttons in Slide-Down Drawer */}
+          <div className="pt-4 mt-4 border-t border-white/10 flex flex-col gap-2.5 max-w-lg mx-auto">
+            <button
+              type="button"
+              onClick={() => navigateToTab('home', 'customizer')}
+              className="w-full py-2.5 rounded-xl bg-gradient-to-r from-[#0047AB] to-sky-500 text-center text-xs font-bold uppercase tracking-wider text-white shadow-md shadow-sky-500/30 flex items-center justify-center gap-2 active:scale-95 transition-all"
+            >
+              <Sliders className="w-4 h-4" />
+              <span>Customize Your Tour</span>
+            </button>
 
-              <div className="grid grid-cols-2 gap-2">
-                <a
-                  href="tel:0112312093"
-                  className="py-2.5 px-3 rounded-xl bg-white/10 text-center text-xs font-semibold flex items-center justify-center gap-1.5 text-white hover:bg-white/20 transition-colors"
-                >
-                  <Phone className="w-3.5 h-3.5 text-sky-400 shrink-0" />
-                  <span>011 231 2093</span>
-                </a>
-                <a
-                  href="https://wa.me/94775841144"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="py-2.5 px-3 rounded-xl bg-emerald-600 text-center text-xs font-semibold flex items-center justify-center gap-1.5 text-white hover:bg-emerald-500 transition-colors"
-                >
-                  <WhatsAppIcon className="w-3.5 h-3.5 text-white shrink-0" />
-                  <span>WhatsApp</span>
-                </a>
-              </div>
+            <div className="grid grid-cols-2 gap-2">
+              <a
+                href="tel:0112312093"
+                className="py-2.5 px-3 rounded-xl bg-white/10 text-center text-xs font-semibold flex items-center justify-center gap-1.5 text-white hover:bg-white/20 transition-colors active:scale-95"
+              >
+                <Phone className="w-3.5 h-3.5 text-sky-400 shrink-0" />
+                <span>011 231 2093</span>
+              </a>
+              <a
+                href="https://wa.me/94775841144"
+                target="_blank"
+                rel="noreferrer"
+                className="py-2.5 px-3 rounded-xl bg-emerald-600 text-center text-xs font-semibold flex items-center justify-center gap-1.5 text-white hover:bg-emerald-500 transition-colors active:scale-95"
+              >
+                <WhatsAppIcon className="w-3.5 h-3.5 text-white shrink-0" />
+                <span>WhatsApp</span>
+              </a>
             </div>
           </div>
-        )}
+        </div>
       </header>
+
+      {/* Mobile Backdrop Overlay (Tap outside to close slide drawer) */}
+      {mobileMenuOpen && (
+        <div
+          onClick={() => setMobileMenuOpen(false)}
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 xl:hidden transition-opacity duration-300"
+          aria-hidden="true"
+        />
+      )}
 
       {/* ================= TAB 2: DEDICATED VISA SERVICES PAGE ================= */}
       {activeTab === 'visa' && (
@@ -3165,7 +3189,7 @@ export default function App() {
       </section>
 
       {/* ================= UNIVERSAL FLOATING QUICK-ACTION DOCK (MOBILE & DESKTOP) ================= */}
-      <div className="flex flex-col gap-2.5 fixed right-3 sm:right-6 bottom-20 md:bottom-auto md:top-28 z-40">
+      <div className="flex flex-col gap-2.5 fixed right-3.5 sm:right-6 bottom-5 sm:bottom-auto sm:top-28 z-40">
         {/* WhatsApp Quick Chat */}
         <a
           href="https://wa.me/94775841144?text=Hello%20Yash%20Holidays!%20I%20visited%20your%20website%20and%20would%20like%20to%20plan%20a%20trip."
@@ -3208,129 +3232,6 @@ export default function App() {
           </span>
         </button>
       </div>
-
-      {/* ================= ULTRA-LUXURY GLASSMORPHIC MOBILE BOTTOM NAVIGATION BAR (WITH EXACT DESKTOP ICONS) ================= */}
-      <nav
-        aria-label="Mobile Navigation"
-        className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-[#081226]/95 backdrop-blur-2xl border-t border-white/15 px-2 py-1.5 shadow-[0_-10px_30px_rgba(0,0,0,0.8)]"
-      >
-        <div className="grid grid-cols-5 items-center gap-1 max-w-md mx-auto">
-          {/* 1. Home */}
-          <button
-            type="button"
-            onClick={() => {
-              setActiveNavSection('home');
-              navigateToTab('home');
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
-            className={`flex flex-col items-center justify-center py-1 rounded-xl transition-all ${
-              activeTab === 'home' && activeNavSection === 'home'
-                ? 'text-sky-400 font-bold scale-105'
-                : 'text-slate-400 hover:text-white'
-            }`}
-          >
-            <div
-              className={`p-1 rounded-lg transition-all ${
-                activeTab === 'home' && activeNavSection === 'home'
-                  ? 'bg-sky-500/20 text-sky-400 shadow-sm shadow-sky-500/40'
-                  : ''
-              }`}
-            >
-              <Globe className="w-5 h-5" />
-            </div>
-            <span className="text-[10px] mt-0.5 tracking-tight font-medium">Home</span>
-          </button>
-
-          {/* 2. Outbound Tours */}
-          <button
-            type="button"
-            onClick={() => {
-              setActiveNavSection('tours');
-              navigateToTab('home', 'about-tour');
-            }}
-            className={`flex flex-col items-center justify-center py-1 rounded-xl transition-all ${
-              activeTab === 'home' && activeNavSection === 'tours'
-                ? 'text-sky-400 font-bold scale-105'
-                : 'text-slate-400 hover:text-white'
-            }`}
-          >
-            <div
-              className={`p-1 rounded-lg transition-all ${
-                activeTab === 'home' && activeNavSection === 'tours'
-                  ? 'bg-sky-500/20 text-sky-400 shadow-sm shadow-sky-500/40'
-                  : ''
-              }`}
-            >
-              <Compass className="w-5 h-5" />
-            </div>
-            <span className="text-[10px] mt-0.5 tracking-tight font-medium">Tours</span>
-          </button>
-
-          {/* 3. Visa Services */}
-          <button
-            type="button"
-            onClick={() => {
-              setActiveNavSection('');
-              navigateToTab('visa');
-            }}
-            className={`flex flex-col items-center justify-center py-1 rounded-xl transition-all ${
-              activeTab === 'visa'
-                ? 'text-sky-400 font-bold scale-105'
-                : 'text-slate-400 hover:text-white'
-            }`}
-          >
-            <div
-              className={`p-1 rounded-lg transition-all ${
-                activeTab === 'visa'
-                  ? 'bg-sky-500/20 text-sky-400 shadow-sm shadow-sky-500/40'
-                  : ''
-              }`}
-            >
-              <FileCheck className="w-5 h-5" />
-            </div>
-            <span className="text-[10px] mt-0.5 tracking-tight font-medium">Visas</span>
-          </button>
-
-          {/* 4. Air Tickets */}
-          <button
-            type="button"
-            onClick={() => {
-              setActiveNavSection('');
-              navigateToTab('airtickets');
-            }}
-            className={`flex flex-col items-center justify-center py-1 rounded-xl transition-all ${
-              activeTab === 'airtickets'
-                ? 'text-sky-400 font-bold scale-105'
-                : 'text-slate-400 hover:text-white'
-            }`}
-          >
-            <div
-              className={`p-1 rounded-lg transition-all ${
-                activeTab === 'airtickets'
-                  ? 'bg-sky-500/20 text-sky-400 shadow-sm shadow-sky-500/40'
-                  : ''
-              }`}
-            >
-              <Plane className="w-5 h-5" />
-            </div>
-            <span className="text-[10px] mt-0.5 tracking-tight font-medium">Flights</span>
-          </button>
-
-          {/* 5. Custom Tour */}
-          <button
-            type="button"
-            onClick={() => {
-              navigateToTab('home', 'customizer');
-            }}
-            className="flex flex-col items-center justify-center py-1 rounded-xl text-sky-400 hover:text-sky-300 transition-all"
-          >
-            <div className="p-1 rounded-lg bg-gradient-to-r from-[#0047AB] to-sky-500 text-white shadow-md shadow-sky-500/30">
-              <Sparkles className="w-5 h-5" />
-            </div>
-            <span className="text-[10px] mt-0.5 tracking-tight font-bold text-sky-300">Custom</span>
-          </button>
-        </div>
-      </nav>
     </div>
   );
 }
