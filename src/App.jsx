@@ -4,6 +4,11 @@ import malaysiaReview1 from './assets/reviews/malaysia-genting-temple.jpg';
 import malaysiaReview2 from './assets/reviews/malaysia-batu-caves.jpg';
 import malaysiaReview3 from './assets/reviews/malaysia-sunway-lagoon.jpg';
 import malaysiaReview4 from './assets/reviews/malaysia-petronas-twin-towers.jpg';
+import singaporeReview1 from './assets/reviews/singapore-merlion-park.jpg';
+import singaporeReview2 from './assets/reviews/singapore-universal-studios.jpg';
+import singaporeReview3 from './assets/reviews/singapore-gardens-by-the-bay.jpg';
+import singaporeReview4 from './assets/reviews/singapore-jewel-changi.jpg';
+import singaporeReview5 from './assets/reviews/singapore-heritage-temple.jpg';
 import {
   Plane,
   Globe,
@@ -811,6 +816,46 @@ const INITIAL_REVIEWS = [
       'We are thrilled to share some of the most beautiful moments from the recent Malaysia getaway of Nithya Dewammini and Prabashani Ranasinghe. From the towering heights of the Petronas Twin Towers to the vibrant culture found at the Batu Caves, their journey through Kuala Lumpur was filled with discovery and joy. Whether they were taking in the scenic views at Genting Highlands or enjoying the ultimate fun at Sunway Lagoon, it was a trip to remember! 🎡🚠 At Yash Holidays, our commitment is to provide a seamless, high-quality service so you can focus on the experience while we handle all the details. A huge thank you to Nithya and Prabashani for trusting us with your international adventure. We can’t wait to help you plan your next one!'
   },
   {
+    id: 'rev-singapore-family',
+    name: 'Singapore Family Getaway Experience',
+    location: 'Sri Lanka to Singapore',
+    tour: 'Singapore 5D4N Highlights, Universal Studios & Gardens',
+    tag: 'Family Tour',
+    rating: 5,
+    date: 'Recent Trip 2026',
+    verified: true,
+    highlight: 'Universal Studios, Merlion Park, Gardens by the Bay & Jewel Changi',
+    images: [
+      {
+        url: singaporeReview1,
+        title: 'Merlion Park & Singapore Skyline',
+        location: 'Merlion Park, Singapore'
+      },
+      {
+        url: singaporeReview2,
+        title: 'Universal Studios Singapore Globe',
+        location: 'Resorts World Sentosa'
+      },
+      {
+        url: singaporeReview3,
+        title: 'Gardens by the Bay & Flower Dome',
+        location: 'Marina Gardens Drive, Singapore'
+      },
+      {
+        url: singaporeReview4,
+        title: 'Jewel Changi Airport Rain Vortex',
+        location: 'Jewel Changi, Singapore'
+      },
+      {
+        url: singaporeReview5,
+        title: 'Traditional Heritage Temple Courtyard',
+        location: 'Historic Singapore'
+      }
+    ],
+    review:
+      'An Absolutely Amazing Singapore Experience! 🇸🇬✨ I would like to sincerely thank the entire team for making my Singapore trip such a wonderful and unforgettable experience. It was truly amazing, and honestly, I can’t express the whole experience in words! ❤️ A special thank you to Mr. Dhananjaya, who helped me so much from the very beginning with planning the trip and arranging the perfect package. Your support, and patience made everything so much easier. The prices were quoted very conveniently according to my requirements, and I was really happy with the package and the value provided. Everything was arranged according to my needs and budget, which made the whole experience even better. ❤️ Also, a big thank you to Mr. Kasun for helping me with the flight ticket booking and making the arrangements smoothly. ✈️ Everything was well organized, and the entire trip was an incredible experience filled with beautiful memories. From the planning stage to the actual journey, your team was supportive and helpful throughout. Thank you so much, Dhananjaya, Kasun, and the entire travel team! 🙏❤️ I truly appreciate all your effort and support. It was an amazing trip that I will always remember! 🇸🇬✨ Highly appreciated and definitely recommended!'
+  },
+  {
     id: 'rev-1',
     name: 'Dinuka & Kaveesha Perera',
     location: 'Colombo, Sri Lanka',
@@ -1105,8 +1150,10 @@ export default function App() {
       if (saved) {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length > 0) {
-          const withoutNithya = parsed.filter((r) => r.id !== 'rev-nithya-prabashani');
-          return [INITIAL_REVIEWS[0], ...withoutNithya];
+          const withoutFeatured = parsed.filter(
+            (r) => r.id !== 'rev-nithya-prabashani' && r.id !== 'rev-singapore-family'
+          );
+          return [INITIAL_REVIEWS[0], INITIAL_REVIEWS[1], ...withoutFeatured];
         }
       }
     } catch (e) {
@@ -2302,7 +2349,124 @@ export default function App() {
           {/* Interactive Reviews Filter & Grid Section */}
           <section className="py-12 sm:py-20 bg-gradient-to-b from-[#050B16] via-[#08152C] to-[#050B16]">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              {/* ================= SPECIAL OFFICIAL TRAVELER SPOTLIGHT (NITHYA & PRABASHANI) ================= */}
+              {/* ================= SPECIAL TRAVELER SPOTLIGHT 1: SINGAPORE FAMILY GETAWAY ================= */}
+              <div className="mb-10 p-6 sm:p-10 rounded-3xl bg-gradient-to-br from-[#0A1931] via-[#08152C] to-[#050B16] border border-sky-400/40 shadow-2xl relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-96 h-96 bg-sky-500/10 rounded-full blur-3xl pointer-events-none" />
+
+                <div className="relative z-10 flex flex-col lg:flex-row gap-8 items-start justify-between">
+                  {/* Left Column: Story Details & Narrative */}
+                  <div className="lg:w-1/2 space-y-4">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 text-xs font-bold uppercase tracking-widest">
+                      <Camera className="w-3.5 h-3.5 text-emerald-400" />
+                      <span>FEATURED FAMILY MOMENTS • SINGAPORE GETAWAY 🇸🇬</span>
+                    </div>
+
+                    <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white leading-tight">
+                      An Absolutely Amazing <span className="text-sky-400">Singapore Experience!</span> 🇸🇬✨
+                    </h2>
+
+                    <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-1">
+                        {[...Array(5)].map((_, i) => (
+                          <Star key={i} className="w-5 h-5 text-amber-400 fill-amber-400" />
+                        ))}
+                      </div>
+                      <span className="text-xs font-bold text-amber-300 bg-amber-500/10 px-2.5 py-1 rounded-lg border border-amber-400/20">
+                        5.0 / 5.0 Star Family Experience
+                      </span>
+                    </div>
+
+                    <p className="text-sm sm:text-base text-slate-200 leading-relaxed font-medium">
+                      "I would like to sincerely thank the entire team for making my Singapore trip such a wonderful and unforgettable experience. It was truly amazing, and honestly, I can’t express the whole experience in words! ❤️"
+                    </p>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 py-1">
+                      <div className="p-3.5 rounded-2xl bg-white/[0.04] border border-white/10 hover:border-sky-400/30 transition-colors">
+                        <p className="text-xs font-bold text-sky-300 flex items-center gap-1.5">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                          <span>Special Thanks to Mr. Dhananjaya</span>
+                        </p>
+                        <p className="text-[11px] text-slate-300 mt-1 leading-relaxed">
+                          "Helped me so much from the very beginning with planning the trip and arranging the perfect package. Everything was arranged according to my needs and budget."
+                        </p>
+                      </div>
+
+                      <div className="p-3.5 rounded-2xl bg-white/[0.04] border border-white/10 hover:border-sky-400/30 transition-colors">
+                        <p className="text-xs font-bold text-sky-300 flex items-center gap-1.5">
+                          <Plane className="w-3.5 h-3.5 text-sky-400 shrink-0" />
+                          <span>Special Thanks to Mr. Kasun</span>
+                        </p>
+                        <p className="text-[11px] text-slate-300 mt-1 leading-relaxed">
+                          "Helping me with the flight ticket booking and making the arrangements smoothly. ✈️ Everything was well organized and filled with beautiful memories."
+                        </p>
+                      </div>
+                    </div>
+
+                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed italic border-l-2 border-sky-400 pl-4 py-1">
+                      "Thank you so much, Dhananjaya, Kasun, and the entire travel team! 🙏❤️ I truly appreciate all your effort and support. It was an amazing trip that I will always remember! Highly appreciated and definitely recommended!"
+                    </p>
+
+                    <div className="pt-2 flex flex-wrap items-center gap-3">
+                      <a
+                        href="https://wa.me/94775841144?text=Hello%20Yash%20Holidays!%20I%20saw%20the%20Singapore%20family%20photos%20(Universal%20Studios,%20Merlion,%20Gardens%20by%20the%20Bay,%20Jewel%20Changi)%20and%20would%20like%20a%20similar%20Singapore%20package%20quote!"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="px-5 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg shadow-emerald-500/30 active:scale-95 transition-all"
+                      >
+                        <WhatsAppIcon className="w-4 h-4 text-white" />
+                        <span>Book Similar Singapore Tour</span>
+                      </a>
+                      <a
+                        href="https://wa.me/94775841144?text=Hello%20Mr.%20Dhananjaya%20and%20Mr.%20Kasun!%20I%20would%20like%20assistance%20with%20Singapore%20family%20holiday%20packages%20and%20flight%20tickets."
+                        target="_blank"
+                        rel="noreferrer"
+                        className="px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-xs uppercase tracking-wider flex items-center gap-2 active:scale-95 transition-all"
+                      >
+                        <Compass className="w-4 h-4 text-sky-400" />
+                        <span>Speak with Trip Planners</span>
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Right Column: 5-Photo Interactive Showcase */}
+                  <div className="lg:w-1/2 w-full">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 sm:gap-3">
+                      {INITIAL_REVIEWS[1].images.map((img, idx) => (
+                        <div
+                          key={idx}
+                          onClick={() => setActivePhotoModal(img)}
+                          className={`group relative rounded-2xl overflow-hidden border border-white/20 shadow-lg cursor-pointer bg-[#050B16] ${
+                            idx === 0 ? 'col-span-2 aspect-[16/10]' : 'aspect-square'
+                          }`}
+                        >
+                          <img
+                            src={img.url}
+                            alt={img.title}
+                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent opacity-80 group-hover:opacity-95 transition-opacity" />
+                          <div className="absolute bottom-2 left-2.5 right-2.5">
+                            <span className="text-[11px] font-bold text-sky-300 block leading-tight">
+                              {img.title}
+                            </span>
+                            <span className="text-[9px] text-slate-300 block">
+                              {img.location}
+                            </span>
+                          </div>
+                          <div className="absolute top-2 right-2 p-1.5 rounded-lg bg-black/60 text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                            <Camera className="w-3.5 h-3.5" />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    <p className="text-[11px] text-center text-slate-400 mt-2.5">
+                      Click any photo to enlarge full-resolution Singapore moments
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* ================= SPECIAL OFFICIAL TRAVELER SPOTLIGHT 2: MALAYSIA (NITHYA & PRABASHANI) ================= */}
               <div className="mb-14 p-6 sm:p-10 rounded-3xl bg-gradient-to-br from-[#0A1931] via-[#08152C] to-[#050B16] border border-sky-400/40 shadow-2xl relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-96 h-96 bg-sky-500/10 rounded-full blur-3xl pointer-events-none" />
 
@@ -2515,7 +2679,7 @@ export default function App() {
 
                         {/* Attached Photos Thumbnail Gallery if present */}
                         {rev.images && rev.images.length > 0 && (
-                          <div className="grid grid-cols-4 gap-2 mb-4 mt-2">
+                          <div className="grid grid-cols-4 sm:grid-cols-5 gap-2 mb-4 mt-2">
                             {rev.images.map((img, i) => (
                               <div
                                 key={i}
@@ -3706,7 +3870,7 @@ export default function App() {
 
                     {/* Attached Customer Photos Preview if present */}
                     {rev.images && rev.images.length > 0 && (
-                      <div className="grid grid-cols-4 gap-1.5 mb-3.5">
+                      <div className="grid grid-cols-4 sm:grid-cols-5 gap-1.5 mb-3.5">
                         {rev.images.map((img, i) => (
                           <div
                             key={i}
