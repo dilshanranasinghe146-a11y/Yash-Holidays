@@ -48,6 +48,7 @@ import {
   Plus,
   Trash2,
   Edit3,
+  Lock,
   RotateCcw,
   Check,
   CalendarCheck,
@@ -1335,6 +1336,35 @@ export default function App() {
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
   const [editingReviewId, setEditingReviewId] = useState(null);
 
+  // --- HOST / SITE OWNER ACCESS MODE FOR REVIEW CUSTOMIZATION ---
+  const [isOwnerMode, setIsOwnerMode] = useState(() => {
+    try {
+      return (
+        localStorage.getItem('yash_owner_mode') === 'true' ||
+        window.location.search.includes('owner=true') ||
+        window.location.search.includes('admin=true')
+      );
+    } catch {
+      return false;
+    }
+  });
+  const [isOwnerLoginModalOpen, setIsOwnerLoginModalOpen] = useState(false);
+  const [ownerPasswordInput, setOwnerPasswordInput] = useState('');
+  const [ownerPasswordError, setOwnerPasswordError] = useState('');
+
+  // Automatically activate Host Mode if URL contains ?owner=true or ?admin=true
+  useEffect(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('owner') === 'true' || params.get('admin') === 'true' || params.get('host') === 'true') {
+        setIsOwnerMode(true);
+        localStorage.setItem('yash_owner_mode', 'true');
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  }, []);
+
   const [reviewForm, setReviewForm] = useState({
     name: '',
     location: 'Colombo, Sri Lanka',
@@ -1356,6 +1386,10 @@ export default function App() {
   }, [reviewsList]);
 
   const handleOpenAddReview = () => {
+    if (!isOwnerMode) {
+      setIsOwnerLoginModalOpen(true);
+      return;
+    }
     setEditingReviewId(null);
     setReviewForm({
       name: '',
@@ -1371,6 +1405,10 @@ export default function App() {
   };
 
   const handleOpenEditReview = (rev) => {
+    if (!isOwnerMode) {
+      setIsOwnerLoginModalOpen(true);
+      return;
+    }
     setEditingReviewId(rev.id);
     setReviewForm({
       name: rev.name,
@@ -3068,22 +3106,35 @@ export default function App() {
                           <span>Helpful ({currentLikes})</span>
                         </button>
 
-                        <button
-                          type="button"
-                          onClick={() => handleShareReviewWhatsApp(rev)}
-                          className="px-3.5 py-1.5 rounded-xl bg-emerald-500/20 hover:bg-emerald-500 text-emerald-300 hover:text-[#050B16] text-xs font-bold flex items-center gap-1.5 transition-all active:scale-95"
-                          title="Ask Yash Holidays about this package on WhatsApp"
-                        >
-                          <WhatsAppIcon className="w-3.5 h-3.5" />
-                          <span>Book Similar</span>
-                        </button>
+                        <div className="flex items-center gap-2">
+                          {isOwnerMode && (
+                            <button
+                              type="button"
+                              onClick={() => handleOpenEditReview(rev)}
+                              className="px-3 py-1.5 rounded-xl bg-amber-500/20 hover:bg-amber-500 text-amber-300 hover:text-slate-950 text-xs font-bold flex items-center gap-1 border border-amber-400/30 transition-all active:scale-95"
+                              title="Host: Customize & Edit Review"
+                            >
+                              <Edit3 className="w-3.5 h-3.5" />
+                              <span>Customize</span>
+                            </button>
+                          )}
+                          <button
+                            type="button"
+                            onClick={() => handleShareReviewWhatsApp(rev)}
+                            className="px-3.5 py-1.5 rounded-xl bg-emerald-500/20 hover:bg-emerald-500 text-emerald-300 hover:text-[#050B16] text-xs font-bold flex items-center gap-1.5 transition-all active:scale-95"
+                            title="Ask Yash Holidays about this package on WhatsApp"
+                          >
+                            <WhatsAppIcon className="w-3.5 h-3.5" />
+                            <span>Book Similar</span>
+                          </button>
+                        </div>
                       </div>
                     </div>
                   );
                 })}
               </div>
 
-              {/* Bottom Customizer Banner */}
+              {/* Bottom Reviews Action Banner */}
               <div className="mt-16 p-8 rounded-3xl bg-gradient-to-r from-sky-950/70 via-[#0A1A38] to-sky-950/70 border border-sky-400/30 text-center max-w-4xl mx-auto shadow-2xl">
                 <h3 className="text-2xl font-bold text-white mb-2">
                   Want to Share Your Own Experience with Yash Holidays?
@@ -3092,14 +3143,26 @@ export default function App() {
                   Every journey matters to us. Submit your honest feedback, photos, or holiday story and help other Sri Lankan travelers plan with total confidence.
                 </p>
                 <div className="flex flex-wrap items-center justify-center gap-4">
-                  <button
-                    type="button"
-                    onClick={handleOpenAddReview}
-                    className="px-6 py-3 rounded-full bg-sky-500 hover:bg-sky-400 text-[#050B16] font-bold text-xs uppercase tracking-wider shadow-lg shadow-sky-500/30 flex items-center gap-2 active:scale-95 transition-all"
-                  >
-                    <Plus className="w-4 h-4" />
-                    <span>Add New Customer Review</span>
-                  </button>
+                  {isOwnerMode ? (
+                    <button
+                      type="button"
+                      onClick={handleOpenAddReview}
+                      className="px-6 py-3 rounded-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs uppercase tracking-wider shadow-lg shadow-amber-500/30 flex items-center gap-2 active:scale-95 transition-all"
+                    >
+                      <Plus className="w-4 h-4 text-slate-950" />
+                      <span>Host: Add / Publish Review</span>
+                    </button>
+                  ) : (
+                    <a
+                      href={GOOGLE_REVIEWS_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-6 py-3 rounded-full bg-white hover:bg-slate-100 text-[#050B16] font-bold text-xs uppercase tracking-wider shadow-lg flex items-center gap-2 active:scale-95 transition-all"
+                    >
+                      <GoogleIcon className="w-4 h-4" />
+                      <span>Review Us on Google</span>
+                    </a>
+                  )}
                   <button
                     type="button"
                     onClick={() => navigateToTab('home', 'customizer')}
@@ -4231,14 +4294,26 @@ export default function App() {
                 <GoogleIcon className="w-3.5 h-3.5" />
                 <span>Review on Google</span>
               </a>
-              <button
-                type="button"
-                onClick={handleOpenAddReview}
-                className="px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-xs uppercase tracking-wider flex items-center gap-2 transition-all active:scale-95"
-              >
-                <Plus className="w-4 h-4 text-sky-400" />
-                <span>Write Review</span>
-              </button>
+              {isOwnerMode ? (
+                <button
+                  type="button"
+                  onClick={handleOpenAddReview}
+                  className="px-5 py-2.5 rounded-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs uppercase tracking-wider flex items-center gap-2 transition-all active:scale-95 shadow-lg shadow-amber-500/25"
+                >
+                  <Plus className="w-4 h-4 text-slate-950" />
+                  <span>Host: Add Review</span>
+                </button>
+              ) : (
+                <a
+                  href="https://wa.me/94775841144?text=Hello%20Yash%20Holidays!%20I%20would%20like%20to%20share%20my%20travel%20experience%20and%20submit%20a%20review."
+                  target="_blank"
+                  rel="noreferrer"
+                  className="px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-xs uppercase tracking-wider flex items-center gap-2 transition-all active:scale-95"
+                >
+                  <WhatsAppIcon className="w-4 h-4 text-emerald-400" />
+                  <span>Share Feedback</span>
+                </a>
+              )}
               <button
                 type="button"
                 onClick={() => {
@@ -4330,13 +4405,20 @@ export default function App() {
 
                   <div className="pt-3 border-t border-white/10 flex items-center justify-between text-xs">
                     <span className="font-semibold text-sky-300 truncate max-w-[170px]">{rev.tour}</span>
-                    <button
-                      type="button"
-                      onClick={() => handleOpenEditReview(rev)}
-                      className="text-[11px] text-slate-400 hover:text-sky-300 flex items-center gap-1 font-medium"
-                    >
-                      <Edit3 className="w-3 h-3" /> Customize
-                    </button>
+                    {isOwnerMode ? (
+                      <button
+                        type="button"
+                        onClick={() => handleOpenEditReview(rev)}
+                        className="text-[11px] text-amber-300 hover:text-white px-2 py-0.5 rounded-md bg-amber-500/20 border border-amber-400/40 flex items-center gap-1 font-semibold transition-colors"
+                        title="Host: Customize & Edit Review"
+                      >
+                        <Edit3 className="w-3 h-3 text-amber-300" /> Customize
+                      </button>
+                    ) : (
+                      <span className="text-[11px] text-emerald-400/90 flex items-center gap-1 font-medium">
+                        <CheckCircle2 className="w-3 h-3 text-emerald-400 shrink-0" /> Verified Traveler
+                      </span>
+                    )}
                   </div>
                 </div>
               );
@@ -4704,13 +4786,35 @@ export default function App() {
               </button>
             </div>
 
-            <button
-              type="button"
-              onClick={() => navigateToTab('home', 'customizer')}
-              className="px-6 py-2 rounded-full border border-white/40 hover:bg-white hover:text-[#050B16] text-xs font-semibold transition-all"
-            >
-              Book Now
-            </button>
+            <div className="flex items-center gap-3">
+              <button
+                type="button"
+                onClick={() => {
+                  if (isOwnerMode) {
+                    setIsOwnerMode(false);
+                    try {
+                      localStorage.removeItem('yash_owner_mode');
+                    } catch (e) {
+                      console.error(e);
+                    }
+                  } else {
+                    setIsOwnerLoginModalOpen(true);
+                  }
+                }}
+                className="text-slate-500 hover:text-slate-300 text-[11px] flex items-center gap-1.5 transition-colors px-2 py-1 rounded hover:bg-white/5"
+                title={isOwnerMode ? "Host Mode Active - Click to Logout" : "Site Owner / Host Authentication"}
+              >
+                <Lock className="w-3 h-3 text-slate-400" />
+                <span>{isOwnerMode ? "Host Mode: ON (Exit)" : "Host Access"}</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => navigateToTab('home', 'customizer')}
+                className="px-6 py-2 rounded-full border border-white/40 hover:bg-white hover:text-[#050B16] text-xs font-semibold transition-all"
+              >
+                Book Now
+              </button>
+            </div>
           </div>
         </div>
       </section>
@@ -5150,6 +5254,127 @@ export default function App() {
                 <span>Inquire About This Tour</span>
               </a>
             </div>
+          </div>
+        </div>
+      )}
+      {/* ================= FLOATING HOST / OWNER MODE STATUS INDICATOR ================= */}
+      {isOwnerMode && (
+        <div className="fixed bottom-20 md:bottom-5 left-4 z-50 bg-[#08152C]/95 border border-amber-400/60 shadow-[0_10px_35px_rgba(245,158,11,0.25)] rounded-2xl px-4 py-2.5 flex items-center gap-3 backdrop-blur-xl animate-fadeIn">
+          <div className="flex items-center gap-2">
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-500"></span>
+            </span>
+            <span className="text-xs font-bold text-amber-300">Host / Owner Mode Active</span>
+          </div>
+          <span className="text-[11px] text-slate-300 hidden sm:inline">
+            (Review customize & edit controls unlocked)
+          </span>
+          <button
+            type="button"
+            onClick={() => {
+              setIsOwnerMode(false);
+              try {
+                localStorage.removeItem('yash_owner_mode');
+              } catch (e) {
+                console.error(e);
+              }
+            }}
+            className="text-xs font-bold px-3 py-1 rounded-lg bg-amber-500/20 hover:bg-amber-500 text-amber-200 hover:text-slate-950 border border-amber-400/40 transition-all active:scale-95"
+          >
+            Exit Host Mode
+          </button>
+        </div>
+      )}
+
+      {/* ================= HOST / OWNER LOGIN MODAL ================= */}
+      {isOwnerLoginModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+          <div className="relative w-full max-w-sm p-6 rounded-3xl bg-[#08152C] border border-sky-400/40 shadow-2xl text-left">
+            <button
+              type="button"
+              onClick={() => {
+                setIsOwnerLoginModalOpen(false);
+                setOwnerPasswordError('');
+                setOwnerPasswordInput('');
+              }}
+              className="absolute top-4 right-4 p-1.5 rounded-full bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white transition-colors"
+            >
+              <X className="w-4 h-4" />
+            </button>
+
+            <div className="flex items-center gap-2.5 mb-3 text-sky-400">
+              <div className="p-2.5 rounded-2xl bg-sky-500/15 border border-sky-400/30">
+                <Lock className="w-5 h-5 text-sky-400" />
+              </div>
+              <div>
+                <h4 className="text-lg font-bold text-white">Site Owner Access</h4>
+                <p className="text-[11px] text-slate-400">Yash Holidays Host Authentication</p>
+              </div>
+            </div>
+
+            <p className="text-xs text-slate-300 mb-4 leading-relaxed">
+              Enter the site owner password to enable review customization, editing, and publishing controls.
+            </p>
+
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                const clean = ownerPasswordInput.trim().toLowerCase();
+                if (clean === 'yash2026' || clean === 'yash123' || clean === 'hoster' || clean === 'admin') {
+                  setIsOwnerMode(true);
+                  try {
+                    localStorage.setItem('yash_owner_mode', 'true');
+                  } catch (err) {
+                    console.error(err);
+                  }
+                  setIsOwnerLoginModalOpen(false);
+                  setOwnerPasswordInput('');
+                  setOwnerPasswordError('');
+                } else {
+                  setOwnerPasswordError('Incorrect host password. Please try again.');
+                }
+              }}
+              className="space-y-3"
+            >
+              <div>
+                <input
+                  type="password"
+                  autoFocus
+                  required
+                  placeholder="Enter Host Password..."
+                  value={ownerPasswordInput}
+                  onChange={(e) => {
+                    setOwnerPasswordInput(e.target.value);
+                    setOwnerPasswordError('');
+                  }}
+                  className="w-full px-4 py-2.5 rounded-xl bg-[#050B16] border border-white/20 text-sm text-white focus:border-sky-400 focus:outline-none"
+                />
+                {ownerPasswordError && (
+                  <p className="text-xs text-rose-400 mt-1.5 font-medium">{ownerPasswordError}</p>
+                )}
+              </div>
+
+              <div className="flex items-center justify-end gap-2 pt-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsOwnerLoginModalOpen(false);
+                    setOwnerPasswordError('');
+                    setOwnerPasswordInput('');
+                  }}
+                  className="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-slate-300 text-xs font-semibold"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="px-5 py-2 rounded-xl bg-gradient-to-r from-[#0047AB] to-sky-500 hover:from-[#0055CC] hover:to-sky-400 text-white text-xs font-bold uppercase tracking-wider shadow-md transition-all active:scale-95"
+                >
+                  Unlock Host Mode
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       )}
