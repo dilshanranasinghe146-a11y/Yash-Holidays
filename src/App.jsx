@@ -1109,7 +1109,7 @@ export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
-  // Custom Tour Builder State (with Adults, Children, Infants)
+  // Custom Tour Builder State (with Adults, Children, Infants, Departure & Arrival Dates)
   const [customConfig, setCustomConfig] = useState({
     destination: 'Bali, Indonesia',
     days: 6,
@@ -1117,6 +1117,8 @@ export default function App() {
     adults: 2,
     children: 0,
     infants: 0,
+    departureDate: '',
+    arrivalDate: '',
     hotelClass: '4-Star Superior',
     includeFlights: true,
     includeVisa: true,
@@ -1242,13 +1244,17 @@ export default function App() {
 
     const paxDetails = `${totalCustomPax} Pax (${customAdults} Adult${customAdults > 1 ? 's' : ''}${customChildren > 0 ? `, ${customChildren} Child${customChildren > 1 ? 'ren' : ''}` : ''}${customInfants > 0 ? `, ${customInfants} Infant${customInfants > 1 ? 's' : ''}` : ''})`;
 
+    const dateLine = customConfig.departureDate || customConfig.arrivalDate
+      ? `%0A• *Travel Dates:* ${customConfig.departureDate || 'Flexible'}${customConfig.arrivalDate ? ` to ${customConfig.arrivalDate}` : ''}`
+      : '';
+
     const noteLine = customConfig.specialNote.trim()
       ? `%0A• *Special Message / Note:* ${encodeURIComponent(customConfig.specialNote.trim())}`
       : '';
 
     const text = `Hello Yash Holidays! ✈️%0A%0AI would like to request a *Customized Tour Package* quote:%0A• *Destination:* ${encodeURIComponent(
       customConfig.destination
-    )}%0A• *Duration:* ${customConfig.days} Days / ${customConfig.days - 1} Nights%0A• *Travelers:* ${encodeURIComponent(
+    )}%0A• *Duration:* ${customConfig.days} Days / ${customConfig.days - 1} Nights${dateLine}%0A• *Travelers:* ${encodeURIComponent(
       paxDetails
     )}%0A• *Hotel Category:* ${encodeURIComponent(
       customConfig.hotelClass
@@ -2177,27 +2183,29 @@ export default function App() {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-xs uppercase tracking-wider text-slate-300 mb-1.5 font-semibold">
-                          Departure Date
+                        <label className="block text-xs uppercase tracking-wider text-slate-300 mb-1.5 font-semibold flex items-center gap-1.5">
+                          <Calendar className="w-3.5 h-3.5 text-white shrink-0" />
+                          <span>Departure Date</span>
                         </label>
                         <input
                           type="date"
                           value={flightForm.departDate}
                           onChange={(e) => setFlightForm({ ...flightForm, departDate: e.target.value })}
-                          className="w-full px-4 py-3 rounded-xl bg-[#050B16] border border-white/20 text-sm text-white focus:border-sky-400 focus:outline-none"
+                          className="w-full px-4 py-3 rounded-xl bg-[#050B16] border border-white/20 text-sm text-white focus:border-sky-400 focus:outline-none [color-scheme:dark]"
                         />
                       </div>
 
                       <div>
-                        <label className="block text-xs uppercase tracking-wider text-slate-300 mb-1.5 font-semibold">
-                          Return Date {flightForm.tripType === 'One Way' && '(Optional)'}
+                        <label className="block text-xs uppercase tracking-wider text-slate-300 mb-1.5 font-semibold flex items-center gap-1.5">
+                          <Calendar className="w-3.5 h-3.5 text-white shrink-0" />
+                          <span>Return Date {flightForm.tripType === 'One Way' && '(Optional)'}</span>
                         </label>
                         <input
                           type="date"
                           disabled={flightForm.tripType === 'One Way'}
                           value={flightForm.returnDate}
                           onChange={(e) => setFlightForm({ ...flightForm, returnDate: e.target.value })}
-                          className="w-full px-4 py-3 rounded-xl bg-[#050B16] border border-white/20 text-sm text-white disabled:opacity-40 focus:border-sky-400 focus:outline-none"
+                          className="w-full px-4 py-3 rounded-xl bg-[#050B16] border border-white/20 text-sm text-white disabled:opacity-40 focus:border-sky-400 focus:outline-none [color-scheme:dark]"
                         />
                       </div>
                     </div>
@@ -3851,6 +3859,35 @@ export default function App() {
               </div>
             </div>
 
+            {/* Travel Dates Selection (Departure & Arrival) */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6 p-4 rounded-2xl bg-[#060D1A] border border-sky-900/40 shadow-lg">
+              <div>
+                <label className="block text-xs uppercase tracking-wider text-slate-300 mb-1.5 font-bold flex items-center gap-1.5">
+                  <Calendar className="w-3.5 h-3.5 text-sky-400 shrink-0" />
+                  <span>Departure Date</span>
+                </label>
+                <input
+                  type="date"
+                  value={customConfig.departureDate}
+                  onChange={(e) => setCustomConfig({ ...customConfig, departureDate: e.target.value })}
+                  className="w-full px-4 py-2.5 rounded-xl bg-[#050B16] border border-white/20 text-sm text-white focus:border-sky-400 focus:outline-none [color-scheme:dark]"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs uppercase tracking-wider text-slate-300 mb-1.5 font-bold flex items-center gap-1.5">
+                  <Calendar className="w-3.5 h-3.5 text-sky-400 shrink-0" />
+                  <span>Arrival / Return Date</span>
+                </label>
+                <input
+                  type="date"
+                  value={customConfig.arrivalDate}
+                  onChange={(e) => setCustomConfig({ ...customConfig, arrivalDate: e.target.value })}
+                  className="w-full px-4 py-2.5 rounded-xl bg-[#050B16] border border-white/20 text-sm text-white focus:border-sky-400 focus:outline-none [color-scheme:dark]"
+                />
+              </div>
+            </div>
+
             {/* 4. Number of Travelers (Dedicated Spacious Full-Width Pax Selection) */}
             <div className="bg-[#060D1A] border border-sky-900/50 rounded-2xl sm:rounded-3xl p-4 sm:p-6 mb-6 shadow-2xl space-y-4">
               <div className="flex items-center gap-2.5 text-cyan-400 font-bold uppercase tracking-wider text-xs sm:text-sm">
@@ -4757,14 +4794,14 @@ export default function App() {
         </a>
       </div>
 
-      {/* ================= SLEEK LUXURY MOBILE BOTTOM NAVIGATION BAR (Home, Tour, Air tickets, Visa, Contact US) ================= */}
+      {/* ================= SLEEK LUXURY MOBILE BOTTOM NAVIGATION BAR (Home, Tour, Air tickets, Visa, Reviews, Contact US) ================= */}
       <nav
         aria-label="Mobile Bottom Navigation"
-        className="fixed bottom-3 inset-x-3 sm:inset-x-6 max-w-md mx-auto z-50 md:hidden pointer-events-auto"
+        className="fixed bottom-3 inset-x-2 sm:inset-x-6 max-w-lg mx-auto z-50 md:hidden pointer-events-auto"
       >
-        <div className="bg-[#071122]/95 backdrop-blur-2xl border border-white/15 rounded-2xl sm:rounded-3xl shadow-[0_12px_45px_rgba(0,0,0,0.92)] px-2 sm:px-3 py-2">
-          {/* 5 Balanced Actions Grid: Home | Tour | Air tickets | Visa | Contact US */}
-          <div className="grid grid-cols-5 items-center justify-between text-center gap-1">
+        <div className="bg-[#071122]/95 backdrop-blur-2xl border border-white/15 rounded-2xl sm:rounded-3xl shadow-[0_12px_45px_rgba(0,0,0,0.92)] px-1.5 sm:px-3 py-2">
+          {/* 6 Balanced Actions Grid: Home | Tour | Air tickets | Visa | Reviews | Contact US */}
+          <div className="grid grid-cols-6 items-center justify-between text-center gap-0.5 sm:gap-1">
             {/* 1. Home */}
             <button
               type="button"
@@ -4772,7 +4809,7 @@ export default function App() {
                 setActiveNavSection('home');
                 navigateToTab('home');
               }}
-              className={`flex flex-col items-center justify-center py-1.5 px-1 rounded-xl transition-all active:scale-95 ${
+              className={`flex flex-col items-center justify-center py-1.5 px-0.5 sm:px-1 rounded-xl transition-all active:scale-95 ${
                 activeTab === 'home' && activeNavSection === 'home'
                   ? 'text-sky-400 font-extrabold bg-white/5'
                   : 'text-slate-300 hover:text-white'
@@ -4789,7 +4826,7 @@ export default function App() {
                 setActiveNavSection('tours');
                 navigateToTab('home', 'about-tour');
               }}
-              className={`flex flex-col items-center justify-center py-1.5 px-1 rounded-xl transition-all active:scale-95 ${
+              className={`flex flex-col items-center justify-center py-1.5 px-0.5 sm:px-1 rounded-xl transition-all active:scale-95 ${
                 activeTab === 'home' && activeNavSection === 'tours'
                   ? 'text-sky-400 font-extrabold bg-white/5'
                   : 'text-slate-300 hover:text-white'
@@ -4806,7 +4843,7 @@ export default function App() {
                 setActiveNavSection('');
                 navigateToTab('airtickets');
               }}
-              className={`flex flex-col items-center justify-center py-1.5 px-1 rounded-xl transition-all active:scale-95 ${
+              className={`flex flex-col items-center justify-center py-1.5 px-0.5 sm:px-1 rounded-xl transition-all active:scale-95 ${
                 activeTab === 'airtickets'
                   ? 'text-sky-400 font-extrabold bg-white/5'
                   : 'text-slate-300 hover:text-white'
@@ -4823,7 +4860,7 @@ export default function App() {
                 setActiveNavSection('');
                 navigateToTab('visa');
               }}
-              className={`flex flex-col items-center justify-center py-1.5 px-1 rounded-xl transition-all active:scale-95 ${
+              className={`flex flex-col items-center justify-center py-1.5 px-0.5 sm:px-1 rounded-xl transition-all active:scale-95 ${
                 activeTab === 'visa'
                   ? 'text-sky-400 font-extrabold bg-white/5'
                   : 'text-slate-300 hover:text-white'
@@ -4833,14 +4870,31 @@ export default function App() {
               <span className="text-[10px] tracking-tight">Visa</span>
             </button>
 
-            {/* 5. Contact US */}
+            {/* 5. Reviews */}
+            <button
+              type="button"
+              onClick={() => {
+                setActiveNavSection('');
+                navigateToTab('reviews');
+              }}
+              className={`flex flex-col items-center justify-center py-1.5 px-0.5 sm:px-1 rounded-xl transition-all active:scale-95 ${
+                activeTab === 'reviews'
+                  ? 'text-amber-400 font-extrabold bg-white/5'
+                  : 'text-slate-300 hover:text-white'
+              }`}
+            >
+              <Star className="w-5 h-5 mb-0.5 text-amber-400 shrink-0 fill-amber-400/30" />
+              <span className="text-[10px] tracking-tight whitespace-nowrap">Reviews</span>
+            </button>
+
+            {/* 6. Contact US */}
             <button
               type="button"
               onClick={() => {
                 const el = document.getElementById('contact');
                 if (el) el.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="flex flex-col items-center justify-center py-1.5 px-1 rounded-xl text-slate-300 hover:text-white transition-all active:scale-95"
+              className="flex flex-col items-center justify-center py-1.5 px-0.5 sm:px-1 rounded-xl text-slate-300 hover:text-white transition-all active:scale-95"
             >
               <Phone className="w-5 h-5 mb-0.5 text-sky-400 shrink-0" />
               <span className="text-[10px] tracking-tight whitespace-nowrap">Contact US</span>
