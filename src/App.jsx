@@ -94,6 +94,61 @@ const GoogleIcon = ({ className = "w-5 h-5" }) => (
   </svg>
 );
 
+// --- HIGH RESOLUTION CUSTOM TRAVELER (PAX) ICONS WITH CYAN GLOW ---
+const AdultPaxIcon = ({ className = "w-8 h-8 text-cyan-400" }) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.8"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={`shrink-0 ${className} drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]`}
+  >
+    <circle cx="12" cy="7" r="4.2" />
+    <path d="M4.5 21c0-4.14 3.36-7.5 7.5-7.5s7.5 3.36 7.5 7.5" />
+  </svg>
+);
+
+const ChildPaxIcon = ({ className = "w-8 h-8 text-cyan-400" }) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.8"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={`shrink-0 ${className} drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]`}
+  >
+    <circle cx="12" cy="6.5" r="3.5" />
+    <path d="M9.5 4.8c1.2-1 3.2-.8 4 1" />
+    <path d="M6.5 18c0-2.8 1.8-4.5 4-4.5h3c2.2 0 4 1.7 4 4.5" />
+    <path d="M6.5 14v4" />
+    <path d="M17.5 14v4" />
+    <path d="M10 18v3" />
+    <path d="M14 18v3" />
+  </svg>
+);
+
+const InfantPaxIcon = ({ className = "w-8 h-8 text-cyan-400" }) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.8"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={`shrink-0 ${className} drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]`}
+  >
+    <path d="M12 4.2c-.6-1.2.6-2 1.4-1.2.6.6 0 1.4-.8 1.4" />
+    <circle cx="12" cy="8.2" r="3.8" />
+    <path d="M7.5 12c-1.8-.8-2.6-2.2-2.8-3.2" />
+    <path d="M16.5 12c1.8-.8 2.6-2.2 2.8-3.2" />
+    <path d="M7.8 13.5c0 4.2 1.9 7.5 4.2 7.5s4.2-3.3 4.2-7.5" />
+    <path d="M8.5 17c2 1 5 1 7 0" />
+  </svg>
+);
+
 const GOOGLE_REVIEWS_URL = "https://maps.app.goo.gl/m1iJbk6p6WLAQQY4A";
 const GOOGLE_MAPS_LOCATION_URL = "https://maps.app.goo.gl/m1iJbk6p6WLAQQY4A";
 const INSTAGRAM_URL = "https://www.instagram.com/yash_holidays_pvt_ltd?psln=MTN0MnFvendoem5hbg==";
@@ -2148,101 +2203,138 @@ export default function App() {
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                      <div className="sm:col-span-3 bg-[#050B16] border border-white/20 rounded-2xl p-4 sm:p-5 space-y-3.5 shadow-lg">
-                        <div className="flex items-center justify-between">
-                          <label className="text-xs uppercase tracking-wider text-sky-400 font-bold flex items-center gap-2">
-                            <Users className="w-4 h-4 text-sky-400 shrink-0" />
-                            <span>Flight Passengers (Pax Selection)</span>
-                          </label>
-                          <span className="text-xs text-slate-300 font-semibold bg-white/10 px-3 py-1 rounded-full border border-white/10">
-                            Total: <strong className="text-sky-300">{totalFlightPax} Pax</strong>
-                          </span>
+                      <div className="sm:col-span-3 bg-[#060D1A] border border-sky-900/50 rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-2xl space-y-4">
+                        <div className="flex items-center gap-2.5 text-cyan-400 font-bold uppercase tracking-wider text-xs sm:text-sm">
+                          <Users className="w-5 h-5 text-cyan-400 drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]" />
+                          <span>Flight Passengers (Pax Selection)</span>
                         </div>
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                          {/* Adults */}
-                          <div className="p-3.5 rounded-xl bg-white/[0.04] border border-white/10 hover:border-sky-400/40 transition-colors flex flex-col justify-between">
-                            <div className="flex items-center justify-between mb-2">
-                              <span className="text-sm font-bold text-white">Adults</span>
-                              <span className="text-[11px] font-medium text-sky-300 bg-sky-950/70 border border-sky-400/30 px-2 py-0.5 rounded-md">
-                                12+ Years
-                              </span>
+
+                        <div className="grid grid-cols-1 md:grid-cols-12 gap-5 items-stretch">
+                          {/* Left Side: 3 Horizontal Rows with Dividers */}
+                          <div className="md:col-span-8 flex flex-col justify-between divide-y divide-white/10 pr-0 md:pr-4">
+                            {/* Adults Row */}
+                            <div className="flex items-center justify-between py-3.5 first:pt-0">
+                              <div className="flex items-center gap-3.5">
+                                <AdultPaxIcon className="w-9 h-9 sm:w-10 sm:h-10 text-cyan-400 shrink-0" />
+                                <div className="flex items-baseline gap-2">
+                                  <span className="text-base sm:text-lg font-bold text-white tracking-wide">Adults</span>
+                                  <span className="text-xs sm:text-sm text-slate-400 font-medium">(12+ Years)</span>
+                                </div>
+                              </div>
+                              <div className="flex items-center justify-between rounded-full bg-[#08152e] border border-cyan-500/30 px-3 py-1 min-w-[110px] sm:min-w-[124px] shadow-inner">
+                                <button
+                                  type="button"
+                                  onClick={() => updateFlightPax(-1, 0, 0)}
+                                  className="w-7 h-7 rounded-full flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 active:scale-90 transition-all font-bold text-lg select-none"
+                                  aria-label="Decrease Flight Adults"
+                                >
+                                  −
+                                </button>
+                                <span className="text-base sm:text-lg font-black text-cyan-400 px-2 select-none min-w-[24px] text-center">
+                                  {flightAdults}
+                                </span>
+                                <button
+                                  type="button"
+                                  onClick={() => updateFlightPax(1, 0, 0)}
+                                  className="w-7 h-7 rounded-full flex items-center justify-center text-slate-400 hover:text-cyan-300 hover:bg-white/10 active:scale-90 transition-all font-bold text-lg select-none"
+                                  aria-label="Increase Flight Adults"
+                                >
+                                  +
+                                </button>
+                              </div>
                             </div>
-                            <div className="flex items-center justify-between bg-[#050B16] border border-white/10 rounded-xl p-1">
-                              <button
-                                type="button"
-                                onClick={() => updateFlightPax(-1, 0, 0)}
-                                className="w-8 h-8 rounded-lg bg-white/5 hover:bg-sky-500 hover:text-white text-slate-200 font-bold flex items-center justify-center transition-all text-base border border-white/10 active:scale-90"
-                                aria-label="Decrease flight adults"
-                              >
-                                -
-                              </button>
-                              <span className="text-base font-extrabold text-sky-300 px-2 select-none">{flightAdults}</span>
-                              <button
-                                type="button"
-                                onClick={() => updateFlightPax(1, 0, 0)}
-                                className="w-8 h-8 rounded-lg bg-sky-500/25 hover:bg-sky-500 hover:text-white text-sky-200 font-bold flex items-center justify-center transition-all text-base border border-sky-400/30 active:scale-90"
-                                aria-label="Increase flight adults"
-                              >
-                                +
-                              </button>
+
+                            {/* Children Row */}
+                            <div className="flex items-center justify-between py-3.5">
+                              <div className="flex items-center gap-3.5">
+                                <ChildPaxIcon className="w-9 h-9 sm:w-10 sm:h-10 text-cyan-400 shrink-0" />
+                                <div className="flex items-baseline gap-2">
+                                  <span className="text-base sm:text-lg font-bold text-white tracking-wide">Children</span>
+                                  <span className="text-xs sm:text-sm text-slate-400 font-medium">(2–11 Years)</span>
+                                </div>
+                              </div>
+                              <div className="flex items-center justify-between rounded-full bg-[#08152e] border border-cyan-500/30 px-3 py-1 min-w-[110px] sm:min-w-[124px] shadow-inner">
+                                <button
+                                  type="button"
+                                  onClick={() => updateFlightPax(0, -1, 0)}
+                                  className="w-7 h-7 rounded-full flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 active:scale-90 transition-all font-bold text-lg select-none"
+                                  aria-label="Decrease Flight Children"
+                                >
+                                  −
+                                </button>
+                                <span className="text-base sm:text-lg font-black text-cyan-400 px-2 select-none min-w-[24px] text-center">
+                                  {flightChildren}
+                                </span>
+                                <button
+                                  type="button"
+                                  onClick={() => updateFlightPax(0, 1, 0)}
+                                  className="w-7 h-7 rounded-full flex items-center justify-center text-slate-400 hover:text-cyan-300 hover:bg-white/10 active:scale-90 transition-all font-bold text-lg select-none"
+                                  aria-label="Increase Flight Children"
+                                >
+                                  +
+                                </button>
+                              </div>
+                            </div>
+
+                            {/* Infants Row */}
+                            <div className="flex items-center justify-between py-3.5 last:pb-0">
+                              <div className="flex items-center gap-3.5">
+                                <InfantPaxIcon className="w-9 h-9 sm:w-10 sm:h-10 text-cyan-400 shrink-0" />
+                                <div className="flex items-baseline gap-2">
+                                  <span className="text-base sm:text-lg font-bold text-white tracking-wide">Infants</span>
+                                  <span className="text-xs sm:text-sm text-slate-400 font-medium">(Under 2 Years)</span>
+                                </div>
+                              </div>
+                              <div className="flex items-center justify-between rounded-full bg-[#08152e] border border-cyan-500/30 px-3 py-1 min-w-[110px] sm:min-w-[124px] shadow-inner">
+                                <button
+                                  type="button"
+                                  onClick={() => updateFlightPax(0, 0, -1)}
+                                  className="w-7 h-7 rounded-full flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 active:scale-90 transition-all font-bold text-lg select-none"
+                                  aria-label="Decrease Flight Infants"
+                                >
+                                  −
+                                </button>
+                                <span className="text-base sm:text-lg font-black text-cyan-400 px-2 select-none min-w-[24px] text-center">
+                                  {flightInfants}
+                                </span>
+                                <button
+                                  type="button"
+                                  onClick={() => updateFlightPax(0, 0, 1)}
+                                  className="w-7 h-7 rounded-full flex items-center justify-center text-slate-400 hover:text-cyan-300 hover:bg-white/10 active:scale-90 transition-all font-bold text-lg select-none"
+                                  aria-label="Increase Flight Infants"
+                                >
+                                  +
+                                </button>
+                              </div>
                             </div>
                           </div>
 
-                          {/* Children */}
-                          <div className="p-3.5 rounded-xl bg-white/[0.04] border border-white/10 hover:border-sky-400/40 transition-colors flex flex-col justify-between">
-                            <div className="flex items-center justify-between mb-2">
-                              <span className="text-sm font-bold text-white">Children</span>
-                              <span className="text-[11px] font-medium text-sky-300 bg-sky-950/70 border border-sky-400/30 px-2 py-0.5 rounded-md">
-                                2–11 Years
+                          {/* Right Side: Dedicated PAX Summary Card */}
+                          <div className="md:col-span-4 rounded-2xl border border-cyan-500/25 bg-gradient-to-b from-[#08152e] to-[#040b18] p-4 sm:p-5 flex flex-col justify-between gap-4 shadow-xl">
+                            <div>
+                              <span className="block text-xs uppercase tracking-wider text-slate-400 font-semibold mb-3.5">
+                                PAX Summary
                               </span>
+                              <div className="space-y-3">
+                                <div className="flex items-center gap-3 text-white">
+                                  <AdultPaxIcon className="w-5 h-5 text-cyan-400 shrink-0" />
+                                  <span className="text-sm font-bold tracking-wide">{flightAdults}x Adults</span>
+                                </div>
+                                <div className="flex items-center gap-3 text-slate-300">
+                                  <ChildPaxIcon className="w-5 h-5 text-cyan-400 shrink-0" />
+                                  <span className="text-sm font-medium">{flightChildren}x Children</span>
+                                </div>
+                                <div className="flex items-center gap-3 text-slate-300">
+                                  <InfantPaxIcon className="w-5 h-5 text-cyan-400 shrink-0" />
+                                  <span className="text-sm font-medium">{flightInfants}x Infants</span>
+                                </div>
+                              </div>
                             </div>
-                            <div className="flex items-center justify-between bg-[#050B16] border border-white/10 rounded-xl p-1">
-                              <button
-                                type="button"
-                                onClick={() => updateFlightPax(0, -1, 0)}
-                                className="w-8 h-8 rounded-lg bg-white/5 hover:bg-sky-500 hover:text-white text-slate-200 font-bold flex items-center justify-center transition-all text-base border border-white/10 active:scale-90"
-                                aria-label="Decrease flight children"
-                              >
-                                -
-                              </button>
-                              <span className="text-base font-extrabold text-sky-300 px-2 select-none">{flightChildren}</span>
-                              <button
-                                type="button"
-                                onClick={() => updateFlightPax(0, 1, 0)}
-                                className="w-8 h-8 rounded-lg bg-sky-500/25 hover:bg-sky-500 hover:text-white text-sky-200 font-bold flex items-center justify-center transition-all text-base border border-sky-400/30 active:scale-90"
-                                aria-label="Increase flight children"
-                              >
-                                +
-                              </button>
-                            </div>
-                          </div>
 
-                          {/* Infants */}
-                          <div className="p-3.5 rounded-xl bg-white/[0.04] border border-white/10 hover:border-sky-400/40 transition-colors flex flex-col justify-between">
-                            <div className="flex items-center justify-between mb-2">
-                              <span className="text-sm font-bold text-white">Infants</span>
-                              <span className="text-[11px] font-medium text-sky-300 bg-sky-950/70 border border-sky-400/30 px-2 py-0.5 rounded-md">
-                                Under 2 Yrs
-                              </span>
-                            </div>
-                            <div className="flex items-center justify-between bg-[#050B16] border border-white/10 rounded-xl p-1">
-                              <button
-                                type="button"
-                                onClick={() => updateFlightPax(0, 0, -1)}
-                                className="w-8 h-8 rounded-lg bg-white/5 hover:bg-sky-500 hover:text-white text-slate-200 font-bold flex items-center justify-center transition-all text-base border border-white/10 active:scale-90"
-                                aria-label="Decrease flight infants"
-                              >
-                                -
-                              </button>
-                              <span className="text-base font-extrabold text-sky-300 px-2 select-none">{flightInfants}</span>
-                              <button
-                                type="button"
-                                onClick={() => updateFlightPax(0, 0, 1)}
-                                className="w-8 h-8 rounded-lg bg-sky-500/25 hover:bg-sky-500 hover:text-white text-sky-200 font-bold flex items-center justify-center transition-all text-base border border-sky-400/30 active:scale-90"
-                                aria-label="Increase flight infants"
-                              >
-                                +
-                              </button>
+                            <div className="mt-2 pt-3 border-t border-white/10">
+                              <div className="rounded-full bg-[#050e1f] border border-cyan-500/30 px-3.5 py-1.5 text-xs text-center text-slate-300 font-medium shadow-inner">
+                                Total: <span className="text-cyan-300 font-extrabold">{totalFlightPax} Passengers</span>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -3760,102 +3852,138 @@ export default function App() {
             </div>
 
             {/* 4. Number of Travelers (Dedicated Spacious Full-Width Pax Selection) */}
-            <div className="bg-[#050B16] border border-white/20 rounded-2xl p-4 sm:p-5 mb-6 shadow-xl">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4 pb-3 border-b border-white/10">
-                <label className="text-xs uppercase tracking-wider text-sky-400 font-bold flex items-center gap-2">
-                  <Users className="w-4 h-4 text-sky-400 shrink-0" />
-                  <span>4. Number of Travelers (Pax Selection)</span>
-                </label>
-                <span className="text-xs text-slate-300 font-semibold bg-white/10 px-3 py-1 rounded-full border border-white/10 w-fit">
-                  Total: <strong className="text-sky-300">{totalCustomPax} Travelers</strong>
-                </span>
+            <div className="bg-[#060D1A] border border-sky-900/50 rounded-2xl sm:rounded-3xl p-4 sm:p-6 mb-6 shadow-2xl space-y-4">
+              <div className="flex items-center gap-2.5 text-cyan-400 font-bold uppercase tracking-wider text-xs sm:text-sm">
+                <Users className="w-5 h-5 text-cyan-400 drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]" />
+                <span>4. NUMBER OF TRAVELERS (PAX SELECTION)</span>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
-                {/* Adults */}
-                <div className="p-3.5 rounded-xl bg-white/[0.04] border border-white/10 hover:border-sky-400/40 transition-colors flex flex-col justify-between">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-sm font-bold text-white">Adults</span>
-                    <span className="text-[11px] font-medium text-sky-300 bg-sky-950/70 border border-sky-400/30 px-2 py-0.5 rounded-md">
-                      12+ Years
-                    </span>
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-5 items-stretch">
+                {/* Left Side: 3 Horizontal Rows with Dividers */}
+                <div className="md:col-span-8 flex flex-col justify-between divide-y divide-white/10 pr-0 md:pr-4">
+                  {/* Adults Row */}
+                  <div className="flex items-center justify-between py-3.5 first:pt-0">
+                    <div className="flex items-center gap-3.5">
+                      <AdultPaxIcon className="w-9 h-9 sm:w-10 sm:h-10 text-cyan-400 shrink-0" />
+                      <div className="flex items-baseline gap-2">
+                        <span className="text-base sm:text-lg font-bold text-white tracking-wide">Adults</span>
+                        <span className="text-xs sm:text-sm text-slate-400 font-medium">(12+ Years)</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between rounded-full bg-[#08152e] border border-cyan-500/30 px-3 py-1 min-w-[110px] sm:min-w-[124px] shadow-inner">
+                      <button
+                        type="button"
+                        onClick={() => updateCustomPax(-1, 0, 0)}
+                        className="w-7 h-7 rounded-full flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 active:scale-90 transition-all font-bold text-lg select-none"
+                        aria-label="Decrease Adults"
+                      >
+                        −
+                      </button>
+                      <span className="text-base sm:text-lg font-black text-cyan-400 px-2 select-none min-w-[24px] text-center">
+                        {customAdults}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => updateCustomPax(1, 0, 0)}
+                        className="w-7 h-7 rounded-full flex items-center justify-center text-slate-400 hover:text-cyan-300 hover:bg-white/10 active:scale-90 transition-all font-bold text-lg select-none"
+                        aria-label="Increase Adults"
+                      >
+                        +
+                      </button>
+                    </div>
                   </div>
-                  <div className="flex items-center justify-between bg-[#050B16] border border-white/10 rounded-xl p-1">
-                    <button
-                      type="button"
-                      onClick={() => updateCustomPax(-1, 0, 0)}
-                      className="w-8 h-8 rounded-lg bg-white/5 hover:bg-sky-500 hover:text-white text-slate-200 font-bold flex items-center justify-center transition-all text-base border border-white/10 active:scale-90"
-                      aria-label="Decrease Adults"
-                    >
-                      -
-                    </button>
-                    <span className="text-base font-extrabold text-sky-300 px-2 select-none">{customAdults}</span>
-                    <button
-                      type="button"
-                      onClick={() => updateCustomPax(1, 0, 0)}
-                      className="w-8 h-8 rounded-lg bg-sky-500/25 hover:bg-sky-500 hover:text-white text-sky-200 font-bold flex items-center justify-center transition-all text-base border border-sky-400/30 active:scale-90"
-                      aria-label="Increase Adults"
-                    >
-                      +
-                    </button>
+
+                  {/* Children Row */}
+                  <div className="flex items-center justify-between py-3.5">
+                    <div className="flex items-center gap-3.5">
+                      <ChildPaxIcon className="w-9 h-9 sm:w-10 sm:h-10 text-cyan-400 shrink-0" />
+                      <div className="flex items-baseline gap-2">
+                        <span className="text-base sm:text-lg font-bold text-white tracking-wide">Children</span>
+                        <span className="text-xs sm:text-sm text-slate-400 font-medium">(2–11 Years)</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between rounded-full bg-[#08152e] border border-cyan-500/30 px-3 py-1 min-w-[110px] sm:min-w-[124px] shadow-inner">
+                      <button
+                        type="button"
+                        onClick={() => updateCustomPax(0, -1, 0)}
+                        className="w-7 h-7 rounded-full flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 active:scale-90 transition-all font-bold text-lg select-none"
+                        aria-label="Decrease Children"
+                      >
+                        −
+                      </button>
+                      <span className="text-base sm:text-lg font-black text-cyan-400 px-2 select-none min-w-[24px] text-center">
+                        {customChildren}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => updateCustomPax(0, 1, 0)}
+                        className="w-7 h-7 rounded-full flex items-center justify-center text-slate-400 hover:text-cyan-300 hover:bg-white/10 active:scale-90 transition-all font-bold text-lg select-none"
+                        aria-label="Increase Children"
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Infants Row */}
+                  <div className="flex items-center justify-between py-3.5 last:pb-0">
+                    <div className="flex items-center gap-3.5">
+                      <InfantPaxIcon className="w-9 h-9 sm:w-10 sm:h-10 text-cyan-400 shrink-0" />
+                      <div className="flex items-baseline gap-2">
+                        <span className="text-base sm:text-lg font-bold text-white tracking-wide">Infants</span>
+                        <span className="text-xs sm:text-sm text-slate-400 font-medium">(Under 2 Years)</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between rounded-full bg-[#08152e] border border-cyan-500/30 px-3 py-1 min-w-[110px] sm:min-w-[124px] shadow-inner">
+                      <button
+                        type="button"
+                        onClick={() => updateCustomPax(0, 0, -1)}
+                        className="w-7 h-7 rounded-full flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 active:scale-90 transition-all font-bold text-lg select-none"
+                        aria-label="Decrease Infants"
+                      >
+                        −
+                      </button>
+                      <span className="text-base sm:text-lg font-black text-cyan-400 px-2 select-none min-w-[24px] text-center">
+                        {customInfants}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => updateCustomPax(0, 0, 1)}
+                        className="w-7 h-7 rounded-full flex items-center justify-center text-slate-400 hover:text-cyan-300 hover:bg-white/10 active:scale-90 transition-all font-bold text-lg select-none"
+                        aria-label="Increase Infants"
+                      >
+                        +
+                      </button>
+                    </div>
                   </div>
                 </div>
 
-                {/* Children */}
-                <div className="p-3.5 rounded-xl bg-white/[0.04] border border-white/10 hover:border-sky-400/40 transition-colors flex flex-col justify-between">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-sm font-bold text-white">Children</span>
-                    <span className="text-[11px] font-medium text-sky-300 bg-sky-950/70 border border-sky-400/30 px-2 py-0.5 rounded-md">
-                      2–11 Years
+                {/* Right Side: Dedicated PAX Summary Card */}
+                <div className="md:col-span-4 rounded-2xl border border-cyan-500/25 bg-gradient-to-b from-[#08152e] to-[#040b18] p-4 sm:p-5 flex flex-col justify-between gap-4 shadow-xl">
+                  <div>
+                    <span className="block text-xs uppercase tracking-wider text-slate-400 font-semibold mb-3.5">
+                      PAX Summary
                     </span>
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-3 text-white">
+                        <AdultPaxIcon className="w-5 h-5 text-cyan-400 shrink-0" />
+                        <span className="text-sm font-bold tracking-wide">{customAdults}x Adults</span>
+                      </div>
+                      <div className="flex items-center gap-3 text-slate-300">
+                        <ChildPaxIcon className="w-5 h-5 text-cyan-400 shrink-0" />
+                        <span className="text-sm font-medium">{customChildren}x Children</span>
+                      </div>
+                      <div className="flex items-center gap-3 text-slate-300">
+                        <InfantPaxIcon className="w-5 h-5 text-cyan-400 shrink-0" />
+                        <span className="text-sm font-medium">{customInfants}x Infants</span>
+                      </div>
+                    </div>
                   </div>
-                  <div className="flex items-center justify-between bg-[#050B16] border border-white/10 rounded-xl p-1">
-                    <button
-                      type="button"
-                      onClick={() => updateCustomPax(0, -1, 0)}
-                      className="w-8 h-8 rounded-lg bg-white/5 hover:bg-sky-500 hover:text-white text-slate-200 font-bold flex items-center justify-center transition-all text-base border border-white/10 active:scale-90"
-                      aria-label="Decrease Children"
-                    >
-                      -
-                    </button>
-                    <span className="text-base font-extrabold text-sky-300 px-2 select-none">{customChildren}</span>
-                    <button
-                      type="button"
-                      onClick={() => updateCustomPax(0, 1, 0)}
-                      className="w-8 h-8 rounded-lg bg-sky-500/25 hover:bg-sky-500 hover:text-white text-sky-200 font-bold flex items-center justify-center transition-all text-base border border-sky-400/30 active:scale-90"
-                      aria-label="Increase Children"
-                    >
-                      +
-                    </button>
-                  </div>
-                </div>
 
-                {/* Infants */}
-                <div className="p-3.5 rounded-xl bg-white/[0.04] border border-white/10 hover:border-sky-400/40 transition-colors flex flex-col justify-between">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-sm font-bold text-white">Infants</span>
-                    <span className="text-[11px] font-medium text-sky-300 bg-sky-950/70 border border-sky-400/30 px-2 py-0.5 rounded-md">
-                      Under 2 Years
-                    </span>
-                  </div>
-                  <div className="flex items-center justify-between bg-[#050B16] border border-white/10 rounded-xl p-1">
-                    <button
-                      type="button"
-                      onClick={() => updateCustomPax(0, 0, -1)}
-                      className="w-8 h-8 rounded-lg bg-white/5 hover:bg-sky-500 hover:text-white text-slate-200 font-bold flex items-center justify-center transition-all text-base border border-white/10 active:scale-90"
-                      aria-label="Decrease Infants"
-                    >
-                      -
-                    </button>
-                    <span className="text-base font-extrabold text-sky-300 px-2 select-none">{customInfants}</span>
-                    <button
-                      type="button"
-                      onClick={() => updateCustomPax(0, 0, 1)}
-                      className="w-8 h-8 rounded-lg bg-sky-500/25 hover:bg-sky-500 hover:text-white text-sky-200 font-bold flex items-center justify-center transition-all text-base border border-sky-400/30 active:scale-90"
-                      aria-label="Increase Infants"
-                    >
-                      +
-                    </button>
+                  <div className="mt-2 pt-3 border-t border-white/10">
+                    <div className="rounded-full bg-[#050e1f] border border-cyan-500/30 px-3.5 py-1.5 text-xs text-center text-slate-300 font-medium shadow-inner">
+                      Total: <span className="text-cyan-300 font-extrabold">{totalCustomPax} Travelers</span>
+                    </div>
                   </div>
                 </div>
               </div>
