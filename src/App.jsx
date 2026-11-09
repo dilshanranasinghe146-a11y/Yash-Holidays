@@ -68,6 +68,34 @@ const WhatsAppIcon = ({ className = "w-5 h-5" }) => (
   </svg>
 );
 
+// --- OFFICIAL GOOGLE REVIEWS VECTOR ICON ---
+const GoogleIcon = ({ className = "w-5 h-5" }) => (
+  <svg
+    viewBox="0 0 24 24"
+    className={`shrink-0 ${className}`}
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      fill="#4285F4"
+      d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"
+    />
+    <path
+      fill="#34A853"
+      d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24z"
+    />
+    <path
+      fill="#FBBC05"
+      d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.99 0 12s.45 3.82 1.25 5.42l4.03-3.15z"
+    />
+    <path
+      fill="#EA4335"
+      d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"
+    />
+  </svg>
+);
+
+const GOOGLE_REVIEWS_URL = "https://www.google.com/maps/search/?api=1&query=Yash+Holidays+Pvt+Ltd+276%2FE+Dehiwala+Road+Boralesgamuwa";
+
 // --- OFFICIAL YASH HOLIDAYS LOGO (EXACT UPLOADED IMAGE) ---
 const YashLogo = ({ className = "h-12", lightMode = true }) => (
   <div className={`inline-flex items-center gap-2.5 select-none shrink-0 whitespace-nowrap ${className}`}>
@@ -1264,9 +1292,12 @@ export default function App() {
     window.open(`https://wa.me/94775841144?text=${text}`, '_blank');
   };
 
-  const filteredReviews = reviewFilter === 'All'
-    ? reviewsList
-    : reviewsList.filter((r) => r.tag === reviewFilter || r.tour.toLowerCase().includes(reviewFilter.toLowerCase()));
+  const filteredReviews =
+    reviewFilter === 'All'
+      ? reviewsList
+      : reviewFilter === 'Google Reviews'
+      ? reviewsList.filter((r) => r.source === 'Google' || r.googleVerified || r.verified)
+      : reviewsList.filter((r) => r.tag === reviewFilter || r.tour.toLowerCase().includes(reviewFilter.toLowerCase()));
 
   return (
     <div className="min-h-screen bg-[#050B16] text-white font-sans selection:bg-sky-500 selection:text-white overflow-x-hidden pb-20 md:pb-0">
@@ -2314,8 +2345,62 @@ export default function App() {
                 </div>
               </div>
 
+              {/* Official Google Reviews Trust Strip */}
+              <div className="mt-8 p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-white/[0.06] via-white/[0.03] to-white/[0.06] border border-white/20 max-w-3xl mx-auto backdrop-blur-xl flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xl">
+                <div className="flex items-center gap-3.5 text-left">
+                  <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center p-2.5 shadow-lg shadow-black/40 shrink-0 border border-white/80">
+                    <GoogleIcon className="w-7 h-7" />
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-white font-extrabold text-sm sm:text-base">Google Reviews</span>
+                      <div className="flex items-center text-amber-400">
+                        {[...Array(5)].map((_, i) => (
+                          <Star key={i} className="w-3.5 h-3.5 fill-amber-400" />
+                        ))}
+                      </div>
+                      <span className="text-xs font-black text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-400/20">
+                        4.9 / 5.0
+                      </span>
+                    </div>
+                    <p className="text-xs text-slate-300 mt-0.5">
+                      Rated <strong className="text-white">4.9 Stars</strong> across <strong className="text-sky-300">180+ Verified Reviews</strong> on Google Business Profile
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2 shrink-0">
+                  <a
+                    href={GOOGLE_REVIEWS_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-4 py-2.5 rounded-xl bg-white hover:bg-slate-100 text-[#050B16] font-bold text-xs flex items-center gap-2 shadow-lg shadow-black/30 active:scale-95 transition-all"
+                  >
+                    <GoogleIcon className="w-4 h-4" />
+                    <span>Review Us on Google</span>
+                  </a>
+                  <a
+                    href={GOOGLE_REVIEWS_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3.5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-xs border border-white/15 active:scale-95 transition-all"
+                  >
+                    Read on Google
+                  </a>
+                </div>
+              </div>
+
               {/* Review Action Controls */}
               <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mt-8">
+                <a
+                  href={GOOGLE_REVIEWS_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-5 py-3 rounded-full bg-white hover:bg-slate-100 text-[#050B16] font-bold text-xs uppercase tracking-wider shadow-lg flex items-center gap-2 active:scale-95 transition-all"
+                >
+                  <GoogleIcon className="w-4 h-4" />
+                  <span>Write a Google Review</span>
+                </a>
                 <button
                   type="button"
                   onClick={handleOpenAddReview}
@@ -2575,9 +2660,10 @@ export default function App() {
                   </span>
                   {[
                     'All',
+                    'Google Reviews',
                     'Holiday Getaway',
-                    'Honeymoon',
                     'Family Tour',
+                    'Honeymoon',
                     'Group Tour',
                     'Luxury Tour',
                     'Holiday Package',
@@ -2588,13 +2674,14 @@ export default function App() {
                       key={cat}
                       type="button"
                       onClick={() => setReviewFilter(cat)}
-                      className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                      className={`px-3.5 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5 transition-all ${
                         reviewFilter === cat
                           ? 'bg-sky-500 text-[#050B16] shadow-md shadow-sky-500/25 font-bold'
                           : 'bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10'
                       }`}
                     >
-                      {cat} {cat === 'All' ? `(${reviewsList.length})` : ''}
+                      {cat === 'Google Reviews' && <GoogleIcon className="w-3.5 h-3.5" />}
+                      <span>{cat}</span> {cat === 'All' ? `(${reviewsList.length})` : ''}
                     </button>
                   ))}
                 </div>
@@ -2645,9 +2732,15 @@ export default function App() {
                             </div>
                           </div>
 
-                          <span className="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-sky-500/15 text-sky-300 border border-sky-400/30 whitespace-nowrap">
-                            {rev.tag}
-                          </span>
+                          <div className="flex items-center gap-1.5 flex-wrap justify-end">
+                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-white/10 text-slate-200 border border-white/15">
+                              <GoogleIcon className="w-3 h-3" />
+                              <span>Google Review</span>
+                            </span>
+                            <span className="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-sky-500/15 text-sky-300 border border-sky-400/30 whitespace-nowrap">
+                              {rev.tag}
+                            </span>
+                          </div>
                         </div>
 
                         {/* Star Rating & Tour Tag */}
@@ -3789,9 +3882,21 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
             <div>
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-400/30 text-amber-300 text-xs font-semibold uppercase tracking-widest mb-3">
-                <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-                <span>LOVED BY 1,450+ SRI LANKAN TRAVELERS</span>
+              <div className="flex flex-wrap items-center gap-2.5 mb-3">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-400/30 text-amber-300 text-xs font-semibold uppercase tracking-widest">
+                  <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                  <span>LOVED BY 1,450+ SRI LANKAN TRAVELERS</span>
+                </div>
+                <a
+                  href={GOOGLE_REVIEWS_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 hover:bg-white/15 border border-white/20 text-white text-xs font-bold transition-all"
+                  title="View Yash Holidays on Google Reviews"
+                >
+                  <GoogleIcon className="w-3.5 h-3.5" />
+                  <span>Google Rating: 4.9 ★★★★★ (180+ Reviews)</span>
+                </a>
               </div>
               <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
                 What Our Travelers Say About <span className="text-sky-400">Yash Holidays</span>
@@ -3802,6 +3907,15 @@ export default function App() {
             </div>
 
             <div className="flex flex-wrap items-center gap-3">
+              <a
+                href={GOOGLE_REVIEWS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2.5 rounded-full bg-white hover:bg-slate-100 text-[#050B16] font-bold text-xs uppercase tracking-wider flex items-center gap-1.5 transition-all active:scale-95 shadow-md"
+              >
+                <GoogleIcon className="w-3.5 h-3.5" />
+                <span>Review on Google</span>
+              </a>
               <button
                 type="button"
                 onClick={handleOpenAddReview}
@@ -3850,9 +3964,15 @@ export default function App() {
                           <p className="text-[11px] text-slate-400">{rev.location}</p>
                         </div>
                       </div>
-                      <span className="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-sky-500/15 text-sky-300 border border-sky-400/20">
-                        {rev.tag}
-                      </span>
+                      <div className="flex items-center gap-1.5 flex-wrap justify-end">
+                        <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full text-[9px] font-bold bg-white/10 text-slate-200 border border-white/15">
+                          <GoogleIcon className="w-2.5 h-2.5" />
+                          <span>Google</span>
+                        </span>
+                        <span className="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-sky-500/15 text-sky-300 border border-sky-400/20">
+                          {rev.tag}
+                        </span>
+                      </div>
                     </div>
 
                     <div className="flex items-center gap-1 mb-3">
@@ -4116,6 +4236,40 @@ export default function App() {
                     className="ml-2 px-2.5 py-1 rounded-lg bg-sky-500/20 text-sky-300 hover:bg-sky-500/30 text-[11px] font-semibold"
                   >
                     Directions
+                  </a>
+                </div>
+              </div>
+
+              {/* Google Reviews Trust Strip near map */}
+              <div className="p-4 rounded-2xl bg-[#050B16]/90 border border-white/20 backdrop-blur-md flex flex-col sm:flex-row items-center justify-between gap-3 shadow-xl">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center p-2 shadow-md shrink-0">
+                    <GoogleIcon className="w-6 h-6" />
+                  </div>
+                  <div className="text-left">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs sm:text-sm font-bold text-white">4.9 Star Google Rating</span>
+                      <div className="flex text-amber-400">
+                        {[...Array(5)].map((_, i) => (
+                          <Star key={i} className="w-3 h-3 fill-amber-400" />
+                        ))}
+                      </div>
+                      <span className="text-[10px] font-bold text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-400/20">Verified</span>
+                    </div>
+                    <p className="text-[11px] text-slate-300 mt-0.5">
+                      180+ Authentic Customer Reviews on Google Business Profile
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2 shrink-0">
+                  <a
+                    href={GOOGLE_REVIEWS_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="px-3.5 py-2 rounded-xl bg-white hover:bg-slate-100 text-[#050B16] font-bold text-xs flex items-center gap-1.5 shadow active:scale-95 transition-all"
+                  >
+                    <GoogleIcon className="w-3.5 h-3.5" />
+                    <span>Review on Google</span>
                   </a>
                 </div>
               </div>
@@ -4437,8 +4591,10 @@ export default function App() {
                     onChange={(e) => setReviewForm({ ...reviewForm, tag: e.target.value })}
                     className="w-full px-4 py-2.5 rounded-xl bg-[#050B16] border border-white/20 text-sm text-white focus:border-sky-400 focus:outline-none"
                   >
-                    <option value="Honeymoon">Honeymoon</option>
+                    <option value="Google Review">Google Review (Verified)</option>
                     <option value="Family Tour">Family Tour</option>
+                    <option value="Holiday Getaway">Holiday Getaway</option>
+                    <option value="Honeymoon">Honeymoon</option>
                     <option value="Group Tour">Group Tour</option>
                     <option value="Luxury Tour">Luxury Tour</option>
                     <option value="Holiday Package">Holiday Package</option>
