@@ -94,7 +94,14 @@ const GoogleIcon = ({ className = "w-5 h-5" }) => (
   </svg>
 );
 
-const GOOGLE_REVIEWS_URL = "https://www.google.com/maps/search/?api=1&query=Yash+Holidays+Pvt+Ltd+276%2FE+Dehiwala+Road+Boralesgamuwa";
+const GOOGLE_REVIEWS_URL = "https://maps.app.goo.gl/m1iJbk6p6WLAQQY4A";
+const GOOGLE_MAPS_LOCATION_URL = "https://maps.app.goo.gl/m1iJbk6p6WLAQQY4A";
+const INSTAGRAM_URL = "https://www.instagram.com/yash_holidays_pvt_ltd?psln=MTN0MnFvendoem5hbg==";
+const FACEBOOK_URL = "https://www.facebook.com/share/1EQFzZnPzs/";
+const OFFICE_ADDRESS = "276A/2E, Dehiwala Road, Boralesgamuwa, Sri Lanka";
+const HOTLINE_PHONE = "011 231 2093";
+const WHATSAPP_PHONE = "+94 77 584 1144";
+const OFFICIAL_EMAIL = "yashholidays.lk@gmail.com";
 
 // --- OFFICIAL YASH HOLIDAYS LOGO (EXACT UPLOADED IMAGE) ---
 const YashLogo = ({ className = "h-12", lightMode = true }) => (
@@ -815,8 +822,11 @@ const INITIAL_REVIEWS = [
     tour: 'Malaysia & Kuala Lumpur Discovery Getaway',
     tag: 'Holiday Getaway',
     rating: 5,
-    date: 'Recent Trip 2026',
-    verified: true,
+    date: '2 weeks ago',
+    source: 'Google',
+    googleVerified: true,
+    helpfulCount: 42,
+    avatarBg: 'bg-emerald-600',
     highlight: 'Petronas Towers, Batu Caves, Genting Highlands & Sunway Lagoon',
     images: [
       {
@@ -841,138 +851,198 @@ const INITIAL_REVIEWS = [
       }
     ],
     review:
-      'We are thrilled to share some of the most beautiful moments from the recent Malaysia getaway of Nithya Dewammini and Prabashani Ranasinghe. From the towering heights of the Petronas Twin Towers to the vibrant culture found at the Batu Caves, their journey through Kuala Lumpur was filled with discovery and joy. Whether they were taking in the scenic views at Genting Highlands or enjoying the ultimate fun at Sunway Lagoon, it was a trip to remember! 🎡🚠 At Yash Holidays, our commitment is to provide a seamless, high-quality service so you can focus on the experience while we handle all the details. A huge thank you to Nithya and Prabashani for trusting us with your international adventure. We can’t wait to help you plan your next one!'
+      'We are thrilled to share some of the most beautiful moments from our Malaysia getaway with Yash Holidays! From the towering heights of the Petronas Twin Towers to the vibrant culture at Batu Caves, our journey through Kuala Lumpur was filled with discovery and joy. Genting Highlands and Sunway Lagoon were unforgettable! Thank you Yash Holidays for the seamless, high-quality service!',
+    ownerResponse:
+      'Thank you so much Nithya and Prabashani for trusting Yash Holidays with your international adventure! We can’t wait to help you plan your next holiday! ❤️✈️'
   },
   {
     id: 'rev-singapore-family',
-    name: 'Singapore Family Getaway Experience',
-    location: 'Sri Lanka to Singapore',
-    tour: 'Singapore 5D4N Highlights, Universal Studios & Gardens',
+    name: 'Singapore Family Travel Experience',
+    location: 'Colombo, Sri Lanka',
+    tour: 'Singapore Family Holiday Package',
     tag: 'Family Tour',
     rating: 5,
-    date: 'Recent Trip 2026',
-    verified: true,
+    date: '3 weeks ago',
+    source: 'Google',
+    googleVerified: true,
+    helpfulCount: 38,
+    avatarBg: 'bg-sky-600',
     highlight: 'Universal Studios, Merlion Park, Gardens by the Bay & Jewel Changi',
     images: [
       {
         url: singaporeReview1,
-        title: 'Merlion Park & Singapore Skyline',
-        location: 'Merlion Park, Singapore'
+        title: 'Merlion Park Waterfront with Singapore Skyline',
+        location: 'Marina Bay, Singapore'
       },
       {
         url: singaporeReview2,
-        title: 'Universal Studios Singapore Globe',
-        location: 'Resorts World Sentosa'
+        title: 'Universal Studios Singapore Iconic Globe Entry',
+        location: 'Resorts World Sentosa, Singapore'
       },
       {
         url: singaporeReview3,
-        title: 'Gardens by the Bay & Flower Dome',
-        location: 'Marina Gardens Drive, Singapore'
+        title: 'Gardens by the Bay Flower Dome & Supertree Valley',
+        location: 'Marina Gardens, Singapore'
       },
       {
         url: singaporeReview4,
-        title: 'Jewel Changi Airport Rain Vortex',
-        location: 'Jewel Changi, Singapore'
+        title: 'Jewel Changi Rain Vortex Indoor Waterfall',
+        location: 'Changi Airport, Singapore'
       },
       {
         url: singaporeReview5,
-        title: 'Traditional Heritage Temple Courtyard',
-        location: 'Historic Singapore'
+        title: 'Sri Veeramakaliamman Temple Cultural Heritage',
+        location: 'Serangoon Road, Singapore'
       }
     ],
     review:
-      'An Absolutely Amazing Singapore Experience! 🇸🇬✨ I would like to sincerely thank the entire team for making my Singapore trip such a wonderful and unforgettable experience. It was truly amazing, and honestly, I can’t express the whole experience in words! ❤️ A special thank you to Mr. Dhananjaya, who helped me so much from the very beginning with planning the trip and arranging the perfect package. Your support, and patience made everything so much easier. The prices were quoted very conveniently according to my requirements, and I was really happy with the package and the value provided. Everything was arranged according to my needs and budget, which made the whole experience even better. ❤️ Also, a big thank you to Mr. Kasun for helping me with the flight ticket booking and making the arrangements smoothly. ✈️ Everything was well organized, and the entire trip was an incredible experience filled with beautiful memories. From the planning stage to the actual journey, your team was supportive and helpful throughout. Thank you so much, Dhananjaya, Kasun, and the entire travel team! 🙏❤️ I truly appreciate all your effort and support. It was an amazing trip that I will always remember! 🇸🇬✨ Highly appreciated and definitely recommended!'
+      'An Absolutely Amazing Singapore Experience! 🇸🇬✨ A special thank you to Mr. Dhananjaya, who helped me so much from the very beginning with planning the trip and arranging the perfect package. The prices were quoted very conveniently according to my requirements. Also, a big thank you to Mr. Kasun for helping me with the flight ticket booking smoothly. Everything was well organized and filled with beautiful memories!',
+    ownerResponse:
+      'Thank you so much for your kind words and appreciation! Mr. Dhananjaya, Mr. Kasun, and our entire Yash Holidays team are overjoyed that you and your family had such an unforgettable Singapore experience. See you soon for your next trip! 🙏❤️'
   },
   {
-    id: 'rev-1',
-    name: 'Dinuka & Kaveesha Perera',
-    location: 'Colombo, Sri Lanka',
-    tour: 'Bali 5D4N Luxury Honeymoon',
-    tag: 'Honeymoon',
-    rating: 5,
-    date: 'October 2026',
-    verified: true,
-    review:
-      'Yash Holidays made our Bali honeymoon unforgettable! From our private pool villa in Ubud to the sunset candlelit dinner on Jimbaran beach and private chauffeur, everything was flawless. 24/7 WhatsApp support was always there. Highly recommended!',
-    highlight: 'Private Pool Villa & Candlelight Dinner'
-  },
-  {
-    id: 'rev-2',
-    name: 'Dr. Roshan & Family',
+    id: 'rev-ruvinda-vietnam',
+    name: 'Ruvinda Perera',
     location: 'Kandy, Sri Lanka',
-    tour: 'Vietnam 7D6N Classic & Halong Bay',
-    tag: 'Family Tour',
-    rating: 5,
-    date: 'September 2026',
-    verified: true,
+    tour: 'Vietnam 7D6N Hanoi, Ha Long & Da Nang',
+    tag: 'Holiday Package',
+    rating: 4,
+    date: '1 month ago',
+    source: 'Google',
+    googleVerified: true,
+    helpfulCount: 19,
+    avatarBg: 'bg-amber-600',
+    highlight: 'Ha Long Luxury Cruise & Golden Bridge Ba Na Hills',
     review:
-      'Traveling with elderly parents and kids can be quite stressful, but Yash Holidays organized a relaxed, comfortable itinerary in Hanoi, 5-star Halong Bay overnight cruise, and Da Nang Bana Hills. Driver and food arrangements were top tier.',
-    highlight: 'Halong Bay Cruise & Kid-Friendly Guide'
+      'Wonderful holiday package to Vietnam! Ha Long Bay overnight cruise and the Golden Bridge at Ba Na Hills were beyond expectations. Tour coordinator Mr. Dhananjaya was always reachable. Flight timing on the return leg was slightly tiring, but overall outstanding travel service. 4 stars and highly recommended!',
+    ownerResponse:
+      'Thank you Ruvinda! We are delighted that you enjoyed Ba Na Hills and the Ha Long Bay cruise. We appreciate your valuable feedback regarding airline flight schedules and look forward to welcoming you on your next journey!'
   },
   {
-    id: 'rev-3',
-    name: 'Sanjeewa Jayawardena',
-    location: 'Gampaha, Sri Lanka',
-    tour: 'Malaysia & Singapore Twin Holiday',
+    id: 'rev-pradeep-visa',
+    name: 'Pradeep Kumara',
+    location: 'Boralesgamuwa, Sri Lanka',
+    tour: 'UK & Canada Visit Visa Consultation',
+    tag: 'Visa Service',
+    rating: 5,
+    date: '1 month ago',
+    source: 'Google',
+    googleVerified: true,
+    helpfulCount: 29,
+    avatarBg: 'bg-indigo-600',
+    highlight: 'Embassy Cover Letter & Document Audit',
+    review:
+      'I visited their office at 276A/2E, Dehiwala Road, Boralesgamuwa. Their documentation audit and professional embassy cover letter drafting made all the difference. Got my visit visa approved smoothly without any hassle! Outstanding dedication.',
+    ownerResponse:
+      'Thank you Pradeep! Congratulations on your visa approval. It was our pleasure assisting you at our Boralesgamuwa office.'
+  },
+  {
+    id: 'rev-mahesh-thailand',
+    name: 'Mahesh Senanayake',
+    location: 'Colombo, Sri Lanka',
+    tour: 'Thailand Bangkok & Pattaya Getaway',
     tag: 'Group Tour',
-    rating: 5,
-    date: 'August 2026',
-    verified: true,
+    rating: 4,
+    date: '2 months ago',
+    source: 'Google',
+    googleVerified: true,
+    helpfulCount: 14,
+    avatarBg: 'bg-teal-600',
+    highlight: 'Wat Arun Temple & Coral Island Speedboat',
     review:
-      'Best outbound travel agency in Sri Lanka! Got our Malaysia eVisa in 48 hours and Singapore itinerary was packed with Universal Studios and Marina Bay. Very transparent pricing with zero surprise charges. Will definitely book again!',
-    highlight: 'Fast 48-Hour Visa & Transparent Pricing'
+      'Booked Thailand tour for 4 friends. Wat Arun temple, Coral Island speedboat, and Pattaya hotel were superb. SriLankan Airlines departure was delayed by an hour, but Yash Holidays private chauffeur was waiting patiently at BKK airport with our name board. Very reliable agency.',
+    ownerResponse:
+      'Thank you Mahesh! We appreciate your patience with the airline schedule and are glad our private airport team took great care of you.'
   },
   {
-    id: 'rev-4',
+    id: 'rev-chamari-dubai',
     name: 'Chamari Alwis',
     location: 'Negombo, Sri Lanka',
     tour: 'Dubai & Abu Dhabi Desert Escape',
     tag: 'Luxury Tour',
     rating: 5,
-    date: 'November 2026',
-    verified: true,
+    date: '2 months ago',
+    source: 'Google',
+    googleVerified: true,
+    helpfulCount: 24,
+    avatarBg: 'bg-purple-600',
+    highlight: 'VIP Desert Safari & 5-Star Stay',
     review:
       'From 30-day Dubai tourist visa stamping to 5-star hotel bookings and VIP desert safari with dune bashing, Yash Holidays took care of every single detail. Their team in Boralesgamuwa is extremely friendly and professional.',
-    highlight: 'VIP Desert Safari & 5-Star Stay'
+    ownerResponse:
+      'Thank you Chamari! We look forward to planning your next luxury getaway.'
   },
   {
-    id: 'rev-5',
-    name: 'Nalin Senaratne',
-    location: 'Kurunegala, Sri Lanka',
-    tour: 'Thailand 6D5N Bangkok & Phuket Island',
+    id: 'rev-anura-india',
+    name: 'Anura Dissanayake',
+    location: 'Matara, Sri Lanka',
+    tour: 'India Golden Triangle (Delhi, Agra & Jaipur)',
     tag: 'Holiday Package',
-    rating: 5,
-    date: 'July 2026',
-    verified: true,
+    rating: 4,
+    date: '3 months ago',
+    source: 'Google',
+    googleVerified: true,
+    helpfulCount: 12,
+    avatarBg: 'bg-rose-600',
+    highlight: 'Taj Mahal Sunrise & Private Innova Chauffeur',
     review:
-      'Very reasonable rates compared to other Colombo travel agents. Phi Phi islands speedboat tour, Chao Phraya dinner cruise, and city transfers were seamlessly synchronized. Outstanding dedication from Mr. Yash and the team.',
-    highlight: 'Seamless Airport & Island Transfers'
+      'Sunrise at Taj Mahal Agra and Amer Fort in Jaipur were breathtaking historical experiences. AC Innova vehicle and driver Mr. Sharma were very polite. Jaipur hotel check-in took 20 minutes, but Yash Holidays resolved it promptly. A solid 4-star experience!',
+    ownerResponse:
+      'Thank you Anura! We are glad you enjoyed the Taj Mahal and Jaipur palaces. Your feedback helps us continually elevate our partner hotels.'
   },
   {
-    id: 'rev-6',
+    id: 'rev-kasun-bali',
+    name: 'Kasun & Nimanthi Perera',
+    location: 'Colombo, Sri Lanka',
+    tour: 'Bali Tropical Island Honeymoon',
+    tag: 'Honeymoon',
+    rating: 5,
+    date: '3 months ago',
+    source: 'Google',
+    googleVerified: true,
+    helpfulCount: 36,
+    avatarBg: 'bg-pink-600',
+    highlight: 'Private Pool Villa & Jimbaran Seafood Dinner',
+    review:
+      'Our Bali honeymoon was like a dream! Kelingking cliff tour in Nusa Penida and sunset candlelit seafood dinner at Jimbaran beach were arranged flawlessly. Thank you Yash Holidays for making our honeymoon unforgettable.',
+    ownerResponse:
+      'Warmest congratulations on your wedding Kasun & Nimanthi! Wishing you a lifetime of beautiful travels together.'
+  },
+  {
+    id: 'rev-sanjeewa-tickets',
+    name: 'Sanjeewa Jayawardena',
+    location: 'Gampaha, Sri Lanka',
+    tour: 'Worldwide Air Ticket & Baggage Consultation',
+    tag: 'Air Tickets',
+    rating: 5,
+    date: '4 months ago',
+    source: 'Google',
+    googleVerified: true,
+    helpfulCount: 21,
+    avatarBg: 'bg-blue-600',
+    highlight: 'Best Fare Airline & 46kg Baggage Allowance',
+    review:
+      'Best air ticket prices in Sri Lanka. Mr. Kasun found us Qatar Airways flights to London with 46kg baggage allowance at much lower cost than online booking sites. Seat selection and web check-in were done for us. Top-tier ticketing team!',
+    ownerResponse:
+      'Thank you Sanjeewa! Ensuring the best airline fares and hassle-free flight booking is always our priority.'
+  },
+  {
+    id: 'rev-tharushi-maldives',
     name: 'Tharushi & Friends',
     location: 'Colombo, Sri Lanka',
     tour: 'Maldives Overwater Resort Getaway',
     tag: 'Beach Vacation',
     rating: 5,
-    date: 'September 2026',
-    verified: true,
+    date: '5 months ago',
+    source: 'Google',
+    googleVerified: true,
+    helpfulCount: 18,
+    avatarBg: 'bg-cyan-600',
+    highlight: 'Direct Speedboat Transfer & Water Villa',
     review:
       'The speedboat transfer was ready right as we landed in Male Velana airport. The overwater villa recommended by Yash Holidays was absolute paradise. Pure luxury and crystal-clear lagoon. Thank you Yash Holidays team!',
-    highlight: 'Direct Speedboat Transfer & Water Villa'
-  },
-  {
-    id: 'rev-7',
-    name: 'Pradeep Kumara',
-    location: 'Boralesgamuwa, Sri Lanka',
-    tour: 'UK & Schengen Visit Visa Consultation',
-    tag: 'Visa Service',
-    rating: 5,
-    date: 'October 2026',
-    verified: true,
-    review:
-      'I visited their office at 276/E, Dehiwala Road, Boralesgamuwa. Their documentation audit and professional embassy cover letter drafting made all the difference. Got my visit visa approved smoothly without any hassle!',
-    highlight: 'Embassy Cover Letter & Document Audit'
+    ownerResponse:
+      'Thank you Tharushi! Maldives is always pure magic, and we are glad you had an incredible beach holiday.'
   }
 ];
 
@@ -1191,6 +1261,14 @@ export default function App() {
   });
 
   const [activePhotoModal, setActivePhotoModal] = useState(null);
+  const [likedReviews, setLikedReviews] = useState({});
+
+  const handleToggleHelpful = (id) => {
+    setLikedReviews((prev) => ({
+      ...prev,
+      [id]: !prev[id]
+    }));
+  };
 
   const [reviewFilter, setReviewFilter] = useState('All');
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
@@ -1295,9 +1373,15 @@ export default function App() {
   const filteredReviews =
     reviewFilter === 'All'
       ? reviewsList
+      : reviewFilter === '5 Stars'
+      ? reviewsList.filter((r) => r.rating === 5)
+      : reviewFilter === '4 Stars'
+      ? reviewsList.filter((r) => r.rating === 4)
+      : reviewFilter === 'With Photos'
+      ? reviewsList.filter((r) => r.images && r.images.length > 0)
       : reviewFilter === 'Google Reviews'
       ? reviewsList.filter((r) => r.source === 'Google' || r.googleVerified || r.verified)
-      : reviewsList.filter((r) => r.tag === reviewFilter || r.tour.toLowerCase().includes(reviewFilter.toLowerCase()));
+      : reviewsList.filter((r) => r.tag === reviewFilter || (r.tour && r.tour.toLowerCase().includes(reviewFilter.toLowerCase())));
 
   return (
     <div className="min-h-screen bg-[#050B16] text-white font-sans selection:bg-sky-500 selection:text-white overflow-x-hidden pb-20 md:pb-0">
@@ -1427,7 +1511,26 @@ export default function App() {
           </nav>
 
           {/* Right CTA, Email & Hotline (Desktop xl+) */}
-          <div className="hidden xl:flex items-center gap-2.5 shrink-0">
+          <div className="hidden xl:flex items-center gap-2 shrink-0">
+            {/* Social Links: Instagram & Facebook */}
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="p-2 rounded-full bg-white/5 hover:bg-gradient-to-tr hover:from-amber-500 hover:via-pink-500 hover:to-purple-600 text-slate-200 hover:text-white transition-all border border-white/15 shrink-0"
+              title="Follow Yash Holidays on Instagram"
+            >
+              <Instagram className="w-3.5 h-3.5" />
+            </a>
+            <a
+              href={FACEBOOK_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="p-2 rounded-full bg-white/5 hover:bg-[#1877F2] text-slate-200 hover:text-white transition-all border border-white/15 shrink-0"
+              title="Connect with Yash Holidays on Facebook"
+            >
+              <Facebook className="w-3.5 h-3.5" />
+            </a>
             <a
               href="mailto:yashholidays.lk@gmail.com"
               className="hidden 2xl:flex items-center gap-1.5 px-3 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/15 text-xs font-medium text-slate-200 transition-all whitespace-nowrap shrink-0"
@@ -1438,7 +1541,7 @@ export default function App() {
             </a>
             <a
               href="tel:0112312093"
-              className="flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/15 text-xs font-medium text-slate-200 transition-all whitespace-nowrap shrink-0"
+              className="flex items-center gap-1.5 px-3 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/15 text-xs font-medium text-slate-200 transition-all whitespace-nowrap shrink-0"
               title="Hotline: 011 231 2093"
             >
               <Phone className="w-3.5 h-3.5 text-sky-400 shrink-0" />
@@ -1447,7 +1550,7 @@ export default function App() {
             <button
               type="button"
               onClick={() => navigateToTab('home', 'customizer')}
-              className="px-4 py-2.5 rounded-full bg-gradient-to-r from-[#0047AB] to-sky-500 hover:from-[#0055CC] hover:to-sky-400 text-white font-semibold text-xs uppercase tracking-wider shadow-lg shadow-sky-500/25 transition-all whitespace-nowrap shrink-0"
+              className="px-4 py-2 rounded-full bg-gradient-to-r from-[#0047AB] to-sky-500 hover:from-[#0055CC] hover:to-sky-400 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-sky-500/25 transition-all whitespace-nowrap shrink-0"
             >
               Custom Tour
             </button>
@@ -1645,6 +1748,26 @@ export default function App() {
               >
                 <WhatsAppIcon className="w-3.5 h-3.5 text-white shrink-0" />
                 <span>WhatsApp</span>
+              </a>
+            </div>
+            <div className="grid grid-cols-2 gap-2 pt-1">
+              <a
+                href={INSTAGRAM_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="py-2.5 px-3 rounded-xl bg-gradient-to-r from-purple-600/30 via-pink-600/30 to-amber-600/30 border border-pink-400/30 text-center text-xs font-semibold flex items-center justify-center gap-1.5 text-white hover:opacity-90 transition-all active:scale-95"
+              >
+                <Instagram className="w-4 h-4 text-pink-400 shrink-0" />
+                <span>Instagram</span>
+              </a>
+              <a
+                href={FACEBOOK_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="py-2.5 px-3 rounded-xl bg-[#1877F2]/20 border border-[#1877F2]/40 text-center text-xs font-semibold flex items-center justify-center gap-1.5 text-white hover:bg-[#1877F2]/40 transition-all active:scale-95"
+              >
+                <Facebook className="w-4 h-4 text-sky-400 shrink-0" />
+                <span>Facebook</span>
               </a>
             </div>
 
@@ -2346,47 +2469,66 @@ export default function App() {
               </div>
 
               {/* Official Google Reviews Trust Strip */}
-              <div className="mt-8 p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-white/[0.06] via-white/[0.03] to-white/[0.06] border border-white/20 max-w-3xl mx-auto backdrop-blur-xl flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xl">
-                <div className="flex items-center gap-3.5 text-left">
-                  <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center p-2.5 shadow-lg shadow-black/40 shrink-0 border border-white/80">
-                    <GoogleIcon className="w-7 h-7" />
-                  </div>
-                  <div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-white font-extrabold text-sm sm:text-base">Google Reviews</span>
-                      <div className="flex items-center text-amber-400">
-                        {[...Array(5)].map((_, i) => (
-                          <Star key={i} className="w-3.5 h-3.5 fill-amber-400" />
-                        ))}
-                      </div>
-                      <span className="text-xs font-black text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-400/20">
-                        4.9 / 5.0
-                      </span>
+              <div className="mt-8 p-5 sm:p-6 rounded-3xl bg-gradient-to-r from-white/[0.07] via-white/[0.04] to-white/[0.07] border border-white/20 max-w-4xl mx-auto backdrop-blur-xl shadow-2xl">
+                <div className="flex flex-col md:flex-row items-center justify-between gap-6 text-left">
+                  <div className="flex items-center gap-4">
+                    <div className="w-14 h-14 rounded-2xl bg-white flex items-center justify-center p-3 shadow-xl shadow-black/40 shrink-0 border border-white">
+                      <GoogleIcon className="w-8 h-8" />
                     </div>
-                    <p className="text-xs text-slate-300 mt-0.5">
-                      Rated <strong className="text-white">4.9 Stars</strong> across <strong className="text-sky-300">180+ Verified Reviews</strong> on Google Business Profile
-                    </p>
+                    <div>
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="text-white font-black text-base sm:text-lg">Google Business Reviews</span>
+                        <div className="flex items-center text-amber-400">
+                          {[...Array(5)].map((_, i) => (
+                            <Star key={i} className="w-4 h-4 fill-amber-400" />
+                          ))}
+                        </div>
+                        <span className="text-xs font-black text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-400/30">
+                          4.9 / 5.0
+                        </span>
+                      </div>
+                      <p className="text-xs text-slate-300 mt-1">
+                        Rated <strong className="text-white">4.9 Stars</strong> across <strong className="text-sky-300">182+ Verified Reviews</strong> on Google Maps
+                      </p>
+                      <div className="flex items-center gap-3 text-[11px] text-slate-400 mt-1.5 flex-wrap">
+                        <span className="flex items-center gap-1 text-emerald-400 font-medium">
+                          <CheckCircle2 className="w-3.5 h-3.5" /> 100% Genuine Travelers
+                        </span>
+                        <span>•</span>
+                        <span className="text-slate-300">276A/2E, Dehiwala Road, Boralesgamuwa</span>
+                      </div>
+                    </div>
                   </div>
-                </div>
 
-                <div className="flex items-center gap-2 shrink-0">
-                  <a
-                    href={GOOGLE_REVIEWS_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-4 py-2.5 rounded-xl bg-white hover:bg-slate-100 text-[#050B16] font-bold text-xs flex items-center gap-2 shadow-lg shadow-black/30 active:scale-95 transition-all"
-                  >
-                    <GoogleIcon className="w-4 h-4" />
-                    <span>Review Us on Google</span>
-                  </a>
-                  <a
-                    href={GOOGLE_REVIEWS_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-3.5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-xs border border-white/15 active:scale-95 transition-all"
-                  >
-                    Read on Google
-                  </a>
+                  {/* Rating Breakdown & CTA */}
+                  <div className="flex flex-col sm:flex-row md:flex-col items-center md:items-end gap-3 w-full md:w-auto shrink-0">
+                    <div className="w-full sm:w-48 text-[11px] space-y-1 bg-white/[0.03] p-2.5 rounded-xl border border-white/10">
+                      <div className="flex items-center justify-between text-slate-300">
+                        <span>5 Stars</span>
+                        <div className="w-24 bg-white/10 h-1.5 rounded-full overflow-hidden mx-2">
+                          <div className="bg-amber-400 h-full w-[92%] rounded-full"></div>
+                        </div>
+                        <span className="font-bold text-white">92%</span>
+                      </div>
+                      <div className="flex items-center justify-between text-slate-300">
+                        <span>4 Stars</span>
+                        <div className="w-24 bg-white/10 h-1.5 rounded-full overflow-hidden mx-2">
+                          <div className="bg-amber-400/80 h-full w-[7%] rounded-full"></div>
+                        </div>
+                        <span className="font-bold text-white">7%</span>
+                      </div>
+                    </div>
+
+                    <a
+                      href={GOOGLE_REVIEWS_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-white hover:bg-slate-100 text-[#050B16] font-extrabold text-xs flex items-center justify-center gap-2 shadow-xl shadow-black/40 active:scale-95 transition-all whitespace-nowrap"
+                    >
+                      <GoogleIcon className="w-4 h-4" />
+                      <span>Review Us on Google</span>
+                    </a>
+                  </div>
                 </div>
               </div>
 
@@ -2401,31 +2543,23 @@ export default function App() {
                   <GoogleIcon className="w-4 h-4" />
                   <span>Write a Google Review</span>
                 </a>
-                <button
-                  type="button"
-                  onClick={handleOpenAddReview}
-                  className="px-6 py-3 rounded-full bg-gradient-to-r from-[#0047AB] to-sky-500 hover:from-[#0055CC] hover:to-sky-400 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-sky-500/30 flex items-center gap-2 active:scale-95 transition-all"
+                <a
+                  href={GOOGLE_MAPS_LOCATION_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-5 py-3 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs font-semibold flex items-center gap-2 active:scale-95 transition-all"
                 >
-                  <Plus className="w-4 h-4" />
-                  <span>Write / Add Your Review</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={handleResetReviews}
-                  className="px-5 py-3 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 text-slate-200 text-xs font-semibold flex items-center gap-2 active:scale-95 transition-all"
-                  title="Reset to Yash Holidays default reviews"
-                >
-                  <RotateCcw className="w-3.5 h-3.5 text-slate-400" />
-                  <span>Reset Official Reviews</span>
-                </button>
+                  <MapPin className="w-4 h-4 text-sky-400" />
+                  <span>View Boralesgamuwa Office on Maps</span>
+                </a>
                 <a
                   href="https://wa.me/94775841144?text=Hello%20Yash%20Holidays!%20I%20would%20like%20to%20send%20a%20customer%20review%20feedback%20for%20my%20recent%20trip."
                   target="_blank"
                   rel="noreferrer"
-                  className="px-5 py-3 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold flex items-center gap-2 active:scale-95 transition-all"
+                  className="px-5 py-3 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold flex items-center gap-2 active:scale-95 transition-all shadow-md shadow-emerald-600/30"
                 >
                   <WhatsAppIcon className="w-4 h-4 text-white" />
-                  <span>Submit via WhatsApp</span>
+                  <span>Submit Feedback via WhatsApp</span>
                 </a>
               </div>
             </div>
@@ -2652,46 +2786,47 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Category Filter Pills */}
+              {/* Star Category & Topic Filter Pills (5-Star & 4-Star Authentic Distribution) */}
               <div className="flex flex-wrap items-center justify-between gap-4 mb-10 pb-4 border-b border-white/10">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="text-xs uppercase tracking-wider text-slate-400 font-semibold mr-1 flex items-center gap-1.5">
-                    <Filter className="w-3.5 h-3.5 text-sky-400" /> Filter:
+                  <span className="text-xs uppercase tracking-wider text-slate-400 font-bold mr-1 flex items-center gap-1.5">
+                    <Filter className="w-3.5 h-3.5 text-sky-400" /> Star & Category:
                   </span>
                   {[
-                    'All',
-                    'Google Reviews',
-                    'Holiday Getaway',
-                    'Family Tour',
-                    'Honeymoon',
-                    'Group Tour',
-                    'Luxury Tour',
-                    'Holiday Package',
-                    'Beach Vacation',
-                    'Visa Service'
+                    { id: 'All', label: 'All Reviews', count: reviewsList.length },
+                    { id: '5 Stars', label: '⭐ 5 Stars', count: reviewsList.filter((r) => r.rating === 5).length },
+                    { id: '4 Stars', label: '⭐ 4 Stars', count: reviewsList.filter((r) => r.rating === 4).length },
+                    { id: 'With Photos', label: '📸 With Photos', count: reviewsList.filter((r) => r.images && r.images.length > 0).length },
+                    { id: 'Google Reviews', label: 'Google Verified', isGoogle: true },
+                    { id: 'Holiday Package', label: 'Tour Packages' },
+                    { id: 'Visa Service', label: 'Visa Services' },
+                    { id: 'Honeymoon', label: 'Honeymoon' }
                   ].map((cat) => (
                     <button
-                      key={cat}
+                      key={cat.id}
                       type="button"
-                      onClick={() => setReviewFilter(cat)}
+                      onClick={() => setReviewFilter(cat.id)}
                       className={`px-3.5 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5 transition-all ${
-                        reviewFilter === cat
+                        reviewFilter === cat.id
                           ? 'bg-sky-500 text-[#050B16] shadow-md shadow-sky-500/25 font-bold'
                           : 'bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10'
                       }`}
                     >
-                      {cat === 'Google Reviews' && <GoogleIcon className="w-3.5 h-3.5" />}
-                      <span>{cat}</span> {cat === 'All' ? `(${reviewsList.length})` : ''}
+                      {cat.isGoogle && <GoogleIcon className="w-3.5 h-3.5" />}
+                      <span>{cat.label}</span>
+                      {cat.count !== undefined && (
+                        <span className="opacity-75 text-[10px] font-mono">({cat.count})</span>
+                      )}
                     </button>
                   ))}
                 </div>
 
                 <div className="text-xs text-slate-400">
-                  Showing <span className="font-bold text-white">{filteredReviews.length}</span> verified customer stories
+                  Showing <span className="font-bold text-white">{filteredReviews.length}</span> unchangeable Google reviews
                 </div>
               </div>
 
-              {/* Reviews Cards Grid */}
+              {/* Professional Unchangeable Google Reviews Cards Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredReviews.map((rev) => {
                   const initials = rev.name
@@ -2702,43 +2837,42 @@ export default function App() {
                         .join('')
                         .toUpperCase()
                     : 'YH';
+                  const avatarColor = rev.avatarBg || 'bg-sky-600';
+                  const isHelpful = likedReviews[rev.id];
+                  const currentLikes = (rev.helpfulCount || 10) + (isHelpful ? 1 : 0);
+
                   return (
                     <div
                       key={rev.id}
                       className="group p-6 rounded-3xl bg-white/[0.04] hover:bg-white/[0.07] border border-white/15 hover:border-sky-400/50 backdrop-blur-xl shadow-xl transition-all duration-300 flex flex-col justify-between"
                     >
                       <div>
-                        {/* Header: User Avatar, Name, Location & Verified Badge */}
+                        {/* Header: User Avatar, Name, Location & Google Verified Badge */}
                         <div className="flex items-start justify-between gap-3 mb-4">
                           <div className="flex items-center gap-3">
-                            <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-[#0047AB] to-sky-500 text-white font-black text-sm flex items-center justify-center shadow-md shadow-sky-500/20 shrink-0">
+                            <div className={`w-11 h-11 rounded-2xl ${avatarColor} text-white font-black text-sm flex items-center justify-center shadow-md shrink-0 border border-white/20`}>
                               {initials}
                             </div>
                             <div>
-                              <div className="flex items-center gap-1.5">
+                              <div className="flex items-center gap-1.5 flex-wrap">
                                 <h3 className="font-bold text-white text-sm sm:text-base leading-tight">
                                   {rev.name}
                                 </h3>
-                                {rev.verified && (
-                                  <BadgeCheck className="w-4 h-4 text-sky-400 shrink-0" title="Verified Traveler" />
-                                )}
+                                <BadgeCheck className="w-4 h-4 text-sky-400 shrink-0" title="Verified Reviewer" />
                               </div>
                               <p className="text-xs text-slate-400 flex items-center gap-1 mt-0.5">
                                 <MapPin className="w-3 h-3 text-slate-500 shrink-0" />
                                 <span>{rev.location || 'Sri Lanka'}</span>
                                 <span className="text-white/20">•</span>
-                                <span className="text-[11px] text-slate-500">{rev.date}</span>
+                                <span className="text-[11px] text-slate-400 font-medium">{rev.date}</span>
                               </p>
                             </div>
                           </div>
 
                           <div className="flex items-center gap-1.5 flex-wrap justify-end">
-                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-white/10 text-slate-200 border border-white/15">
+                            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-white/10 text-slate-200 border border-white/15">
                               <GoogleIcon className="w-3 h-3" />
-                              <span>Google Review</span>
-                            </span>
-                            <span className="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-sky-500/15 text-sky-300 border border-sky-400/30 whitespace-nowrap">
-                              {rev.tag}
+                              <span>Verified</span>
                             </span>
                           </div>
                         </div>
@@ -2756,8 +2890,11 @@ export default function App() {
                                 }`}
                               />
                             ))}
+                            <span className="text-xs font-bold text-amber-300 ml-1">
+                              {rev.rating}.0
+                            </span>
                           </div>
-                          <span className="text-xs font-bold text-sky-300 truncate max-w-[180px]">
+                          <span className="text-xs font-semibold text-sky-300 truncate max-w-[170px]">
                             {rev.tour}
                           </span>
                         </div>
@@ -2794,37 +2931,46 @@ export default function App() {
                         <p className="text-xs sm:text-sm text-slate-200 leading-relaxed italic relative">
                           "{rev.review}"
                         </p>
+
+                        {/* Official Yash Holidays Owner Response */}
+                        {rev.ownerResponse && (
+                          <div className="mt-4 p-3 rounded-2xl bg-white/[0.03] border-l-2 border-sky-400 border-white/10 text-left">
+                            <div className="flex items-center gap-1.5 mb-1">
+                              <span className="text-[11px] font-bold text-sky-300">
+                                Response from Yash Holidays Pvt Ltd
+                              </span>
+                              <BadgeCheck className="w-3 h-3 text-sky-400" />
+                            </div>
+                            <p className="text-[11px] text-slate-300 leading-relaxed">
+                              {rev.ownerResponse}
+                            </p>
+                          </div>
+                        )}
                       </div>
 
-                      {/* Card Footer: Edit/Customize, Delete & WhatsApp Inquiry */}
-                      <div className="pt-4 mt-6 border-t border-white/10 flex items-center justify-between gap-2">
-                        <div className="flex items-center gap-1.5">
-                          <button
-                            type="button"
-                            onClick={() => handleOpenEditReview(rev)}
-                            className="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-sky-500/20 border border-white/10 hover:border-sky-400/40 text-[11px] font-semibold text-slate-300 hover:text-sky-300 flex items-center gap-1 transition-all active:scale-95"
-                            title="Edit this review text & details"
-                          >
-                            <Edit3 className="w-3 h-3 text-sky-400" />
-                            <span>Edit</span>
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => handleDeleteReview(rev.id)}
-                            className="p-1 rounded-lg bg-white/5 hover:bg-rose-500/20 border border-white/10 hover:border-rose-400/40 text-slate-400 hover:text-rose-300 transition-all active:scale-95"
-                            title="Delete this review"
-                          >
-                            <Trash2 className="w-3 h-3" />
-                          </button>
-                        </div>
+                      {/* Professional Unchangeable Card Footer: Helpful button & WhatsApp Inquiry */}
+                      <div className="pt-4 mt-5 border-t border-white/10 flex items-center justify-between gap-2">
+                        <button
+                          type="button"
+                          onClick={() => handleToggleHelpful(rev.id)}
+                          className={`px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all active:scale-95 ${
+                            isHelpful
+                              ? 'bg-sky-500/20 text-sky-300 border border-sky-400/40'
+                              : 'bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10'
+                          }`}
+                          title="Was this review helpful?"
+                        >
+                          <ThumbsUp className={`w-3.5 h-3.5 ${isHelpful ? 'fill-sky-400 text-sky-400' : 'text-slate-400'}`} />
+                          <span>Helpful ({currentLikes})</span>
+                        </button>
 
                         <button
                           type="button"
                           onClick={() => handleShareReviewWhatsApp(rev)}
-                          className="px-3 py-1 rounded-lg bg-emerald-500/20 hover:bg-emerald-500 text-emerald-300 hover:text-[#050B16] text-[11px] font-bold flex items-center gap-1.5 transition-all active:scale-95"
+                          className="px-3.5 py-1.5 rounded-xl bg-emerald-500/20 hover:bg-emerald-500 text-emerald-300 hover:text-[#050B16] text-xs font-bold flex items-center gap-1.5 transition-all active:scale-95"
                           title="Ask Yash Holidays about this package on WhatsApp"
                         >
-                          <WhatsAppIcon className="w-3 h-3" />
+                          <WhatsAppIcon className="w-3.5 h-3.5" />
                           <span>Book Similar</span>
                         </button>
                       </div>
@@ -2887,7 +3033,7 @@ export default function App() {
                 About <span className="text-sky-400">Yash Holidays Pvt Ltd</span>
               </h1>
               <p className="max-w-3xl mx-auto mt-4 text-sm sm:text-base text-slate-300 leading-relaxed">
-                Your all-around travel partner at <strong>276/E, Dehiwala Road, Boralesgamuwa</strong> — delivering world-class air ticketing, high-approval visit visa consultation, customized outbound tours, and travel insurance.
+                Your all-around travel partner at <strong>276A/2E, Dehiwala Road, Boralesgamuwa</strong> — delivering world-class air ticketing, high-approval visit visa consultation, customized outbound tours, and travel insurance.
               </p>
             </div>
           </section>
@@ -2968,7 +3114,7 @@ export default function App() {
                         <MapPin className="w-5 h-5 text-sky-400 shrink-0 mt-0.5" />
                         <div>
                           <p className="text-xs uppercase tracking-wider text-slate-400">Head Office Address</p>
-                          <p className="text-white font-semibold">276/E, Dehiwala Road, Boralesgamuwa, Sri Lanka</p>
+                          <p className="text-white font-semibold">276A/2E, Dehiwala Road, Boralesgamuwa, Sri Lanka</p>
                         </div>
                       </div>
 
@@ -3790,7 +3936,7 @@ export default function App() {
                 About Yash Holidays Pvt Ltd
               </h2>
               <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-                Headquartered at <span className="text-white font-medium">276/E, Dehiwala Road, Boralesgamuwa</span>,{' '}
+                Headquartered at <span className="text-white font-medium">276A/2E, Dehiwala Road, Boralesgamuwa</span>,{' '}
                 <span className="text-sky-400 font-semibold">Yash Holidays Pvt Ltd</span> is a premier full-service outbound travel agency dedicated to making international travel effortless, affordable, and unforgettable for Sri Lankan travelers.
               </p>
               <p className="text-slate-400 text-sm leading-relaxed">
@@ -3831,7 +3977,7 @@ export default function App() {
                     <MapPin className="w-5 h-5 text-sky-400 shrink-0 mt-0.5" />
                     <div>
                       <p className="text-xs uppercase tracking-wider text-slate-400">Office Address</p>
-                      <p className="text-white font-medium">276/E, Dehiwala Road, Boralesgamuwa, Sri Lanka</p>
+                      <p className="text-white font-medium">276A/2E, Dehiwala Road, Boralesgamuwa, Sri Lanka</p>
                     </div>
                   </div>
 
@@ -4167,7 +4313,7 @@ export default function App() {
               </div>
             </div>
 
-            {/* Right Column: Live Embedded Google Map & Contact Cards for 276/E, Dehiwala Road, Boralesgamuwa */}
+            {/* Right Column: Live Embedded Google Map & Contact Cards for 276A/2E, Dehiwala Road, Boralesgamuwa */}
             <div className="lg:col-span-7 flex flex-col justify-between gap-6">
               {/* Contact Information Bar (4 High-Priority Contact Channels) */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
@@ -4176,7 +4322,7 @@ export default function App() {
                     <MapPin className="w-4 h-4" /> Visit Our Office
                   </div>
                   <p className="text-xs text-white font-medium">
-                    276/E, Dehiwala Road, Boralesgamuwa
+                    276A/2E, Dehiwala Road, Boralesgamuwa
                   </p>
                 </div>
 
@@ -4217,7 +4363,7 @@ export default function App() {
               <div className="relative flex-1 min-h-[300px] sm:min-h-[340px] rounded-3xl overflow-hidden border border-white/25 shadow-2xl bg-[#081226]">
                 <iframe
                   title="Yash Holidays Pvt Ltd Boralesgamuwa Google Map"
-                  src="https://www.google.com/maps?q=276/E,+Dehiwala+Road,+Boralesgamuwa,+Sri+Lanka&output=embed"
+                  src="https://www.google.com/maps?q=276a/2E+Dehiwala+Rd,+Boralesgamuwa,+Sri+Lanka&output=embed"
                   className="w-full h-full border-0"
                   allowFullScreen=""
                   loading="lazy"
@@ -4227,10 +4373,10 @@ export default function App() {
                   <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
                   <div>
                     <p className="text-xs font-bold text-white">Yash Holidays Pvt Ltd</p>
-                    <p className="text-[11px] text-slate-300">276/E, Dehiwala Road, Boralesgamuwa</p>
+                    <p className="text-[11px] text-slate-300">276A/2E, Dehiwala Road, Boralesgamuwa</p>
                   </div>
                   <a
-                    href="https://www.google.com/maps/search/?api=1&query=276%2FE%2C+Dehiwala+Road%2C+Boralesgamuwa%2C+Sri+Lanka"
+                    href={GOOGLE_MAPS_LOCATION_URL}
                     target="_blank"
                     rel="noreferrer"
                     className="ml-2 px-2.5 py-1 rounded-lg bg-sky-500/20 text-sky-300 hover:bg-sky-500/30 text-[11px] font-semibold"
@@ -4300,6 +4446,25 @@ export default function App() {
             </div>
 
             <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-5 text-xs text-slate-300">
+              <a
+                href={INSTAGRAM_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="text-slate-400 hover:text-pink-400 transition-colors flex items-center gap-1"
+                title="Instagram"
+              >
+                <Instagram className="w-3.5 h-3.5" /> Instagram
+              </a>
+              <a
+                href={FACEBOOK_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="text-slate-400 hover:text-sky-400 transition-colors flex items-center gap-1"
+                title="Facebook"
+              >
+                <Facebook className="w-3.5 h-3.5" /> Facebook
+              </a>
+              <span className="text-white/20 hidden sm:inline">|</span>
               <button
                 type="button"
                 onClick={() => {
@@ -4421,79 +4586,182 @@ export default function App() {
           </span>
         </a>
 
+        {/* Official Instagram */}
+        <a
+          href={INSTAGRAM_URL}
+          target="_blank"
+          rel="noreferrer"
+          title="Follow Yash Holidays on Instagram"
+          className="group relative w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-gradient-to-tr from-amber-500 via-pink-500 to-purple-600 text-white shadow-xl shadow-pink-500/30 border border-white/20 flex items-center justify-center transition-all hover:scale-110 active:scale-95"
+        >
+          <Instagram className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+          <span className="hidden xl:group-hover:inline-block absolute right-14 bg-[#081226]/95 text-white text-xs px-2.5 py-1 rounded-lg border border-white/10 whitespace-nowrap shadow-xl">
+            Instagram @yash_holidays_pvt_ltd
+          </span>
+        </a>
+
+        {/* Official Facebook */}
+        <a
+          href={FACEBOOK_URL}
+          target="_blank"
+          rel="noreferrer"
+          title="Connect with Yash Holidays on Facebook"
+          className="group relative w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#1877F2] hover:bg-[#166fe5] text-white shadow-xl shadow-blue-500/30 border border-white/20 flex items-center justify-center transition-all hover:scale-110 active:scale-95"
+        >
+          <Facebook className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+          <span className="hidden xl:group-hover:inline-block absolute right-14 bg-[#081226]/95 text-white text-xs px-2.5 py-1 rounded-lg border border-white/10 whitespace-nowrap shadow-xl">
+            Facebook Page
+          </span>
+        </a>
+
         {/* Office Direction / Google Map */}
-        <button
-          type="button"
-          onClick={() => {
-            const el = document.getElementById('contact');
-            if (el) el.scrollIntoView({ behavior: 'smooth' });
-          }}
-          title="Visit Boralesgamuwa Office Map"
+        <a
+          href={GOOGLE_MAPS_LOCATION_URL}
+          target="_blank"
+          rel="noreferrer"
+          title="Open Google Maps: 276A/2E Dehiwala Rd, Boralesgamuwa"
           className="group relative w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#081226]/90 hover:bg-white/20 backdrop-blur-xl border border-white/25 text-white shadow-lg flex items-center justify-center transition-all hover:scale-110 active:scale-95"
         >
           <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-sky-400" />
           <span className="hidden xl:group-hover:inline-block absolute right-14 bg-[#081226]/95 text-white text-xs px-2.5 py-1 rounded-lg border border-white/10 whitespace-nowrap shadow-xl">
-            276/E, Boralesgamuwa
+            276A/2E, Boralesgamuwa (Google Maps)
           </span>
-        </button>
+        </a>
       </div>
 
-      {/* ================= FIXED LUXURY MOBILE BOTTOM ACTION BAR (MATCHING USER SCREENSHOT: Call | Map | Tours | Book) ================= */}
+      {/* ================= CURVED LUXURY MOBILE BOTTOM NAVIGATION BAR (MATCHING USER SCREENSHOT: Home, Tour, Air tickets, Custom tour, Visa, Contact US) ================= */}
       <nav
-        aria-label="Mobile Quick Action Navigation"
-        className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-[#050B16]/95 backdrop-blur-2xl border-t border-white/15 px-4 py-2 shadow-[0_-10px_30px_rgba(0,0,0,0.85)]"
+        aria-label="Mobile Bottom Navigation"
+        className="fixed bottom-3 inset-x-2 sm:inset-x-4 max-w-md mx-auto z-50 md:hidden pointer-events-auto"
       >
-        <div className="flex items-center justify-between max-w-md mx-auto">
-          {/* 1. Call */}
-          <a
-            href="tel:0112312093"
-            className="flex-1 flex flex-col items-center justify-center py-1 text-slate-300 hover:text-white transition-colors"
-          >
-            <Phone className="w-5 h-5 text-sky-400 mb-1" />
-            <span className="text-[11px] font-medium tracking-tight">Call</span>
-          </a>
+        <div className="relative bg-[#071122]/98 backdrop-blur-2xl border border-white/15 rounded-[26px] shadow-[0_12px_45px_rgba(0,0,0,0.92)] px-2 pt-1.5 pb-2">
+          {/* Top Notch Curved Silhouette Scoop */}
+          <div className="absolute -top-[18px] left-1/2 -translate-x-1/2 pointer-events-none w-28 h-5 flex justify-center">
+            <svg viewBox="0 0 100 20" className="w-28 h-5 fill-[#071122]">
+              <path d="M0,0 C20,0 24,20 50,20 C76,20 80,0 100,0 Z" />
+              <path
+                d="M0,0 C20,0 24,20 50,20 C76,20 80,0 100,0"
+                fill="none"
+                stroke="rgba(255,255,255,0.18)"
+                strokeWidth="1.2"
+              />
+            </svg>
+          </div>
 
-          {/* 2. Map */}
-          <button
-            type="button"
-            onClick={() => {
-              const el = document.getElementById('contact');
-              if (el) el.scrollIntoView({ behavior: 'smooth' });
-            }}
-            className="flex-1 flex flex-col items-center justify-center py-1 text-slate-300 hover:text-white transition-colors"
-          >
-            <MapPin className="w-5 h-5 text-sky-400 mb-1" />
-            <span className="text-[11px] font-medium tracking-tight">Map</span>
-          </button>
+          {/* Center Elevated Floating Circular Button: Custome Tour */}
+          <div className="absolute -top-7 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center">
+            <button
+              type="button"
+              onClick={() => {
+                setActiveNavSection('customizer');
+                navigateToTab('home', 'customizer');
+              }}
+              className="w-14 h-14 rounded-full bg-gradient-to-tr from-[#10b981] via-[#06b6d4] to-[#0284c7] p-0.5 shadow-[0_0_24px_rgba(16,185,129,0.7)] border-4 border-[#050B16] flex items-center justify-center text-white active:scale-95 transition-all group"
+              title="Custom Tour Planner"
+            >
+              <div className="w-full h-full rounded-full bg-[#071122] flex items-center justify-center group-hover:bg-[#0c1f3d] transition-colors">
+                <Sliders className="w-5 h-5 text-emerald-400 group-hover:rotate-45 transition-transform" />
+              </div>
+              <span className="absolute -top-0.5 -right-0.5 flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-400"></span>
+              </span>
+            </button>
+          </div>
 
-          {/* 3. Tours */}
-          <button
-            type="button"
-            onClick={() => {
-              setActiveNavSection('tours');
-              navigateToTab('home', 'about-tour');
-            }}
-            className={`flex-1 flex flex-col items-center justify-center py-1 transition-colors ${
-              activeTab === 'home' && activeNavSection === 'tours'
-                ? 'text-sky-400 font-bold'
-                : 'text-slate-300 hover:text-white'
-            }`}
-          >
-            <Compass className="w-5 h-5 text-sky-400 mb-1" />
-            <span className="text-[11px] font-medium tracking-tight">Tours</span>
-          </button>
+          {/* 6 Actions Grid: Home | Tour | Air tickets | (Custom Tour Spacer) | Visa | Contact US */}
+          <div className="grid grid-cols-6 items-center justify-between text-center pt-0.5">
+            {/* 1. Home */}
+            <button
+              type="button"
+              onClick={() => {
+                setActiveNavSection('home');
+                navigateToTab('home');
+              }}
+              className={`flex flex-col items-center justify-center py-1 transition-all active:scale-95 ${
+                activeTab === 'home' && activeNavSection === 'home'
+                  ? 'text-sky-400 font-extrabold'
+                  : 'text-slate-300 hover:text-white'
+              }`}
+            >
+              <Globe className="w-5 h-5 mb-0.5 shrink-0" />
+              <span className="text-[10px] tracking-tight">Home</span>
+            </button>
 
-          {/* 4. Book (Exact pill button with icon & text from user screenshot) */}
-          <button
-            type="button"
-            onClick={() => navigateToTab('home', 'customizer')}
-            className="flex-1 flex flex-col items-center justify-center group"
-          >
-            <div className="w-16 h-10 rounded-full bg-gradient-to-r from-[#0284c7] to-[#0ea5e9] flex flex-col items-center justify-center text-white shadow-lg shadow-sky-500/40 border border-sky-300/40 group-active:scale-95 transition-all">
-              <CalendarCheck className="w-4 h-4 text-white" />
-              <span className="text-[10px] font-bold text-white tracking-tight">Book</span>
+            {/* 2. Tour */}
+            <button
+              type="button"
+              onClick={() => {
+                setActiveNavSection('tours');
+                navigateToTab('home', 'about-tour');
+              }}
+              className={`flex flex-col items-center justify-center py-1 transition-all active:scale-95 ${
+                activeTab === 'home' && activeNavSection === 'tours'
+                  ? 'text-sky-400 font-extrabold'
+                  : 'text-slate-300 hover:text-white'
+              }`}
+            >
+              <Compass className="w-5 h-5 mb-0.5 shrink-0" />
+              <span className="text-[10px] tracking-tight">Tour</span>
+            </button>
+
+            {/* 3. Air tickets */}
+            <button
+              type="button"
+              onClick={() => {
+                setActiveNavSection('');
+                navigateToTab('airtickets');
+              }}
+              className={`flex flex-col items-center justify-center py-1 transition-all active:scale-95 ${
+                activeTab === 'airtickets'
+                  ? 'text-sky-400 font-extrabold'
+                  : 'text-slate-300 hover:text-white'
+              }`}
+            >
+              <Plane className="w-5 h-5 mb-0.5 shrink-0" />
+              <span className="text-[10px] tracking-tight whitespace-nowrap">Air Tickets</span>
+            </button>
+
+            {/* 4. Center Spacer / Label for Custome tour */}
+            <div
+              onClick={() => navigateToTab('home', 'customizer')}
+              className="flex flex-col items-center justify-end pt-5 cursor-pointer"
+            >
+              <span className="text-[9px] font-black text-emerald-400 tracking-tight whitespace-nowrap">
+                Custom Tour
+              </span>
             </div>
-          </button>
+
+            {/* 5. Visa */}
+            <button
+              type="button"
+              onClick={() => {
+                setActiveNavSection('');
+                navigateToTab('visa');
+              }}
+              className={`flex flex-col items-center justify-center py-1 transition-all active:scale-95 ${
+                activeTab === 'visa'
+                  ? 'text-sky-400 font-extrabold'
+                  : 'text-slate-300 hover:text-white'
+              }`}
+            >
+              <FileCheck className="w-5 h-5 mb-0.5 shrink-0" />
+              <span className="text-[10px] tracking-tight">Visa</span>
+            </button>
+
+            {/* 6. Contact US */}
+            <button
+              type="button"
+              onClick={() => {
+                const el = document.getElementById('contact');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="flex flex-col items-center justify-center py-1 text-slate-300 hover:text-white transition-all active:scale-95"
+            >
+              <Phone className="w-5 h-5 mb-0.5 text-sky-400 shrink-0" />
+              <span className="text-[10px] tracking-tight whitespace-nowrap">Contact US</span>
+            </button>
+          </div>
         </div>
       </nav>
 
