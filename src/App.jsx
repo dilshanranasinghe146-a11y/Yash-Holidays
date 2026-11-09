@@ -1448,7 +1448,7 @@ export default function App() {
     <div className="min-h-screen bg-[#050B16] text-white font-sans selection:bg-sky-500 selection:text-white overflow-x-hidden pb-20 md:pb-0">
       {/* ================= STICKY GLASSMORPHIC NAVBAR (DESKTOP & MOBILE RESPONSIVE) ================= */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-[#050B16]/95 backdrop-blur-xl border-b border-white/10 transition-all">
-        <div className="max-w-[1600px] w-full mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-2 xl:gap-4">
+        <div className="w-full max-w-[1720px] mx-auto px-3 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-2 xl:gap-3">
           <button
             type="button"
             onClick={() => navigateToTab('home')}
@@ -1458,7 +1458,7 @@ export default function App() {
           </button>
 
           {/* PC Desktop Navigation Bar (Only on xl+ screens: Single-Line Horizontal Pills) */}
-          <nav className="hidden xl:flex items-center gap-1 bg-white/[0.03] p-1.5 rounded-full border border-white/10 text-xs xl:text-sm font-medium text-slate-200 shrink-0">
+          <nav className="hidden xl:flex items-center gap-1 bg-white/[0.03] p-1.5 rounded-full border border-white/10 text-xs xl:text-[13px] font-medium text-slate-200 shrink-0">
             {/* 1. Home Tab */}
             <button
               type="button"
@@ -1466,7 +1466,7 @@ export default function App() {
                 setActiveNavSection('home');
                 navigateToTab('home');
               }}
-              className={`px-3 py-2 rounded-full transition-all flex items-center gap-1.5 whitespace-nowrap shrink-0 ${
+              className={`px-3 py-1.5 rounded-full transition-all flex items-center gap-1.5 whitespace-nowrap shrink-0 ${
                 activeTab === 'home' && activeNavSection === 'home'
                   ? 'bg-gradient-to-r from-[#0047AB] to-sky-500 text-white font-bold shadow-md shadow-sky-500/25'
                   : 'hover:text-sky-400 hover:bg-white/5'
@@ -1483,7 +1483,7 @@ export default function App() {
                 setActiveNavSection('tours');
                 navigateToTab('home', 'about-tour');
               }}
-              className={`px-3 py-2 rounded-full transition-all flex items-center gap-1.5 whitespace-nowrap shrink-0 ${
+              className={`px-3 py-1.5 rounded-full transition-all flex items-center gap-1.5 whitespace-nowrap shrink-0 ${
                 activeTab === 'home' && activeNavSection === 'tours'
                   ? 'bg-gradient-to-r from-[#0047AB] to-sky-500 text-white font-bold shadow-md shadow-sky-500/25'
                   : 'hover:text-sky-400 hover:bg-white/5'
@@ -1500,7 +1500,7 @@ export default function App() {
                 setActiveNavSection('');
                 navigateToTab('visa');
               }}
-              className={`px-3 py-2 rounded-full transition-all flex items-center gap-1.5 whitespace-nowrap shrink-0 ${
+              className={`px-3 py-1.5 rounded-full transition-all flex items-center gap-1.5 whitespace-nowrap shrink-0 ${
                 activeTab === 'visa'
                   ? 'bg-gradient-to-r from-[#0047AB] to-sky-500 text-white font-bold shadow-md shadow-sky-500/25'
                   : 'hover:text-sky-400 hover:bg-white/5'
@@ -1517,7 +1517,7 @@ export default function App() {
                 setActiveNavSection('');
                 navigateToTab('airtickets');
               }}
-              className={`px-3 py-2 rounded-full transition-all flex items-center gap-1.5 whitespace-nowrap shrink-0 ${
+              className={`px-3 py-1.5 rounded-full transition-all flex items-center gap-1.5 whitespace-nowrap shrink-0 ${
                 activeTab === 'airtickets'
                   ? 'bg-gradient-to-r from-[#0047AB] to-sky-500 text-white font-bold shadow-md shadow-sky-500/25'
                   : 'hover:text-sky-400 hover:bg-white/5'
@@ -1534,7 +1534,7 @@ export default function App() {
                 setActiveNavSection('');
                 navigateToTab('reviews');
               }}
-              className={`px-3 py-2 rounded-full transition-all flex items-center gap-1.5 whitespace-nowrap shrink-0 ${
+              className={`px-3 py-1.5 rounded-full transition-all flex items-center gap-1.5 whitespace-nowrap shrink-0 ${
                 activeTab === 'reviews'
                   ? 'bg-gradient-to-r from-[#0047AB] to-sky-500 text-white font-bold shadow-md shadow-sky-500/25'
                   : 'hover:text-sky-400 hover:bg-white/5'
@@ -1551,7 +1551,7 @@ export default function App() {
                 setActiveNavSection('');
                 navigateToTab('about');
               }}
-              className={`px-3 py-2 rounded-full transition-all flex items-center gap-1.5 whitespace-nowrap shrink-0 ${
+              className={`px-3 py-1.5 rounded-full transition-all flex items-center gap-1.5 whitespace-nowrap shrink-0 ${
                 activeTab === 'about'
                   ? 'bg-gradient-to-r from-[#0047AB] to-sky-500 text-white font-bold shadow-md shadow-sky-500/25'
                   : 'hover:text-sky-400 hover:bg-white/5'
@@ -1565,7 +1565,7 @@ export default function App() {
             <button
               type="button"
               onClick={() => navigateToTab(activeTab, 'contact')}
-              className="px-3 py-2 rounded-full hover:text-sky-400 hover:bg-white/5 transition-colors flex items-center gap-1.5 whitespace-nowrap shrink-0"
+              className="px-3 py-1.5 rounded-full hover:text-sky-400 hover:bg-white/5 transition-colors flex items-center gap-1.5 whitespace-nowrap shrink-0"
             >
               <Phone className="w-3.5 h-3.5 text-sky-400 shrink-0" />
               <span className="whitespace-nowrap">Contact</span>
@@ -1593,26 +1593,28 @@ export default function App() {
             >
               <Facebook className="w-3.5 h-3.5" />
             </a>
+            {/* Official Email Icon */}
             <a
               href="mailto:yashholidays.lk@gmail.com"
-              className="hidden 2xl:flex items-center gap-1.5 px-3 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/15 text-xs font-medium text-slate-200 transition-all whitespace-nowrap shrink-0"
+              className="p-2 rounded-full bg-white/5 hover:bg-sky-500/20 text-slate-200 hover:text-sky-300 transition-all border border-white/15 shrink-0"
               title="Official Email: yashholidays.lk@gmail.com"
             >
-              <Mail className="w-3.5 h-3.5 text-sky-400 shrink-0" />
-              <span>yashholidays.lk@gmail.com</span>
+              <Mail className="w-3.5 h-3.5 text-sky-400" />
             </a>
+            {/* Official Hotline Pill */}
             <a
               href="tel:0112312093"
-              className="flex items-center gap-1.5 px-3 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/15 text-xs font-medium text-slate-200 transition-all whitespace-nowrap shrink-0"
+              className="flex items-center gap-1.5 px-3 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/15 text-xs font-semibold text-slate-200 transition-all whitespace-nowrap shrink-0"
               title="Hotline: 011 231 2093"
             >
               <Phone className="w-3.5 h-3.5 text-sky-400 shrink-0" />
-              <span className="hidden 2xl:inline">011 231 2093</span>
+              <span>011 231 2093</span>
             </a>
+            {/* Custom Tour CTA */}
             <button
               type="button"
               onClick={() => navigateToTab('home', 'customizer')}
-              className="flex items-center gap-1 px-3.5 py-2 rounded-full bg-gradient-to-r from-[#0047AB] to-sky-500 hover:from-[#0055CC] hover:to-sky-400 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-sky-500/25 transition-all whitespace-nowrap shrink-0"
+              className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-gradient-to-r from-[#0047AB] to-sky-500 hover:from-[#0055CC] hover:to-sky-400 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-sky-500/25 transition-all whitespace-nowrap shrink-0"
             >
               <Sliders className="w-3.5 h-3.5 shrink-0" />
               <span>Custom Tour</span>
