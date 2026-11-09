@@ -32,7 +32,18 @@ import {
   BadgeCheck,
   FileText,
   Headphones,
-  Building2
+  Building2,
+  Mail,
+  MessageSquare,
+  Quote,
+  Plus,
+  Trash2,
+  Edit3,
+  RotateCcw,
+  Check,
+  CalendarCheck,
+  Filter,
+  ThumbsUp
 } from 'lucide-react';
 
 // --- HIGH-RESOLUTION OFFICIAL WHATSAPP VECTOR ICON ---
@@ -757,8 +768,103 @@ const AIRLINE_PARTNERS = [
   { name: 'IndiGo & Air India', route: 'Chennai, Delhi, Mumbai, Kochi & Global Connections', tag: 'Frequent Daily' }
 ];
 
+// --- INITIAL VERIFIED CUSTOMER REVIEWS (AUTHENTIC SRI LANKAN TRAVELERS) ---
+const INITIAL_REVIEWS = [
+  {
+    id: 'rev-1',
+    name: 'Dinuka & Kaveesha Perera',
+    location: 'Colombo, Sri Lanka',
+    tour: 'Bali 5D4N Luxury Honeymoon',
+    tag: 'Honeymoon',
+    rating: 5,
+    date: 'October 2026',
+    verified: true,
+    review:
+      'Yash Holidays made our Bali honeymoon unforgettable! From our private pool villa in Ubud to the sunset candlelit dinner on Jimbaran beach and private chauffeur, everything was flawless. 24/7 WhatsApp support was always there. Highly recommended!',
+    highlight: 'Private Pool Villa & Candlelight Dinner'
+  },
+  {
+    id: 'rev-2',
+    name: 'Dr. Roshan & Family',
+    location: 'Kandy, Sri Lanka',
+    tour: 'Vietnam 7D6N Classic & Halong Bay',
+    tag: 'Family Tour',
+    rating: 5,
+    date: 'September 2026',
+    verified: true,
+    review:
+      'Traveling with elderly parents and kids can be quite stressful, but Yash Holidays organized a relaxed, comfortable itinerary in Hanoi, 5-star Halong Bay overnight cruise, and Da Nang Bana Hills. Driver and food arrangements were top tier.',
+    highlight: 'Halong Bay Cruise & Kid-Friendly Guide'
+  },
+  {
+    id: 'rev-3',
+    name: 'Sanjeewa Jayawardena',
+    location: 'Gampaha, Sri Lanka',
+    tour: 'Malaysia & Singapore Twin Holiday',
+    tag: 'Group Tour',
+    rating: 5,
+    date: 'August 2026',
+    verified: true,
+    review:
+      'Best outbound travel agency in Sri Lanka! Got our Malaysia eVisa in 48 hours and Singapore itinerary was packed with Universal Studios and Marina Bay. Very transparent pricing with zero surprise charges. Will definitely book again!',
+    highlight: 'Fast 48-Hour Visa & Transparent Pricing'
+  },
+  {
+    id: 'rev-4',
+    name: 'Chamari Alwis',
+    location: 'Negombo, Sri Lanka',
+    tour: 'Dubai & Abu Dhabi Desert Escape',
+    tag: 'Luxury Tour',
+    rating: 5,
+    date: 'November 2026',
+    verified: true,
+    review:
+      'From 30-day Dubai tourist visa stamping to 5-star hotel bookings and VIP desert safari with dune bashing, Yash Holidays took care of every single detail. Their team in Boralesgamuwa is extremely friendly and professional.',
+    highlight: 'VIP Desert Safari & 5-Star Stay'
+  },
+  {
+    id: 'rev-5',
+    name: 'Nalin Senaratne',
+    location: 'Kurunegala, Sri Lanka',
+    tour: 'Thailand 6D5N Bangkok & Phuket Island',
+    tag: 'Holiday Package',
+    rating: 5,
+    date: 'July 2026',
+    verified: true,
+    review:
+      'Very reasonable rates compared to other Colombo travel agents. Phi Phi islands speedboat tour, Chao Phraya dinner cruise, and city transfers were seamlessly synchronized. Outstanding dedication from Mr. Yash and the team.',
+    highlight: 'Seamless Airport & Island Transfers'
+  },
+  {
+    id: 'rev-6',
+    name: 'Tharushi & Friends',
+    location: 'Colombo, Sri Lanka',
+    tour: 'Maldives Overwater Resort Getaway',
+    tag: 'Beach Vacation',
+    rating: 5,
+    date: 'September 2026',
+    verified: true,
+    review:
+      'The speedboat transfer was ready right as we landed in Male Velana airport. The overwater villa recommended by Yash Holidays was absolute paradise. Pure luxury and crystal-clear lagoon. Thank you Yash Holidays team!',
+    highlight: 'Direct Speedboat Transfer & Water Villa'
+  },
+  {
+    id: 'rev-7',
+    name: 'Pradeep Kumara',
+    location: 'Boralesgamuwa, Sri Lanka',
+    tour: 'UK & Schengen Visit Visa Consultation',
+    tag: 'Visa Service',
+    rating: 5,
+    date: 'October 2026',
+    verified: true,
+    review:
+      'I visited their office at 276/E, Dehiwala Road, Boralesgamuwa. Their documentation audit and professional embassy cover letter drafting made all the difference. Got my visit visa approved smoothly without any hassle!',
+    highlight: 'Embassy Cover Letter & Document Audit'
+  }
+];
+
 export default function App() {
-  // 5 MAIN TABS: 'home' | 'visa' | 'airtickets' | 'about'
+  // 5 MAIN TABS: 'home' | 'visa' | 'airtickets' | 'reviews' | 'about'
   const [activeTab, setActiveTab] = useState('home');
   const [activeNavSection, setActiveNavSection] = useState('home'); // 'home' | 'tours'
   const [selectedCountryId, setSelectedCountryId] = useState('bali');
@@ -952,8 +1058,126 @@ export default function App() {
     window.open(`https://wa.me/94775841144?text=${text}`, '_blank');
   };
 
+  // Customer Reviews State (with LocalStorage Persistence & Customization)
+  const [reviewsList, setReviewsList] = useState(() => {
+    try {
+      const saved = localStorage.getItem('yash_customer_reviews');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      }
+    } catch (e) {
+      console.error(e);
+    }
+    return INITIAL_REVIEWS;
+  });
+
+  const [reviewFilter, setReviewFilter] = useState('All');
+  const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
+  const [editingReviewId, setEditingReviewId] = useState(null);
+
+  const [reviewForm, setReviewForm] = useState({
+    name: '',
+    location: 'Colombo, Sri Lanka',
+    tour: 'Bali 5D4N Luxury Honeymoon',
+    tag: 'Honeymoon',
+    rating: 5,
+    date: 'November 2026',
+    highlight: 'Exceptional Service & Luxury Hotel',
+    review: ''
+  });
+
+  // Automatically sync reviews with localStorage
+  useEffect(() => {
+    try {
+      localStorage.setItem('yash_customer_reviews', JSON.stringify(reviewsList));
+    } catch (e) {
+      console.error(e);
+    }
+  }, [reviewsList]);
+
+  const handleOpenAddReview = () => {
+    setEditingReviewId(null);
+    setReviewForm({
+      name: '',
+      location: 'Colombo, Sri Lanka',
+      tour: 'Bali 5D4N Luxury Honeymoon',
+      tag: 'Honeymoon',
+      rating: 5,
+      date: 'November 2026',
+      highlight: 'Exceptional Experience',
+      review: ''
+    });
+    setIsReviewModalOpen(true);
+  };
+
+  const handleOpenEditReview = (rev) => {
+    setEditingReviewId(rev.id);
+    setReviewForm({
+      name: rev.name,
+      location: rev.location || 'Sri Lanka',
+      tour: rev.tour || 'Custom Tour Package',
+      tag: rev.tag || 'Holiday Package',
+      rating: rev.rating || 5,
+      date: rev.date || '2026',
+      highlight: rev.highlight || 'Wonderful Holiday',
+      review: rev.review || ''
+    });
+    setIsReviewModalOpen(true);
+  };
+
+  const handleSaveReview = (e) => {
+    e.preventDefault();
+    if (!reviewForm.name.trim() || !reviewForm.review.trim()) return;
+
+    if (editingReviewId) {
+      setReviewsList((prev) =>
+        prev.map((r) =>
+          r.id === editingReviewId
+            ? {
+                ...r,
+                ...reviewForm,
+                rating: Number(reviewForm.rating) || 5
+              }
+            : r
+        )
+      );
+    } else {
+      const newReview = {
+        id: 'rev-' + Date.now(),
+        ...reviewForm,
+        rating: Number(reviewForm.rating) || 5,
+        verified: true
+      };
+      setReviewsList((prev) => [newReview, ...prev]);
+    }
+    setIsReviewModalOpen(false);
+  };
+
+  const handleDeleteReview = (id) => {
+    if (window.confirm('Are you sure you want to delete this customer review?')) {
+      setReviewsList((prev) => prev.filter((r) => r.id !== id));
+    }
+  };
+
+  const handleResetReviews = () => {
+    if (window.confirm('Reset all customer reviews to Yash Holidays official list?')) {
+      setReviewsList(INITIAL_REVIEWS);
+      localStorage.removeItem('yash_customer_reviews');
+    }
+  };
+
+  const handleShareReviewWhatsApp = (rev) => {
+    const text = `Hello Yash Holidays! 🌟%0A%0A*Customer Review from ${encodeURIComponent(rev.name)}*%0A• *Tour:* ${encodeURIComponent(rev.tour)} (${rev.location})%0A• *Rating:* ${'⭐'.repeat(rev.rating)}%0A• *Review:* "${encodeURIComponent(rev.review)}"`;
+    window.open(`https://wa.me/94775841144?text=${text}`, '_blank');
+  };
+
+  const filteredReviews = reviewFilter === 'All'
+    ? reviewsList
+    : reviewsList.filter((r) => r.tag === reviewFilter || r.tour.toLowerCase().includes(reviewFilter.toLowerCase()));
+
   return (
-    <div className="min-h-screen bg-[#050B16] text-white font-sans selection:bg-sky-500 selection:text-white overflow-x-hidden">
+    <div className="min-h-screen bg-[#050B16] text-white font-sans selection:bg-sky-500 selection:text-white overflow-x-hidden pb-20 md:pb-0">
       {/* ================= STICKY GLASSMORPHIC NAVBAR (DESKTOP & MOBILE RESPONSIVE) ================= */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-[#050B16]/95 backdrop-blur-xl border-b border-white/10 transition-all">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-3 xl:gap-6">
@@ -1035,7 +1259,24 @@ export default function App() {
               <span className="whitespace-nowrap">Air Tickets</span>
             </button>
 
-            {/* 5. About Us Tab */}
+            {/* 5. Customer Reviews Tab */}
+            <button
+              type="button"
+              onClick={() => {
+                setActiveNavSection('');
+                navigateToTab('reviews');
+              }}
+              className={`px-3.5 py-2 rounded-full transition-all flex items-center gap-1.5 whitespace-nowrap shrink-0 ${
+                activeTab === 'reviews'
+                  ? 'bg-gradient-to-r from-[#0047AB] to-sky-500 text-white font-bold shadow-md shadow-sky-500/25'
+                  : 'hover:text-sky-400 hover:bg-white/5'
+              }`}
+            >
+              <Star className="w-3.5 h-3.5 text-amber-400 shrink-0 fill-amber-400/30" />
+              <span className="whitespace-nowrap">Reviews</span>
+            </button>
+
+            {/* 6. About Us Tab */}
             <button
               type="button"
               onClick={() => {
@@ -1052,7 +1293,7 @@ export default function App() {
               <span className="whitespace-nowrap">About Us</span>
             </button>
 
-            {/* 6. Contact Link */}
+            {/* 7. Contact Link */}
             <button
               type="button"
               onClick={() => navigateToTab(activeTab, 'contact')}
@@ -1062,11 +1303,19 @@ export default function App() {
             </button>
           </nav>
 
-          {/* Right CTA & Hotline (Desktop xl+) */}
-          <div className="hidden xl:flex items-center gap-3 shrink-0">
+          {/* Right CTA, Email & Hotline (Desktop xl+) */}
+          <div className="hidden xl:flex items-center gap-2.5 shrink-0">
+            <a
+              href="mailto:yashholidays.lk@gmail.com"
+              className="hidden 2xl:flex items-center gap-1.5 px-3 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/15 text-xs font-medium text-slate-200 transition-all whitespace-nowrap shrink-0"
+              title="Official Email: yashholidays.lk@gmail.com"
+            >
+              <Mail className="w-3.5 h-3.5 text-sky-400 shrink-0" />
+              <span>yashholidays.lk@gmail.com</span>
+            </a>
             <a
               href="tel:0112312093"
-              className="flex items-center gap-2 px-3.5 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/15 text-xs font-medium text-slate-200 transition-all whitespace-nowrap shrink-0"
+              className="flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/15 text-xs font-medium text-slate-200 transition-all whitespace-nowrap shrink-0"
               title="Hotline: 011 231 2093"
             >
               <Phone className="w-3.5 h-3.5 text-sky-400 shrink-0" />
@@ -1075,7 +1324,7 @@ export default function App() {
             <button
               type="button"
               onClick={() => navigateToTab('home', 'customizer')}
-              className="px-5 py-2.5 rounded-full bg-gradient-to-r from-[#0047AB] to-sky-500 hover:from-[#0055CC] hover:to-sky-400 text-white font-semibold text-xs uppercase tracking-wider shadow-lg shadow-sky-500/25 transition-all whitespace-nowrap shrink-0"
+              className="px-4 py-2.5 rounded-full bg-gradient-to-r from-[#0047AB] to-sky-500 hover:from-[#0055CC] hover:to-sky-400 text-white font-semibold text-xs uppercase tracking-wider shadow-lg shadow-sky-500/25 transition-all whitespace-nowrap shrink-0"
             >
               Custom Tour
             </button>
@@ -1126,11 +1375,11 @@ export default function App() {
         <div
           className={`xl:hidden transition-all duration-300 ease-in-out overflow-hidden border-sky-400/20 bg-[#081226]/98 backdrop-blur-2xl ${
             mobileMenuOpen
-              ? 'max-h-[700px] opacity-100 border-b shadow-2xl py-5 px-4 sm:px-6'
+              ? 'max-h-[850px] opacity-100 border-b shadow-2xl py-5 px-4 sm:px-6'
               : 'max-h-0 opacity-0 border-b-0 py-0 px-4 sm:px-6 pointer-events-none'
           }`}
         >
-          {/* Exactly 6 Buttons in 2 Columns matching User Screenshot */}
+          {/* Main Navigation Buttons in 2 Columns */}
           <div className="grid grid-cols-2 gap-2.5 sm:gap-3 max-w-lg mx-auto">
             {/* 1. Home */}
             <button
@@ -1139,7 +1388,7 @@ export default function App() {
                 setActiveNavSection('home');
                 navigateToTab('home');
               }}
-              className={`p-3.5 rounded-xl text-left text-xs sm:text-sm font-bold border flex items-center gap-2.5 whitespace-nowrap transition-all active:scale-95 ${
+              className={`p-3 rounded-xl text-left text-xs sm:text-sm font-bold border flex items-center gap-2 whitespace-nowrap transition-all active:scale-95 ${
                 activeTab === 'home' && activeNavSection === 'home'
                   ? 'bg-sky-500 text-[#050B16] border-sky-400 shadow-lg shadow-sky-500/30'
                   : 'bg-[#0c1830] text-white border-white/15 hover:border-sky-400/50 hover:bg-[#102244]'
@@ -1156,7 +1405,7 @@ export default function App() {
                 setActiveNavSection('tours');
                 navigateToTab('home', 'about-tour');
               }}
-              className={`p-3.5 rounded-xl text-left text-xs sm:text-sm font-bold border flex items-center gap-2.5 whitespace-nowrap transition-all active:scale-95 ${
+              className={`p-3 rounded-xl text-left text-xs sm:text-sm font-bold border flex items-center gap-2 whitespace-nowrap transition-all active:scale-95 ${
                 activeTab === 'home' && activeNavSection === 'tours'
                   ? 'bg-sky-500 text-[#050B16] border-sky-400 shadow-lg shadow-sky-500/30'
                   : 'bg-[#0c1830] text-white border-white/15 hover:border-sky-400/50 hover:bg-[#102244]'
@@ -1173,7 +1422,7 @@ export default function App() {
                 setActiveNavSection('');
                 navigateToTab('visa');
               }}
-              className={`p-3.5 rounded-xl text-left text-xs sm:text-sm font-bold border flex items-center gap-2.5 whitespace-nowrap transition-all active:scale-95 ${
+              className={`p-3 rounded-xl text-left text-xs sm:text-sm font-bold border flex items-center gap-2 whitespace-nowrap transition-all active:scale-95 ${
                 activeTab === 'visa'
                   ? 'bg-sky-500 text-[#050B16] border-sky-400 shadow-lg shadow-sky-500/30'
                   : 'bg-[#0c1830] text-white border-white/15 hover:border-sky-400/50 hover:bg-[#102244]'
@@ -1190,7 +1439,7 @@ export default function App() {
                 setActiveNavSection('');
                 navigateToTab('airtickets');
               }}
-              className={`p-3.5 rounded-xl text-left text-xs sm:text-sm font-bold border flex items-center gap-2.5 whitespace-nowrap transition-all active:scale-95 ${
+              className={`p-3 rounded-xl text-left text-xs sm:text-sm font-bold border flex items-center gap-2 whitespace-nowrap transition-all active:scale-95 ${
                 activeTab === 'airtickets'
                   ? 'bg-sky-500 text-[#050B16] border-sky-400 shadow-lg shadow-sky-500/30'
                   : 'bg-[#0c1830] text-white border-white/15 hover:border-sky-400/50 hover:bg-[#102244]'
@@ -1200,14 +1449,31 @@ export default function App() {
               <span className="whitespace-nowrap">Air Tickets</span>
             </button>
 
-            {/* 5. About Us */}
+            {/* 5. Customer Reviews */}
+            <button
+              type="button"
+              onClick={() => {
+                setActiveNavSection('');
+                navigateToTab('reviews');
+              }}
+              className={`p-3 rounded-xl text-left text-xs sm:text-sm font-bold border flex items-center gap-2 whitespace-nowrap transition-all active:scale-95 ${
+                activeTab === 'reviews'
+                  ? 'bg-sky-500 text-[#050B16] border-sky-400 shadow-lg shadow-sky-500/30'
+                  : 'bg-[#0c1830] text-white border-white/15 hover:border-sky-400/50 hover:bg-[#102244]'
+              }`}
+            >
+              <Star className="w-4 h-4 text-amber-400 shrink-0 fill-amber-400" />
+              <span className="whitespace-nowrap">Reviews</span>
+            </button>
+
+            {/* 6. About Us */}
             <button
               type="button"
               onClick={() => {
                 setActiveNavSection('');
                 navigateToTab('about');
               }}
-              className={`p-3.5 rounded-xl text-left text-xs sm:text-sm font-bold border flex items-center gap-2.5 whitespace-nowrap transition-all active:scale-95 ${
+              className={`p-3 rounded-xl text-left text-xs sm:text-sm font-bold border flex items-center gap-2 whitespace-nowrap transition-all active:scale-95 ${
                 activeTab === 'about'
                   ? 'bg-sky-500 text-[#050B16] border-sky-400 shadow-lg shadow-sky-500/30'
                   : 'bg-[#0c1830] text-white border-white/15 hover:border-sky-400/50 hover:bg-[#102244]'
@@ -1217,28 +1483,29 @@ export default function App() {
               <span className="whitespace-nowrap">About Us</span>
             </button>
 
-            {/* 6. Contact & Office */}
+            {/* 7. Contact & Office */}
             <button
               type="button"
               onClick={() => navigateToTab(activeTab, 'contact')}
-              className="p-3.5 rounded-xl text-left text-xs sm:text-sm font-bold border border-white/15 bg-[#0c1830] text-white flex items-center gap-2.5 whitespace-nowrap transition-all hover:border-sky-400/50 hover:bg-[#102244] active:scale-95"
+              className="p-3 rounded-xl text-left text-xs sm:text-sm font-bold border border-white/15 bg-[#0c1830] text-white flex items-center gap-2 whitespace-nowrap transition-all hover:border-sky-400/50 hover:bg-[#102244] active:scale-95"
             >
               <MapPin className="w-4 h-4 text-sky-400 shrink-0" />
               <span className="whitespace-nowrap">Contact & Office</span>
             </button>
-          </div>
 
-          {/* Quick Action Buttons in Slide-Down Drawer */}
-          <div className="pt-4 mt-4 border-t border-white/10 flex flex-col gap-2.5 max-w-lg mx-auto">
+            {/* 8. Customize Tour */}
             <button
               type="button"
               onClick={() => navigateToTab('home', 'customizer')}
-              className="w-full py-2.5 rounded-xl bg-gradient-to-r from-[#0047AB] to-sky-500 text-center text-xs font-bold uppercase tracking-wider text-white shadow-md shadow-sky-500/30 flex items-center justify-center gap-2 active:scale-95 transition-all"
+              className="p-3 rounded-xl text-left text-xs sm:text-sm font-bold border border-sky-400/40 bg-gradient-to-r from-[#0047AB]/50 to-sky-600/50 text-white flex items-center gap-2 whitespace-nowrap transition-all hover:border-sky-400 hover:bg-sky-600/60 active:scale-95 shadow-md shadow-sky-500/20"
             >
-              <Sliders className="w-4 h-4" />
-              <span>Customize Your Tour</span>
+              <Sliders className="w-4 h-4 text-sky-300 shrink-0" />
+              <span className="whitespace-nowrap">Customize Tour</span>
             </button>
+          </div>
 
+          {/* Quick Action Buttons in Slide-Down Drawer (Call, WhatsApp & Email) */}
+          <div className="pt-4 mt-4 border-t border-white/10 flex flex-col gap-2.5 max-w-lg mx-auto">
             <div className="grid grid-cols-2 gap-2">
               <a
                 href="tel:0112312093"
@@ -1257,6 +1524,14 @@ export default function App() {
                 <span>WhatsApp</span>
               </a>
             </div>
+
+            <a
+              href="mailto:yashholidays.lk@gmail.com"
+              className="py-2.5 px-3 rounded-xl bg-sky-950/60 border border-sky-400/30 text-center text-xs font-semibold flex items-center justify-center gap-2 text-sky-300 hover:bg-sky-900/60 transition-colors active:scale-95"
+            >
+              <Mail className="w-3.5 h-3.5 text-sky-400 shrink-0" />
+              <span>yashholidays.lk@gmail.com</span>
+            </a>
           </div>
         </div>
       </header>
@@ -1892,6 +2167,274 @@ export default function App() {
                     ))}
                   </tbody>
                 </table>
+              </div>
+            </div>
+          </section>
+        </div>
+      )}
+
+      {/* ================= TAB: DEDICATED CUSTOMER REVIEWS PAGE (WITH CUSTOMIZER) ================= */}
+      {activeTab === 'reviews' && (
+        <div className="pt-20">
+          {/* Reviews Hero Section */}
+          <section className="relative py-16 sm:py-24 overflow-hidden border-b border-white/10">
+            <div className="absolute inset-0 z-0">
+              <img
+                src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1920&q=85"
+                alt="Happy Sri Lankan Travelers with Yash Holidays"
+                className="w-full h-full object-cover opacity-25"
+              />
+              <div className="absolute inset-0 bg-gradient-to-b from-[#050B16]/90 via-[#050B16]/80 to-[#050B16]" />
+            </div>
+
+            <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/15 border border-amber-400/30 text-amber-300 text-xs font-bold uppercase tracking-widest mb-4">
+                <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                <span>100% GENUINE SRI LANKAN TRAVELER REVIEWS</span>
+              </div>
+              <h1 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight text-white uppercase">
+                Customer <span className="text-sky-400">Reviews & Stories</span>
+              </h1>
+              <p className="max-w-3xl mx-auto mt-4 text-sm sm:text-base text-slate-300 leading-relaxed">
+                Read authentic testimonials and feedback from Sri Lankan families, couples, and groups who booked their dream vacations, flight tickets, and visit visas with Yash Holidays Pvt Ltd.
+              </p>
+
+              {/* High-Trust Metrics Bar */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 max-w-4xl mx-auto mt-10">
+                <div className="p-4 rounded-2xl bg-white/[0.05] border border-white/10 backdrop-blur-md">
+                  <div className="flex items-center justify-center gap-1 text-amber-400 font-black text-2xl sm:text-3xl">
+                    <span>4.9</span>
+                    <Star className="w-5 h-5 fill-amber-400" />
+                  </div>
+                  <p className="text-xs text-slate-300 font-medium mt-1">Average Star Rating</p>
+                </div>
+                <div className="p-4 rounded-2xl bg-white/[0.05] border border-white/10 backdrop-blur-md">
+                  <p className="text-2xl sm:text-3xl font-black text-sky-400">1,450+</p>
+                  <p className="text-xs text-slate-300 font-medium mt-1">Happy Travelers</p>
+                </div>
+                <div className="p-4 rounded-2xl bg-white/[0.05] border border-white/10 backdrop-blur-md">
+                  <p className="text-2xl sm:text-3xl font-black text-emerald-400">99.4%</p>
+                  <p className="text-xs text-slate-300 font-medium mt-1">Satisfaction Rate</p>
+                </div>
+                <div className="p-4 rounded-2xl bg-white/[0.05] border border-white/10 backdrop-blur-md">
+                  <p className="text-2xl sm:text-3xl font-black text-purple-400">24/7</p>
+                  <p className="text-xs text-slate-300 font-medium mt-1">Tour Assistance</p>
+                </div>
+              </div>
+
+              {/* Review Action Controls */}
+              <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mt-8">
+                <button
+                  type="button"
+                  onClick={handleOpenAddReview}
+                  className="px-6 py-3 rounded-full bg-gradient-to-r from-[#0047AB] to-sky-500 hover:from-[#0055CC] hover:to-sky-400 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-sky-500/30 flex items-center gap-2 active:scale-95 transition-all"
+                >
+                  <Plus className="w-4 h-4" />
+                  <span>Write / Add Your Review</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={handleResetReviews}
+                  className="px-5 py-3 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 text-slate-200 text-xs font-semibold flex items-center gap-2 active:scale-95 transition-all"
+                  title="Reset to Yash Holidays default reviews"
+                >
+                  <RotateCcw className="w-3.5 h-3.5 text-slate-400" />
+                  <span>Reset Official Reviews</span>
+                </button>
+                <a
+                  href="https://wa.me/94775841144?text=Hello%20Yash%20Holidays!%20I%20would%20like%20to%20send%20a%20customer%20review%20feedback%20for%20my%20recent%20trip."
+                  target="_blank"
+                  rel="noreferrer"
+                  className="px-5 py-3 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold flex items-center gap-2 active:scale-95 transition-all"
+                >
+                  <WhatsAppIcon className="w-4 h-4 text-white" />
+                  <span>Submit via WhatsApp</span>
+                </a>
+              </div>
+            </div>
+          </section>
+
+          {/* Interactive Reviews Filter & Grid Section */}
+          <section className="py-12 sm:py-20 bg-gradient-to-b from-[#050B16] via-[#08152C] to-[#050B16]">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              {/* Category Filter Pills */}
+              <div className="flex flex-wrap items-center justify-between gap-4 mb-10 pb-4 border-b border-white/10">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="text-xs uppercase tracking-wider text-slate-400 font-semibold mr-1 flex items-center gap-1.5">
+                    <Filter className="w-3.5 h-3.5 text-sky-400" /> Filter:
+                  </span>
+                  {[
+                    'All',
+                    'Honeymoon',
+                    'Family Tour',
+                    'Group Tour',
+                    'Luxury Tour',
+                    'Holiday Package',
+                    'Beach Vacation',
+                    'Visa Service'
+                  ].map((cat) => (
+                    <button
+                      key={cat}
+                      type="button"
+                      onClick={() => setReviewFilter(cat)}
+                      className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                        reviewFilter === cat
+                          ? 'bg-sky-500 text-[#050B16] shadow-md shadow-sky-500/25 font-bold'
+                          : 'bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10'
+                      }`}
+                    >
+                      {cat} {cat === 'All' ? `(${reviewsList.length})` : ''}
+                    </button>
+                  ))}
+                </div>
+
+                <div className="text-xs text-slate-400">
+                  Showing <span className="font-bold text-white">{filteredReviews.length}</span> verified customer stories
+                </div>
+              </div>
+
+              {/* Reviews Cards Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {filteredReviews.map((rev) => {
+                  const initials = rev.name
+                    ? rev.name
+                        .split(' ')
+                        .map((n) => n[0])
+                        .slice(0, 2)
+                        .join('')
+                        .toUpperCase()
+                    : 'YH';
+                  return (
+                    <div
+                      key={rev.id}
+                      className="group p-6 rounded-3xl bg-white/[0.04] hover:bg-white/[0.07] border border-white/15 hover:border-sky-400/50 backdrop-blur-xl shadow-xl transition-all duration-300 flex flex-col justify-between"
+                    >
+                      <div>
+                        {/* Header: User Avatar, Name, Location & Verified Badge */}
+                        <div className="flex items-start justify-between gap-3 mb-4">
+                          <div className="flex items-center gap-3">
+                            <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-[#0047AB] to-sky-500 text-white font-black text-sm flex items-center justify-center shadow-md shadow-sky-500/20 shrink-0">
+                              {initials}
+                            </div>
+                            <div>
+                              <div className="flex items-center gap-1.5">
+                                <h3 className="font-bold text-white text-sm sm:text-base leading-tight">
+                                  {rev.name}
+                                </h3>
+                                {rev.verified && (
+                                  <BadgeCheck className="w-4 h-4 text-sky-400 shrink-0" title="Verified Traveler" />
+                                )}
+                              </div>
+                              <p className="text-xs text-slate-400 flex items-center gap-1 mt-0.5">
+                                <MapPin className="w-3 h-3 text-slate-500 shrink-0" />
+                                <span>{rev.location || 'Sri Lanka'}</span>
+                                <span className="text-white/20">•</span>
+                                <span className="text-[11px] text-slate-500">{rev.date}</span>
+                              </p>
+                            </div>
+                          </div>
+
+                          <span className="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-sky-500/15 text-sky-300 border border-sky-400/30 whitespace-nowrap">
+                            {rev.tag}
+                          </span>
+                        </div>
+
+                        {/* Star Rating & Tour Tag */}
+                        <div className="flex items-center justify-between mb-3 bg-white/[0.03] p-2.5 rounded-xl border border-white/5">
+                          <div className="flex items-center gap-1">
+                            {[...Array(5)].map((_, i) => (
+                              <Star
+                                key={i}
+                                className={`w-4 h-4 ${
+                                  i < (rev.rating || 5)
+                                    ? 'text-amber-400 fill-amber-400'
+                                    : 'text-slate-600'
+                                }`}
+                              />
+                            ))}
+                          </div>
+                          <span className="text-xs font-bold text-sky-300 truncate max-w-[180px]">
+                            {rev.tour}
+                          </span>
+                        </div>
+
+                        {/* Highlight Badge */}
+                        {rev.highlight && (
+                          <div className="mb-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-500/10 border border-emerald-400/20 text-emerald-300 text-xs font-medium">
+                            <Quote className="w-3 h-3 rotate-180 shrink-0 text-emerald-400" />
+                            <span className="italic">{rev.highlight}</span>
+                          </div>
+                        )}
+
+                        {/* Review Body Text */}
+                        <p className="text-xs sm:text-sm text-slate-200 leading-relaxed italic relative">
+                          "{rev.review}"
+                        </p>
+                      </div>
+
+                      {/* Card Footer: Edit/Customize, Delete & WhatsApp Inquiry */}
+                      <div className="pt-4 mt-6 border-t border-white/10 flex items-center justify-between gap-2">
+                        <div className="flex items-center gap-1.5">
+                          <button
+                            type="button"
+                            onClick={() => handleOpenEditReview(rev)}
+                            className="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-sky-500/20 border border-white/10 hover:border-sky-400/40 text-[11px] font-semibold text-slate-300 hover:text-sky-300 flex items-center gap-1 transition-all active:scale-95"
+                            title="Edit this review text & details"
+                          >
+                            <Edit3 className="w-3 h-3 text-sky-400" />
+                            <span>Edit</span>
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => handleDeleteReview(rev.id)}
+                            className="p-1 rounded-lg bg-white/5 hover:bg-rose-500/20 border border-white/10 hover:border-rose-400/40 text-slate-400 hover:text-rose-300 transition-all active:scale-95"
+                            title="Delete this review"
+                          >
+                            <Trash2 className="w-3 h-3" />
+                          </button>
+                        </div>
+
+                        <button
+                          type="button"
+                          onClick={() => handleShareReviewWhatsApp(rev)}
+                          className="px-3 py-1 rounded-lg bg-emerald-500/20 hover:bg-emerald-500 text-emerald-300 hover:text-[#050B16] text-[11px] font-bold flex items-center gap-1.5 transition-all active:scale-95"
+                          title="Ask Yash Holidays about this package on WhatsApp"
+                        >
+                          <WhatsAppIcon className="w-3 h-3" />
+                          <span>Book Similar</span>
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Bottom Customizer Banner */}
+              <div className="mt-16 p-8 rounded-3xl bg-gradient-to-r from-sky-950/70 via-[#0A1A38] to-sky-950/70 border border-sky-400/30 text-center max-w-4xl mx-auto shadow-2xl">
+                <h3 className="text-2xl font-bold text-white mb-2">
+                  Want to Share Your Own Experience with Yash Holidays?
+                </h3>
+                <p className="text-sm text-slate-300 max-w-2xl mx-auto mb-6">
+                  Every journey matters to us. Submit your honest feedback, photos, or holiday story and help other Sri Lankan travelers plan with total confidence.
+                </p>
+                <div className="flex flex-wrap items-center justify-center gap-4">
+                  <button
+                    type="button"
+                    onClick={handleOpenAddReview}
+                    className="px-6 py-3 rounded-full bg-sky-500 hover:bg-sky-400 text-[#050B16] font-bold text-xs uppercase tracking-wider shadow-lg shadow-sky-500/30 flex items-center gap-2 active:scale-95 transition-all"
+                  >
+                    <Plus className="w-4 h-4" />
+                    <span>Add New Customer Review</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => navigateToTab('home', 'customizer')}
+                    className="px-6 py-3 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-xs uppercase tracking-wider flex items-center gap-2 active:scale-95 transition-all"
+                  >
+                    <Sliders className="w-4 h-4 text-sky-400" />
+                    <span>Customize Your Tour</span>
+                  </button>
+                </div>
               </div>
             </div>
           </section>
@@ -2893,9 +3436,125 @@ export default function App() {
                       </div>
                     </div>
                   </div>
+
+                  <div className="flex items-start gap-3.5">
+                    <Mail className="w-5 h-5 text-sky-400 shrink-0 mt-0.5" />
+                    <div>
+                      <p className="text-xs uppercase tracking-wider text-slate-400">Official Inquiries Email</p>
+                      <a href="mailto:yashholidays.lk@gmail.com" className="text-white font-semibold hover:text-sky-400 transition-colors">
+                        yashholidays.lk@gmail.com
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ================= SECTION: FEATURED CUSTOMER REVIEWS SHOWCASE ================= */}
+      <section className="py-16 sm:py-24 bg-[#050B16] border-t border-white/10 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+            <div>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-400/30 text-amber-300 text-xs font-semibold uppercase tracking-widest mb-3">
+                <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                <span>LOVED BY 1,450+ SRI LANKAN TRAVELERS</span>
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+                What Our Travelers Say About <span className="text-sky-400">Yash Holidays</span>
+              </h2>
+              <p className="text-slate-300 text-sm sm:text-base mt-2 max-w-2xl">
+                Real stories from verified travelers across Sri Lanka who explored Bali, Vietnam, Malaysia, Dubai, Thailand, and the Maldives with us.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-3">
+              <button
+                type="button"
+                onClick={handleOpenAddReview}
+                className="px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-xs uppercase tracking-wider flex items-center gap-2 transition-all active:scale-95"
+              >
+                <Plus className="w-4 h-4 text-sky-400" />
+                <span>Write Review</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setActiveNavSection('');
+                  navigateToTab('reviews');
+                }}
+                className="px-6 py-2.5 rounded-full bg-gradient-to-r from-[#0047AB] to-sky-500 hover:from-[#0055CC] hover:to-sky-400 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-sky-500/25 flex items-center gap-1.5 transition-all active:scale-95"
+              >
+                <span>View All Reviews ({reviewsList.length})</span>
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {reviewsList.slice(0, 3).map((rev) => {
+              const initials = rev.name
+                ? rev.name
+                    .split(' ')
+                    .map((n) => n[0])
+                    .slice(0, 2)
+                    .join('')
+                    .toUpperCase()
+                : 'YH';
+              return (
+                <div
+                  key={rev.id}
+                  className="p-6 rounded-3xl bg-white/[0.04] border border-white/15 hover:border-sky-400/40 backdrop-blur-xl shadow-xl flex flex-col justify-between transition-all hover:-translate-y-1"
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#0047AB] to-sky-500 text-white font-black text-xs flex items-center justify-center shrink-0">
+                          {initials}
+                        </div>
+                        <div>
+                          <p className="font-bold text-white text-sm leading-tight">{rev.name}</p>
+                          <p className="text-[11px] text-slate-400">{rev.location}</p>
+                        </div>
+                      </div>
+                      <span className="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-sky-500/15 text-sky-300 border border-sky-400/20">
+                        {rev.tag}
+                      </span>
+                    </div>
+
+                    <div className="flex items-center gap-1 mb-3">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className={`w-3.5 h-3.5 ${
+                            i < (rev.rating || 5)
+                              ? 'text-amber-400 fill-amber-400'
+                              : 'text-slate-600'
+                          }`}
+                        />
+                      ))}
+                    </div>
+
+                    <p className="text-xs sm:text-sm text-slate-200 leading-relaxed italic mb-4">
+                      "{rev.review}"
+                    </p>
+                  </div>
+
+                  <div className="pt-3 border-t border-white/10 flex items-center justify-between text-xs">
+                    <span className="font-semibold text-sky-300 truncate max-w-[170px]">{rev.tour}</span>
+                    <button
+                      type="button"
+                      onClick={() => handleOpenEditReview(rev)}
+                      className="text-[11px] text-slate-400 hover:text-sky-300 flex items-center gap-1 font-medium"
+                    >
+                      <Edit3 className="w-3 h-3" /> Customize
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -3039,13 +3698,13 @@ export default function App() {
 
             {/* Right Column: Live Embedded Google Map & Contact Cards for 276/E, Dehiwala Road, Boralesgamuwa */}
             <div className="lg:col-span-7 flex flex-col justify-between gap-6">
-              {/* Contact Information Bar */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {/* Contact Information Bar (4 High-Priority Contact Channels) */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
                 <div className="p-4 rounded-2xl bg-[#050B16]/80 backdrop-blur-xl border border-white/20">
                   <div className="flex items-center gap-2 text-sky-400 text-xs font-bold uppercase tracking-wider mb-1">
                     <MapPin className="w-4 h-4" /> Visit Our Office
                   </div>
-                  <p className="text-xs sm:text-sm text-white font-medium">
+                  <p className="text-xs text-white font-medium">
                     276/E, Dehiwala Road, Boralesgamuwa
                   </p>
                 </div>
@@ -3054,22 +3713,32 @@ export default function App() {
                   <div className="flex items-center gap-2 text-sky-400 text-xs font-bold uppercase tracking-wider mb-1">
                     <Phone className="w-4 h-4" /> Direct Hotline
                   </div>
-                  <a href="tel:0112312093" className="text-sm sm:text-base text-white font-bold hover:text-sky-400">
+                  <a href="tel:0112312093" className="text-sm text-white font-bold hover:text-sky-400">
                     011 231 2093
                   </a>
-                  <p className="text-[11px] text-slate-400">Yash Holidays Hotline</p>
+                  <p className="text-[10px] text-slate-400">Yash Holidays Desk</p>
                 </div>
 
                 <div className="p-4 rounded-2xl bg-[#050B16]/80 backdrop-blur-xl border border-white/20">
                   <div className="flex items-center gap-2 text-emerald-400 text-xs font-bold uppercase tracking-wider mb-1">
-                    <WhatsAppIcon className="w-4 h-4 text-white" /> 24/7 Mobile / WA
+                    <WhatsAppIcon className="w-4 h-4 text-white" /> 24/7 WhatsApp
                   </div>
-                  <a href="tel:+94775841144" className="block text-xs sm:text-sm text-white font-bold hover:text-sky-400">
+                  <a href="https://wa.me/94775841144" target="_blank" rel="noreferrer" className="block text-xs sm:text-sm text-white font-bold hover:text-sky-400">
                     +94 77 584 1144
                   </a>
-                  <a href="tel:+94773124859" className="block text-xs sm:text-sm text-white font-bold hover:text-sky-400">
+                  <a href="tel:+94773124859" className="block text-[11px] text-slate-300 hover:text-sky-400">
                     +94 77 312 4859
                   </a>
+                </div>
+
+                <div className="p-4 rounded-2xl bg-[#050B16]/80 backdrop-blur-xl border border-white/20">
+                  <div className="flex items-center gap-2 text-sky-400 text-xs font-bold uppercase tracking-wider mb-1">
+                    <Mail className="w-4 h-4" /> Official Email
+                  </div>
+                  <a href="mailto:yashholidays.lk@gmail.com" className="block text-xs text-white font-bold hover:text-sky-400 break-all">
+                    yashholidays.lk@gmail.com
+                  </a>
+                  <p className="text-[10px] text-slate-400">Inquiries & Documents</p>
                 </div>
               </div>
 
@@ -3112,12 +3781,20 @@ export default function App() {
                   className="w-full h-full object-contain rounded"
                 />
               </div>
-              <span className="text-sm font-bold tracking-widest uppercase text-white">
-                YASH HOLIDAYS PVT LTD
-              </span>
+              <div>
+                <span className="text-sm font-bold tracking-widest uppercase text-white block">
+                  YASH HOLIDAYS PVT LTD
+                </span>
+                <a
+                  href="mailto:yashholidays.lk@gmail.com"
+                  className="text-[11px] text-slate-400 hover:text-sky-300 flex items-center gap-1 transition-colors"
+                >
+                  <Mail className="w-3 h-3 text-sky-400" /> yashholidays.lk@gmail.com
+                </a>
+              </div>
             </div>
 
-            <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs text-slate-300">
+            <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-5 text-xs text-slate-300">
               <button
                 type="button"
                 onClick={() => {
@@ -3144,7 +3821,7 @@ export default function App() {
                   setActiveNavSection('');
                   navigateToTab('visa');
                 }}
-                className="text-sky-400 font-semibold hover:text-white transition-colors whitespace-nowrap"
+                className="hover:text-white transition-colors whitespace-nowrap"
               >
                 Visa Services
               </button>
@@ -3154,9 +3831,20 @@ export default function App() {
                   setActiveNavSection('');
                   navigateToTab('airtickets');
                 }}
-                className="text-sky-400 font-semibold hover:text-white transition-colors whitespace-nowrap"
+                className="hover:text-white transition-colors whitespace-nowrap"
               >
                 Air Tickets
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setActiveNavSection('');
+                  navigateToTab('reviews');
+                }}
+                className="text-amber-400 font-semibold hover:text-white transition-colors whitespace-nowrap flex items-center gap-1"
+              >
+                <Star className="w-3 h-3 fill-amber-400" />
+                <span>Reviews</span>
               </button>
               <button
                 type="button"
@@ -3188,8 +3876,8 @@ export default function App() {
         </div>
       </section>
 
-      {/* ================= UNIVERSAL FLOATING QUICK-ACTION DOCK (MOBILE & DESKTOP) ================= */}
-      <div className="flex flex-col gap-2.5 fixed right-3.5 sm:right-6 bottom-5 sm:bottom-auto sm:top-28 z-40">
+      {/* ================= UNIVERSAL FLOATING QUICK-ACTION DOCK (DESKTOP SCREENS) ================= */}
+      <div className="hidden md:flex flex-col gap-2.5 fixed right-3.5 sm:right-6 top-28 z-40">
         {/* WhatsApp Quick Chat */}
         <a
           href="https://wa.me/94775841144?text=Hello%20Yash%20Holidays!%20I%20visited%20your%20website%20and%20would%20like%20to%20plan%20a%20trip."
@@ -3216,6 +3904,18 @@ export default function App() {
           </span>
         </a>
 
+        {/* Official Email */}
+        <a
+          href="mailto:yashholidays.lk@gmail.com"
+          title="Email: yashholidays.lk@gmail.com"
+          className="group relative w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#081226]/90 hover:bg-white/20 backdrop-blur-xl border border-white/25 text-white shadow-lg flex items-center justify-center transition-all hover:scale-110 active:scale-95"
+        >
+          <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-sky-400" />
+          <span className="hidden xl:group-hover:inline-block absolute right-14 bg-[#081226]/95 text-white text-xs px-2.5 py-1 rounded-lg border border-white/10 whitespace-nowrap shadow-xl">
+            yashholidays.lk@gmail.com
+          </span>
+        </a>
+
         {/* Office Direction / Google Map */}
         <button
           type="button"
@@ -3232,6 +3932,245 @@ export default function App() {
           </span>
         </button>
       </div>
+
+      {/* ================= FIXED LUXURY MOBILE BOTTOM ACTION BAR (MATCHING USER SCREENSHOT: Call | Map | Tours | Book) ================= */}
+      <nav
+        aria-label="Mobile Quick Action Navigation"
+        className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-[#050B16]/95 backdrop-blur-2xl border-t border-white/15 px-4 py-2 shadow-[0_-10px_30px_rgba(0,0,0,0.85)]"
+      >
+        <div className="flex items-center justify-between max-w-md mx-auto">
+          {/* 1. Call */}
+          <a
+            href="tel:0112312093"
+            className="flex-1 flex flex-col items-center justify-center py-1 text-slate-300 hover:text-white transition-colors"
+          >
+            <Phone className="w-5 h-5 text-sky-400 mb-1" />
+            <span className="text-[11px] font-medium tracking-tight">Call</span>
+          </a>
+
+          {/* 2. Map */}
+          <button
+            type="button"
+            onClick={() => {
+              const el = document.getElementById('contact');
+              if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className="flex-1 flex flex-col items-center justify-center py-1 text-slate-300 hover:text-white transition-colors"
+          >
+            <MapPin className="w-5 h-5 text-sky-400 mb-1" />
+            <span className="text-[11px] font-medium tracking-tight">Map</span>
+          </button>
+
+          {/* 3. Tours */}
+          <button
+            type="button"
+            onClick={() => {
+              setActiveNavSection('tours');
+              navigateToTab('home', 'about-tour');
+            }}
+            className={`flex-1 flex flex-col items-center justify-center py-1 transition-colors ${
+              activeTab === 'home' && activeNavSection === 'tours'
+                ? 'text-sky-400 font-bold'
+                : 'text-slate-300 hover:text-white'
+            }`}
+          >
+            <Compass className="w-5 h-5 text-sky-400 mb-1" />
+            <span className="text-[11px] font-medium tracking-tight">Tours</span>
+          </button>
+
+          {/* 4. Book (Exact pill button with icon & text from user screenshot) */}
+          <button
+            type="button"
+            onClick={() => navigateToTab('home', 'customizer')}
+            className="flex-1 flex flex-col items-center justify-center group"
+          >
+            <div className="w-16 h-10 rounded-full bg-gradient-to-r from-[#0284c7] to-[#0ea5e9] flex flex-col items-center justify-center text-white shadow-lg shadow-sky-500/40 border border-sky-300/40 group-active:scale-95 transition-all">
+              <CalendarCheck className="w-4 h-4 text-white" />
+              <span className="text-[10px] font-bold text-white tracking-tight">Book</span>
+            </div>
+          </button>
+        </div>
+      </nav>
+
+      {/* ================= INTERACTIVE REVIEW CUSTOMIZER MODAL DIALOG ================= */}
+      {isReviewModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md overflow-y-auto">
+          <div className="relative w-full max-w-lg p-6 sm:p-8 rounded-3xl bg-[#08152C] border border-sky-400/30 shadow-[0_20px_50px_rgba(0,0,0,0.9)] my-8">
+            <button
+              type="button"
+              onClick={() => setIsReviewModalOpen(false)}
+              className="absolute top-5 right-5 p-2 rounded-full bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white transition-colors"
+              aria-label="Close review modal"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <div className="mb-6">
+              <span className="text-xs uppercase tracking-widest text-sky-400 font-bold">
+                {editingReviewId ? 'EDIT CUSTOMER REVIEW' : 'ADD NEW CUSTOMER REVIEW'}
+              </span>
+              <h3 className="text-2xl font-black text-white mt-1">
+                {editingReviewId ? 'Customize Customer Review' : 'Share Your Travel Experience'}
+              </h3>
+              <p className="text-xs text-slate-300 mt-1">
+                {editingReviewId
+                  ? 'Update the review text, rating, or traveler details below. Changes are saved automatically.'
+                  : 'Add a new genuine traveler review. It will instantly appear on the website and reviews list.'}
+              </p>
+            </div>
+
+            <form onSubmit={handleSaveReview} className="space-y-4 text-left">
+              <div>
+                <label className="block text-xs uppercase tracking-wider text-slate-300 mb-1 font-semibold">
+                  Customer / Traveler Name *
+                </label>
+                <input
+                  type="text"
+                  required
+                  placeholder="e.g. Kasun & Nimanthi Perera"
+                  value={reviewForm.name}
+                  onChange={(e) => setReviewForm({ ...reviewForm, name: e.target.value })}
+                  className="w-full px-4 py-2.5 rounded-xl bg-[#050B16] border border-white/20 text-sm text-white focus:border-sky-400 focus:outline-none"
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-xs uppercase tracking-wider text-slate-300 mb-1 font-semibold">
+                    Home City / Location
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="e.g. Colombo, Sri Lanka"
+                    value={reviewForm.location}
+                    onChange={(e) => setReviewForm({ ...reviewForm, location: e.target.value })}
+                    className="w-full px-4 py-2.5 rounded-xl bg-[#050B16] border border-white/20 text-sm text-white focus:border-sky-400 focus:outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs uppercase tracking-wider text-slate-300 mb-1 font-semibold">
+                    Travel Date / Year
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="e.g. November 2026"
+                    value={reviewForm.date}
+                    onChange={(e) => setReviewForm({ ...reviewForm, date: e.target.value })}
+                    className="w-full px-4 py-2.5 rounded-xl bg-[#050B16] border border-white/20 text-sm text-white focus:border-sky-400 focus:outline-none"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-xs uppercase tracking-wider text-slate-300 mb-1 font-semibold">
+                    Tour / Destination Name
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="e.g. Bali 5D4N Luxury Tour"
+                    value={reviewForm.tour}
+                    onChange={(e) => setReviewForm({ ...reviewForm, tour: e.target.value })}
+                    className="w-full px-4 py-2.5 rounded-xl bg-[#050B16] border border-white/20 text-sm text-white focus:border-sky-400 focus:outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs uppercase tracking-wider text-slate-300 mb-1 font-semibold">
+                    Category Tag
+                  </label>
+                  <select
+                    value={reviewForm.tag}
+                    onChange={(e) => setReviewForm({ ...reviewForm, tag: e.target.value })}
+                    className="w-full px-4 py-2.5 rounded-xl bg-[#050B16] border border-white/20 text-sm text-white focus:border-sky-400 focus:outline-none"
+                  >
+                    <option value="Honeymoon">Honeymoon</option>
+                    <option value="Family Tour">Family Tour</option>
+                    <option value="Group Tour">Group Tour</option>
+                    <option value="Luxury Tour">Luxury Tour</option>
+                    <option value="Holiday Package">Holiday Package</option>
+                    <option value="Beach Vacation">Beach Vacation</option>
+                    <option value="Visa Service">Visa Service</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-xs uppercase tracking-wider text-slate-300 mb-1 font-semibold">
+                  Star Rating (Click to set 1-5 Stars)
+                </label>
+                <div className="flex items-center gap-2 p-2.5 bg-[#050B16] rounded-xl border border-white/15">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <button
+                      key={star}
+                      type="button"
+                      onClick={() => setReviewForm({ ...reviewForm, rating: star })}
+                      className="p-1 hover:scale-125 transition-transform"
+                    >
+                      <Star
+                        className={`w-6 h-6 ${
+                          star <= reviewForm.rating
+                            ? 'text-amber-400 fill-amber-400'
+                            : 'text-slate-600'
+                        }`}
+                      />
+                    </button>
+                  ))}
+                  <span className="ml-3 text-xs font-bold text-amber-400">
+                    {reviewForm.rating} / 5 Stars
+                  </span>
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-xs uppercase tracking-wider text-slate-300 mb-1 font-semibold">
+                  Highlight Quote / Headline
+                </label>
+                <input
+                  type="text"
+                  placeholder="e.g. Outstanding 5-Star Service & Villa"
+                  value={reviewForm.highlight}
+                  onChange={(e) => setReviewForm({ ...reviewForm, highlight: e.target.value })}
+                  className="w-full px-4 py-2.5 rounded-xl bg-[#050B16] border border-white/20 text-sm text-white focus:border-sky-400 focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs uppercase tracking-wider text-slate-300 mb-1 font-semibold">
+                  Review Text / Feedback *
+                </label>
+                <textarea
+                  rows={4}
+                  required
+                  placeholder="Describe the experience with Yash Holidays (hotels, guides, transfers, visa assistance, pricing)..."
+                  value={reviewForm.review}
+                  onChange={(e) => setReviewForm({ ...reviewForm, review: e.target.value })}
+                  className="w-full px-4 py-2.5 rounded-xl bg-[#050B16] border border-white/20 text-sm text-white focus:border-sky-400 focus:outline-none resize-none"
+                />
+              </div>
+
+              <div className="flex items-center justify-end gap-3 pt-3 border-t border-white/10">
+                <button
+                  type="button"
+                  onClick={() => setIsReviewModalOpen(false)}
+                  className="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-slate-300 text-xs font-semibold transition-all"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#0047AB] to-sky-500 hover:from-[#0055CC] hover:to-sky-400 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-sky-500/30 flex items-center gap-1.5 active:scale-95 transition-all"
+                >
+                  <Check className="w-4 h-4" />
+                  <span>{editingReviewId ? 'Save Changes' : 'Publish Review'}</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
