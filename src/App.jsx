@@ -4629,48 +4629,14 @@ export default function App() {
         </a>
       </div>
 
-      {/* ================= CURVED LUXURY MOBILE BOTTOM NAVIGATION BAR (MATCHING USER SCREENSHOT: Home, Tour, Air tickets, Custom tour, Visa, Contact US) ================= */}
+      {/* ================= SLEEK LUXURY MOBILE BOTTOM NAVIGATION BAR (Home, Tour, Air tickets, Visa, Contact US) ================= */}
       <nav
         aria-label="Mobile Bottom Navigation"
-        className="fixed bottom-3 inset-x-2 sm:inset-x-4 max-w-md mx-auto z-50 md:hidden pointer-events-auto"
+        className="fixed bottom-3 inset-x-3 sm:inset-x-6 max-w-md mx-auto z-50 md:hidden pointer-events-auto"
       >
-        <div className="relative bg-[#071122]/98 backdrop-blur-2xl border border-white/15 rounded-[26px] shadow-[0_12px_45px_rgba(0,0,0,0.92)] px-2 pt-1.5 pb-2">
-          {/* Top Notch Curved Silhouette Scoop */}
-          <div className="absolute -top-[18px] left-1/2 -translate-x-1/2 pointer-events-none w-28 h-5 flex justify-center">
-            <svg viewBox="0 0 100 20" className="w-28 h-5 fill-[#071122]">
-              <path d="M0,0 C20,0 24,20 50,20 C76,20 80,0 100,0 Z" />
-              <path
-                d="M0,0 C20,0 24,20 50,20 C76,20 80,0 100,0"
-                fill="none"
-                stroke="rgba(255,255,255,0.18)"
-                strokeWidth="1.2"
-              />
-            </svg>
-          </div>
-
-          {/* Center Elevated Floating Circular Button: Custome Tour */}
-          <div className="absolute -top-7 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center">
-            <button
-              type="button"
-              onClick={() => {
-                setActiveNavSection('customizer');
-                navigateToTab('home', 'customizer');
-              }}
-              className="w-14 h-14 rounded-full bg-gradient-to-tr from-[#10b981] via-[#06b6d4] to-[#0284c7] p-0.5 shadow-[0_0_24px_rgba(16,185,129,0.7)] border-4 border-[#050B16] flex items-center justify-center text-white active:scale-95 transition-all group"
-              title="Custom Tour Planner"
-            >
-              <div className="w-full h-full rounded-full bg-[#071122] flex items-center justify-center group-hover:bg-[#0c1f3d] transition-colors">
-                <Sliders className="w-5 h-5 text-emerald-400 group-hover:rotate-45 transition-transform" />
-              </div>
-              <span className="absolute -top-0.5 -right-0.5 flex h-3 w-3">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-400"></span>
-              </span>
-            </button>
-          </div>
-
-          {/* 6 Actions Grid: Home | Tour | Air tickets | (Custom Tour Spacer) | Visa | Contact US */}
-          <div className="grid grid-cols-6 items-center justify-between text-center pt-0.5">
+        <div className="bg-[#071122]/95 backdrop-blur-2xl border border-white/15 rounded-2xl sm:rounded-3xl shadow-[0_12px_45px_rgba(0,0,0,0.92)] px-2 sm:px-3 py-2">
+          {/* 5 Balanced Actions Grid: Home | Tour | Air tickets | Visa | Contact US */}
+          <div className="grid grid-cols-5 items-center justify-between text-center gap-1">
             {/* 1. Home */}
             <button
               type="button"
@@ -4678,9 +4644,9 @@ export default function App() {
                 setActiveNavSection('home');
                 navigateToTab('home');
               }}
-              className={`flex flex-col items-center justify-center py-1 transition-all active:scale-95 ${
+              className={`flex flex-col items-center justify-center py-1.5 px-1 rounded-xl transition-all active:scale-95 ${
                 activeTab === 'home' && activeNavSection === 'home'
-                  ? 'text-sky-400 font-extrabold'
+                  ? 'text-sky-400 font-extrabold bg-white/5'
                   : 'text-slate-300 hover:text-white'
               }`}
             >
@@ -4695,9 +4661,9 @@ export default function App() {
                 setActiveNavSection('tours');
                 navigateToTab('home', 'about-tour');
               }}
-              className={`flex flex-col items-center justify-center py-1 transition-all active:scale-95 ${
+              className={`flex flex-col items-center justify-center py-1.5 px-1 rounded-xl transition-all active:scale-95 ${
                 activeTab === 'home' && activeNavSection === 'tours'
-                  ? 'text-sky-400 font-extrabold'
+                  ? 'text-sky-400 font-extrabold bg-white/5'
                   : 'text-slate-300 hover:text-white'
               }`}
             >
@@ -4712,9 +4678,9 @@ export default function App() {
                 setActiveNavSection('');
                 navigateToTab('airtickets');
               }}
-              className={`flex flex-col items-center justify-center py-1 transition-all active:scale-95 ${
+              className={`flex flex-col items-center justify-center py-1.5 px-1 rounded-xl transition-all active:scale-95 ${
                 activeTab === 'airtickets'
-                  ? 'text-sky-400 font-extrabold'
+                  ? 'text-sky-400 font-extrabold bg-white/5'
                   : 'text-slate-300 hover:text-white'
               }`}
             >
@@ -4722,26 +4688,16 @@ export default function App() {
               <span className="text-[10px] tracking-tight whitespace-nowrap">Air Tickets</span>
             </button>
 
-            {/* 4. Center Spacer / Label for Custome tour */}
-            <div
-              onClick={() => navigateToTab('home', 'customizer')}
-              className="flex flex-col items-center justify-end pt-5 cursor-pointer"
-            >
-              <span className="text-[9px] font-black text-emerald-400 tracking-tight whitespace-nowrap">
-                Custom Tour
-              </span>
-            </div>
-
-            {/* 5. Visa */}
+            {/* 4. Visa */}
             <button
               type="button"
               onClick={() => {
                 setActiveNavSection('');
                 navigateToTab('visa');
               }}
-              className={`flex flex-col items-center justify-center py-1 transition-all active:scale-95 ${
+              className={`flex flex-col items-center justify-center py-1.5 px-1 rounded-xl transition-all active:scale-95 ${
                 activeTab === 'visa'
-                  ? 'text-sky-400 font-extrabold'
+                  ? 'text-sky-400 font-extrabold bg-white/5'
                   : 'text-slate-300 hover:text-white'
               }`}
             >
@@ -4749,14 +4705,14 @@ export default function App() {
               <span className="text-[10px] tracking-tight">Visa</span>
             </button>
 
-            {/* 6. Contact US */}
+            {/* 5. Contact US */}
             <button
               type="button"
               onClick={() => {
                 const el = document.getElementById('contact');
                 if (el) el.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="flex flex-col items-center justify-center py-1 text-slate-300 hover:text-white transition-all active:scale-95"
+              className="flex flex-col items-center justify-center py-1.5 px-1 rounded-xl text-slate-300 hover:text-white transition-all active:scale-95"
             >
               <Phone className="w-5 h-5 mb-0.5 text-sky-400 shrink-0" />
               <span className="text-[10px] tracking-tight whitespace-nowrap">Contact US</span>
