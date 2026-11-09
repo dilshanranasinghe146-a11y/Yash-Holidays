@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import yashLogo from './assets/yash-logo.jpg';
+import malaysiaReview1 from './assets/reviews/malaysia-genting-temple.jpg';
+import malaysiaReview2 from './assets/reviews/malaysia-batu-caves.jpg';
+import malaysiaReview3 from './assets/reviews/malaysia-sunway-lagoon.jpg';
+import malaysiaReview4 from './assets/reviews/malaysia-petronas-twin-towers.jpg';
 import {
   Plane,
   Globe,
@@ -43,7 +47,8 @@ import {
   Check,
   CalendarCheck,
   Filter,
-  ThumbsUp
+  ThumbsUp,
+  Camera
 } from 'lucide-react';
 
 // --- HIGH-RESOLUTION OFFICIAL WHATSAPP VECTOR ICON ---
@@ -771,6 +776,41 @@ const AIRLINE_PARTNERS = [
 // --- INITIAL VERIFIED CUSTOMER REVIEWS (AUTHENTIC SRI LANKAN TRAVELERS) ---
 const INITIAL_REVIEWS = [
   {
+    id: 'rev-nithya-prabashani',
+    name: 'Nithya Dewammini & Prabashani Ranasinghe',
+    location: 'Sri Lanka',
+    tour: 'Malaysia & Kuala Lumpur Discovery Getaway',
+    tag: 'Holiday Getaway',
+    rating: 5,
+    date: 'Recent Trip 2026',
+    verified: true,
+    highlight: 'Petronas Towers, Batu Caves, Genting Highlands & Sunway Lagoon',
+    images: [
+      {
+        url: malaysiaReview1,
+        title: 'Chin Swee Caves Temple Pagoda',
+        location: 'Genting Highlands, Malaysia'
+      },
+      {
+        url: malaysiaReview2,
+        title: 'Lord Murugan Statue & Rainbow Steps',
+        location: 'Batu Caves, Kuala Lumpur'
+      },
+      {
+        url: malaysiaReview3,
+        title: 'Sunway Lagoon Theme Park Fun',
+        location: 'Sunway City, Selangor'
+      },
+      {
+        url: malaysiaReview4,
+        title: 'Iconic Petronas Twin Towers Skybridge',
+        location: 'Kuala Lumpur City Centre'
+      }
+    ],
+    review:
+      'We are thrilled to share some of the most beautiful moments from the recent Malaysia getaway of Nithya Dewammini and Prabashani Ranasinghe. From the towering heights of the Petronas Twin Towers to the vibrant culture found at the Batu Caves, their journey through Kuala Lumpur was filled with discovery and joy. Whether they were taking in the scenic views at Genting Highlands or enjoying the ultimate fun at Sunway Lagoon, it was a trip to remember! 🎡🚠 At Yash Holidays, our commitment is to provide a seamless, high-quality service so you can focus on the experience while we handle all the details. A huge thank you to Nithya and Prabashani for trusting us with your international adventure. We can’t wait to help you plan your next one!'
+  },
+  {
     id: 'rev-1',
     name: 'Dinuka & Kaveesha Perera',
     location: 'Colombo, Sri Lanka',
@@ -1064,13 +1104,18 @@ export default function App() {
       const saved = localStorage.getItem('yash_customer_reviews');
       if (saved) {
         const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          const withoutNithya = parsed.filter((r) => r.id !== 'rev-nithya-prabashani');
+          return [INITIAL_REVIEWS[0], ...withoutNithya];
+        }
       }
     } catch (e) {
       console.error(e);
     }
     return INITIAL_REVIEWS;
   });
+
+  const [activePhotoModal, setActivePhotoModal] = useState(null);
 
   const [reviewFilter, setReviewFilter] = useState('All');
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
@@ -2257,6 +2302,107 @@ export default function App() {
           {/* Interactive Reviews Filter & Grid Section */}
           <section className="py-12 sm:py-20 bg-gradient-to-b from-[#050B16] via-[#08152C] to-[#050B16]">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              {/* ================= SPECIAL OFFICIAL TRAVELER SPOTLIGHT (NITHYA & PRABASHANI) ================= */}
+              <div className="mb-14 p-6 sm:p-10 rounded-3xl bg-gradient-to-br from-[#0A1931] via-[#08152C] to-[#050B16] border border-sky-400/40 shadow-2xl relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-96 h-96 bg-sky-500/10 rounded-full blur-3xl pointer-events-none" />
+
+                <div className="relative z-10 flex flex-col lg:flex-row gap-8 items-start justify-between">
+                  {/* Left Column: Story Details & Narrative */}
+                  <div className="lg:w-1/2 space-y-4">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 text-xs font-bold uppercase tracking-widest">
+                      <Camera className="w-3.5 h-3.5 text-emerald-400" />
+                      <span>FEATURED TRAVEL MOMENTS • RECENT MALAYSIA GETAWAY</span>
+                    </div>
+
+                    <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white leading-tight">
+                      A Journey of Discovery with <span className="text-sky-400">Nithya Dewammini</span> & <span className="text-sky-400">Prabashani Ranasinghe</span>
+                    </h2>
+
+                    <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-1">
+                        {[...Array(5)].map((_, i) => (
+                          <Star key={i} className="w-5 h-5 text-amber-400 fill-amber-400" />
+                        ))}
+                      </div>
+                      <span className="text-xs font-bold text-amber-300 bg-amber-500/10 px-2.5 py-1 rounded-lg border border-amber-400/20">
+                        5.0 / 5.0 Star Experience
+                      </span>
+                    </div>
+
+                    <p className="text-sm sm:text-base text-slate-200 leading-relaxed">
+                      We are thrilled to share some of the most beautiful moments from the recent Malaysia getaway of{' '}
+                      <strong className="text-white">Nithya Dewammini</strong> and{' '}
+                      <strong className="text-white">Prabashani Ranasinghe</strong>.
+                    </p>
+
+                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed italic border-l-2 border-sky-400 pl-4 py-1">
+                      "From the towering heights of the Petronas Twin Towers to the vibrant culture found at the Batu Caves, their journey through Kuala Lumpur was filled with discovery and joy. Whether they were taking in the scenic views at Genting Highlands or enjoying the ultimate fun at Sunway Lagoon, it was a trip to remember! 🎡🚠"
+                    </p>
+
+                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                      At <strong>Yash Holidays</strong>, our commitment is to provide a seamless, high-quality service so you can focus on the experience while we handle all the details. A huge thank you to Nithya and Prabashani for trusting us with your international adventure. We can’t wait to help you plan your next one!
+                    </p>
+
+                    <div className="pt-2 flex flex-wrap items-center gap-3">
+                      <a
+                        href="https://wa.me/94775841144?text=Hello%20Yash%20Holidays!%20I%20saw%20Nithya%20and%20Prabashani's%20Malaysia%20photos%20(Genting,%20Batu%20Caves,%20Petronas,%20Sunway%20Lagoon)%20and%20would%20like%20a%20similar%20package%20quote!"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="px-5 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg shadow-emerald-500/30 active:scale-95 transition-all"
+                      >
+                        <WhatsAppIcon className="w-4 h-4 text-white" />
+                        <span>Book Similar Malaysia Tour</span>
+                      </a>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          handleSelectCountry('malaysia');
+                          navigateToTab('home', 'about-tour');
+                        }}
+                        className="px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-xs uppercase tracking-wider flex items-center gap-2 active:scale-95 transition-all"
+                      >
+                        <Compass className="w-4 h-4 text-sky-400" />
+                        <span>View Malaysia Itinerary</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Right Column: 4-Photo Interactive Grid */}
+                  <div className="lg:w-1/2 w-full">
+                    <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                      {INITIAL_REVIEWS[0].images.map((img, idx) => (
+                        <div
+                          key={idx}
+                          onClick={() => setActivePhotoModal(img)}
+                          className="group relative rounded-2xl overflow-hidden border border-white/20 shadow-lg cursor-pointer bg-[#050B16] aspect-[3/4]"
+                        >
+                          <img
+                            src={img.url}
+                            alt={img.title}
+                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent opacity-80 group-hover:opacity-95 transition-opacity" />
+                          <div className="absolute bottom-2.5 left-2.5 right-2.5">
+                            <span className="text-[10px] font-bold text-sky-300 block leading-tight">
+                              {img.title}
+                            </span>
+                            <span className="text-[9px] text-slate-300 block">
+                              {img.location}
+                            </span>
+                          </div>
+                          <div className="absolute top-2 right-2 p-1.5 rounded-lg bg-black/60 text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                            <Camera className="w-3.5 h-3.5" />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    <p className="text-[11px] text-center text-slate-400 mt-2.5">
+                      Click any photo to enlarge full-resolution moments
+                    </p>
+                  </div>
+                </div>
+              </div>
+
               {/* Category Filter Pills */}
               <div className="flex flex-wrap items-center justify-between gap-4 mb-10 pb-4 border-b border-white/10">
                 <div className="flex flex-wrap items-center gap-2">
@@ -2265,6 +2411,7 @@ export default function App() {
                   </span>
                   {[
                     'All',
+                    'Holiday Getaway',
                     'Honeymoon',
                     'Family Tour',
                     'Group Tour',
@@ -2363,6 +2510,26 @@ export default function App() {
                           <div className="mb-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-500/10 border border-emerald-400/20 text-emerald-300 text-xs font-medium">
                             <Quote className="w-3 h-3 rotate-180 shrink-0 text-emerald-400" />
                             <span className="italic">{rev.highlight}</span>
+                          </div>
+                        )}
+
+                        {/* Attached Photos Thumbnail Gallery if present */}
+                        {rev.images && rev.images.length > 0 && (
+                          <div className="grid grid-cols-4 gap-2 mb-4 mt-2">
+                            {rev.images.map((img, i) => (
+                              <div
+                                key={i}
+                                onClick={() => setActivePhotoModal(img)}
+                                className="relative rounded-xl overflow-hidden border border-white/20 aspect-square cursor-pointer hover:scale-105 transition-transform"
+                                title={img.title}
+                              >
+                                <img
+                                  src={img.url}
+                                  alt={img.title}
+                                  className="w-full h-full object-cover"
+                                />
+                              </div>
+                            ))}
                           </div>
                         )}
 
@@ -3537,6 +3704,26 @@ export default function App() {
                       ))}
                     </div>
 
+                    {/* Attached Customer Photos Preview if present */}
+                    {rev.images && rev.images.length > 0 && (
+                      <div className="grid grid-cols-4 gap-1.5 mb-3.5">
+                        {rev.images.map((img, i) => (
+                          <div
+                            key={i}
+                            onClick={() => setActivePhotoModal(img)}
+                            className="relative rounded-lg overflow-hidden border border-white/20 aspect-square cursor-pointer hover:scale-105 transition-transform"
+                            title={img.title}
+                          >
+                            <img
+                              src={img.url}
+                              alt={img.title}
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    )}
+
                     <p className="text-xs sm:text-sm text-slate-200 leading-relaxed italic mb-4">
                       "{rev.review}"
                     </p>
@@ -4168,6 +4355,71 @@ export default function App() {
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      )}
+
+      {/* Lightbox Modal for Full-Resolution Customer Review Photos */}
+      {activePhotoModal && (
+        <div
+          className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 animate-fadeIn"
+          onClick={() => setActivePhotoModal(null)}
+        >
+          <div
+            className="relative max-w-4xl w-full bg-[#050B16] border border-white/20 rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[95vh]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div className="flex items-center justify-between px-5 py-3.5 border-b border-white/10 bg-white/[0.02]">
+              <div className="flex items-center gap-2.5">
+                <div className="p-1.5 rounded-lg bg-sky-500/20 text-sky-400">
+                  <Camera className="w-4 h-4" />
+                </div>
+                <div>
+                  <h4 className="text-sm font-bold text-white leading-tight">
+                    {activePhotoModal.title || 'Customer Travel Moment'}
+                  </h4>
+                  <p className="text-[11px] text-sky-300">
+                    {activePhotoModal.location || 'Malaysia Getaway'}
+                  </p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setActivePhotoModal(null)}
+                className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all active:scale-95"
+                aria-label="Close photo"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Modal Photo */}
+            <div className="relative flex-1 flex items-center justify-center bg-black/60 p-2 sm:p-4 overflow-hidden">
+              <img
+                src={activePhotoModal.url}
+                alt={activePhotoModal.title}
+                className="max-h-[75vh] w-auto max-w-full object-contain rounded-xl shadow-2xl"
+              />
+            </div>
+
+            {/* Modal Footer */}
+            <div className="px-5 py-3 border-t border-white/10 bg-[#050B16] flex flex-wrap items-center justify-between gap-3 text-xs">
+              <span className="text-slate-300 text-xs">
+                Verified Yash Holidays Traveler Photo • Malaysia Tour
+              </span>
+              <a
+                href={`https://wa.me/94775841144?text=${encodeURIComponent(
+                  `Hello Yash Holidays! I love this customer photo at ${activePhotoModal.title} (${activePhotoModal.location}). Can you share a tour package for this destination?`
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-1.5 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs flex items-center gap-1.5 shadow-md active:scale-95 transition-all"
+              >
+                <WhatsAppIcon className="w-3.5 h-3.5" />
+                <span>Inquire About This Tour</span>
+              </a>
+            </div>
           </div>
         </div>
       )}
