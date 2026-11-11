@@ -30,6 +30,9 @@ import {
   SectionWave,
   PassportStampAccent,
 } from './TravelUI';
+import visitVisaImg from '../assets/services/visit-visa.jpg';
+import outboundToursImg from '../assets/services/outbound-tours.jpg';
+import travelInsuranceImg from '../assets/services/travel-insurance.jpg';
 
 const withUnsplashWidth = (url, width) =>
   typeof url === 'string' && url.includes('images.unsplash.com')
@@ -38,28 +41,28 @@ const withUnsplashWidth = (url, width) =>
 
 const SERVICE_PHOTOS = {
   airtickets: {
-    src: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1100&q=80',
+    src: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1400&q=90',
     alt: 'Commercial airplane wing above sunlit clouds for worldwide air tickets',
     linkText: 'Explore Air Tickets',
   },
   visa: {
-    src: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=900&q=80',
-    alt: 'Global travel and visit visa preparation services',
+    src: visitVisaImg,
+    alt: 'Navy passports, travel ticket sleeve, and consultation desk essentials for visit visa assistance',
     linkText: 'Explore Visit Visas',
   },
   outbound: {
-    src: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80',
-    alt: 'Bright tropical beach coastline for outbound holiday packages',
+    src: outboundToursImg,
+    alt: 'Sunlit turquoise lagoon, coastal limestone islands, and boutique resort deck for outbound tours',
     linkText: 'Inquire via WhatsApp',
   },
   custom: {
-    src: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=900&q=80',
-    alt: 'Tailor-made scenic travel route for custom tour packages',
+    src: 'https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=1400&q=90',
+    alt: 'Private luxury infinity pool resort overlooking turquoise ocean for customized tour packages',
     linkText: 'Inquire via WhatsApp',
   },
   insurance: {
-    src: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=900&q=80',
-    alt: 'Travel maps and journey essentials protected by travel insurance',
+    src: travelInsuranceImg,
+    alt: 'Bright executive airport departure lounge with white cabin suitcase and passport for travel insurance',
     linkText: 'Inquire via WhatsApp',
   },
 };
@@ -409,7 +412,6 @@ export const HomeSections = ({
                     <img
                       src={photo.src}
                       alt={photo.alt}
-                      loading="lazy"
                       className="w-full h-full object-cover card-photo-zoom"
                     />
                     <span className="absolute top-4 left-4 bg-white/95 text-[var(--ocean-700)] text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-[6px] border-l-[3px] border-[var(--coral)] shadow-sm">
@@ -468,7 +470,6 @@ export const HomeSections = ({
                       <img
                         src={photo.src}
                         alt={photo.alt}
-                        loading="lazy"
                         className="w-full h-full object-cover card-photo-zoom"
                       />
                       <span className="absolute top-3 left-3 bg-white/95 text-[var(--ocean-700)] text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-[6px] border-l-[3px] border-[var(--ocean-500)] shadow-sm">
@@ -534,7 +535,6 @@ export const HomeSections = ({
                       <img
                         src={photo.src}
                         alt={photo.alt}
-                        loading="lazy"
                         className="w-full h-full object-cover card-photo-zoom"
                       />
                       <span className="absolute top-3 left-3 bg-white/95 text-[var(--ocean-700)] text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-[6px] border-l-[3px] border-[var(--ocean-500)] shadow-sm">

@@ -30,6 +30,7 @@ import {
   VISA_COUNTRY_CODES,
 } from './TravelUI';
 import { ContactSection } from './ContactAndFooter';
+import visitVisaImg from '../assets/services/visit-visa.jpg';
 
 export const VisaServicesPage = ({
   visaCountries,
@@ -45,7 +46,7 @@ export const VisaServicesPage = ({
     <section className="relative py-16 sm:py-20 overflow-hidden bg-[var(--sky-100)] border-b border-[var(--sky-200)]">
       <div className="absolute inset-0 z-0 opacity-20">
         <img
-          src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1920&q=85"
+          src={visitVisaImg}
           alt="Global Visit Visa Services"
           fetchpriority="high"
           className="w-full h-full object-cover"
