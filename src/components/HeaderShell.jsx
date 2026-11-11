@@ -4,7 +4,6 @@ import {
   Globe,
   FileCheck,
   Compass,
-  MapPin,
   Phone,
   Star,
   Instagram,
@@ -114,13 +113,14 @@ export const HeaderShell = ({
     },
     {
       id: 'contact',
-      label: 'Contact',
-      isActive: activeNavSection === 'contact',
+      label: 'Contact US',
+      isActive: activeTab === 'contact',
       onClick: () => {
-        setActiveNavSection('contact');
-        navigateToTab(activeTab, 'contact');
+        setActiveNavSection('');
+        navigateToTab('contact');
       },
-      icon: MapPin,
+      icon: Phone,
+      accentClass: 'text-[var(--ocean-500)]',
     },
   ];
 
@@ -154,7 +154,7 @@ export const HeaderShell = ({
       label: 'Air Tickets',
       ariaLabel: 'Air Tickets',
       icon: Plane,
-      isActive: activeTab === 'airtickets' && activeNavSection !== 'contact',
+      isActive: activeTab === 'airtickets',
       onClick: () => {
         setActiveNavSection('');
         navigateToTab('airtickets');
@@ -166,7 +166,7 @@ export const HeaderShell = ({
       label: 'Visa',
       ariaLabel: 'Visa Services',
       icon: FileCheck,
-      isActive: activeTab === 'visa' && activeNavSection !== 'contact',
+      isActive: activeTab === 'visa',
       onClick: () => {
         setActiveNavSection('');
         navigateToTab('visa');
@@ -179,7 +179,7 @@ export const HeaderShell = ({
       ariaLabel: 'Reviews',
       icon: Star,
       accentClass: 'text-amber-500',
-      isActive: activeTab === 'reviews' && activeNavSection !== 'contact',
+      isActive: activeTab === 'reviews',
       onClick: () => {
         setActiveNavSection('');
         navigateToTab('reviews');
@@ -192,10 +192,10 @@ export const HeaderShell = ({
       ariaLabel: 'Contact Us',
       icon: Phone,
       accentClass: 'text-[var(--ocean-500)]',
-      isActive: activeNavSection === 'contact',
+      isActive: activeTab === 'contact',
       onClick: () => {
-        setActiveNavSection('contact');
-        navigateToTab(activeTab, 'contact');
+        setActiveNavSection('');
+        navigateToTab('contact');
         setMobileMenuOpen(false);
       },
     },
@@ -211,7 +211,7 @@ export const HeaderShell = ({
             : 'border-[var(--sky-100)] shadow-none'
         }`}
       >
-        <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 h-16 lg:h-[74px] flex items-center justify-between gap-3">
+        <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-5 xl:px-8 h-16 lg:h-[74px] flex items-center justify-between gap-2 xl:gap-4">
           {/* Left: Clean Brand Logo (no white box) */}
           <button
             type="button"
@@ -225,39 +225,45 @@ export const HeaderShell = ({
             <YashLogo compact />
           </button>
 
-          {/* Desktop Navigation (lg+): plain clean editorial links */}
+          {/* Desktop Navigation (lg+): soft sky-50 pill bar with icons & soft pill active highlight */}
           <nav
             aria-label="Primary Navigation"
-            className="hidden lg:flex items-center gap-3.5 xl:gap-6 shrink-0"
+            className="hidden lg:flex items-center gap-0.5 xl:gap-1 bg-[var(--sky-50)] border border-[var(--sky-200)] rounded-2xl p-1 shrink-0"
           >
-            {navItems.map((item) => (
-              <button
-                key={item.id}
-                type="button"
-                onClick={item.onClick}
-                aria-current={item.isActive ? 'page' : undefined}
-                className={`relative py-2 text-[13px] xl:text-sm font-medium whitespace-nowrap transition-colors ${
-                  item.isActive
-                    ? 'text-[var(--ocean-700)] font-semibold'
-                    : 'text-[var(--ink)] hover:text-[var(--ocean-500)]'
-                }`}
-              >
-                <span>{item.label}</span>
-                {item.isActive && (
-                  <span
-                    className="absolute left-0 right-0 -bottom-0.5 h-0.5 bg-[var(--ocean-500)] rounded-full"
+            {navItems.map((item) => {
+              const Icon = item.icon;
+              const isReviews = item.id === 'reviews';
+              return (
+                <button
+                  key={item.id}
+                  type="button"
+                  onClick={item.onClick}
+                  aria-current={item.isActive ? 'page' : undefined}
+                  className={`px-2 py-1.5 xl:px-3 xl:py-2 rounded-xl text-[11px] xl:text-[13px] font-medium whitespace-nowrap inline-flex items-center gap-1 xl:gap-1.5 transition-all ${
+                    item.isActive
+                      ? 'bg-[var(--sky-100)] text-[var(--ocean-700)] font-semibold shadow-sm'
+                      : 'text-[var(--ink)] hover:bg-white hover:text-[var(--ocean-500)]'
+                  }`}
+                >
+                  <Icon
+                    className={`w-3 h-3 xl:w-3.5 xl:h-3.5 shrink-0 ${
+                      isReviews
+                        ? `text-amber-500 ${item.isActive ? 'fill-amber-500' : ''}`
+                        : item.accentClass || 'text-[var(--ocean-500)]'
+                    }`}
                     aria-hidden="true"
                   />
-                )}
-              </button>
-            ))}
+                  <span>{item.label}</span>
+                </button>
+              );
+            })}
           </nav>
 
-          {/* Desktop Right Actions: plain phone number + single solid coral CTA */}
-          <div className="hidden lg:flex items-center gap-4 xl:gap-5 shrink-0">
+          {/* Desktop Right Actions: plain phone number (xl+) + single solid coral CTA */}
+          <div className="hidden lg:flex items-center gap-3 xl:gap-4 shrink-0">
             <a
               href="tel:0112312093"
-              className="inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--ink)] hover:text-[var(--ocean-500)] whitespace-nowrap transition-colors"
+              className="hidden xl:inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--ink)] hover:text-[var(--ocean-500)] whitespace-nowrap transition-colors"
               title={`Hotline: ${hotlinePhone}`}
             >
               <Phone className="w-4 h-4 text-[var(--ocean-500)] shrink-0" aria-hidden="true" />
@@ -267,9 +273,10 @@ export const HeaderShell = ({
             <button
               type="button"
               onClick={() => navigateToTab('home', 'customizer')}
-              className="btn-coral px-4 xl:px-5 py-2.5 text-xs xl:text-sm whitespace-nowrap"
+              className="btn-coral px-3 xl:px-5 py-2 xl:py-2.5 text-xs xl:text-sm whitespace-nowrap"
             >
-              <span>Get a Free Quote</span>
+              <span className="xl:hidden">Free Quote</span>
+              <span className="hidden xl:inline">Get a Free Quote</span>
             </button>
           </div>
 

@@ -369,16 +369,171 @@ export const ContactSection = ({
 export const SiteFooter = ({
   instagramUrl,
   facebookUrl,
-  activeTab,
   setActiveNavSection,
   navigateToTab,
   isOwnerMode,
   setIsOwnerMode,
   setIsOwnerLoginModalOpen,
-}) => (
+}) => {
+  const quickLinks = [
+    {
+      label: 'Home',
+      onClick: () => {
+        setActiveNavSection('home');
+        navigateToTab('home');
+      },
+    },
+    {
+      label: 'Outbound Tours',
+      onClick: () => {
+        setActiveNavSection('tours');
+        navigateToTab('home', 'about-tour');
+      },
+    },
+    {
+      label: 'Reviews',
+      isReview: true,
+      onClick: () => {
+        setActiveNavSection('');
+        navigateToTab('reviews');
+      },
+    },
+    {
+      label: 'About Us',
+      onClick: () => {
+        setActiveNavSection('');
+        navigateToTab('about');
+      },
+    },
+    {
+      label: 'Contacts',
+      onClick: () => {
+        setActiveNavSection('');
+        navigateToTab('contact');
+      },
+    },
+  ];
+
+  const serviceLinks = [
+    {
+      label: 'Visa Services',
+      onClick: () => {
+        setActiveNavSection('');
+        navigateToTab('visa');
+      },
+    },
+    {
+      label: 'Air Tickets',
+      onClick: () => {
+        setActiveNavSection('');
+        navigateToTab('airtickets');
+      },
+    },
+    {
+      label: 'Custom Tours',
+      onClick: () => navigateToTab('home', 'customizer'),
+    },
+  ];
+
+  const handleToggleHost = () => {
+    if (isOwnerMode) {
+      setIsOwnerMode(false);
+      try {
+        localStorage.removeItem('yash_owner_mode');
+      } catch (e) {
+        console.error(e);
+      }
+    } else {
+      setIsOwnerLoginModalOpen(true);
+    }
+  };
+
+  return (
     <footer className="bg-[var(--ocean-700)] text-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-28 lg:py-14">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 pb-10 border-b border-white/20">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-24 sm:pt-14 sm:pb-24 lg:py-14">
+        {/* Compact & Centered Mobile Footer (< sm) */}
+        <div className="sm:hidden text-center space-y-5">
+          <div className="flex flex-col items-center gap-1.5">
+            <YashLogo onDark compact />
+            <a
+              href="mailto:yashholidays.lk@gmail.com"
+              className="inline-flex items-center gap-1.5 text-xs text-[var(--sky-100)] hover:text-white transition-colors"
+            >
+              <Mail className="w-3.5 h-3.5 text-[var(--sky-200)]" aria-hidden="true" />
+              <span>yashholidays.lk@gmail.com</span>
+            </a>
+          </div>
+
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2.5 text-xs text-white/90">
+            <a
+              href={instagramUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1 hover:text-[var(--sky-200)] transition-colors"
+            >
+              <Instagram className="w-3.5 h-3.5" aria-hidden="true" />
+              <span>Instagram</span>
+            </a>
+            <a
+              href={facebookUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1 hover:text-[var(--sky-200)] transition-colors"
+            >
+              <Facebook className="w-3.5 h-3.5" aria-hidden="true" />
+              <span>Facebook</span>
+            </a>
+            {quickLinks.map((link) => (
+              <button
+                key={link.label}
+                type="button"
+                onClick={link.onClick}
+                className={`inline-flex items-center gap-1 hover:text-[var(--sky-200)] transition-colors ${
+                  link.isReview ? 'text-amber-300 font-semibold' : ''
+                }`}
+              >
+                {link.isReview && <Star className="w-3 h-3 fill-amber-300 text-amber-300" aria-hidden="true" />}
+                <span>{link.label}</span>
+              </button>
+            ))}
+            {serviceLinks.slice(0, 2).map((link) => (
+              <button
+                key={link.label}
+                type="button"
+                onClick={link.onClick}
+                className="hover:text-[var(--sky-200)] transition-colors"
+              >
+                {link.label}
+              </button>
+            ))}
+          </div>
+
+          <div className="flex items-center justify-center gap-4 pt-1">
+            <button
+              type="button"
+              onClick={handleToggleHost}
+              className="text-white/75 hover:text-white inline-flex items-center gap-1.5 text-xs px-2.5 py-1.5 rounded hover:bg-white/10 transition-colors"
+            >
+              <Lock className="w-3.5 h-3.5" aria-hidden="true" />
+              <span>{isOwnerMode ? 'Host Mode: ON (Exit)' : 'Host Access'}</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => navigateToTab('home', 'customizer')}
+              className="btn-coral px-5 py-2 text-xs font-semibold"
+            >
+              Book Now
+            </button>
+          </div>
+
+          <p className="text-[11px] text-[var(--sky-200)]/80 pt-2 border-t border-white/15">
+            Yash Holidays Pvt Ltd • Boralesgamuwa, Sri Lanka
+          </p>
+        </div>
+
+        {/* Tablet & Desktop Multi-Column Footer (sm+) */}
+        <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-12 gap-8 pb-10 border-b border-white/20">
           {/* Brand Column */}
           <div className="lg:col-span-4 space-y-4">
             <YashLogo onDark />
@@ -415,64 +570,20 @@ export const SiteFooter = ({
               Quick Links
             </h3>
             <ul className="space-y-2.5 text-sm">
-              <li>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setActiveNavSection('home');
-                    navigateToTab('home');
-                  }}
-                  className="hover:text-[var(--sky-200)] transition-colors"
-                >
-                  Home
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setActiveNavSection('tours');
-                    navigateToTab('home', 'about-tour');
-                  }}
-                  className="hover:text-[var(--sky-200)] transition-colors"
-                >
-                  Outbound Tours
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setActiveNavSection('');
-                    navigateToTab('reviews');
-                  }}
-                  className="hover:text-[var(--sky-200)] transition-colors inline-flex items-center gap-1.5"
-                >
-                  <Star className="w-3.5 h-3.5 fill-amber-300 text-amber-300" aria-hidden="true" />
-                  <span>Reviews</span>
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setActiveNavSection('');
-                    navigateToTab('about');
-                  }}
-                  className="hover:text-[var(--sky-200)] transition-colors"
-                >
-                  About Us
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  onClick={() => navigateToTab(activeTab, 'contact')}
-                  className="hover:text-[var(--sky-200)] transition-colors"
-                >
-                  Contacts
-                </button>
-              </li>
+              {quickLinks.map((link) => (
+                <li key={link.label}>
+                  <button
+                    type="button"
+                    onClick={link.onClick}
+                    className={`hover:text-[var(--sky-200)] transition-colors ${
+                      link.isReview ? 'inline-flex items-center gap-1.5' : ''
+                    }`}
+                  >
+                    {link.isReview && <Star className="w-3.5 h-3.5 fill-amber-300 text-amber-300" aria-hidden="true" />}
+                    <span>{link.label}</span>
+                  </button>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -482,39 +593,17 @@ export const SiteFooter = ({
               Services
             </h3>
             <ul className="space-y-2.5 text-sm">
-              <li>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setActiveNavSection('');
-                    navigateToTab('visa');
-                  }}
-                  className="hover:text-[var(--sky-200)] transition-colors"
-                >
-                  Visa Services
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setActiveNavSection('');
-                    navigateToTab('airtickets');
-                  }}
-                  className="hover:text-[var(--sky-200)] transition-colors"
-                >
-                  Air Tickets
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  onClick={() => navigateToTab('home', 'customizer')}
-                  className="hover:text-[var(--sky-200)] transition-colors"
-                >
-                  Custom Tours
-                </button>
-              </li>
+              {serviceLinks.map((link) => (
+                <li key={link.label}>
+                  <button
+                    type="button"
+                    onClick={link.onClick}
+                    className="hover:text-[var(--sky-200)] transition-colors"
+                  >
+                    {link.label}
+                  </button>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -559,26 +648,15 @@ export const SiteFooter = ({
           </div>
         </div>
 
-        {/* Bottom Copyright & Host Access Bar */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[var(--sky-100)]">
+        {/* Bottom Copyright & Host Access Bar (sm+) */}
+        <div className="hidden sm:flex pt-6 flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[var(--sky-100)]">
           <p>
             Yash Holidays Pvt Ltd • Boralesgamuwa, Sri Lanka
           </p>
 
           <button
             type="button"
-            onClick={() => {
-              if (isOwnerMode) {
-                setIsOwnerMode(false);
-                try {
-                  localStorage.removeItem('yash_owner_mode');
-                } catch (e) {
-                  console.error(e);
-                }
-              } else {
-                setIsOwnerLoginModalOpen(true);
-              }
-            }}
+            onClick={handleToggleHost}
             className="text-white/75 hover:text-white inline-flex items-center gap-1.5 px-2.5 py-1 rounded hover:bg-white/10 transition-colors"
             title={isOwnerMode ? 'Host Mode Active - Click to Logout' : 'Site Owner / Host Authentication'}
           >
@@ -588,4 +666,5 @@ export const SiteFooter = ({
         </div>
       </div>
     </footer>
-);
+  );
+};

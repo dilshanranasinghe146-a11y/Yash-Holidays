@@ -20,6 +20,7 @@ import {
   Camera,
   MessageCircle,
   Sliders,
+  Mail,
 } from 'lucide-react';
 import {
   WhatsAppIcon,
@@ -28,6 +29,7 @@ import {
   PaxSelector,
   VISA_COUNTRY_CODES,
 } from './TravelUI';
+import { ContactSection } from './ContactAndFooter';
 
 export const VisaServicesPage = ({
   visaCountries,
@@ -1458,5 +1460,74 @@ export const AboutUsPage = ({ navigateToTab }) => (
         </div>
       </div>
     </section>
+  </div>
+);
+
+export const ContactUsPage = ({
+  formData,
+  setFormData,
+  formSubmitted,
+  setFormSubmitted,
+  handleFormSubmit,
+  sendLeadToWhatsApp,
+  googleMapsUrl,
+  googleReviewsUrl,
+}) => (
+  <div className="pt-16 lg:pt-[74px]">
+    {/* Contact Us Light Editorial Header Banner */}
+    <section className="py-12 sm:py-16 bg-[var(--sky-100)] border-b border-[var(--sky-200)]">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-[var(--ocean-700)] mb-3">
+          <Phone className="w-4 h-4 text-[var(--ocean-500)]" aria-hidden="true" />
+          <span>Yash Holidays Boralesgamuwa Desk</span>
+        </div>
+
+        <h1 className="font-serif text-3xl sm:text-5xl font-bold text-[var(--ink)] leading-tight mb-4">
+          Contact <span className="text-[var(--ocean-700)]">Yash Holidays</span>
+        </h1>
+
+        <p className="max-w-2xl mx-auto text-sm sm:text-base text-[var(--muted)] leading-relaxed">
+          Visit our Boralesgamuwa office or speak directly with our specialists for tailor-made holidays,
+          worldwide air tickets, visit visas, and travel insurance.
+        </p>
+
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 text-xs sm:text-sm">
+          <a
+            href="tel:0112312093"
+            className="btn-coral px-4 py-2.5 inline-flex items-center gap-2"
+          >
+            <Phone className="w-4 h-4" aria-hidden="true" />
+            <span>Call 011 231 2093</span>
+          </a>
+          <a
+            href="https://wa.me/94775841144?text=Hello%20Yash%20Holidays!%20I%20would%20like%20to%20speak%20with%20a%20travel%20specialist."
+            target="_blank"
+            rel="noreferrer"
+            className="btn-outline-ocean bg-white px-4 py-2.5 inline-flex items-center gap-2"
+          >
+            <WhatsAppIcon className="w-4 h-4 text-[#15803D]" />
+            <span>WhatsApp +94 77 584 1144</span>
+          </a>
+          <a
+            href="mailto:yashholidays.lk@gmail.com"
+            className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-[9px] bg-white border border-[var(--sky-200)] text-[var(--ink)] font-medium hover:border-[var(--ocean-500)] transition-colors"
+          >
+            <Mail className="w-4 h-4 text-[var(--ocean-500)]" aria-hidden="true" />
+            <span>yashholidays.lk@gmail.com</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <ContactSection
+      formData={formData}
+      setFormData={setFormData}
+      formSubmitted={formSubmitted}
+      setFormSubmitted={setFormSubmitted}
+      handleFormSubmit={handleFormSubmit}
+      sendLeadToWhatsApp={sendLeadToWhatsApp}
+      googleMapsUrl={googleMapsUrl}
+      googleReviewsUrl={googleReviewsUrl}
+    />
   </div>
 );

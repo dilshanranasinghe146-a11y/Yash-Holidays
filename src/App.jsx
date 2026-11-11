@@ -21,7 +21,8 @@ import {
   VisaServicesPage,
   AirTicketsPage,
   ReviewsPage,
-  AboutUsPage
+  AboutUsPage,
+  ContactUsPage
 } from './components/DedicatedPages';
 import { ContactSection, SiteFooter } from './components/ContactAndFooter';
 import { SiteModals } from './components/SiteModals';
@@ -1060,13 +1061,14 @@ export default function App() {
   const navigateToTab = (tab, sectionId = null) => {
     setActiveTab(tab);
     setMobileMenuOpen(false);
+    if (!sectionId) {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      requestAnimationFrame(() => window.scrollTo({ top: 0, left: 0, behavior: 'instant' }));
+      return;
+    }
     setTimeout(() => {
-      if (sectionId) {
-        const el = document.getElementById(sectionId);
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
-      } else {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
+      const el = document.getElementById(sectionId);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
     }, 80);
   };
 
@@ -1441,6 +1443,19 @@ export default function App() {
           <AboutUsPage navigateToTab={navigateToTab} />
         )}
 
+        {activeTab === 'contact' && (
+          <ContactUsPage
+            formData={formData}
+            setFormData={setFormData}
+            formSubmitted={formSubmitted}
+            setFormSubmitted={setFormSubmitted}
+            handleFormSubmit={handleFormSubmit}
+            sendLeadToWhatsApp={sendLeadToWhatsApp}
+            googleMapsUrl={GOOGLE_MAPS_LOCATION_URL}
+            googleReviewsUrl={GOOGLE_REVIEWS_URL}
+          />
+        )}
+
         {activeTab === 'home' && (
           <HomeSections
             destinations={DESTINATIONS}
@@ -1471,16 +1486,18 @@ export default function App() {
           />
         )}
 
-        <ContactSection
-          formData={formData}
-          setFormData={setFormData}
-          formSubmitted={formSubmitted}
-          setFormSubmitted={setFormSubmitted}
-          handleFormSubmit={handleFormSubmit}
-          sendLeadToWhatsApp={sendLeadToWhatsApp}
-          googleMapsUrl={GOOGLE_MAPS_LOCATION_URL}
-          googleReviewsUrl={GOOGLE_REVIEWS_URL}
-        />
+        {activeTab !== 'contact' && (
+          <ContactSection
+            formData={formData}
+            setFormData={setFormData}
+            formSubmitted={formSubmitted}
+            setFormSubmitted={setFormSubmitted}
+            handleFormSubmit={handleFormSubmit}
+            sendLeadToWhatsApp={sendLeadToWhatsApp}
+            googleMapsUrl={GOOGLE_MAPS_LOCATION_URL}
+            googleReviewsUrl={GOOGLE_REVIEWS_URL}
+          />
+        )}
       </main>
 
       <SiteFooter
