@@ -31,6 +31,11 @@ import {
   PassportStampAccent,
 } from './TravelUI';
 
+const withUnsplashWidth = (url, width) =>
+  typeof url === 'string' && url.includes('images.unsplash.com')
+    ? url.replace(/([?&]w=)\d+/, `$1${width}`)
+    : url;
+
 const SERVICE_PHOTOS = {
   airtickets: {
     src: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1100&q=80',
@@ -611,94 +616,232 @@ export const HomeSections = ({
         </div>
       </section>
 
-      {/* ================= POPULAR DESTINATIONS & VISA PHOTO CARDS ================= */}
-      <section className="py-16 sm:py-20 bg-white border-y border-[var(--sky-100)]">
+      {/* ================= SIGNATURE HOLIDAY CORRIDORS (ASYMMETRIC EDITORIAL LOOKBOOK) ================= */}
+      <section id="holiday-corridors" className="scroll-mt-24 py-16 sm:py-20 bg-white border-y border-[var(--sky-100)]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 reveal-item">
             <div>
+              <span className="font-handwritten text-2xl text-[var(--ocean-500)] block mb-0.5">
+                Handpicked escapes departing Colombo
+              </span>
               <p className="text-xs uppercase tracking-[0.22em] text-[var(--ocean-700)] font-semibold">
-                POPULAR DESTINATIONS &amp; VISA MARKETS
+                SIGNATURE HOLIDAY CORRIDORS
               </p>
               <h2 className="section-heading font-serif font-bold text-[var(--ink)] mt-1">
-                Handcrafted Holidays &amp; Visit Visas
+                Explore Our Core Holiday Destinations
               </h2>
             </div>
 
-            <button
-              type="button"
-              onClick={() => navigateToTab('visa')}
+            <a
+              href="#customizer"
               className="link-underline text-sm self-start sm:self-end"
             >
-              <span>Explore All 10 Visit Visa Countries</span>
+              <span>Build Your Custom Holiday</span>
               <ArrowRight className="w-4 h-4" aria-hidden="true" />
-            </button>
+            </a>
           </div>
 
-          {/* Responsive Photo Grid: 1 / 2 / 4 columns with light gradient overlay */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {destinations.map((d, idx) => (
-              <button
-                key={d.id}
-                type="button"
-                onClick={() => {
-                  handleSelectCountry(d.id);
-                  document.getElementById('about-tour')?.scrollIntoView({ behavior: 'smooth' });
-                }}
-                style={{ '--reveal-delay': `${(idx % 4) * 60}ms` }}
-                className="reveal-item group relative rounded-[16px] overflow-hidden border border-[var(--sky-200)] shadow-card shadow-card-hover text-left aspect-[4/3] sm:aspect-[3/4] bg-[var(--sky-50)]"
-              >
-                <img
-                  src={d.heroBg}
-                  alt={d.country}
-                  loading="lazy"
-                  className="w-full h-full object-cover card-photo-zoom"
-                />
-                {/* Soft sky-white readable bottom wash */}
-                <div
-                  className="absolute inset-x-0 bottom-0 h-3/5"
-                  style={{
-                    background:
-                      'linear-gradient(to top, rgba(255,255,255,0.97) 0%, rgba(244,250,254,0.88) 46%, transparent 100%)',
-                  }}
-                />
-                <div className="absolute bottom-0 inset-x-0 p-4">
-                  <span className="text-[11px] uppercase tracking-wider font-semibold text-[var(--ocean-700)] block">
-                    {d.duration}
-                  </span>
-                  <h3 className="font-serif text-xl font-bold text-[var(--ink)] mt-0.5">
-                    {d.country}
-                  </h3>
-                  <div className="flex items-center justify-between mt-1.5 text-xs">
-                    <span className="font-semibold text-[var(--muted)]">
-                      From {d.priceFrom}
+          {/* Mobile & Tablet (< lg): Compact Horizontal Destination Switcher Rail */}
+          <div className="lg:hidden mb-5">
+            <div className="w-full flex overflow-x-auto no-scrollbar gap-2.5 pb-1">
+              {destinations.map((d, idx) => {
+                const isSelected = d.id === selectedCountryId;
+                return (
+                  <button
+                    key={d.id}
+                    type="button"
+                    onClick={() => handleSelectCountry(d.id)}
+                    aria-pressed={isSelected}
+                    className={`min-h-[46px] px-3.5 py-2 rounded-full border flex items-center gap-2.5 shrink-0 transition-all text-left ${
+                      isSelected
+                        ? 'bg-[var(--ocean-700)] border-[var(--ocean-700)] text-white shadow-sm'
+                        : 'bg-[var(--sky-50)] border-[var(--sky-200)] text-[var(--ink)] hover:border-[var(--ocean-500)]'
+                    }`}
+                  >
+                    <img
+                      src={withUnsplashWidth(d.heroBg, 240)}
+                      alt={d.country}
+                      className="w-7 h-7 rounded-full object-cover border border-white/80 shrink-0"
+                    />
+                    <span className="text-xs font-semibold whitespace-nowrap">
+                      <span className={isSelected ? 'text-[var(--sky-200)] mr-1' : 'text-[var(--ocean-500)] mr-1'}>
+                        0{idx + 1}
+                      </span>
+                      {d.country}
                     </span>
-                    <span className="font-semibold text-[var(--ocean-700)] inline-flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
-                      View <ChevronRight className="w-3.5 h-3.5" aria-hidden="true" />
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Asymmetric 12-Column Editorial Destination Directory + Featured Lookbook */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch reveal-item">
+            {/* Desktop (lg+): Numbered Regional Corridor Index */}
+            <div className="hidden lg:flex lg:col-span-5 flex-col justify-between bg-[var(--sky-50)] rounded-[20px] border border-[var(--sky-200)] p-3 gap-1.5">
+              {destinations.map((d, idx) => {
+                const isSelected = d.id === selectedCountryId;
+                const dStage = destinationStages[d.id] || stageInfo;
+                return (
+                  <button
+                    key={d.id}
+                    type="button"
+                    onClick={() => handleSelectCountry(d.id)}
+                    aria-pressed={isSelected}
+                    className={`w-full px-3.5 py-2.5 rounded-[14px] flex items-center gap-3.5 text-left transition-all border ${
+                      isSelected
+                        ? 'bg-white border-[var(--sky-200)] shadow-card border-l-[4px] border-l-[var(--coral)]'
+                        : 'bg-transparent border-transparent hover:bg-white/75 hover:border-[var(--sky-200)]'
+                    }`}
+                  >
+                    <span
+                      className={`text-xs font-bold tracking-wider w-5 shrink-0 ${
+                        isSelected ? 'text-[var(--coral)]' : 'text-[var(--ocean-500)]'
+                      }`}
+                    >
+                      0{idx + 1}
+                    </span>
+
+                    <img
+                      src={withUnsplashWidth(d.heroBg, 240)}
+                      alt={d.country}
+                      className="w-12 h-12 rounded-[10px] object-cover border border-white shadow-sm shrink-0"
+                    />
+
+                    <div className="min-w-0 flex-1">
+                      <h3 className="font-serif text-base font-bold text-[var(--ink)] leading-snug truncate">
+                        {d.country}
+                      </h3>
+                      <p className="text-xs text-[var(--muted)] truncate mt-0.5">
+                        {dStage.highlightCities}
+                      </p>
+                    </div>
+
+                    <ChevronRight
+                      className={`w-4 h-4 shrink-0 transition-transform ${
+                        isSelected
+                          ? 'text-[var(--ocean-700)] translate-x-0.5'
+                          : 'text-[var(--muted)]/60'
+                      }`}
+                      aria-hidden="true"
+                    />
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Right Editorial Lookbook Panel for Active Destination */}
+            <article
+              className={`lg:col-span-7 bg-white rounded-[20px] border border-[var(--sky-200)] shadow-card overflow-hidden flex flex-col justify-between transition-opacity duration-200 ${
+                isTransitioning ? 'opacity-60' : 'opacity-100'
+              }`}
+            >
+              {/* Top Asymmetric Visual Collage */}
+              <div className="grid grid-cols-12 gap-3 p-3 pb-0">
+                <div className="col-span-12 sm:col-span-8 relative h-56 sm:h-72 rounded-[14px] overflow-hidden bg-[var(--sky-50)]">
+                  <img
+                    key={`${activeDest.id}-main`}
+                    src={withUnsplashWidth(activeDest.heroBg, 1000)}
+                    alt={`${activeDest.country} holiday landscape`}
+                    className="w-full h-full object-cover card-photo-zoom"
+                  />
+                  <div className="absolute top-3 left-3 right-3 flex flex-wrap items-center justify-between gap-2 pointer-events-none">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[8px] bg-white/95 text-[var(--ocean-700)] text-[11px] font-semibold tracking-wide shadow-sm border-l-[3px] border-[var(--coral)]">
+                      <Plane className="w-3.5 h-3.5 text-[var(--ocean-500)] shrink-0" aria-hidden="true" />
+                      <span className="truncate max-w-[230px] sm:max-w-none">{activeDest.flightRoute}</span>
                     </span>
                   </div>
                 </div>
-              </button>
-            ))}
-          </div>
 
-          {/* Clean Visit Visa Quick Directory Strip */}
-          <div className="mt-8 pt-6 border-t border-[var(--sky-100)] flex flex-wrap items-center gap-2">
-            <span className="text-xs font-semibold uppercase tracking-wider text-[var(--muted)] mr-2">
-              Visit Visa Consultation:
-            </span>
-            {visaCountries.map((v) => (
-              <button
-                key={v.id}
-                type="button"
-                onClick={() => {
-                  setSelectedVisaId(v.id);
-                  navigateToTab('visa');
-                }}
-                className="px-3 py-1.5 rounded-[8px] bg-[var(--sky-50)] hover:bg-[var(--sky-100)] border border-[var(--sky-200)] text-xs font-medium text-[var(--ink)] transition-colors"
-              >
-                {v.country}
-              </button>
-            ))}
+                {/* Secondary Curated Experience Frames */}
+                <div className="hidden sm:grid sm:col-span-4 grid-rows-2 gap-3 h-72">
+                  {activeDest.highlights.slice(2, 4).map((item, idx) => (
+                    <div
+                      key={`${activeDest.id}-sub-${idx}`}
+                      className="relative rounded-[14px] overflow-hidden border border-[var(--sky-100)] bg-[var(--sky-50)]"
+                    >
+                      <img
+                        src={withUnsplashWidth(item.img, 600)}
+                        alt={item.sub}
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-x-2 bottom-2 bg-white/95 px-2.5 py-1.5 rounded-[8px] shadow-sm">
+                        <p className="text-[11px] font-semibold text-[var(--ink)] leading-tight line-clamp-1">
+                          {item.sub}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Editorial Story, Signature Experiences & Actions */}
+              <div className="p-5 sm:p-7 flex-1 flex flex-col justify-between gap-5">
+                <div>
+                  <div className="flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-[var(--ocean-700)]">
+                    <MapPin className="w-3.5 h-3.5 text-[var(--ocean-500)] shrink-0" aria-hidden="true" />
+                    <span>{stageInfo.highlightCities}</span>
+                  </div>
+
+                  <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[var(--ink)] mt-1.5">
+                    {activeDest.country}
+                  </h3>
+                  <p className="text-sm font-medium text-[var(--ocean-700)] mt-0.5">
+                    {activeDest.tagline}
+                  </p>
+                  <p className="text-sm sm:text-base text-[var(--muted)] leading-relaxed mt-3">
+                    {activeDest.introText}
+                  </p>
+
+                  {/* 3 Experiential Highlights (instead of repeated duration/price cards) */}
+                  <div className="mt-5 grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                    {activeDest.highlights.slice(2, 5).map((item, idx) => (
+                      <div
+                        key={idx}
+                        className="p-3 rounded-[12px] bg-[var(--sky-50)] border border-[var(--sky-200)] flex items-start gap-2.5"
+                      >
+                        <Compass className="w-4 h-4 text-[var(--ocean-500)] shrink-0 mt-0.5" aria-hidden="true" />
+                        <div className="min-w-0">
+                          <p className="text-[11px] font-bold uppercase tracking-wider text-[var(--ocean-700)] leading-tight">
+                            {item.label}
+                          </p>
+                          <p className="text-xs text-[var(--ink)] font-medium mt-0.5 leading-snug">
+                            {item.sub}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="pt-4 border-t border-[var(--sky-100)] flex flex-wrap items-center justify-between gap-3">
+                  <a
+                    href="#customizer"
+                    onClick={() =>
+                      setCustomConfig((prev) => ({
+                        ...prev,
+                        destination: activeDest.country,
+                      }))
+                    }
+                    className="btn-coral px-5 py-2.5 text-sm"
+                  >
+                    <span>Tailor {activeDest.country} Trip</span>
+                    <ArrowRight className="w-4 h-4 shrink-0" aria-hidden="true" />
+                  </a>
+
+                  <button
+                    type="button"
+                    onClick={() =>
+                      document.getElementById('about-tour')?.scrollIntoView({ behavior: 'smooth' })
+                    }
+                    className="link-underline text-sm"
+                  >
+                    <span>View {stageInfo.durationDays}-Day Journey</span>
+                    <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                  </button>
+                </div>
+              </div>
+            </article>
           </div>
         </div>
       </section>
