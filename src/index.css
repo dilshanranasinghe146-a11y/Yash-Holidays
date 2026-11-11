@@ -2,36 +2,250 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --white: #FFFFFF;
+  --sky-50: #F4FAFE;
+  --sky-100: #E6F3FB;
+  --sky-200: #CBE6F6;
+  --sky-400: #5BB6E8;
+  --ocean-500: #1F8FD1;
+  --ocean-700: #17679B;
+  --coral: #FF8A5B;
+  --coral-hover: #F2733F;
+  --ink: #1B3A52;
+  --muted: #5F7A8E;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
-    color-scheme: dark;
+    scroll-padding-top: 5.5rem;
+    color-scheme: light;
+    overflow-x: clip;
   }
-  
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
   body {
     margin: 0;
-    background-color: #050B16;
-    color: #ffffff;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: var(--sky-50);
+    color: var(--ink);
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: clamp(0.95rem, 0.91rem + 0.2vw, 1.0625rem);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3,
+  .font-display {
+    font-family: 'Playfair Display', Georgia, serif;
+    text-wrap: balance;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ocean-700);
+    outline-offset: 2px;
   }
 }
 
-/* Ensure native date picker calendar icon is crisp white, clearly visible, and easy to tap */
+.font-handwritten {
+  font-family: 'Caveat', cursive;
+}
+
+/* Fluid scale-safe type helpers (max <= 2.5x min) */
+.hero-headline {
+  font-size: clamp(2.35rem, 1.85rem + 2.4vw, 4.35rem);
+  line-height: 1.08;
+}
+
+.section-heading {
+  font-size: clamp(1.75rem, 1.45rem + 1.4vw, 2.75rem);
+  line-height: 1.2;
+}
+
+/* Primary Coral CTA & Secondary Ocean Outline CTA */
+.btn-coral {
+  background-color: var(--coral);
+  color: var(--white);
+  border-radius: 9px;
+  font-weight: 600;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: background-color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
+  box-shadow: 0 6px 16px -6px rgba(27, 58, 82, 0.18);
+}
+
+.btn-coral:hover {
+  background-color: var(--coral-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px -8px rgba(27, 58, 82, 0.24);
+}
+
+.btn-coral:active {
+  transform: translateY(0);
+}
+
+.btn-outline-ocean {
+  background-color: transparent;
+  color: var(--ocean-700);
+  border: 1.5px solid var(--ocean-500);
+  border-radius: 9px;
+  font-weight: 600;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: background-color 200ms ease, border-color 200ms ease, color 200ms ease, transform 200ms ease;
+}
+
+.btn-outline-ocean:hover {
+  background-color: var(--sky-100);
+  border-color: var(--ocean-700);
+  transform: translateY(-1px);
+}
+
+/* Animated Underline Text Link */
+.link-underline {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-weight: 600;
+  color: var(--ocean-700);
+  padding-bottom: 2px;
+}
+
+.link-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1.5px;
+  background-color: var(--coral);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.link-underline:hover::after,
+.group:hover .link-underline::after {
+  transform: scaleX(1);
+}
+
+/* Soft neutral-blue-grey surface elevation (no neon/colored glow) */
+.shadow-card {
+  box-shadow: 0 12px 32px -12px rgba(27, 58, 82, 0.11), 0 2px 8px -2px rgba(27, 58, 82, 0.05);
+}
+
+.shadow-card-hover {
+  transition: box-shadow 260ms ease, transform 260ms ease, border-color 260ms ease;
+}
+
+.shadow-card-hover:hover {
+  box-shadow: 0 18px 38px -12px rgba(27, 58, 82, 0.16), 0 4px 12px -4px rgba(27, 58, 82, 0.07);
+  transform: translateY(-3px);
+}
+
+/* Subtle travel map / coordinate texture using --sky-200 */
+.bg-travel-pattern {
+  background-color: var(--sky-50);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%23CBE6F6' stroke-width='0.8' opacity='0.28'%3E%3Ccircle cx='60' cy='60' r='44'/%3E%3Cpath d='M0 60h120M60 0v120' stroke-dasharray='3 4'/%3E%3Cpath d='M16 60c12-16 32-24 44-24s32 8 44 24' opacity='0.22'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 240px 240px;
+}
+
+.bg-topo-subtle {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='90' viewBox='0 0 180 90'%3E%3Cpath d='M0 45 Q 45 20 90 45 T 180 45' fill='none' stroke='%23CBE6F6' stroke-width='1.1' opacity='0.48'/%3E%3Cpath d='M0 72 Q 45 50 90 72 T 180 72' fill='none' stroke='%23CBE6F6' stroke-width='0.9' opacity='0.35'/%3E%3C/svg%3E");
+  background-size: 220px 110px;
+}
+
+/* Scroll reveal (reduced-motion safe) */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal-item {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 520ms cubic-bezier(0.22, 1, 0.36, 1), transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  .reveal-item.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .card-photo-zoom {
+    transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .group:hover .card-photo-zoom {
+    transform: scale(1.05);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-item {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Native inputs, iOS zoom safety & light date pickers */
+.travel-input,
+.travel-select,
+.travel-textarea {
+  background-color: var(--white);
+  border: 1.5px solid var(--sky-200);
+  color: var(--ink);
+  border-radius: 10px;
+  font-size: max(1rem, 0.9375rem);
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.travel-input::placeholder,
+.travel-textarea::placeholder {
+  color: var(--muted);
+  opacity: 0.78;
+}
+
+.travel-input:focus,
+.travel-select:focus,
+.travel-textarea:focus {
+  outline: none;
+  border-color: var(--ocean-500);
+  box-shadow: 0 0 0 3px rgba(31, 143, 209, 0.16);
+}
+
+.travel-input:user-invalid,
+.travel-select:user-invalid,
+.travel-textarea:user-invalid {
+  border-color: #DC2626;
+}
+
 input[type="date"] {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
-input[type="date"]::-webkit-calendar-picker-indicator {
-  cursor: pointer;
-  filter: invert(1);
-  opacity: 0.95;
-  padding: 4px;
-  border-radius: 6px;
-  transition: all 0.2s ease;
+/* Hide scrollbars cleanly where horizontal swipe tracks are used */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
-input[type="date"]::-webkit-calendar-picker-indicator:hover {
-  opacity: 1;
-  background-color: rgba(255, 255, 255, 0.15);
-  transform: scale(1.1);
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.modal-scroll {
+  overscroll-behavior: contain;
 }
