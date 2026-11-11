@@ -115,9 +115,89 @@ export const HeaderShell = ({
     {
       id: 'contact',
       label: 'Contact',
-      isActive: false,
-      onClick: () => navigateToTab(activeTab, 'contact'),
+      isActive: activeNavSection === 'contact',
+      onClick: () => {
+        setActiveNavSection('contact');
+        navigateToTab(activeTab, 'contact');
+      },
       icon: MapPin,
+    },
+  ];
+
+  const mobileBottomTabs = [
+    {
+      id: 'home',
+      label: 'Home',
+      ariaLabel: 'Home',
+      icon: Globe,
+      isActive: activeTab === 'home' && activeNavSection === 'home',
+      onClick: () => {
+        setActiveNavSection('home');
+        navigateToTab('home');
+        setMobileMenuOpen(false);
+      },
+    },
+    {
+      id: 'tours',
+      label: 'Tour',
+      ariaLabel: 'Outbound Tours',
+      icon: Compass,
+      isActive: activeTab === 'home' && activeNavSection === 'tours',
+      onClick: () => {
+        setActiveNavSection('tours');
+        navigateToTab('home', 'about-tour');
+        setMobileMenuOpen(false);
+      },
+    },
+    {
+      id: 'airtickets',
+      label: 'Air Tickets',
+      ariaLabel: 'Air Tickets',
+      icon: Plane,
+      isActive: activeTab === 'airtickets' && activeNavSection !== 'contact',
+      onClick: () => {
+        setActiveNavSection('');
+        navigateToTab('airtickets');
+        setMobileMenuOpen(false);
+      },
+    },
+    {
+      id: 'visa',
+      label: 'Visa',
+      ariaLabel: 'Visa Services',
+      icon: FileCheck,
+      isActive: activeTab === 'visa' && activeNavSection !== 'contact',
+      onClick: () => {
+        setActiveNavSection('');
+        navigateToTab('visa');
+        setMobileMenuOpen(false);
+      },
+    },
+    {
+      id: 'reviews',
+      label: 'Reviews',
+      ariaLabel: 'Reviews',
+      icon: Star,
+      accentClass: 'text-amber-500',
+      isActive: activeTab === 'reviews' && activeNavSection !== 'contact',
+      onClick: () => {
+        setActiveNavSection('');
+        navigateToTab('reviews');
+        setMobileMenuOpen(false);
+      },
+    },
+    {
+      id: 'contact',
+      label: 'Contact US',
+      ariaLabel: 'Contact Us',
+      icon: Phone,
+      accentClass: 'text-[var(--ocean-500)]',
+      isActive: activeNavSection === 'contact',
+      onClick: () => {
+        setActiveNavSection('contact');
+        navigateToTab(activeTab, 'contact');
+        setMobileMenuOpen(false);
+      },
     },
   ];
 
@@ -313,31 +393,44 @@ export const HeaderShell = ({
         />
       )}
 
-      {/* Mobile-only Sticky Bottom Action Bar (Call + WhatsApp), hidden when menu drawer is open */}
+      {/* Mobile-only Floating Pill Bottom Navigation Bar (hidden when menu drawer is open) */}
       {!mobileMenuOpen && (
         <div
-          className="fixed bottom-0 left-0 right-0 z-40 lg:hidden bg-white border-t border-[var(--sky-200)] shadow-[0_-6px_24px_-8px_rgba(27,58,82,0.14)] px-3 pt-2.5 pb-[max(0.65rem,env(safe-area-inset-bottom))]"
-          role="region"
-          aria-label="Quick Contact Actions"
+          className="fixed bottom-0 left-0 right-0 z-40 lg:hidden px-2.5 pt-1 pointer-events-none"
+          style={{ paddingBottom: 'max(0.5rem, env(safe-area-inset-bottom))' }}
         >
-          <div className="grid grid-cols-2 gap-2.5 max-w-lg mx-auto">
-            <a
-              href="tel:0112312093"
-              className="min-h-[44px] rounded-[9px] bg-[var(--ocean-500)] hover:bg-[var(--ocean-700)] text-white font-semibold text-sm flex items-center justify-center gap-2 transition-colors"
-            >
-              <Phone className="w-4 h-4 shrink-0" aria-hidden="true" />
-              <span>Call</span>
-            </a>
-            <a
-              href="https://wa.me/94775841144?text=Hello%20Yash%20Holidays!%20I%20would%20like%20assistance%20with%20a%20travel%20inquiry."
-              target="_blank"
-              rel="noreferrer"
-              className="btn-coral min-h-[44px] text-sm"
-            >
-              <WhatsAppIcon className="w-4 h-4" />
-              <span>WhatsApp</span>
-            </a>
-          </div>
+          <nav
+            className="pointer-events-auto max-w-lg mx-auto rounded-2xl bg-white/95 backdrop-blur-md border border-[var(--sky-200)] shadow-[0_8px_28px_-6px_rgba(27,58,82,0.18)] p-1 grid grid-cols-6 gap-0.5"
+            aria-label="Quick Navigation"
+          >
+            {mobileBottomTabs.map((tab) => {
+              const Icon = tab.icon;
+              return (
+                <button
+                  key={tab.id}
+                  type="button"
+                  onClick={tab.onClick}
+                  aria-label={tab.ariaLabel}
+                  aria-current={tab.isActive ? 'page' : undefined}
+                  className={`flex flex-col items-center justify-center gap-0.5 py-1.5 px-0.5 min-h-[50px] rounded-xl transition-colors ${
+                    tab.isActive
+                      ? 'bg-[var(--sky-100)] text-[var(--ocean-700)]'
+                      : 'text-[var(--muted)] hover:bg-[var(--sky-50)] hover:text-[var(--ocean-500)]'
+                  }`}
+                >
+                  <Icon
+                    className={`w-[18px] h-[18px] shrink-0 ${
+                      tab.accentClass || (tab.isActive ? 'text-[var(--ocean-500)]' : '')
+                    } ${tab.id === 'reviews' && tab.isActive ? 'fill-amber-500' : ''}`}
+                    aria-hidden="true"
+                  />
+                  <span className="text-[9.5px] leading-tight font-semibold tracking-tight whitespace-nowrap">
+                    {tab.label}
+                  </span>
+                </button>
+              );
+            })}
+          </nav>
         </div>
       )}
     </>

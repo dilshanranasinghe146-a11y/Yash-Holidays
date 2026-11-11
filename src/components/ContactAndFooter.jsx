@@ -191,7 +191,48 @@ export const ContactSection = ({
 
           {/* Right Column: Contact Cards, Google Map & Rating Strip */}
           <div className="lg:col-span-7 flex flex-col justify-between gap-5">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+            {/* Mobile: Big tap-friendly action buttons */}
+            <div className="grid grid-cols-2 gap-3 sm:hidden">
+              <a
+                href="tel:0112312093"
+                className="flex flex-col items-center justify-center gap-1.5 p-4 min-h-[92px] rounded-2xl bg-[var(--ocean-700)] hover:bg-[var(--ocean-500)] text-white shadow-sm transition-colors"
+              >
+                <Phone className="w-5 h-5" aria-hidden="true" />
+                <span className="text-xs font-bold tracking-wide">Call Now</span>
+                <span className="text-[11px] text-[var(--sky-100)]">011 231 2093</span>
+              </a>
+              <a
+                href="https://wa.me/94775841144?text=Hello%20Yash%20Holidays!%20I%20would%20like%20a%20travel%20quote."
+                target="_blank"
+                rel="noreferrer"
+                className="flex flex-col items-center justify-center gap-1.5 p-4 min-h-[92px] rounded-2xl bg-[#15803D] hover:bg-[#166534] text-white shadow-sm transition-colors"
+              >
+                <WhatsAppIcon className="w-5 h-5" />
+                <span className="text-xs font-bold tracking-wide">WhatsApp</span>
+                <span className="text-[11px] text-white/90">+94 77 584 1144</span>
+              </a>
+              <a
+                href="mailto:yashholidays.lk@gmail.com"
+                className="flex flex-col items-center justify-center gap-1.5 p-3.5 min-h-[92px] rounded-2xl bg-white border border-[var(--sky-200)] text-[var(--ink)] shadow-sm active:bg-[var(--sky-50)] transition-colors text-center"
+              >
+                <Mail className="w-5 h-5 text-[var(--ocean-500)]" aria-hidden="true" />
+                <span className="text-xs font-bold tracking-wide">Email Us</span>
+                <span className="text-[10px] leading-tight text-[var(--muted)] break-all">yashholidays.lk@gmail.com</span>
+              </a>
+              <a
+                href={googleMapsUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="flex flex-col items-center justify-center gap-1.5 p-4 min-h-[92px] rounded-2xl bg-white border border-[var(--sky-200)] text-[var(--ink)] shadow-sm active:bg-[var(--sky-50)] transition-colors"
+              >
+                <MapPin className="w-5 h-5 text-[var(--coral)]" aria-hidden="true" />
+                <span className="text-xs font-bold tracking-wide">Get Directions</span>
+                <span className="text-[11px] text-[var(--muted)]">Boralesgamuwa</span>
+              </a>
+            </div>
+
+            {/* Desktop / tablet: original small info cards */}
+            <div className="hidden sm:grid grid-cols-2 lg:grid-cols-4 gap-3.5">
               <div className="p-4 rounded-2xl bg-white border border-[var(--sky-200)] shadow-sm">
                 <div className="flex items-center gap-1.5 text-[var(--ocean-700)] text-xs font-bold uppercase tracking-wider mb-1">
                   <MapPin className="w-3.5 h-3.5 text-[var(--ocean-500)] shrink-0" aria-hidden="true" />
