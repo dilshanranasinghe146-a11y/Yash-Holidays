@@ -89,6 +89,13 @@
   padding-block: clamp(4rem, 8vw, 8rem);
 }
 
+.heading-coral-accent {
+  width: 3rem;
+  height: 2.5px;
+  border-radius: 9999px;
+  background-color: var(--coral);
+}
+
 /* Subtle 3% grain & light mesh gradient surfaces */
 .editorial-grain-overlay {
   position: fixed;
@@ -130,7 +137,7 @@
     display: flex !important;
   }
   .page-shell-mobile-pad {
-    padding-bottom: calc(4.75rem + env(safe-area-inset-bottom));
+    padding-bottom: calc(5.25rem + env(safe-area-inset-bottom));
   }
 }
 
@@ -154,7 +161,7 @@
 .btn-coral {
   background-color: var(--coral);
   color: var(--white);
-  border-radius: 9px;
+  border-radius: 10px;
   font-weight: 600;
   min-height: 44px;
   display: inline-flex;
@@ -178,7 +185,7 @@
   background-color: transparent;
   color: var(--ocean-700);
   border: 1.5px solid var(--ocean-500);
-  border-radius: 9px;
+  border-radius: 10px;
   font-weight: 600;
   min-height: 44px;
   display: inline-flex;
@@ -284,9 +291,76 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal-item {
+  .reveal-item,
+  .scroll-card-reveal {
     opacity: 1;
     transform: none;
+    animation: none !important;
+  }
+
+  .parallax-photo {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
+/* Container queries for modular bento service cards */
+@supports (container-type: inline-size) {
+  .service-bento-card {
+    container-type: inline-size;
+  }
+
+  @container (min-width: 580px) {
+    .service-bento-body {
+      padding: 2rem;
+    }
+  }
+}
+
+/* Progressive CSS Scroll-Driven Animations & subtle Parallax (when supported + motion OK) */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes cardScrollRise {
+    from {
+      opacity: 0.72;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes parallaxDrift {
+    from {
+      transform: translateY(-10px) scale(1.04);
+    }
+    to {
+      transform: translateY(14px) scale(1.04);
+    }
+  }
+
+  @supports ((animation-timeline: view()) and (animation-range: entry)) {
+    .scroll-card-reveal {
+      animation: cardScrollRise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 28%;
+    }
+
+    .parallax-wrapper {
+      view-timeline: --parallax-band block;
+    }
+
+    .parallax-photo {
+      animation: parallaxDrift linear both;
+      animation-timeline: --parallax-band;
+      animation-range: entry 0% exit 100%;
+    }
   }
 }
 

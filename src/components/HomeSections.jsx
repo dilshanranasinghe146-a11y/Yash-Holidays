@@ -157,7 +157,7 @@ export const HomeSections = ({
       {/* ================= HERO SECTION (EDITORIAL PHOTOGRAPHY + 85SVH) ================= */}
       <section
         id="home"
-        className="relative min-h-[85svh] pt-24 sm:pt-28 pb-20 sm:pb-24 flex flex-col justify-between overflow-hidden bg-[var(--sky-100)]"
+        className="relative min-h-[85svh] pt-20 sm:pt-28 pb-16 sm:pb-24 flex flex-col justify-between overflow-hidden bg-[var(--sky-100)]"
       >
         {/* Crossfading Vivid Travel Photography with Gentle Slow Zoom & Editorial Overlays */}
         <div className="absolute inset-0 z-0 overflow-hidden bg-[var(--sky-100)]">
@@ -168,7 +168,7 @@ export const HomeSections = ({
               aria-hidden="true"
               referrerPolicy="no-referrer"
               className="absolute inset-0 w-full h-full object-cover object-center"
-              style={{ filter: 'saturate(1.1) contrast(1.05)' }}
+              style={{ filter: 'saturate(1.18) contrast(1.06)' }}
             />
           )}
           <img
@@ -180,7 +180,7 @@ export const HomeSections = ({
             className={`absolute inset-0 w-full h-full object-cover object-center hero-photo-zoom transition-opacity duration-[800ms] ease-out ${
               fadeInActive ? 'opacity-100' : 'opacity-0'
             }`}
-            style={{ filter: 'saturate(1.1) contrast(1.05)' }}
+            style={{ filter: 'saturate(1.18) contrast(1.06)', viewTransitionName: 'hero-dest-bg' }}
           />
           {/* Desktop directional white mist wash protecting WCAG AA copy while preserving vivid right photography */}
           <div
@@ -190,24 +190,24 @@ export const HomeSections = ({
                 'linear-gradient(90deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.88) 40%, rgba(255,255,255,0.52) 58%, rgba(255,255,255,0.08) 76%)',
             }}
           />
-          {/* Mobile & Tablet readability gradients */}
+          {/* Mobile & Tablet luminous veil: lets vivid travel photo shine clearly behind frosted text panel */}
           <div
             className="lg:hidden absolute inset-0"
             style={{
               background:
-                'linear-gradient(180deg, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.93) 26%, rgba(255,255,255,0.90) 62%, rgba(255,255,255,0.68) 100%)',
+                'linear-gradient(180deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.32) 38%, rgba(255,255,255,0.28) 74%, rgba(245,250,253,0.68) 100%)',
             }}
           />
         </div>
 
         {/* Top Destination Selector Bar */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-1 sm:pt-3">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-            <div className="space-y-1">
-              <span className="font-handwritten text-2xl sm:text-[1.75rem] text-[var(--ocean-700)] block leading-none">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2.5 sm:gap-3">
+            <div className="space-y-0.5 sm:space-y-1 bg-white/75 lg:bg-transparent backdrop-blur-[4px] lg:backdrop-blur-none px-3 py-1.5 lg:p-0 rounded-xl lg:rounded-none border border-white/70 lg:border-0 self-start shadow-sm lg:shadow-none">
+              <span className="font-handwritten text-xl sm:text-[1.75rem] text-[var(--ocean-700)] block leading-none">
                 Plan your dream trip
               </span>
-              <p className="text-xs uppercase tracking-[0.2em] font-semibold text-[var(--ink)]/80">
+              <p className="text-[10px] sm:text-xs uppercase tracking-[0.18em] sm:tracking-[0.2em] font-semibold text-[var(--ink)]/85">
                 Select Your Outbound Destination
               </p>
             </div>
@@ -216,7 +216,8 @@ export const HomeSections = ({
           </div>
 
           <div
-            className="mt-3 flex items-center gap-2 overflow-x-auto no-scrollbar snap-x snap-mandatory pb-1 sm:flex-wrap"
+            className="mt-2.5 sm:mt-3 flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar snap-x snap-proximity pb-1 sm:flex-wrap"
+            style={{ scrollPaddingInline: '0.75rem' }}
             role="tablist"
             aria-label="Outbound Destinations"
           >
@@ -232,13 +233,13 @@ export const HomeSections = ({
                   role="tab"
                   aria-selected={active}
                   onClick={() => handleSelectCountry(dest.id)}
-                  className={`snap-start min-h-[44px] px-3.5 py-2 rounded-[9px] text-xs sm:text-sm font-semibold transition-all inline-flex items-center gap-1.5 shrink-0 whitespace-nowrap border ${
+                  className={`snap-start min-h-[34px] sm:min-h-[44px] px-2.5 sm:px-3.5 py-1 sm:py-2 rounded-[8px] sm:rounded-[9px] text-[11px] sm:text-sm font-semibold transition-all inline-flex items-center gap-1 sm:gap-1.5 shrink-0 whitespace-nowrap border ${
                     active
                       ? 'bg-[var(--ocean-700)] text-white border-[var(--ocean-700)] shadow-sm'
                       : 'bg-white/95 text-[var(--ink)] border-[var(--sky-200)] hover:border-[var(--ocean-500)] hover:text-[var(--ocean-700)]'
                   }`}
                 >
-                  <Plane className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+                  <Plane className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0" aria-hidden="true" />
                   <span>{dest.name}</span>
                 </button>
               );
@@ -247,19 +248,22 @@ export const HomeSections = ({
         </div>
 
         {/* Main Hero Split Body */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto py-8 sm:py-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto py-5 sm:py-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-10 items-center">
             {/* Left Column: Typography, Open Info Strip & CTAs */}
             <div
-              className={`lg:col-span-6 space-y-5 transition-opacity duration-[400ms] ease-out ${
+              className={`lg:col-span-6 space-y-4 sm:space-y-5 bg-white/70 lg:bg-transparent backdrop-blur-[6px] lg:backdrop-blur-none p-4 sm:p-6 lg:p-0 rounded-2xl lg:rounded-none border border-white/75 lg:border-0 shadow-sm lg:shadow-none transition-opacity duration-[400ms] ease-out ${
                 isTransitioning ? 'opacity-0' : 'opacity-100'
               }`}
             >
-              <p className="text-xs uppercase tracking-[0.22em] text-[var(--ocean-700)] font-semibold">
+              <p className="text-[11px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-[0.22em] text-[var(--ocean-700)] font-semibold">
                 YASH HOLIDAYS SIGNATURE OUTBOUND TOUR
               </p>
 
-              <h1 className="hero-headline font-serif font-bold text-[var(--ink)]">
+              <h1
+                className="hero-headline font-serif font-bold text-[var(--ink)]"
+                style={{ viewTransitionName: 'hero-dest-title', width: 'fit-content' }}
+              >
                 {activeDest.name}
               </h1>
 
@@ -457,6 +461,7 @@ export const HomeSections = ({
             <h2 className="section-heading font-serif font-bold text-[var(--ink)] mt-2">
               All-Around <span className="editorial-italic">Travel</span> Services by Yash Holidays
             </h2>
+            <div className="heading-coral-accent mt-3" aria-hidden="true" />
             <p className="text-[var(--muted)] mt-3 leading-relaxed">
               Whether you need a single airline ticket, urgent visa assistance, travel insurance, or a fully customized family holiday abroad, our team handles everything under one roof.
             </p>
@@ -470,22 +475,22 @@ export const HomeSections = ({
               return (
                 <article
                   key={featuredService.id}
-                  className="reveal-item group lg:col-span-12 bg-white rounded-2xl border border-[var(--sky-200)] shadow-card shadow-card-hover overflow-hidden grid grid-cols-1 lg:grid-cols-12"
+                  className="reveal-item scroll-card-reveal service-bento-card group lg:col-span-12 bg-white rounded-[18px] border border-[var(--sky-200)] shadow-card shadow-card-hover overflow-hidden grid grid-cols-1 lg:grid-cols-12"
                 >
-                  <div className="relative lg:col-span-6 h-56 sm:h-72 lg:h-auto min-h-[260px] overflow-hidden bg-[var(--sky-100)]">
+                  <div className="relative parallax-wrapper lg:col-span-6 h-56 sm:h-72 lg:h-auto min-h-[260px] overflow-hidden bg-[var(--sky-100)]">
                     <img
                       src={photo.src}
                       alt={photo.alt}
                       loading="lazy"
                       referrerPolicy="no-referrer"
-                      className="w-full h-full object-cover card-photo-zoom"
+                      className="w-full h-full object-cover card-photo-zoom parallax-photo"
                     />
                     <span className="absolute top-4 left-4 bg-white/95 text-[var(--ocean-700)] text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-[6px] border-l-[3px] border-[var(--coral)] shadow-sm">
                       {featuredService.badge}
                     </span>
                   </div>
 
-                  <div className="lg:col-span-6 p-6 sm:p-8 lg:p-10 flex flex-col justify-between bg-gradient-to-br from-white via-white to-[var(--sand)]/40">
+                  <div className="service-bento-body lg:col-span-6 p-6 sm:p-8 lg:p-10 flex flex-col justify-between bg-gradient-to-br from-white via-white to-[var(--sand)]/40">
                     <div>
                       <div className="flex items-center gap-2.5 text-[var(--ocean-500)] text-xs font-semibold uppercase tracking-widest mb-3">
                         <IconComp className="w-5 h-5 shrink-0" aria-hidden="true" />
@@ -530,7 +535,7 @@ export const HomeSections = ({
                 <article
                   key={srv.id}
                   style={{ '--reveal-delay': `${(idx + 1) * 70}ms` }}
-                  className={`reveal-item group bg-white rounded-2xl border border-[var(--sky-200)] shadow-card shadow-card-hover overflow-hidden flex flex-col justify-between ${
+                  className={`reveal-item scroll-card-reveal service-bento-card group bg-white rounded-[18px] border border-[var(--sky-200)] shadow-card shadow-card-hover overflow-hidden flex flex-col justify-between ${
                     isWideVisa ? 'lg:col-span-7' : 'lg:col-span-5'
                   }`}
                 >
@@ -538,8 +543,8 @@ export const HomeSections = ({
                     <div
                       className={`relative overflow-hidden bg-[var(--sky-100)] ${
                         isWideVisa
-                          ? 'h-52 sm:h-auto sm:w-5/12 sm:min-h-[260px] shrink-0'
-                          : 'h-52 sm:h-56 m-3 mb-0 rounded-[14px]'
+                          ? 'h-52 sm:h-auto sm:w-5/12 sm:min-h-[260px] shrink-0 sm:rounded-l-[18px]'
+                          : 'h-52 sm:h-56 m-3 mb-0 rounded-[18px] shadow-sm'
                       }`}
                     >
                       <img
@@ -558,7 +563,7 @@ export const HomeSections = ({
                       </span>
                     </div>
 
-                    <div className={`p-6 flex flex-col justify-between ${isWideVisa ? 'sm:flex-1' : 'pb-4'}`}>
+                    <div className={`service-bento-body p-6 flex flex-col justify-between ${isWideVisa ? 'sm:flex-1' : 'pb-4'}`}>
                       <div>
                         <div className="flex items-center gap-2 text-[var(--ocean-500)] text-xs font-semibold uppercase tracking-widest mb-2">
                           <IconComp className="w-4 h-4 shrink-0" aria-hidden="true" />
@@ -611,10 +616,10 @@ export const HomeSections = ({
                 <article
                   key={srv.id}
                   style={{ '--reveal-delay': `${(idx + 3) * 70}ms` }}
-                  className="reveal-item group lg:col-span-4 bg-white rounded-2xl border border-[var(--sky-200)] shadow-card shadow-card-hover overflow-hidden flex flex-col justify-between"
+                  className="reveal-item scroll-card-reveal service-bento-card group lg:col-span-4 bg-white rounded-[18px] border border-[var(--sky-200)] shadow-card shadow-card-hover overflow-hidden flex flex-col justify-between"
                 >
                   <div>
-                    <div className="relative h-48 overflow-hidden m-3 mb-0 rounded-[14px] bg-[var(--sky-100)]">
+                    <div className="relative h-48 overflow-hidden m-3 mb-0 rounded-[18px] shadow-sm bg-[var(--sky-100)]">
                       <img
                         src={photo.src}
                         alt={photo.alt}
@@ -719,6 +724,7 @@ export const HomeSections = ({
               <h2 className="section-heading font-serif font-bold text-[var(--ink)] mt-1">
                 Explore Our Core <span className="editorial-italic">Holiday</span> Destinations
               </h2>
+              <div className="heading-coral-accent mt-3" aria-hidden="true" />
             </div>
 
             <a
@@ -940,6 +946,113 @@ export const HomeSections = ({
               </div>
             </article>
           </div>
+
+          {/* Magazine Editorial Mosaic: Popular Destinations & Visit Visa Markets */}
+          <div className="mt-14 pt-12 border-t border-[var(--sky-200)]">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 reveal-item">
+              <div>
+                <p className="text-xs uppercase tracking-[0.22em] text-[var(--ocean-700)] font-semibold">
+                  POPULAR DESTINATIONS &amp; VISA MARKETS
+                </p>
+                <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[var(--ink)] mt-1">
+                  Handcrafted <span className="editorial-italic">Holidays</span> &amp; Visit Visas
+                </h3>
+                <div className="heading-coral-accent mt-2.5" aria-hidden="true" />
+              </div>
+              <button
+                type="button"
+                onClick={() => navigateToTab('visa')}
+                className="link-underline text-sm self-start sm:self-end"
+              >
+                <span>Explore All {visaCountries.length} Visit Visa Countries</span>
+                <ArrowRight className="w-4 h-4" aria-hidden="true" />
+              </button>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-4 sm:gap-5">
+              {destinations.map((d, idx) => {
+                const spanClasses = [
+                  'sm:col-span-2 lg:col-span-5 lg:row-span-2 min-h-[280px] lg:min-h-[420px]',
+                  'lg:col-span-7 min-h-[210px] sm:min-h-[220px]',
+                  'lg:col-span-3 min-h-[200px]',
+                  'lg:col-span-4 min-h-[200px]',
+                  'lg:col-span-7 min-h-[215px]',
+                  'lg:col-span-5 min-h-[215px]',
+                  'lg:col-span-4 min-h-[210px]',
+                  'sm:col-span-2 lg:col-span-8 min-h-[210px]',
+                ][idx] || 'lg:col-span-4 min-h-[210px]';
+                const isActiveCard = d.id === selectedCountryId;
+
+                return (
+                  <button
+                    key={`mag-${d.id}`}
+                    type="button"
+                    onClick={() => {
+                      handleSelectCountry(d.id);
+                      document.getElementById('about-tour')?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    className={`reveal-item scroll-card-reveal group relative overflow-hidden rounded-[18px] border text-left shadow-card shadow-card-hover transition-all ${spanClasses} ${
+                      isActiveCard ? 'border-[var(--ocean-500)] ring-2 ring-[var(--sky-200)]' : 'border-[var(--sky-200)]'
+                    }`}
+                  >
+                    <img
+                      src={withUnsplashWidth(d.heroBg, idx === 0 || idx === 1 || idx === 7 ? 1100 : 800)}
+                      alt={`${d.country} travel destination`}
+                      loading="lazy"
+                      referrerPolicy="no-referrer"
+                      className="absolute inset-0 w-full h-full object-cover card-photo-zoom"
+                    />
+                    <div
+                      className="absolute inset-0"
+                      style={{
+                        background:
+                          'linear-gradient(to top, rgba(245,250,253,0.96) 0%, rgba(245,250,253,0.82) 38%, rgba(245,250,253,0.12) 72%, transparent 100%)',
+                      }}
+                    />
+                    <div className="relative h-full w-full p-5 sm:p-6 flex flex-col justify-end">
+                      <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[var(--ocean-700)]">
+                        {d.duration}
+                      </p>
+                      <div className="flex items-end justify-between gap-3 mt-1">
+                        <div>
+                          <h4 className="font-serif text-xl sm:text-2xl font-bold text-[var(--ink)] leading-tight">
+                            {d.country}
+                          </h4>
+                          <p className="text-xs font-semibold text-[var(--ocean-500)] mt-0.5">
+                            From {d.priceFrom}
+                          </p>
+                        </div>
+                        <span className="inline-flex items-center gap-1 text-xs font-semibold text-[var(--ocean-700)] group-hover:text-[var(--coral)] transition-colors shrink-0">
+                          <span>View</span>
+                          <ChevronRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+                        </span>
+                      </div>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Direct Visit Visa Markets Directory (editorial rectangular links, no pill badges) */}
+            <div className="mt-7 pt-6 border-t border-[var(--sky-100)] flex flex-wrap items-center gap-2.5">
+              <span className="text-xs uppercase tracking-[0.18em] text-[var(--muted)] font-semibold mr-2">
+                Visit Visa Consultation:
+              </span>
+              {visaCountries.map((visa) => (
+                <button
+                  key={`corridor-visa-${visa.id}`}
+                  type="button"
+                  onClick={() => {
+                    setSelectedVisaId(visa.id);
+                    navigateToTab('visa');
+                  }}
+                  className="px-3 py-1.5 rounded-[10px] border border-[var(--sky-200)] bg-[var(--mist)] hover:bg-[var(--sky-100)] hover:border-[var(--ocean-500)] text-xs font-semibold text-[var(--ink)] transition-colors min-h-[36px]"
+                >
+                  {visa.country}
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -1150,50 +1263,53 @@ export const HomeSections = ({
             <div className="h-px flex-1 bg-white/25 hidden sm:block ml-6 mb-3" />
           </div>
 
-          {/* Varied asymmetric rows (4 pillars with crisp white hairlines, zero neon boxes) */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
-            <div className="reveal-item border-t-2 border-[var(--coral)] pt-5">
-              <div className="flex items-center gap-2.5 mb-3">
-                <Users className="w-5 h-5 text-[var(--sky-200)] shrink-0" aria-hidden="true" />
-                <h3 className="font-serif text-xl font-bold text-white">Guides &amp; Care</h3>
+          {/* Varied asymmetric layout on deep --ocean-700 section (no identical repeated boxes) */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+            <div className="reveal-item lg:col-span-5 border-t-[3px] border-[var(--coral)] pt-6 lg:pr-6">
+              <div className="flex items-center gap-3 mb-3.5">
+                <Users className="w-6 h-6 text-[var(--sky-200)] shrink-0" aria-hidden="true" />
+                <h3 className="font-serif text-2xl sm:text-3xl font-bold text-white">Guides &amp; Care</h3>
               </div>
-              <p className="text-sm text-[var(--mist)] leading-relaxed">
+              <p className="text-base text-[var(--mist)] leading-relaxed">
                 Dedicated Yash Holidays tour coordinators &amp; friendly local English-speaking guides who know everything about {activeDest.country}!
               </p>
-            </div>
-
-            <div className="reveal-item border-t border-white/30 pt-5" style={{ '--reveal-delay': '60ms' }}>
-              <div className="flex items-center gap-2.5 mb-3">
-                <Plane className="w-5 h-5 text-[var(--sky-200)] shrink-0" aria-hidden="true" />
-                <h3 className="font-serif text-xl font-bold text-white">Flights</h3>
-              </div>
-              <p className="text-sm text-[var(--mist)] leading-relaxed">
-                Routes:
-                <br />
-                <span className="font-semibold text-white">{activeDest.flightRoute}</span>
-                <br />
-                Return air tickets with baggage on top global airlines.
+              <p className="mt-4 text-xs uppercase tracking-[0.2em] text-[var(--sky-200)] font-semibold">
+                Direct 24/7 Coordinator Support from Colombo
               </p>
             </div>
 
-            <div className="reveal-item border-t border-white/30 pt-5" style={{ '--reveal-delay': '120ms' }}>
-              <div className="flex items-center gap-2.5 mb-3">
-                <Navigation className="w-5 h-5 text-[var(--sky-200)] shrink-0" aria-hidden="true" />
-                <h3 className="font-serif text-xl font-bold text-white">Transfers &amp; Visa</h3>
+            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-7">
+              <div className="reveal-item sm:col-span-2 border-t border-white/30 pt-5" style={{ '--reveal-delay': '60ms' }}>
+                <div className="flex items-center gap-2.5 mb-2.5">
+                  <Plane className="w-5 h-5 text-[var(--sky-200)] shrink-0" aria-hidden="true" />
+                  <h3 className="font-serif text-xl font-bold text-white">Flights</h3>
+                </div>
+                <p className="text-sm text-[var(--mist)] leading-relaxed">
+                  Routes: <span className="font-semibold text-white">{activeDest.flightRoute}</span>
+                  <br />
+                  Return air tickets with baggage on top global airlines.
+                </p>
               </div>
-              <p className="text-sm text-[var(--mist)] leading-relaxed">
-                Private AC transfers from the airport to the hotels &amp; all sightseeing tours, plus full Tourist Visa processing support.
-              </p>
-            </div>
 
-            <div className="reveal-item border-t border-white/30 pt-5" style={{ '--reveal-delay': '180ms' }}>
-              <div className="flex items-center gap-2.5 mb-3">
-                <Hotel className="w-5 h-5 text-[var(--sky-200)] shrink-0" aria-hidden="true" />
-                <h3 className="font-serif text-xl font-bold text-white">Hotels &amp; Insurance</h3>
+              <div className="reveal-item border-t border-white/30 pt-5" style={{ '--reveal-delay': '120ms' }}>
+                <div className="flex items-center gap-2.5 mb-2.5">
+                  <Navigation className="w-5 h-5 text-[var(--sky-200)] shrink-0" aria-hidden="true" />
+                  <h3 className="font-serif text-xl font-bold text-white">Transfers &amp; Visa</h3>
+                </div>
+                <p className="text-sm text-[var(--mist)] leading-relaxed">
+                  Private AC transfers from the airport to the hotels &amp; all sightseeing tours, plus full Tourist Visa processing support.
+                </p>
               </div>
-              <p className="text-sm text-[var(--mist)] leading-relaxed">
-                Comfortable 3★, 4★, or 5★ accommodation (2 people per room, daily breakfasts included) + complete Travel Insurance.
-              </p>
+
+              <div className="reveal-item border-t border-white/30 pt-5" style={{ '--reveal-delay': '180ms' }}>
+                <div className="flex items-center gap-2.5 mb-2.5">
+                  <Hotel className="w-5 h-5 text-[var(--sky-200)] shrink-0" aria-hidden="true" />
+                  <h3 className="font-serif text-xl font-bold text-white">Hotels &amp; Insurance</h3>
+                </div>
+                <p className="text-sm text-[var(--mist)] leading-relaxed">
+                  Comfortable 3★, 4★, or 5★ accommodation (2 people per room, daily breakfasts included) + complete Travel Insurance.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -1426,6 +1542,7 @@ export const HomeSections = ({
               <h2 className="section-heading font-serif font-bold text-[var(--ink)]">
                 About <span className="editorial-italic">Yash Holidays</span> Pvt Ltd
               </h2>
+              <div className="heading-coral-accent" aria-hidden="true" />
 
               <p className="text-[var(--ink)] leading-relaxed">
                 Headquartered at <span className="font-semibold">276A/2E, Dehiwala Road, Boralesgamuwa</span>,{' '}
@@ -1457,8 +1574,12 @@ export const HomeSections = ({
               </div>
             </div>
 
-            <div className="lg:col-span-6 reveal-item" style={{ '--reveal-delay': '80ms' }}>
-              <div className="p-7 sm:p-9 rounded-3xl bg-[var(--sky-50)] border border-[var(--sky-200)] shadow-card space-y-6">
+            <div className="lg:col-span-6 reveal-item relative" style={{ '--reveal-delay': '80ms' }}>
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute -inset-2 sm:-inset-3 translate-x-2 translate-y-2 rounded-[26px] bg-[var(--sand)] border border-[#f5dfc1]"
+              />
+              <div className="relative z-10 p-7 sm:p-9 rounded-[20px] bg-white border border-[var(--sky-200)] shadow-card space-y-6">
                 <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[var(--sky-200)] pb-5">
                   <YashLogo />
                   <span className="text-xs font-semibold uppercase tracking-wider text-[#15803D]">
@@ -1542,7 +1663,7 @@ export const HomeSections = ({
             <div>
               <div className="flex flex-wrap items-center gap-4 mb-2 text-xs font-semibold">
                 <span className="inline-flex items-center gap-1.5 text-[var(--ocean-700)] uppercase tracking-widest">
-                  <Star className="w-3.5 h-3.5 fill-amber-500 text-amber-500" aria-hidden="true" />
+                  <Star className="w-3.5 h-3.5 fill-[var(--gold)] text-[var(--gold)]" aria-hidden="true" />
                   <span>LOVED BY 1,450+ SRI LANKAN TRAVELERS</span>
                 </span>
                 <a
@@ -1561,6 +1682,7 @@ export const HomeSections = ({
                 What Our <span className="editorial-italic">Travelers</span> Say About{' '}
                 <span className="text-[var(--ocean-700)]">Yash Holidays</span>
               </h2>
+              <div className="heading-coral-accent mt-2.5" aria-hidden="true" />
               <p className="text-[var(--muted)] mt-2 max-w-2xl">
                 Real stories from verified travelers across Sri Lanka who explored Bali, Vietnam, Malaysia, Dubai, Thailand, and the Maldives with us.
               </p>
@@ -1626,7 +1748,11 @@ export const HomeSections = ({
                 <article
                   key={rev.id}
                   style={{ '--reveal-delay': `${idx * 70}ms` }}
-                  className="reveal-item relative p-6 sm:p-7 rounded-2xl bg-white border border-[var(--sky-200)] shadow-card shadow-card-hover flex flex-col justify-between"
+                  className={`reveal-item scroll-card-reveal relative p-6 sm:p-7 rounded-[18px] border shadow-card shadow-card-hover flex flex-col justify-between ${
+                    idx === 0
+                      ? 'bg-sand-panel border-[var(--sky-200)] border-t-[3px] border-t-[var(--coral)]'
+                      : 'bg-white border-[var(--sky-200)]'
+                  }`}
                 >
                   {/* Subtle Decorative Quote Mark */}
                   <span
@@ -1656,7 +1782,7 @@ export const HomeSections = ({
                             key={i}
                             className={`w-3.5 h-3.5 ${
                               i < (rev.rating || 5)
-                                ? 'text-amber-500 fill-amber-500'
+                                ? 'text-[var(--gold)] fill-[var(--gold)]'
                                 : 'text-[var(--sky-200)]'
                             }`}
                             aria-hidden="true"

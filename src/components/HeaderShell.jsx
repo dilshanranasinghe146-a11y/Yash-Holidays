@@ -331,33 +331,55 @@ export const HeaderShell = ({
         </div>
       </aside>
 
-      {/* Mobile & Tablet Sticky Bottom Action Bar: 2 Equal Buttons (Call + WhatsApp), hidden when drawer open */}
+      {/* Mobile & Tablet Sticky Bottom Quick-Navigation Bar (<=1100px), hidden when drawer open */}
       {!mobileMenuOpen && (
-        <div
-          className="nav-drawer-mobile-only fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-sm border-t border-[var(--sky-200)] px-3 pt-2 shadow-[0_-4px_20px_rgba(20,50,74,0.08)]"
-          style={{ paddingBottom: 'max(0.5rem, env(safe-area-inset-bottom))' }}
-          role="region"
-          aria-label="Quick Contact Actions"
+        <nav
+          className="nav-drawer-mobile-only fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-sm border-t border-[var(--sky-200)] px-1.5 pt-1.5 shadow-[0_-4px_20px_rgba(20,50,74,0.08)]"
+          style={{ paddingBottom: 'max(0.375rem, env(safe-area-inset-bottom))' }}
+          aria-label="Quick Mobile Navigation"
         >
-          <div className="max-w-lg mx-auto grid grid-cols-2 gap-2.5">
-            <a
-              href="tel:0112312093"
-              className="min-h-[46px] rounded-[10px] bg-[var(--ocean-500)] hover:bg-[var(--ocean-700)] text-white font-semibold text-sm inline-flex items-center justify-center gap-2 transition-colors"
-            >
-              <Phone className="w-4 h-4 shrink-0" aria-hidden="true" />
-              <span>Call</span>
-            </a>
-            <a
-              href="https://wa.me/94775841144"
-              target="_blank"
-              rel="noreferrer"
-              className="btn-coral min-h-[46px] text-sm w-full"
-            >
-              <WhatsAppIcon className="w-4 h-4 shrink-0" />
-              <span>WhatsApp</span>
-            </a>
+          <div className="max-w-xl mx-auto grid grid-cols-6 gap-0.5 sm:gap-1.5">
+            {[
+              { id: 'home', label: 'Home', item: navItems[0] },
+              { id: 'tours', label: 'Tour', item: navItems[1] },
+              { id: 'airtickets', label: 'Air Tickets', item: navItems[3] },
+              { id: 'visa', label: 'Visa', item: navItems[2] },
+              { id: 'reviews', label: 'Reviews', item: navItems[4] },
+              { id: 'contact', label: 'Contact US', item: navItems[6] },
+            ].map(({ id, label, item }) => {
+              const Icon = item.icon;
+              return (
+                <button
+                  key={id}
+                  type="button"
+                  onClick={item.onClick}
+                  aria-current={item.isActive ? 'page' : undefined}
+                  className={`relative min-h-[48px] px-0.5 sm:px-2 py-1 rounded-[10px] flex flex-col items-center justify-center gap-0.5 transition-colors ${
+                    item.isActive
+                      ? 'bg-[var(--sky-100)] text-[var(--ocean-500)] font-semibold'
+                      : 'text-[var(--ink)] font-medium hover:bg-[var(--sky-100)] hover:text-[var(--ocean-500)]'
+                  }`}
+                >
+                  {item.isActive && (
+                    <span
+                      className="absolute top-0 left-1/2 -translate-x-1/2 w-5 h-[2.5px] rounded-full bg-[var(--coral)]"
+                      aria-hidden="true"
+                    />
+                  )}
+                  <Icon
+                    className={`w-4 h-4 shrink-0 ${
+                      item.isActive ? 'text-[var(--ocean-500)]' : 'text-[var(--muted)]'
+                    }`}
+                    aria-hidden="true"
+                  />
+                  <span className="text-[9.5px] sm:text-[11px] leading-tight tracking-[-0.02em] sm:tracking-normal whitespace-nowrap">
+                    {label}
+                  </span>
+                </button>
+              );
+            })}
           </div>
-        </div>
+        </nav>
       )}
     </>
   );
