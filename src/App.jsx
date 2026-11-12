@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { flushSync } from 'react-dom';
 import malaysiaReview1 from './assets/reviews/malaysia-genting-temple.jpg';
 import malaysiaReview2 from './assets/reviews/malaysia-batu-caves.jpg';
 import malaysiaReview3 from './assets/reviews/malaysia-sunway-lagoon.jpg';
@@ -1081,37 +1080,14 @@ export default function App() {
 
   const handleSelectCountry = (id) => {
     if (id === selectedCountryId) return;
-    const applySelection = () => {
-      setSelectedCountryId(id);
-      const found = DESTINATIONS.find((d) => d.id === id);
-      if (found) {
-        setCustomConfig((prev) => ({ ...prev, destination: found.country }));
-        setFormData((prev) => ({ ...prev, destination: found.country }));
-      }
-      setActiveTimelineDay(0);
-    };
-
-    const reduceMotion =
-      typeof window !== 'undefined' &&
-      window.matchMedia &&
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    if (!reduceMotion && typeof document !== 'undefined' && typeof document.startViewTransition === 'function') {
-      document.startViewTransition(() => {
-        flushSync(() => {
-          setIsTransitioning(false);
-          applySelection();
-        });
-      });
-      return;
+    setIsTransitioning(false);
+    setSelectedCountryId(id);
+    const found = DESTINATIONS.find((d) => d.id === id);
+    if (found) {
+      setCustomConfig((prev) => ({ ...prev, destination: found.country }));
+      setFormData((prev) => ({ ...prev, destination: found.country }));
     }
-
-    setIsTransitioning(true);
     setActiveTimelineDay(0);
-    setTimeout(() => {
-      applySelection();
-      setIsTransitioning(false);
-    }, 200);
   };
 
   // Send Custom Package to Yash Holidays WhatsApp

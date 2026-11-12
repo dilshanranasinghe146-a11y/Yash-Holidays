@@ -97,25 +97,41 @@ export const HomeSections = ({
   const [quickDest, setQuickDest] = useState(activeDest?.country || 'Bali');
   const [quickDate, setQuickDate] = useState('');
   const [prevHeroBg, setPrevHeroBg] = useState(activeDest?.heroBg || '');
-  const [fadeInActive, setFadeInActive] = useState(true);
   const currentHeroRef = useRef(activeDest?.heroBg || '');
+  const heroTabListRef = useRef(null);
   const destTabRefs = useRef({});
+  const corridorTabListRef = useRef(null);
+  const corridorTabRefs = useRef({});
   const hasMountedDestRef = useRef(false);
+
+  // Preload destination photography once after mount so country switches are instant with zero lag
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      destinations.forEach((d) => {
+        if (d?.heroBg) {
+          const heroImg = new Image();
+          heroImg.referrerPolicy = 'no-referrer';
+          heroImg.src = d.heroBg;
+        }
+        d?.highlights?.slice(0, 3).forEach((h) => {
+          if (h?.img) {
+            const thumb = new Image();
+            thumb.referrerPolicy = 'no-referrer';
+            thumb.src = withUnsplashWidth(h.img, 600);
+          }
+        });
+      });
+    }, 350);
+    return () => clearTimeout(timer);
+  }, [destinations]);
 
   useEffect(() => {
     const nextBg = activeDest?.heroBg;
     if (!nextBg || nextBg === currentHeroRef.current) return;
     setPrevHeroBg(currentHeroRef.current);
     currentHeroRef.current = nextBg;
-    setFadeInActive(false);
-    const raf = requestAnimationFrame(() => {
-      requestAnimationFrame(() => setFadeInActive(true));
-    });
-    const timer = setTimeout(() => setPrevHeroBg(''), 850);
-    return () => {
-      cancelAnimationFrame(raf);
-      clearTimeout(timer);
-    };
+    const timer = setTimeout(() => setPrevHeroBg(''), 320);
+    return () => clearTimeout(timer);
   }, [activeDest?.heroBg]);
 
   useEffect(() => {
@@ -123,10 +139,16 @@ export const HomeSections = ({
       hasMountedDestRef.current = true;
       return;
     }
-    const activeBtn = destTabRefs.current[selectedCountryId];
-    if (activeBtn && typeof activeBtn.scrollIntoView === 'function') {
-      activeBtn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-    }
+    const centerHorizontally = (container, btn) => {
+      if (!container || !btn) return;
+      const cRect = container.getBoundingClientRect();
+      const bRect = btn.getBoundingClientRect();
+      const targetLeft =
+        container.scrollLeft + (bRect.left - cRect.left) - cRect.width / 2 + bRect.width / 2;
+      container.scrollTo({ left: Math.max(0, targetLeft), behavior: 'smooth' });
+    };
+    centerHorizontally(heroTabListRef.current, destTabRefs.current[selectedCountryId]);
+    centerHorizontally(corridorTabListRef.current, corridorTabRefs.current[selectedCountryId]);
   }, [selectedCountryId]);
 
   const handleQuickEnquire = (e) => {
@@ -177,10 +199,8 @@ export const HomeSections = ({
             alt={`${activeDest.country} scenic travel view`}
             fetchpriority="high"
             referrerPolicy="no-referrer"
-            className={`absolute inset-0 w-full h-full object-cover object-center hero-photo-zoom transition-opacity duration-[800ms] ease-out ${
-              fadeInActive ? 'opacity-100' : 'opacity-0'
-            }`}
-            style={{ filter: 'saturate(1.18) contrast(1.06)', viewTransitionName: 'hero-dest-bg' }}
+            className="absolute inset-0 w-full h-full object-cover object-center hero-photo-zoom"
+            style={{ filter: 'saturate(1.18) contrast(1.06)' }}
           />
           {/* Desktop directional white mist wash protecting WCAG AA copy while preserving vivid right photography */}
           <div
@@ -190,12 +210,12 @@ export const HomeSections = ({
                 'linear-gradient(90deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.88) 40%, rgba(255,255,255,0.52) 58%, rgba(255,255,255,0.08) 76%)',
             }}
           />
-          {/* Mobile & Tablet luminous veil: lets vivid travel photo shine clearly behind frosted text panel */}
+          {/* Mobile & Tablet luminous veil: keeps upper scenic photo vibrant & crystal clear before lower cards */}
           <div
             className="lg:hidden absolute inset-0"
             style={{
               background:
-                'linear-gradient(180deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.32) 38%, rgba(255,255,255,0.28) 74%, rgba(245,250,253,0.68) 100%)',
+                'linear-gradient(180deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.04) 24%, rgba(255,255,255,0.06) 52%, rgba(245,250,253,0.72) 100%)',
             }}
           />
         </div>
@@ -203,7 +223,7 @@ export const HomeSections = ({
         {/* Top Destination Selector Bar */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-1 sm:pt-3">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2.5 sm:gap-3">
-            <div className="space-y-0.5 sm:space-y-1 bg-white/75 lg:bg-transparent backdrop-blur-[4px] lg:backdrop-blur-none px-3 py-1.5 lg:p-0 rounded-xl lg:rounded-none border border-white/70 lg:border-0 self-start shadow-sm lg:shadow-none">
+            <div className="space-y-0.5 sm:space-y-1 bg-white/95 lg:bg-transparent px-3 py-1.5 lg:p-0 rounded-xl lg:rounded-none border border-white lg:border-0 self-start shadow-sm lg:shadow-none">
               <span className="font-handwritten text-xl sm:text-[1.75rem] text-[var(--ocean-700)] block leading-none">
                 Plan your dream trip
               </span>
@@ -216,6 +236,7 @@ export const HomeSections = ({
           </div>
 
           <div
+            ref={heroTabListRef}
             className="mt-2.5 sm:mt-3 flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar snap-x snap-proximity pb-1 sm:flex-wrap"
             style={{ scrollPaddingInline: '0.75rem' }}
             role="tablist"
@@ -233,7 +254,7 @@ export const HomeSections = ({
                   role="tab"
                   aria-selected={active}
                   onClick={() => handleSelectCountry(dest.id)}
-                  className={`snap-start min-h-[34px] sm:min-h-[44px] px-2.5 sm:px-3.5 py-1 sm:py-2 rounded-[8px] sm:rounded-[9px] text-[11px] sm:text-sm font-semibold transition-all inline-flex items-center gap-1 sm:gap-1.5 shrink-0 whitespace-nowrap border ${
+                  className={`snap-start min-h-[34px] sm:min-h-[44px] px-2.5 sm:px-3.5 py-1 sm:py-2 rounded-[8px] sm:rounded-[9px] text-[11px] sm:text-sm font-semibold transition-colors inline-flex items-center gap-1 sm:gap-1.5 shrink-0 whitespace-nowrap border ${
                     active
                       ? 'bg-[var(--ocean-700)] text-white border-[var(--ocean-700)] shadow-sm'
                       : 'bg-white/95 text-[var(--ink)] border-[var(--sky-200)] hover:border-[var(--ocean-500)] hover:text-[var(--ocean-700)]'
@@ -247,48 +268,49 @@ export const HomeSections = ({
           </div>
         </div>
 
-        {/* Main Hero Split Body */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto py-5 sm:py-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-10 items-center">
-            {/* Left Column: Typography, Open Info Strip & CTAs */}
-            <div
-              className={`lg:col-span-6 space-y-4 sm:space-y-5 bg-white/70 lg:bg-transparent backdrop-blur-[6px] lg:backdrop-blur-none p-4 sm:p-6 lg:p-0 rounded-2xl lg:rounded-none border border-white/75 lg:border-0 shadow-sm lg:shadow-none transition-opacity duration-[400ms] ease-out ${
-                isTransitioning ? 'opacity-0' : 'opacity-100'
-              }`}
-            >
-              <p className="text-[11px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-[0.22em] text-[var(--ocean-700)] font-semibold">
-                YASH HOLIDAYS SIGNATURE OUTBOUND TOUR
-              </p>
+        {/* Unobstructed Mobile Scenic Window letting Hero Photo shine brightly above the white editorial sheet */}
+        <div className="relative z-10 h-[108px] sm:h-[140px] lg:hidden pointer-events-none" aria-hidden="true" />
 
-              <h1
-                className="hero-headline font-serif font-bold text-[var(--ink)]"
-                style={{ viewTransitionName: 'hero-dest-title', width: 'fit-content' }}
-              >
+        {/* Main Hero Split Body */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto pb-5 pt-2 sm:py-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-8 lg:gap-10 items-center">
+            {/* Left Column: Crisp Editorial Sheet (Mobile) / Open Typography (Desktop) */}
+            <div className="lg:col-span-6 space-y-3.5 sm:space-y-5 bg-white lg:bg-transparent p-5 sm:p-6 lg:p-0 rounded-[22px] lg:rounded-none border border-[var(--sky-200)] lg:border-0 shadow-[0_14px_34px_rgba(20,50,74,0.12)] lg:shadow-none">
+              <div className="flex items-center justify-between gap-2">
+                <p className="text-[11px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-[0.22em] text-[var(--ocean-700)] font-semibold">
+                  YASH HOLIDAYS SIGNATURE OUTBOUND TOUR
+                </p>
+                <span className="lg:hidden text-[11px] font-bold text-[var(--coral)] whitespace-nowrap">
+                  {activeDest.priceFrom}
+                </span>
+              </div>
+
+              <h1 className="hero-headline font-serif font-bold text-[var(--ink)]">
                 {activeDest.name}
               </h1>
 
-              <p className="text-base sm:text-lg text-[var(--ink)] max-w-md font-medium leading-relaxed">
+              <p className="text-[15px] sm:text-lg text-[var(--ink)] max-w-md font-medium leading-relaxed">
                 {activeDest.tagline}
               </p>
 
-              {/* Clean Open Info Strip (no heavy box or border) */}
-              <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-xs sm:text-sm text-[var(--ink)] pt-1 max-w-lg">
-                <span className="inline-flex items-center gap-1.5 font-medium">
+              {/* Clean Open Info Strip */}
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs sm:text-sm text-[var(--ink)] pt-1 max-w-lg border-t border-[var(--sky-100)] lg:border-t-0 lg:pt-1 mt-1">
+                <span className="inline-flex items-center gap-1.5 font-medium pt-2 lg:pt-0">
                   <Clock className="w-4 h-4 text-[var(--ocean-500)] shrink-0" aria-hidden="true" />
                   <span>{activeDest.duration}</span>
                 </span>
-                <span className="w-px h-4 bg-[var(--sky-200)]" aria-hidden="true" />
-                <span className="inline-flex items-center gap-1.5 font-medium">
+                <span className="w-px h-4 bg-[var(--sky-200)] hidden sm:inline-block" aria-hidden="true" />
+                <span className="inline-flex items-center gap-1.5 font-medium pt-2 lg:pt-0">
                   <Plane className="w-4 h-4 text-[var(--ocean-500)] shrink-0" aria-hidden="true" />
                   <span>{activeDest.flightRoute}</span>
                 </span>
-                <span className="w-px h-4 bg-[var(--sky-200)]" aria-hidden="true" />
-                <span className="font-bold text-[var(--ocean-700)]">
+                <span className="w-px h-4 bg-[var(--sky-200)] hidden lg:inline-block" aria-hidden="true" />
+                <span className="hidden lg:inline font-bold text-[var(--ocean-700)]">
                   Packages from {activeDest.priceFrom}
                 </span>
               </div>
 
-              <div className="flex flex-wrap items-center gap-2.5 xl:gap-3.5 pt-2">
+              <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-2.5 xl:gap-3.5 pt-2">
                 <a
                   href="#customizer"
                   onClick={() =>
@@ -298,40 +320,38 @@ export const HomeSections = ({
                         activeDest.country === 'Bali' ? 'Bali, Indonesia' : activeDest.country,
                     }))
                   }
-                  className="btn-coral px-5 xl:px-6 py-3 text-sm whitespace-nowrap"
+                  className="btn-coral w-full sm:w-auto px-5 xl:px-6 py-3 text-sm whitespace-nowrap justify-center"
                 >
                   <span>Get a Free Quote</span>
                   <ArrowRight className="w-4 h-4 shrink-0" aria-hidden="true" />
                 </a>
 
-                <a
-                  href={`https://wa.me/94775841144?text=${encodeURIComponent(
-                    `Hello Yash Holidays! I would like a quote for ${activeDest.country} (${activeDest.duration}).`
-                  )}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="btn-outline-ocean bg-white/95 px-4 xl:px-5 py-3 text-sm whitespace-nowrap"
-                >
-                  <WhatsAppIcon className="w-4 h-4" />
-                  <span>WhatsApp Us</span>
-                </a>
+                <div className="grid grid-cols-2 sm:flex sm:items-center gap-2.5 w-full sm:w-auto">
+                  <a
+                    href={`https://wa.me/94775841144?text=${encodeURIComponent(
+                      `Hello Yash Holidays! I would like a quote for ${activeDest.country} (${activeDest.duration}).`
+                    )}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="btn-outline-ocean bg-white/95 px-3 sm:px-4 xl:px-5 py-2.5 sm:py-3 text-xs sm:text-sm whitespace-nowrap justify-center"
+                  >
+                    <WhatsAppIcon className="w-4 h-4 shrink-0" />
+                    <span>WhatsApp Us</span>
+                  </a>
 
-                <a
-                  href="#customizer"
-                  className="link-underline text-sm px-2.5 py-2 min-h-[44px] rounded-lg bg-white/80 whitespace-nowrap"
-                >
-                  <span>Book {activeDest.name}</span>
-                  <ArrowRight className="w-4 h-4 shrink-0" aria-hidden="true" />
-                </a>
+                  <a
+                    href="#customizer"
+                    className="link-underline justify-center text-xs sm:text-sm px-3 py-2.5 min-h-[44px] rounded-[10px] border border-[var(--sky-200)] lg:border-0 bg-[var(--mist)] lg:bg-white/80 whitespace-nowrap"
+                  >
+                    <span>Book {activeDest.name}</span>
+                    <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" aria-hidden="true" />
+                  </a>
+                </div>
               </div>
             </div>
 
             {/* Right Column: Asymmetric 5 Highlight Photo Strip / Mosaic */}
-            <div
-              className={`lg:col-span-6 space-y-3 transition-opacity duration-[400ms] ease-out ${
-                isTransitioning ? 'opacity-0' : 'opacity-100'
-              }`}
-            >
+            <div className="lg:col-span-6 space-y-3">
               <div className="flex items-center justify-between text-xs text-[var(--ink)] bg-white/95 px-3.5 py-2 rounded-lg border border-[var(--sky-200)] shadow-[0_1px_2px_rgba(20,50,74,0.05)]">
                 <span className="font-semibold text-[var(--ocean-700)] uppercase tracking-wider">
                   100% Customizable
@@ -737,17 +757,24 @@ export const HomeSections = ({
           </div>
 
           {/* Mobile & Tablet (< lg): Compact Horizontal Destination Switcher Rail */}
-          <div className="lg:hidden mb-5">
-            <div className="w-full flex overflow-x-auto no-scrollbar gap-2.5 pb-1">
+          <div className="lg:hidden mb-4">
+            <div
+              ref={corridorTabListRef}
+              className="w-full flex overflow-x-auto no-scrollbar gap-2 pb-1 snap-x snap-proximity"
+              style={{ scrollPaddingInline: '0.75rem' }}
+            >
               {destinations.map((d, idx) => {
                 const isSelected = d.id === selectedCountryId;
                 return (
                   <button
                     key={d.id}
+                    ref={(el) => {
+                      if (el) corridorTabRefs.current[d.id] = el;
+                    }}
                     type="button"
                     onClick={() => handleSelectCountry(d.id)}
                     aria-pressed={isSelected}
-                    className={`min-h-[46px] px-3.5 py-2 rounded-full border flex items-center gap-2.5 shrink-0 transition-all text-left ${
+                    className={`snap-start min-h-[38px] px-2.5 py-1.5 rounded-[10px] border flex items-center gap-2 shrink-0 transition-colors text-left ${
                       isSelected
                         ? 'bg-[var(--ocean-700)] border-[var(--ocean-700)] text-white shadow-sm'
                         : 'bg-[var(--mist)] border-[var(--sky-200)] text-[var(--ink)] hover:border-[var(--ocean-500)]'
@@ -758,9 +785,9 @@ export const HomeSections = ({
                       alt={d.country}
                       loading="lazy"
                       referrerPolicy="no-referrer"
-                      className="w-7 h-7 rounded-full object-cover border border-white/80 shrink-0"
+                      className="w-6 h-6 rounded-[7px] object-cover border border-white/80 shrink-0"
                     />
-                    <span className="text-xs font-semibold whitespace-nowrap">
+                    <span className="text-[11px] font-semibold whitespace-nowrap">
                       <span className={isSelected ? 'text-[var(--sky-200)] mr-1' : 'text-[var(--ocean-500)] mr-1'}>
                         0{idx + 1}
                       </span>
@@ -830,14 +857,10 @@ export const HomeSections = ({
             </div>
 
             {/* Right Editorial Lookbook Panel for Active Destination */}
-            <article
-              className={`lg:col-span-7 bg-white rounded-[20px] border border-[var(--sky-200)] shadow-card overflow-hidden flex flex-col justify-between transition-opacity duration-200 ${
-                isTransitioning ? 'opacity-60' : 'opacity-100'
-              }`}
-            >
-              {/* Top Asymmetric Visual Collage */}
-              <div className="grid grid-cols-12 gap-3 p-3 pb-0">
-                <div className="col-span-12 sm:col-span-8 relative h-56 sm:h-72 rounded-[14px] overflow-hidden bg-[var(--mist)]">
+            <article className="lg:col-span-7 bg-white rounded-[20px] border border-[var(--sky-200)] shadow-card overflow-hidden flex flex-col justify-between">
+              {/* Top Asymmetric Visual Collage (shows 3 vivid photos on BOTH mobile and desktop) */}
+              <div className="grid grid-cols-12 gap-2.5 sm:gap-3 p-2.5 sm:p-3 pb-0">
+                <div className="col-span-12 sm:col-span-8 relative h-52 sm:h-72 rounded-[14px] overflow-hidden bg-[var(--mist)]">
                   <img
                     key={`${activeDest.id}-main`}
                     src={withUnsplashWidth(activeDest.heroBg, 1000)}
@@ -845,31 +868,59 @@ export const HomeSections = ({
                     loading="lazy"
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover card-photo-zoom"
+                    style={{ filter: 'saturate(1.12) contrast(1.04)' }}
                   />
-                  <div className="absolute top-3 left-3 right-3 flex flex-wrap items-center justify-between gap-2 pointer-events-none">
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[8px] bg-white/95 text-[var(--ocean-700)] text-[11px] font-semibold tracking-wide shadow-sm border-l-[3px] border-[var(--coral)]">
-                      <Plane className="w-3.5 h-3.5 text-[var(--ocean-500)] shrink-0" aria-hidden="true" />
-                      <span className="truncate max-w-[230px] sm:max-w-none">{activeDest.flightRoute}</span>
+                  {/* Top Route & Price tags */}
+                  <div className="absolute top-2.5 left-2.5 right-2.5 flex items-center justify-between gap-2 pointer-events-none">
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[8px] bg-white/95 text-[var(--ocean-700)] text-[11px] font-semibold tracking-wide shadow-sm border-l-[3px] border-[var(--coral)]">
+                      <Plane className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[var(--ocean-500)] shrink-0" aria-hidden="true" />
+                      <span className="truncate max-w-[190px] sm:max-w-none">{activeDest.flightRoute}</span>
                     </span>
+                    <span className="px-2.5 py-1 rounded-[8px] bg-[var(--ocean-700)] text-white text-[11px] font-bold shadow-sm whitespace-nowrap">
+                      {activeDest.priceFrom}
+                    </span>
+                  </div>
+
+                  {/* Luminous Bottom Magazine Scrim with Country & Cities directly inside hero photo */}
+                  <div
+                    className="absolute inset-x-0 bottom-0 p-3.5 sm:p-4 pt-12 flex flex-col justify-end"
+                    style={{
+                      background:
+                        'linear-gradient(to top, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.82) 55%, transparent 100%)',
+                    }}
+                  >
+                    <p className="flex items-center gap-1.5 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.16em] text-[var(--ocean-700)]">
+                      <MapPin className="w-3 h-3 text-[var(--lagoon)] shrink-0" aria-hidden="true" />
+                      <span className="truncate">{stageInfo.highlightCities}</span>
+                    </p>
+                    <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[var(--ink)] leading-tight mt-0.5">
+                      {activeDest.country}
+                    </h3>
                   </div>
                 </div>
 
-                {/* Secondary Curated Experience Frames */}
-                <div className="hidden sm:grid sm:col-span-4 grid-rows-2 gap-3 h-72">
+                {/* Secondary Curated Experience Frames: Stacked side on Desktop (sm+), Pair row below on Mobile */}
+                <div className="col-span-12 sm:col-span-4 grid grid-cols-2 sm:grid-cols-1 sm:grid-rows-2 gap-2.5 sm:gap-3 h-28 sm:h-72">
                   {activeDest.highlights.slice(2, 4).map((item, idx) => (
                     <div
                       key={`${activeDest.id}-sub-${idx}`}
-                      className="relative rounded-[14px] overflow-hidden border border-[var(--sky-100)] bg-[var(--mist)]"
+                      className="relative rounded-[12px] sm:rounded-[14px] overflow-hidden border border-[var(--sky-100)] bg-[var(--mist)] group"
                     >
                       <img
                         src={withUnsplashWidth(item.img, 600)}
                         alt={item.sub}
                         loading="lazy"
                         referrerPolicy="no-referrer"
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover card-photo-zoom"
                       />
-                      <div className="absolute inset-x-2 bottom-2 bg-white/95 px-2.5 py-1.5 rounded-[8px] shadow-sm">
-                        <p className="text-[11px] font-semibold text-[var(--ink)] leading-tight line-clamp-1">
+                      <div
+                        className="absolute inset-x-0 bottom-0 p-2 pt-6"
+                        style={{
+                          background:
+                            'linear-gradient(to top, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.68) 60%, transparent 100%)',
+                        }}
+                      >
+                        <p className="text-[10px] sm:text-[11px] font-bold text-[var(--ink)] leading-tight line-clamp-1">
                           {item.sub}
                         </p>
                       </div>
@@ -879,33 +930,30 @@ export const HomeSections = ({
               </div>
 
               {/* Editorial Story, Signature Experiences & Actions */}
-              <div className="p-5 sm:p-7 flex-1 flex flex-col justify-between gap-5">
+              <div className="p-4 sm:p-6 flex-1 flex flex-col justify-between gap-4">
                 <div>
-                  <div className="flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-[var(--ocean-700)]">
-                    <MapPin className="w-3.5 h-3.5 text-[var(--lagoon)] shrink-0" aria-hidden="true" />
-                    <span>{stageInfo.highlightCities}</span>
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <p className="text-sm sm:text-base font-semibold text-[var(--ocean-700)]">
+                      {activeDest.tagline}
+                    </p>
+                    <span className="text-xs font-semibold text-[var(--coral)]">
+                      {activeDest.duration}
+                    </span>
                   </div>
-
-                  <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[var(--ink)] mt-1.5">
-                    {activeDest.country}
-                  </h3>
-                  <p className="text-sm font-medium text-[var(--ocean-700)] mt-0.5">
-                    {activeDest.tagline}
-                  </p>
-                  <p className="text-sm sm:text-base text-[var(--muted)] leading-relaxed mt-3">
+                  <p className="text-xs sm:text-sm text-[var(--muted)] leading-relaxed mt-2">
                     {activeDest.introText}
                   </p>
 
-                  {/* Unified Editorial Experiential Divider Strip (replaces boxed cards) */}
-                  <div className="mt-5 grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-[var(--sky-200)] border-y border-[var(--sky-200)] py-3 bg-[var(--mist)]/60 rounded-lg">
+                  {/* Unified Editorial Experiential Highlights */}
+                  <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-0 sm:divide-x divide-[var(--sky-200)] border-y border-[var(--sky-200)] py-2.5 sm:py-3 bg-[var(--mist)]/75 rounded-xl px-3">
                     {activeDest.highlights.slice(2, 5).map((item, idx) => (
                       <div
                         key={idx}
-                        className="py-2 sm:py-0 sm:px-3.5 flex items-start gap-2.5 first:pt-0 sm:first:pl-3 last:pb-0"
+                        className="py-1 sm:py-0 sm:px-3 flex items-start gap-2 sm:first:pl-0"
                       >
                         <Compass className="w-4 h-4 text-[var(--lagoon)] shrink-0 mt-0.5" aria-hidden="true" />
                         <div className="min-w-0">
-                          <p className="text-[11px] font-bold uppercase tracking-wider text-[var(--ocean-700)] leading-tight">
+                          <p className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[var(--ocean-700)] leading-tight">
                             {item.label}
                           </p>
                           <p className="text-xs text-[var(--ink)] font-medium mt-0.5 leading-snug">
@@ -917,7 +965,7 @@ export const HomeSections = ({
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-[var(--sky-100)] flex flex-wrap items-center justify-between gap-3">
+                <div className="pt-3 border-t border-[var(--sky-100)] flex flex-wrap items-center justify-between gap-2.5 sm:gap-3">
                   <a
                     href="#customizer"
                     onClick={() =>
@@ -926,7 +974,7 @@ export const HomeSections = ({
                         destination: activeDest.country,
                       }))
                     }
-                    className="btn-coral px-5 py-2.5 text-sm"
+                    className="btn-coral px-4 sm:px-5 py-2.5 text-xs sm:text-sm"
                   >
                     <span>Tailor {activeDest.country} Trip</span>
                     <ArrowRight className="w-4 h-4 shrink-0" aria-hidden="true" />
