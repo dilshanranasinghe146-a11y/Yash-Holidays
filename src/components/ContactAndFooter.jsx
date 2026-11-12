@@ -10,7 +10,7 @@ import {
   Lock,
   ArrowRight,
 } from 'lucide-react';
-import { YashLogo, WhatsAppIcon, GoogleIcon } from './TravelUI';
+import { YashLogo, WhatsAppIcon, GoogleIcon, SectionWave } from './TravelUI';
 
 export const ContactSection = ({
   formData,
@@ -22,7 +22,7 @@ export const ContactSection = ({
   googleMapsUrl,
   googleReviewsUrl,
 }) => (
-    <section id="contact" className="py-16 sm:py-24 bg-[var(--sky-100)] border-t border-[var(--sky-200)]">
+    <section id="contact" className="section-space bg-mesh-sky border-t border-[var(--sky-200)]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
           {/* Left Column: Crisp White Enquiry Card */}
@@ -31,17 +31,17 @@ export const ContactSection = ({
               <span className="font-handwritten text-2xl text-[var(--ocean-500)] block mb-1">
                 Speak with a specialist
               </span>
-              <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[var(--ink)] leading-snug">
+              <h2 id="contact-form-heading" className="font-serif text-2xl sm:text-3xl font-bold text-[var(--ink)] leading-snug">
                 Want to join us,
                 <br />
-                <span>but still have questions?</span>
+                <span className="editorial-italic">but still have questions?</span>
               </h2>
               <p className="text-sm text-[var(--muted)] mt-3 mb-7">
                 Leave a request for tours, air tickets, visa or insurance
               </p>
 
               {formSubmitted ? (
-                <div className="p-6 rounded-2xl bg-[var(--sky-50)] border border-[var(--sky-200)] text-center space-y-4">
+                <div className="p-6 rounded-2xl bg-[var(--mist)] border border-[var(--sky-200)] text-center space-y-4">
                   <CheckCircle2 className="w-10 h-10 text-[#15803D] mx-auto" aria-hidden="true" />
                   <h3 className="font-serif text-xl font-bold text-[var(--ink)]">Request Received!</h3>
                   <p className="text-xs sm:text-sm text-[var(--muted)]">
@@ -58,13 +58,13 @@ export const ContactSection = ({
                   <button
                     type="button"
                     onClick={() => setFormSubmitted(false)}
-                    className="text-xs text-[var(--ocean-700)] underline block mx-auto font-medium"
+                    className="text-xs text-[var(--ocean-700)] underline block mx-auto font-medium min-h-[44px]"
                   >
                     Submit another inquiry
                   </button>
                 </div>
               ) : (
-                <form onSubmit={handleFormSubmit} className="space-y-4">
+                <form aria-labelledby="contact-form-heading" onSubmit={handleFormSubmit} className="space-y-4">
                   <div>
                     <label
                       htmlFor="contact-name"
@@ -74,9 +74,11 @@ export const ContactSection = ({
                     </label>
                     <input
                       id="contact-name"
+                      name="name"
                       type="text"
                       required
                       autoComplete="name"
+                      enterKeyHint="next"
                       placeholder="Your name"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -93,9 +95,12 @@ export const ContactSection = ({
                     </label>
                     <input
                       id="contact-phone"
+                      name="phone"
                       type="tel"
                       required
                       autoComplete="tel"
+                      inputMode="tel"
+                      enterKeyHint="next"
                       placeholder="Phone / WhatsApp number"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
@@ -113,6 +118,7 @@ export const ContactSection = ({
                       </label>
                       <select
                         id="contact-service"
+                        name="service"
                         value={formData.service}
                         onChange={(e) => setFormData({ ...formData, service: e.target.value })}
                         className="travel-select w-full px-3 py-2.5 text-sm"
@@ -134,6 +140,7 @@ export const ContactSection = ({
                       </label>
                       <select
                         id="contact-dest"
+                        name="destination"
                         value={formData.destination}
                         onChange={(e) => setFormData({ ...formData, destination: e.target.value })}
                         className="travel-select w-full px-3 py-2.5 text-sm"
@@ -160,7 +167,9 @@ export const ContactSection = ({
                     </label>
                     <input
                       id="contact-comment"
+                      name="comment"
                       type="text"
+                      enterKeyHint="send"
                       placeholder="Dates, number of travelers, etc."
                       value={formData.comment}
                       onChange={(e) => setFormData({ ...formData, comment: e.target.value })}
@@ -182,14 +191,14 @@ export const ContactSection = ({
                 href="https://wa.me/94775841144"
                 target="_blank"
                 rel="noreferrer"
-                className="link-underline text-xs"
+                className="link-underline text-xs min-h-[36px]"
               >
                 Chat on WhatsApp →
               </a>
             </div>
           </div>
 
-          {/* Right Column: Contact Cards, Google Map & Rating Strip */}
+          {/* Right Column: Unified Contact Directory Strip, Google Map & Rating Strip */}
           <div className="lg:col-span-7 flex flex-col justify-between gap-5">
             {/* Mobile: Big tap-friendly action buttons */}
             <div className="grid grid-cols-2 gap-3 sm:hidden">
@@ -205,15 +214,15 @@ export const ContactSection = ({
                 href="https://wa.me/94775841144?text=Hello%20Yash%20Holidays!%20I%20would%20like%20a%20travel%20quote."
                 target="_blank"
                 rel="noreferrer"
-                className="flex flex-col items-center justify-center gap-1.5 p-4 min-h-[92px] rounded-2xl bg-[#15803D] hover:bg-[#166534] text-white shadow-sm transition-colors"
+                className="flex flex-col items-center justify-center gap-1.5 p-4 min-h-[92px] rounded-2xl bg-[var(--coral)] hover:bg-[var(--coral-hover)] text-white shadow-sm transition-colors"
               >
                 <WhatsAppIcon className="w-5 h-5" />
                 <span className="text-xs font-bold tracking-wide">WhatsApp</span>
-                <span className="text-[11px] text-white/90">+94 77 584 1144</span>
+                <span className="text-[11px] text-white/95">+94 77 584 1144</span>
               </a>
               <a
                 href="mailto:yashholidays.lk@gmail.com"
-                className="flex flex-col items-center justify-center gap-1.5 p-3.5 min-h-[92px] rounded-2xl bg-white border border-[var(--sky-200)] text-[var(--ink)] shadow-sm active:bg-[var(--sky-50)] transition-colors text-center"
+                className="flex flex-col items-center justify-center gap-1.5 p-3.5 min-h-[92px] rounded-2xl bg-white border border-[var(--sky-200)] text-[var(--ink)] shadow-sm active:bg-[var(--mist)] transition-colors text-center"
               >
                 <Mail className="w-5 h-5 text-[var(--ocean-500)]" aria-hidden="true" />
                 <span className="text-xs font-bold tracking-wide">Email Us</span>
@@ -223,7 +232,7 @@ export const ContactSection = ({
                 href={googleMapsUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="flex flex-col items-center justify-center gap-1.5 p-4 min-h-[92px] rounded-2xl bg-white border border-[var(--sky-200)] text-[var(--ink)] shadow-sm active:bg-[var(--sky-50)] transition-colors"
+                className="flex flex-col items-center justify-center gap-1.5 p-4 min-h-[92px] rounded-2xl bg-white border border-[var(--sky-200)] text-[var(--ink)] shadow-sm active:bg-[var(--mist)] transition-colors"
               >
                 <MapPin className="w-5 h-5 text-[var(--coral)]" aria-hidden="true" />
                 <span className="text-xs font-bold tracking-wide">Get Directions</span>
@@ -231,9 +240,9 @@ export const ContactSection = ({
               </a>
             </div>
 
-            {/* Desktop / tablet: original small info cards */}
-            <div className="hidden sm:grid grid-cols-2 lg:grid-cols-4 gap-3.5">
-              <div className="p-4 rounded-2xl bg-white border border-[var(--sky-200)] shadow-sm">
+            {/* Desktop / tablet: unified hairline editorial contact directory */}
+            <div className="hidden sm:grid grid-cols-2 lg:grid-cols-4 rounded-2xl bg-white border border-[var(--sky-200)] shadow-card divide-y lg:divide-y-0 lg:divide-x divide-[var(--sky-100)]">
+              <div className="p-4">
                 <div className="flex items-center gap-1.5 text-[var(--ocean-700)] text-xs font-bold uppercase tracking-wider mb-1">
                   <MapPin className="w-3.5 h-3.5 text-[var(--ocean-500)] shrink-0" aria-hidden="true" />
                   <span>Visit Our Office</span>
@@ -243,7 +252,7 @@ export const ContactSection = ({
                 </p>
               </div>
 
-              <div className="p-4 rounded-2xl bg-white border border-[var(--sky-200)] shadow-sm">
+              <div className="p-4">
                 <div className="flex items-center gap-1.5 text-[var(--ocean-700)] text-xs font-bold uppercase tracking-wider mb-1">
                   <Phone className="w-3.5 h-3.5 text-[var(--ocean-500)] shrink-0" aria-hidden="true" />
                   <span>Direct Hotline</span>
@@ -257,7 +266,7 @@ export const ContactSection = ({
                 <p className="text-[11px] text-[var(--muted)] mt-0.5">Yash Holidays Desk</p>
               </div>
 
-              <div className="p-4 rounded-2xl bg-white border border-[var(--sky-200)] shadow-sm">
+              <div className="p-4">
                 <div className="flex items-center gap-1.5 text-[#15803D] text-xs font-bold uppercase tracking-wider mb-1">
                   <WhatsAppIcon className="w-3.5 h-3.5" />
                   <span>24/7 WhatsApp</span>
@@ -278,23 +287,23 @@ export const ContactSection = ({
                 </a>
               </div>
 
-              <div className="p-4 rounded-2xl bg-white border border-[var(--sky-200)] shadow-sm">
+              <div className="p-4">
                 <div className="flex items-center gap-1.5 text-[var(--ocean-700)] text-xs font-bold uppercase tracking-wider mb-1">
                   <Mail className="w-3.5 h-3.5 text-[var(--ocean-500)] shrink-0" aria-hidden="true" />
                   <span>Official Email</span>
                 </div>
                 <a
                   href="mailto:yashholidays.lk@gmail.com"
-                  className="block text-xs text-[var(--ink)] font-bold hover:text-[var(--ocean-500)] break-all"
+                  className="block text-xs text-[var(--ink)] font-bold hover:text-[var(--ocean-500)]"
                 >
-                  yashholidays.lk@gmail.com
+                  yashholidays.lk@<wbr />gmail.com
                 </a>
                 <p className="text-[11px] text-[var(--muted)] mt-0.5">Inquiries &amp; Documents</p>
               </div>
             </div>
 
             {/* Embedded Interactive Google Map */}
-            <div className="relative flex-1 min-h-[300px] sm:min-h-[340px] rounded-2xl overflow-hidden border border-[var(--sky-200)] shadow-card bg-[var(--sky-50)]">
+            <div className="relative flex-1 min-h-[300px] sm:min-h-[340px] rounded-2xl overflow-hidden border border-[var(--sky-200)] shadow-card bg-[var(--mist)]">
               <iframe
                 title="Yash Holidays Pvt Ltd Boralesgamuwa Google Map"
                 src="https://www.google.com/maps?q=276a/2E+Dehiwala+Rd,+Boralesgamuwa,+Sri+Lanka&output=embed"
@@ -317,17 +326,17 @@ export const ContactSection = ({
                   href={googleMapsUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="px-3 py-1.5 rounded-lg bg-[var(--sky-100)] text-[var(--ocean-700)] hover:bg-[var(--ocean-700)] hover:text-white text-xs font-semibold transition-colors shrink-0"
+                  className="px-3 py-1.5 min-h-[36px] inline-flex items-center rounded-lg bg-[var(--sky-100)] text-[var(--ocean-700)] hover:bg-[var(--ocean-700)] hover:text-white text-xs font-semibold transition-colors shrink-0"
                 >
                   Directions
                 </a>
               </div>
             </div>
 
-            {/* Google Reviews Strip */}
-            <div className="p-4 rounded-2xl bg-white border border-[var(--sky-200)] shadow-sm flex flex-col sm:flex-row items-center justify-between gap-3">
+            {/* Google Reviews Strip (no bordered pill badge) */}
+            <div className="p-4 rounded-2xl bg-white border border-[var(--sky-200)] shadow-card flex flex-col sm:flex-row items-center justify-between gap-3">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-[var(--sky-50)] border border-[var(--sky-200)] flex items-center justify-center p-2 shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-[var(--mist)] border border-[var(--sky-200)] flex items-center justify-center p-2 shrink-0">
                   <GoogleIcon className="w-5 h-5" />
                 </div>
                 <div className="text-left">
@@ -335,13 +344,14 @@ export const ContactSection = ({
                     <span className="text-xs sm:text-sm font-bold text-[var(--ink)]">
                       4.9 Star Google Rating
                     </span>
-                    <div className="flex text-amber-500">
+                    <div className="flex text-[var(--gold)]">
                       {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-3 h-3 fill-amber-500" aria-hidden="true" />
+                        <Star key={i} className="w-3.5 h-3.5 fill-amber-500 text-amber-500" aria-hidden="true" />
                       ))}
                     </div>
-                    <span className="text-[10px] font-bold text-[#15803D] bg-[#F0FDF4] px-1.5 py-0.5 rounded border border-[#BBF7D0]">
-                      Verified
+                    <span className="inline-flex items-center gap-1 text-[11px] font-bold text-[#15803D]">
+                      <CheckCircle2 className="w-3.5 h-3.5" aria-hidden="true" />
+                      <span>Verified</span>
                     </span>
                   </div>
                   <p className="text-xs text-[var(--muted)] mt-0.5">
@@ -354,7 +364,7 @@ export const ContactSection = ({
                 href={googleReviewsUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="btn-outline-ocean px-4 py-2 min-h-[38px] text-xs shrink-0"
+                className="btn-outline-ocean px-4 py-2 min-h-[44px] text-xs shrink-0"
               >
                 <GoogleIcon className="w-3.5 h-3.5" />
                 <span>Review on Google</span>
@@ -449,7 +459,11 @@ export const SiteFooter = ({
   };
 
   return (
-    <footer className="bg-[var(--ocean-700)] text-white">
+    <>
+      <div className="-mt-6 sm:-mt-10 relative z-10 pointer-events-none">
+        <SectionWave fill="var(--ocean-700)" bg="transparent" />
+      </div>
+      <footer className="bg-[var(--ocean-700)] text-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-24 sm:pt-14 sm:pb-24 lg:py-14">
         {/* Compact & Centered Mobile Footer (< sm) */}
         <div className="sm:hidden text-center space-y-5">
@@ -649,7 +663,7 @@ export const SiteFooter = ({
         </div>
 
         {/* Bottom Copyright & Host Access Bar (sm+) */}
-        <div className="hidden sm:flex pt-6 flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[var(--sky-100)]">
+        <div className="hidden sm:flex pt-6 flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[var(--sky-100)] min-[1101px]:pr-40">
           <p>
             Yash Holidays Pvt Ltd • Boralesgamuwa, Sri Lanka
           </p>
@@ -666,5 +680,6 @@ export const SiteFooter = ({
         </div>
       </div>
     </footer>
+    </>
   );
 };

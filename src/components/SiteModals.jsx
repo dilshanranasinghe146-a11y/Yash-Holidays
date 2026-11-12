@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { X, Camera, Star, Check, Lock } from 'lucide-react';
 import { WhatsAppIcon } from './TravelUI';
 
@@ -19,7 +19,33 @@ export const SiteModals = ({
   setOwnerPasswordInput,
   ownerPasswordError,
   setOwnerPasswordError,
-}) => (
+}) => {
+  useEffect(() => {
+    if (!isReviewModalOpen && !activePhotoModal && !isOwnerLoginModalOpen) return undefined;
+    const onKeyDown = (e) => {
+      if (e.key !== 'Escape') return;
+      if (activePhotoModal) setActivePhotoModal(null);
+      else if (isReviewModalOpen) setIsReviewModalOpen(false);
+      else if (isOwnerLoginModalOpen) {
+        setIsOwnerLoginModalOpen(false);
+        setOwnerPasswordError('');
+        setOwnerPasswordInput('');
+      }
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [
+    isReviewModalOpen,
+    activePhotoModal,
+    isOwnerLoginModalOpen,
+    setActivePhotoModal,
+    setIsReviewModalOpen,
+    setIsOwnerLoginModalOpen,
+    setOwnerPasswordError,
+    setOwnerPasswordInput,
+  ]);
+
+  return (
   <>
     {/* Desktop-only Single Floating WhatsApp Action Button (Bottom Right) */}
     <a
@@ -28,7 +54,7 @@ export const SiteModals = ({
       rel="noreferrer"
       title="WhatsApp Yash Holidays (+94 77 584 1144)"
       aria-label="Chat on WhatsApp with Yash Holidays"
-      className="hidden lg:inline-flex fixed bottom-6 right-6 z-40 items-center gap-2.5 px-4 py-3 rounded-full bg-[var(--coral)] hover:bg-[var(--coral-hover)] text-white font-semibold text-sm shadow-card transition-all hover:-translate-y-0.5"
+      className="hidden min-[1101px]:inline-flex fixed bottom-6 right-6 z-40 items-center gap-2.5 px-4 py-3 rounded-full bg-[var(--coral)] hover:bg-[var(--coral-hover)] text-white font-semibold text-sm shadow-card transition-colors min-[1101px]:hover:-translate-y-0.5"
     >
       <WhatsAppIcon className="w-5 h-5 text-white" />
       <span>WhatsApp</span>
@@ -40,7 +66,7 @@ export const SiteModals = ({
         role="dialog"
         aria-modal="true"
         aria-labelledby="review-modal-title"
-        className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1B3A52]/60 overflow-y-auto modal-scroll"
+        className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#14324A]/65 overflow-y-auto modal-scroll"
       >
         <div className="relative w-full max-w-lg p-6 sm:p-8 rounded-3xl bg-white border border-[var(--sky-200)] shadow-card my-8">
           <button
@@ -252,7 +278,7 @@ export const SiteModals = ({
       <div
         role="dialog"
         aria-modal="true"
-        className="fixed inset-0 z-[100] bg-[#1B3A52]/80 flex items-center justify-center p-3 sm:p-6 modal-scroll"
+        className="fixed inset-0 z-[100] bg-[#14324A]/80 flex items-center justify-center p-3 sm:p-6 modal-scroll"
         onClick={() => setActivePhotoModal(null)}
       >
         <div
@@ -283,10 +309,11 @@ export const SiteModals = ({
             </button>
           </div>
 
-          <div className="relative flex-1 flex items-center justify-center bg-[var(--sky-50)] p-2 sm:p-4 overflow-hidden">
+          <div className="relative flex-1 flex items-center justify-center bg-[var(--mist)] p-2 sm:p-4 overflow-hidden">
             <img
               src={activePhotoModal.url}
               alt={activePhotoModal.title}
+              referrerPolicy="no-referrer"
               className="max-h-[72dvh] w-auto max-w-full object-contain rounded-xl shadow-md"
             />
           </div>
@@ -311,7 +338,7 @@ export const SiteModals = ({
 
     {/* Floating Host / Owner Mode Indicator */}
     {isOwnerMode && (
-      <div className="fixed bottom-20 lg:bottom-6 left-4 z-50 bg-white border-2 border-amber-400 shadow-card rounded-2xl px-4 py-2.5 flex items-center gap-3">
+      <div className="fixed bottom-20 min-[1101px]:bottom-6 left-4 z-50 bg-white border-2 border-amber-400 shadow-card rounded-2xl px-4 py-2.5 flex items-center gap-3">
         <div className="flex items-center gap-2">
           <span className="w-2.5 h-2.5 rounded-full bg-amber-500" aria-hidden="true" />
           <span className="text-xs font-bold text-[var(--ink)]">Host / Owner Mode Active</span>
@@ -342,7 +369,7 @@ export const SiteModals = ({
         role="dialog"
         aria-modal="true"
         aria-labelledby="owner-login-title"
-        className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1B3A52]/60 modal-scroll"
+        className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#14324A]/65 modal-scroll"
       >
         <div className="relative w-full max-w-sm p-6 rounded-3xl bg-white border border-[var(--sky-200)] shadow-card text-left">
           <button
@@ -400,7 +427,9 @@ export const SiteModals = ({
               </label>
               <input
                 id="host-password-input"
+                name="password"
                 type="password"
+                autoComplete="current-password"
                 autoFocus
                 required
                 placeholder="Enter Host Password..."
@@ -440,4 +469,5 @@ export const SiteModals = ({
       </div>
     )}
   </>
-);
+  );
+};

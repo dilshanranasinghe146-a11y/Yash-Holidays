@@ -325,11 +325,11 @@ export const SectionWave = ({ fill = '#FFFFFF', bg = 'transparent', flip = false
   </div>
 );
 
-// Subtle passport-stamp travel accent (non-interactive corner ornament)
+// Subtle passport-stamp travel accent (non-interactive corner ornament, straight orientation)
 export const PassportStampAccent = ({ code = 'CMB', label = 'BORALESGAMUWA • LK' }) => (
   <div
     aria-hidden="true"
-    className="hidden sm:flex items-center gap-2 border border-dashed border-[var(--sky-200)] rounded-xl px-3 py-1.5 text-[var(--ocean-500)] -rotate-2 select-none bg-white/75"
+    className="hidden sm:flex items-center gap-2 border border-dashed border-[var(--sky-200)] rounded-xl px-3 py-1.5 text-[var(--ocean-500)] select-none bg-white/80"
   >
     <Compass className="w-4 h-4 shrink-0" />
     <div className="leading-none text-left">

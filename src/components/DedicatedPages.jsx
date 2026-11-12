@@ -41,9 +41,9 @@ export const VisaServicesPage = ({
   setVisaNote,
   sendVisaInquiryToWhatsApp,
 }) => (
-  <div className="pt-16 lg:pt-[74px]">
+  <div className="pt-16 min-[1101px]:pt-[74px]">
     {/* Visa Services Light Editorial Hero */}
-    <section className="relative py-16 sm:py-20 overflow-hidden bg-[var(--sky-100)] border-b border-[var(--sky-200)]">
+    <section className="relative py-16 sm:py-20 overflow-hidden bg-mesh-sky border-b border-[var(--sky-200)]">
       <div className="absolute inset-0 z-0 opacity-20">
         <img
           src={visitVisaImg}
@@ -55,7 +55,7 @@ export const VisaServicesPage = ({
           className="absolute inset-0"
           style={{
             background:
-              'linear-gradient(to bottom, rgba(244,250,254,0.85), rgba(230,243,251,0.96))',
+              'linear-gradient(to bottom, rgba(245,250,253,0.86), rgba(227,241,250,0.96))',
           }}
         />
       </div>
@@ -66,7 +66,7 @@ export const VisaServicesPage = ({
           <span>YASH HOLIDAYS VISIT VISA DESK</span>
         </p>
         <h1 className="hero-headline font-serif font-bold text-[var(--ink)]">
-          Global <span className="text-[var(--ocean-700)]">Visit Visa</span> Assistance &amp; Consultation
+          Global <span className="editorial-italic">Visit Visa</span> Assistance &amp; Consultation
         </h1>
         <p className="max-w-3xl mx-auto mt-4 text-sm sm:text-base text-[var(--muted)] leading-relaxed">
           Professional Visit Visa documentation, embassy &amp; VFS appointment scheduling, financial file auditing, and cover letter preparation for{' '}
@@ -89,7 +89,7 @@ export const VisaServicesPage = ({
                   setSelectedVisaId(item.id);
                   document.getElementById('visa-checklist-box')?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className={`px-3.5 py-2 rounded-[9px] text-xs font-semibold transition-all border inline-flex items-center gap-2 ${
+                className={`min-h-[44px] px-3.5 py-2 rounded-[9px] text-xs font-semibold transition-all border inline-flex items-center gap-2 ${
                   active
                     ? 'bg-[var(--ocean-700)] text-white border-[var(--ocean-700)] shadow-sm'
                     : 'bg-white text-[var(--ink)] border-[var(--sky-200)] hover:border-[var(--ocean-500)]'
@@ -111,17 +111,18 @@ export const VisaServicesPage = ({
     </section>
 
     {/* Interactive Country Document Checklist Hub */}
-    <section id="visa-checklist-box" className="py-14 sm:py-16 bg-[var(--sky-50)]">
+    <section id="visa-checklist-box" className="section-space bg-[var(--mist)]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="p-6 sm:p-10 rounded-3xl bg-white border border-[var(--sky-200)] shadow-card">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             <div className="lg:col-span-7 space-y-6">
-              <div className="flex flex-wrap items-center gap-3 text-xs font-semibold">
+              <div className="flex flex-wrap items-center gap-4 text-xs font-semibold">
                 <span className="uppercase tracking-wider text-[var(--ocean-700)] border-l-2 border-[var(--ocean-500)] pl-2.5">
                   {activeVisa.category}
                 </span>
-                <span className="text-[#15803D] bg-[#F0FDF4] border border-[#BBF7D0] px-2.5 py-1 rounded-md">
-                  Processing Time: {activeVisa.processingTime}
+                <span className="inline-flex items-center gap-1.5 text-[#15803D]">
+                  <CheckCircle2 className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+                  <span>Processing Time: {activeVisa.processingTime}</span>
                 </span>
               </div>
 
@@ -144,16 +145,16 @@ export const VisaServicesPage = ({
                 {activeVisa.docs.map((doc, idx) => (
                   <div
                     key={idx}
-                    className="flex items-start gap-3 p-3.5 rounded-xl bg-[var(--sky-50)] border border-[var(--sky-200)]"
+                    className="flex items-start gap-3 p-3.5 rounded-xl bg-[var(--mist)] border border-[var(--sky-200)]"
                   >
-                    <CheckCircle2 className="w-4 h-4 text-[var(--ocean-500)] shrink-0 mt-0.5" aria-hidden="true" />
+                    <CheckCircle2 className="w-4 h-4 text-[var(--lagoon)] shrink-0 mt-0.5" aria-hidden="true" />
                     <span className="text-xs sm:text-sm text-[var(--ink)]">{doc}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="lg:col-span-5 p-6 sm:p-8 rounded-2xl bg-[var(--sky-100)] border border-[var(--sky-200)] space-y-5">
+            <div className="lg:col-span-5 p-6 sm:p-8 rounded-2xl bg-sand-panel border border-[var(--sky-200)] space-y-5 shadow-sm">
               <div className="flex items-center gap-3">
                 <div className="w-11 h-11 rounded-xl bg-white border border-[var(--sky-200)] flex items-center justify-center text-[var(--ocean-500)] shrink-0">
                   <FileText className="w-5 h-5" aria-hidden="true" />
@@ -182,6 +183,7 @@ export const VisaServicesPage = ({
                 </label>
                 <textarea
                   id="visa-note-input"
+                  name="visaNote"
                   rows={3}
                   value={visaNote}
                   onChange={(e) => setVisaNote(e.target.value)}
@@ -215,7 +217,7 @@ export const VisaServicesPage = ({
     </section>
 
     {/* Visit Visa Comparison Table */}
-    <section className="py-12 sm:py-20 bg-white border-t border-[var(--sky-100)]">
+    <section className="section-space bg-white border-t border-[var(--sky-100)]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
           <div>
@@ -223,7 +225,7 @@ export const VisaServicesPage = ({
               QUICK COMPARISON TABLE
             </p>
             <h2 className="section-heading font-serif font-bold text-[var(--ink)] mt-1">
-              Visit Visa Services Overview Table
+              Visit Visa <span className="editorial-italic">Services Overview</span> Table
             </h2>
           </div>
           <p className="text-xs text-[var(--muted)]">
@@ -316,21 +318,22 @@ export const AirTicketsPage = ({
   airlinePartners,
   flightRoutesTable,
 }) => (
-  <div className="pt-16 lg:pt-[74px]">
+  <div className="pt-16 min-[1101px]:pt-[74px]">
     {/* Air Tickets Hero */}
-    <section className="relative py-16 sm:py-20 overflow-hidden bg-[var(--sky-100)] border-b border-[var(--sky-200)]">
+    <section className="relative py-16 sm:py-20 overflow-hidden bg-mesh-sky border-b border-[var(--sky-200)]">
       <div className="absolute inset-0 z-0 opacity-20">
         <img
           src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1920&q=85"
           alt="Worldwide Air Ticketing"
           fetchpriority="high"
+          referrerPolicy="no-referrer"
           className="w-full h-full object-cover"
         />
         <div
           className="absolute inset-0"
           style={{
             background:
-              'linear-gradient(to bottom, rgba(244,250,254,0.82), rgba(230,243,251,0.96))',
+              'linear-gradient(to bottom, rgba(245,250,253,0.84), rgba(227,241,250,0.96))',
           }}
         />
       </div>
@@ -341,7 +344,7 @@ export const AirTicketsPage = ({
           <span>YASH HOLIDAYS GLOBAL TICKETING DESK</span>
         </p>
         <h1 className="hero-headline font-serif font-bold text-[var(--ink)]">
-          Worldwide <span className="text-[var(--ocean-700)]">Air Ticketing</span> &amp; Flight Reservations
+          Worldwide <span className="editorial-italic">Air Ticketing</span> &amp; Flight Reservations
         </h1>
         <p className="max-w-3xl mx-auto mt-4 text-sm sm:text-base text-[var(--muted)] leading-relaxed">
           Special agency consolidator airfares, student baggage deals, group bookings, and 24/7 date-change support for flights from Colombo (CMB) to the UK, Canada, New Zealand, USA, Japan, China, and across Asia.
@@ -350,7 +353,7 @@ export const AirTicketsPage = ({
     </section>
 
     {/* Flight Quote Request Form + Partner Airlines */}
-    <section className="py-14 sm:py-16 bg-[var(--sky-50)]">
+    <section className="section-space bg-[var(--mist)]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           <div className="lg:col-span-7 p-6 sm:p-8 rounded-3xl bg-white border border-[var(--sky-200)] shadow-card">
@@ -359,24 +362,24 @@ export const AirTicketsPage = ({
                 <span className="text-xs font-bold uppercase tracking-widest text-[var(--ocean-700)]">
                   LOWEST AIRFARE REQUEST
                 </span>
-                <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[var(--ink)] mt-1">
-                  Request Your Air Ticket Quote
+                <h2 id="flight-form-heading" className="font-serif text-2xl sm:text-3xl font-bold text-[var(--ink)] mt-1">
+                  Request Your <span className="editorial-italic">Air Ticket</span> Quote
                 </h2>
               </div>
               <Plane className="w-7 h-7 text-[var(--ocean-500)] shrink-0" aria-hidden="true" />
             </div>
 
-            <form onSubmit={sendFlightQuoteToWhatsApp} className="space-y-5">
+            <form aria-labelledby="flight-form-heading" onSubmit={sendFlightQuoteToWhatsApp} className="space-y-5">
               <div className="flex flex-wrap gap-2">
                 {['Round Trip', 'One Way', 'Multi-City'].map((type) => (
                   <button
                     key={type}
                     type="button"
                     onClick={() => setFlightForm({ ...flightForm, tripType: type })}
-                    className={`px-4 py-2 rounded-[9px] text-xs font-bold uppercase tracking-wider border transition-colors ${
+                    className={`min-h-[44px] px-4 py-2 rounded-[9px] text-xs font-bold uppercase tracking-wider border transition-colors ${
                       flightForm.tripType === type
                         ? 'bg-[var(--ocean-700)] text-white border-[var(--ocean-700)]'
-                        : 'bg-[var(--sky-50)] text-[var(--ink)] border-[var(--sky-200)] hover:border-[var(--ocean-500)]'
+                        : 'bg-[var(--mist)] text-[var(--ink)] border-[var(--sky-200)] hover:border-[var(--ocean-500)]'
                     }`}
                   >
                     {type}
@@ -394,6 +397,7 @@ export const AirTicketsPage = ({
                   </label>
                   <input
                     id="flight-from"
+                    name="from"
                     type="text"
                     value={flightForm.from}
                     onChange={(e) => setFlightForm({ ...flightForm, from: e.target.value })}
@@ -410,6 +414,7 @@ export const AirTicketsPage = ({
                   </label>
                   <input
                     id="flight-to"
+                    name="to"
                     type="text"
                     placeholder="e.g., London, Toronto, Auckland, Tokyo, Bangkok..."
                     value={flightForm.to}
@@ -430,6 +435,7 @@ export const AirTicketsPage = ({
                   </label>
                   <input
                     id="flight-depart"
+                    name="departDate"
                     type="date"
                     value={flightForm.departDate}
                     onChange={(e) => setFlightForm({ ...flightForm, departDate: e.target.value })}
@@ -447,6 +453,7 @@ export const AirTicketsPage = ({
                   </label>
                   <input
                     id="flight-return"
+                    name="returnDate"
                     type="date"
                     disabled={flightForm.tripType === 'One Way'}
                     value={flightForm.returnDate}
@@ -476,6 +483,7 @@ export const AirTicketsPage = ({
                   </label>
                   <select
                     id="flight-cabin"
+                    name="cabin"
                     value={flightForm.cabin}
                     onChange={(e) => setFlightForm({ ...flightForm, cabin: e.target.value })}
                     className="travel-select w-full px-4 py-2.5"
@@ -496,6 +504,7 @@ export const AirTicketsPage = ({
                   </label>
                   <select
                     id="flight-airline"
+                    name="preferredAirline"
                     value={flightForm.preferredAirline}
                     onChange={(e) => setFlightForm({ ...flightForm, preferredAirline: e.target.value })}
                     className="travel-select w-full px-4 py-2.5"
@@ -522,6 +531,7 @@ export const AirTicketsPage = ({
                 </label>
                 <textarea
                   id="flight-note"
+                  name="note"
                   rows={2}
                   placeholder="Write any special request (e.g., student extra baggage allowance, vegetarian meal, short transit time, or flexible date ticket)..."
                   value={flightForm.note}
@@ -538,9 +548,9 @@ export const AirTicketsPage = ({
           </div>
 
           <div className="lg:col-span-5 space-y-6">
-            <div className="p-6 rounded-2xl bg-white border border-[var(--sky-200)] shadow-card space-y-4">
+            <div className="p-6 rounded-2xl bg-sand-panel border border-[var(--sky-200)] shadow-card space-y-4">
               <h3 className="font-serif text-xl font-bold text-[var(--ink)] flex items-center gap-2">
-                <BadgeCheck className="w-5 h-5 text-[var(--ocean-500)] shrink-0" aria-hidden="true" />
+                <BadgeCheck className="w-5 h-5 text-[var(--lagoon)] shrink-0" aria-hidden="true" />
                 <span>Why Book Air Tickets With Yash Holidays?</span>
               </h3>
               <ul className="space-y-3 text-xs sm:text-sm text-[var(--muted)]">
@@ -573,17 +583,19 @@ export const AirTicketsPage = ({
 
             <div className="p-6 rounded-2xl bg-white border border-[var(--sky-200)] shadow-card space-y-4">
               <h3 className="font-serif text-lg font-bold text-[var(--ink)]">Global Airline Partners</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 divide-y sm:divide-y-0 border-t border-[var(--sky-100)]">
                 {airlinePartners.map((airline, i) => (
                   <div
                     key={i}
-                    className="p-3.5 rounded-xl bg-[var(--sky-50)] border border-[var(--sky-200)]"
+                    className={`py-3 sm:py-3.5 ${
+                      i % 2 === 1 ? 'sm:pl-4 sm:border-l border-[var(--sky-100)]' : 'sm:pr-3'
+                    } border-b border-[var(--sky-100)]`}
                   >
                     <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--ocean-700)]">
                       {airline.tag}
                     </span>
                     <p className="text-sm font-bold text-[var(--ink)] mt-0.5">{airline.name}</p>
-                    <p className="text-xs text-[var(--muted)] mt-1 leading-snug">{airline.route}</p>
+                    <p className="text-xs text-[var(--muted)] mt-0.5 leading-snug">{airline.route}</p>
                   </div>
                 ))}
               </div>
@@ -594,7 +606,7 @@ export const AirTicketsPage = ({
     </section>
 
     {/* Flight Routes Comparison Table */}
-    <section className="py-12 sm:py-20 bg-white border-t border-[var(--sky-100)]">
+    <section className="section-space bg-white border-t border-[var(--sky-100)]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
           <div>
@@ -602,7 +614,7 @@ export const AirTicketsPage = ({
               POPULAR GLOBAL FLIGHT ROUTES FROM COLOMBO (CMB)
             </p>
             <h2 className="section-heading font-serif font-bold text-[var(--ink)] mt-1">
-              Air Ticket Routes &amp; Airlines Table
+              Air Ticket <span className="editorial-italic">Routes &amp; Airlines</span> Table
             </h2>
           </div>
           <p className="text-xs text-[var(--muted)]">
@@ -676,39 +688,39 @@ export const ReviewsPage = ({
   googleReviewsUrl,
   googleMapsUrl,
 }) => (
-  <div className="pt-16 lg:pt-[74px]">
+  <div className="pt-16 min-[1101px]:pt-[74px]">
     {/* Reviews Hero */}
-    <section className="relative py-16 sm:py-20 overflow-hidden bg-[var(--sky-100)] border-b border-[var(--sky-200)]">
+    <section className="relative py-16 sm:py-20 overflow-hidden bg-mesh-sky border-b border-[var(--sky-200)]">
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <p className="text-xs font-bold uppercase tracking-[0.22em] text-[var(--ocean-700)] inline-flex items-center gap-2 mb-3">
           <Star className="w-4 h-4 fill-amber-500 text-amber-500" aria-hidden="true" />
           <span>100% GENUINE SRI LANKAN TRAVELER REVIEWS</span>
         </p>
         <h1 className="hero-headline font-serif font-bold text-[var(--ink)]">
-          Customer <span className="text-[var(--ocean-700)]">Reviews &amp; Stories</span>
+          Customer <span className="editorial-italic">Reviews &amp; Stories</span>
         </h1>
         <p className="max-w-3xl mx-auto mt-4 text-sm sm:text-base text-[var(--muted)] leading-relaxed">
           Read authentic testimonials and feedback from Sri Lankan families, couples, and groups who booked their dream vacations, flight tickets, and visit visas with Yash Holidays Pvt Ltd.
         </p>
 
         {/* High-Trust Metrics Strip */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto mt-10">
-          <div className="p-4 rounded-2xl bg-white border border-[var(--sky-200)] shadow-sm">
-            <div className="flex items-center justify-center gap-1 text-amber-600 font-serif font-bold text-2xl sm:text-3xl">
+        <div className="bg-white rounded-2xl border border-[var(--sky-200)] shadow-card grid grid-cols-2 sm:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-[var(--sky-100)] max-w-4xl mx-auto mt-10">
+          <div className="p-5 sm:p-6">
+            <div className="flex items-center justify-center gap-1 text-[var(--ocean-700)] font-serif font-bold text-2xl sm:text-3xl">
               <span>4.9</span>
               <Star className="w-5 h-5 fill-amber-500 text-amber-500" aria-hidden="true" />
             </div>
             <p className="text-xs text-[var(--muted)] font-medium mt-1">Average Star Rating</p>
           </div>
-          <div className="p-4 rounded-2xl bg-white border border-[var(--sky-200)] shadow-sm">
-            <p className="font-serif text-2xl sm:text-3xl font-bold text-[var(--ocean-700)]">1,450+</p>
+          <div className="p-5 sm:p-6">
+            <p className="font-serif text-2xl sm:text-3xl font-bold text-[var(--ocean-500)]">1,450+</p>
             <p className="text-xs text-[var(--muted)] font-medium mt-1">Happy Travelers</p>
           </div>
-          <div className="p-4 rounded-2xl bg-white border border-[var(--sky-200)] shadow-sm">
+          <div className="p-5 sm:p-6">
             <p className="font-serif text-2xl sm:text-3xl font-bold text-[#15803D]">99.4%</p>
             <p className="text-xs text-[var(--muted)] font-medium mt-1">Satisfaction Rate</p>
           </div>
-          <div className="p-4 rounded-2xl bg-white border border-[var(--sky-200)] shadow-sm">
+          <div className="p-5 sm:p-6">
             <p className="font-serif text-2xl sm:text-3xl font-bold text-[var(--coral)]">24/7</p>
             <p className="text-xs text-[var(--muted)] font-medium mt-1">Tour Assistance</p>
           </div>
@@ -811,7 +823,7 @@ export const ReviewsPage = ({
     </section>
 
     {/* Featured Traveler Spotlights + Filtered Reviews Grid */}
-    <section className="py-12 sm:py-20 bg-[var(--sky-50)]">
+    <section className="section-space bg-[var(--mist)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Spotlight 1: Singapore */}
         <article className="mb-10 p-6 sm:p-10 rounded-3xl bg-white border border-[var(--sky-200)] shadow-card">
@@ -905,6 +917,7 @@ export const ReviewsPage = ({
                       src={img.url}
                       alt={img.title}
                       loading="lazy"
+                      referrerPolicy="no-referrer"
                       className="w-full h-full object-cover card-photo-zoom"
                     />
                     <div
@@ -1008,6 +1021,7 @@ export const ReviewsPage = ({
                       src={img.url}
                       alt={img.title}
                       loading="lazy"
+                      referrerPolicy="no-referrer"
                       className="w-full h-full object-cover card-photo-zoom"
                     />
                     <div
@@ -1071,7 +1085,7 @@ export const ReviewsPage = ({
                 key={cat.id}
                 type="button"
                 onClick={() => setReviewFilter(cat.id)}
-                className={`px-3.5 py-2 rounded-[9px] text-xs font-semibold inline-flex items-center gap-1.5 border transition-colors ${
+                className={`min-h-[44px] px-4 py-2 rounded-xl text-xs font-semibold inline-flex items-center gap-1.5 border transition-colors ${
                   reviewFilter === cat.id
                     ? 'bg-[var(--ocean-700)] text-white border-[var(--ocean-700)]'
                     : 'bg-white hover:bg-[var(--sky-100)] text-[var(--ink)] border-[var(--sky-200)]'
@@ -1245,9 +1259,9 @@ export const ReviewsPage = ({
         </div>
 
         {/* Bottom Reviews Action Banner */}
-        <div className="mt-16 p-8 sm:p-10 rounded-3xl bg-white border border-[var(--sky-200)] text-center max-w-4xl mx-auto shadow-card">
+        <div className="mt-16 p-8 sm:p-10 rounded-3xl bg-sand-panel border border-[#F0D9B5] text-center max-w-4xl mx-auto shadow-card">
           <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[var(--ink)] mb-2">
-            Want to Share Your Own Experience with Yash Holidays?
+            Want to Share Your Own <span className="editorial-italic">Experience</span> with Yash Holidays?
           </h2>
           <p className="text-sm text-[var(--muted)] max-w-2xl mx-auto mb-6">
             Every journey matters to us. Submit your honest feedback, photos, or holiday story and help other Sri Lankan travelers plan with total confidence.
@@ -1289,16 +1303,16 @@ export const ReviewsPage = ({
 );
 
 export const AboutUsPage = ({ navigateToTab }) => (
-  <div className="pt-16 lg:pt-[74px]">
+  <div className="pt-16 min-[1101px]:pt-[74px]">
     {/* About Hero */}
-    <section className="relative py-16 sm:py-20 overflow-hidden bg-[var(--sky-100)] border-b border-[var(--sky-200)]">
+    <section className="relative py-16 sm:py-20 overflow-hidden bg-mesh-sky border-b border-[var(--sky-200)]">
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <p className="text-xs font-bold uppercase tracking-[0.22em] text-[var(--ocean-700)] inline-flex items-center gap-2 mb-3">
           <Award className="w-4 h-4 text-[var(--ocean-500)]" aria-hidden="true" />
           <span>TRUSTED SRI LANKAN TRAVEL AGENCY</span>
         </p>
         <h1 className="hero-headline font-serif font-bold text-[var(--ink)]">
-          About <span className="text-[var(--ocean-700)]">Yash Holidays Pvt Ltd</span>
+          About <span className="editorial-italic">Yash Holidays Pvt Ltd</span>
         </h1>
         <p className="max-w-3xl mx-auto mt-4 text-sm sm:text-base text-[var(--muted)] leading-relaxed">
           Your all-around travel partner at{' '}
@@ -1308,25 +1322,25 @@ export const AboutUsPage = ({ navigateToTab }) => (
     </section>
 
     {/* Story & Metrics */}
-    <section className="py-16 sm:py-20 bg-white">
+    <section className="section-space bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
-          <div className="p-6 rounded-2xl bg-[var(--sky-50)] border border-[var(--sky-200)] text-center">
+        <div className="bg-[var(--mist)] rounded-2xl border border-[var(--sky-200)] shadow-card grid grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x divide-[var(--sky-200)]">
+          <div className="p-6 text-center">
             <p className="font-serif text-3xl sm:text-4xl font-bold text-[var(--ocean-700)]">10+</p>
             <p className="text-xs sm:text-sm font-semibold text-[var(--ink)] mt-1">Visit Visa Countries</p>
             <p className="text-xs text-[var(--muted)] mt-0.5">Canada, UK, NZ, US, Japan &amp; Asia</p>
           </div>
-          <div className="p-6 rounded-2xl bg-[var(--sky-50)] border border-[var(--sky-200)] text-center">
+          <div className="p-6 text-center">
             <p className="font-serif text-3xl sm:text-4xl font-bold text-[var(--coral)]">8+</p>
             <p className="text-xs sm:text-sm font-semibold text-[var(--ink)] mt-1">Signature Outbound Markets</p>
             <p className="text-xs text-[var(--muted)] mt-0.5">Bali, Thailand, Malaysia, Singapore &amp; more</p>
           </div>
-          <div className="p-6 rounded-2xl bg-[var(--sky-50)] border border-[var(--sky-200)] text-center">
-            <p className="font-serif text-3xl sm:text-4xl font-bold text-[var(--ocean-700)]">50+</p>
+          <div className="p-6 text-center">
+            <p className="font-serif text-3xl sm:text-4xl font-bold text-[var(--ocean-500)]">50+</p>
             <p className="text-xs sm:text-sm font-semibold text-[var(--ink)] mt-1">Global Airline Partners</p>
             <p className="text-xs text-[var(--muted)] mt-0.5">Direct &amp; Worldwide Consolidator Fares</p>
           </div>
-          <div className="p-6 rounded-2xl bg-[var(--sky-50)] border border-[var(--sky-200)] text-center">
+          <div className="p-6 text-center">
             <p className="font-serif text-3xl sm:text-4xl font-bold text-[#15803D]">99%</p>
             <p className="text-xs sm:text-sm font-semibold text-[var(--ink)] mt-1">Client Satisfaction</p>
             <p className="text-xs text-[var(--muted)] mt-0.5">24/7 Personal Traveler Support</p>
@@ -1339,7 +1353,7 @@ export const AboutUsPage = ({ navigateToTab }) => (
               OUR STORY &amp; MISSION
             </span>
             <h2 className="section-heading font-serif font-bold text-[var(--ink)]">
-              Making International Travel Effortless for Sri Lankans
+              Making International Travel <span className="editorial-italic">Effortless</span> for Sri Lankans
             </h2>
             <p className="text-sm sm:text-base text-[var(--ink)] leading-relaxed">
               At <strong>Yash Holidays Pvt Ltd</strong>, we believe planning an international trip should be just as exciting and stress-free as the holiday itself. Based in Boralesgamuwa, our experienced travel consultants handle every step of your journey under one roof.
@@ -1474,17 +1488,17 @@ export const ContactUsPage = ({
   googleMapsUrl,
   googleReviewsUrl,
 }) => (
-  <div className="pt-16 lg:pt-[74px]">
+  <div className="pt-16 min-[1101px]:pt-[74px]">
     {/* Contact Us Light Editorial Header Banner */}
-    <section className="py-12 sm:py-16 bg-[var(--sky-100)] border-b border-[var(--sky-200)]">
+    <section className="py-12 sm:py-16 bg-mesh-sky border-b border-[var(--sky-200)]">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-[var(--ocean-700)] mb-3">
           <Phone className="w-4 h-4 text-[var(--ocean-500)]" aria-hidden="true" />
           <span>Yash Holidays Boralesgamuwa Desk</span>
         </div>
 
-        <h1 className="font-serif text-3xl sm:text-5xl font-bold text-[var(--ink)] leading-tight mb-4">
-          Contact <span className="text-[var(--ocean-700)]">Yash Holidays</span>
+        <h1 className="hero-headline font-serif font-bold text-[var(--ink)] mb-4">
+          Contact <span className="editorial-italic">Yash Holidays</span>
         </h1>
 
         <p className="max-w-2xl mx-auto text-sm sm:text-base text-[var(--muted)] leading-relaxed">
