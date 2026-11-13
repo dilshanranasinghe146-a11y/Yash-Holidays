@@ -210,12 +210,12 @@ export const HomeSections = ({
                 'linear-gradient(90deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.88) 40%, rgba(255,255,255,0.52) 58%, rgba(255,255,255,0.08) 76%)',
             }}
           />
-          {/* Mobile & Tablet luminous veil: keeps upper scenic photo vibrant & crystal clear before lower cards */}
+          {/* Mobile & Tablet luminous veil: keeps upper scenic photo vibrant & crystal clear while softening base for copy */}
           <div
-            className="lg:hidden absolute inset-0"
+            className="lg:hidden absolute inset-0 pointer-events-none"
             style={{
               background:
-                'linear-gradient(180deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.04) 24%, rgba(255,255,255,0.06) 52%, rgba(245,250,253,0.72) 100%)',
+                'linear-gradient(180deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 20%, rgba(245,250,253,0.78) 55%, rgba(245,250,253,0.96) 95%)',
             }}
           />
         </div>
@@ -268,49 +268,44 @@ export const HomeSections = ({
           </div>
         </div>
 
-        {/* Unobstructed Mobile Scenic Window letting Hero Photo shine brightly above the white editorial sheet */}
-        <div className="relative z-10 h-[108px] sm:h-[140px] lg:hidden pointer-events-none" aria-hidden="true" />
-
-        {/* Main Hero Split Body */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto pb-5 pt-2 sm:py-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-8 lg:gap-10 items-center">
-            {/* Left Column: Crisp Editorial Sheet (Mobile) / Open Typography (Desktop) */}
-            <div className="lg:col-span-6 space-y-3.5 sm:space-y-5 bg-white lg:bg-transparent p-5 sm:p-6 lg:p-0 rounded-[22px] lg:rounded-none border border-[var(--sky-200)] lg:border-0 shadow-[0_14px_34px_rgba(20,50,74,0.12)] lg:shadow-none">
+        {/* Main Hero Body */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto pb-4 pt-2 sm:py-8 lg:py-10">
+          {/* ================= DESKTOP HERO VIEW (lg+) ================= */}
+          <div className="hidden lg:grid grid-cols-12 gap-10 items-center">
+            {/* Left Column: Open Typography (Desktop) */}
+            <div className="lg:col-span-6 space-y-5">
               <div className="flex items-center justify-between gap-2">
-                <p className="text-[11px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-[0.22em] text-[var(--ocean-700)] font-semibold">
+                <p className="text-xs uppercase tracking-[0.22em] text-[var(--ocean-700)] font-semibold">
                   YASH HOLIDAYS SIGNATURE OUTBOUND TOUR
                 </p>
-                <span className="lg:hidden text-[11px] font-bold text-[var(--coral)] whitespace-nowrap">
-                  {activeDest.priceFrom}
-                </span>
               </div>
 
               <h1 className="hero-headline font-serif font-bold text-[var(--ink)]">
                 {activeDest.name}
               </h1>
 
-              <p className="text-[15px] sm:text-lg text-[var(--ink)] max-w-md font-medium leading-relaxed">
+              <p className="text-lg text-[var(--ink)] max-w-md font-medium leading-relaxed">
                 {activeDest.tagline}
               </p>
 
               {/* Clean Open Info Strip */}
-              <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs sm:text-sm text-[var(--ink)] pt-1 max-w-lg border-t border-[var(--sky-100)] lg:border-t-0 lg:pt-1 mt-1">
-                <span className="inline-flex items-center gap-1.5 font-medium pt-2 lg:pt-0">
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-sm text-[var(--ink)] pt-1 max-w-lg mt-1">
+                <span className="inline-flex items-center gap-1.5 font-medium">
                   <Clock className="w-4 h-4 text-[var(--ocean-500)] shrink-0" aria-hidden="true" />
                   <span>{activeDest.duration}</span>
                 </span>
-                <span className="w-px h-4 bg-[var(--sky-200)] hidden sm:inline-block" aria-hidden="true" />
-                <span className="inline-flex items-center gap-1.5 font-medium pt-2 lg:pt-0">
+                <span className="w-px h-4 bg-[var(--sky-200)]" aria-hidden="true" />
+                <span className="inline-flex items-center gap-1.5 font-medium">
                   <Plane className="w-4 h-4 text-[var(--ocean-500)] shrink-0" aria-hidden="true" />
                   <span>{activeDest.flightRoute}</span>
                 </span>
-                <span className="w-px h-4 bg-[var(--sky-200)] hidden lg:inline-block" aria-hidden="true" />
-                <span className="hidden lg:inline font-bold text-[var(--ocean-700)]">
+                <span className="w-px h-4 bg-[var(--sky-200)]" aria-hidden="true" />
+                <span className="font-bold text-[var(--ocean-700)]">
                   Packages from {activeDest.priceFrom}
                 </span>
               </div>
 
-              <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-2.5 xl:gap-3.5 pt-2">
+              <div className="flex items-center gap-3.5 pt-2">
                 <a
                   href="#customizer"
                   onClick={() =>
@@ -320,37 +315,35 @@ export const HomeSections = ({
                         activeDest.country === 'Bali' ? 'Bali, Indonesia' : activeDest.country,
                     }))
                   }
-                  className="btn-coral w-full sm:w-auto px-5 xl:px-6 py-3 text-sm whitespace-nowrap justify-center"
+                  className="btn-coral px-6 py-3 text-sm whitespace-nowrap justify-center"
                 >
                   <span>Get a Free Quote</span>
                   <ArrowRight className="w-4 h-4 shrink-0" aria-hidden="true" />
                 </a>
 
-                <div className="grid grid-cols-2 sm:flex sm:items-center gap-2.5 w-full sm:w-auto">
-                  <a
-                    href={`https://wa.me/94775841144?text=${encodeURIComponent(
-                      `Hello Yash Holidays! I would like a quote for ${activeDest.country} (${activeDest.duration}).`
-                    )}`}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="btn-outline-ocean bg-white/95 px-3 sm:px-4 xl:px-5 py-2.5 sm:py-3 text-xs sm:text-sm whitespace-nowrap justify-center"
-                  >
-                    <WhatsAppIcon className="w-4 h-4 shrink-0" />
-                    <span>WhatsApp Us</span>
-                  </a>
+                <a
+                  href={`https://wa.me/94775841144?text=${encodeURIComponent(
+                    `Hello Yash Holidays! I would like a quote for ${activeDest.country} (${activeDest.duration}).`
+                  )}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn-outline-ocean bg-white/95 px-5 py-3 text-sm whitespace-nowrap justify-center"
+                >
+                  <WhatsAppIcon className="w-4 h-4 shrink-0 text-[#15803D]" />
+                  <span>WhatsApp Us</span>
+                </a>
 
-                  <a
-                    href="#customizer"
-                    className="link-underline justify-center text-xs sm:text-sm px-3 py-2.5 min-h-[44px] rounded-[10px] border border-[var(--sky-200)] lg:border-0 bg-[var(--mist)] lg:bg-white/80 whitespace-nowrap"
-                  >
-                    <span>Book {activeDest.name}</span>
-                    <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" aria-hidden="true" />
-                  </a>
-                </div>
+                <a
+                  href="#customizer"
+                  className="link-underline justify-center text-sm px-3 py-2.5 min-h-[44px] rounded-[10px] bg-white/80 whitespace-nowrap"
+                >
+                  <span>Book {activeDest.name}</span>
+                  <ArrowRight className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+                </a>
               </div>
             </div>
 
-            {/* Right Column: Asymmetric 5 Highlight Photo Strip / Mosaic */}
+            {/* Right Column: Asymmetric 5 Highlight Photo Strip / Mosaic (Desktop) */}
             <div className="lg:col-span-6 space-y-3">
               <div className="flex items-center justify-between text-xs text-[var(--ink)] bg-white/95 px-3.5 py-2 rounded-lg border border-[var(--sky-200)] shadow-[0_1px_2px_rgba(20,50,74,0.05)]">
                 <span className="font-semibold text-[var(--ocean-700)] uppercase tracking-wider">
@@ -361,8 +354,7 @@ export const HomeSections = ({
                 </span>
               </div>
 
-              {/* Mobile: horizontal snap strip; Desktop: mixed 2+3 visual mosaic */}
-              <div className="flex overflow-x-auto no-scrollbar snap-x snap-mandatory gap-3 pb-1 sm:grid sm:grid-cols-6 sm:gap-3">
+              <div className="grid grid-cols-6 gap-3">
                 {activeDest.highlights.map((item, idx) => (
                   <button
                     key={idx}
@@ -374,8 +366,8 @@ export const HomeSections = ({
                         window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
                       }
                     }}
-                    className={`snap-start min-w-[172px] sm:min-w-0 group relative rounded-[16px] overflow-hidden border border-white/80 shadow-card bg-white text-left shrink-0 sm:shrink ${
-                      idx < 2 ? 'sm:col-span-3 h-48 sm:h-48' : 'sm:col-span-2 h-48 sm:h-40'
+                    className={`group relative rounded-[16px] overflow-hidden border border-white/80 shadow-card bg-white text-left ${
+                      idx < 2 ? 'col-span-3 h-48' : 'col-span-2 h-40'
                     }`}
                   >
                     <img
@@ -392,12 +384,131 @@ export const HomeSections = ({
                       }}
                     />
                     <div className="absolute bottom-2.5 left-3 right-3">
-                      <p className="text-xs sm:text-sm font-bold text-white leading-snug capitalize">
+                      <p className="text-sm font-bold text-white leading-snug capitalize">
                         {item.label}
                       </p>
                       <p className="text-[11px] text-[var(--sky-100)] mt-0.5 line-clamp-1">
                         {item.sub}
                       </p>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* ================= MOBILE & TABLET OPEN EDITORIAL HERO (< lg) ================= */}
+          <div className="block lg:hidden space-y-3.5 pt-1 pb-4 px-1">
+            {/* Luminous Top Badge */}
+            <div className="flex items-center justify-between gap-2">
+              <span className="text-[11px] uppercase tracking-[0.2em] text-[var(--ocean-700)] font-bold inline-flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-[var(--coral)] animate-pulse" />
+                <span>Signature Outbound Tour</span>
+              </span>
+              <span className="text-xs font-bold text-[var(--coral)] bg-white/95 px-3 py-1 rounded-full shadow-sm border border-[var(--sky-200)]">
+                From {activeDest.priceFrom}
+              </span>
+            </div>
+
+            {/* Open Title & Tagline — NO CLUNKY BOX */}
+            <div>
+              <div className="flex items-baseline justify-between gap-2">
+                <h1 className="hero-headline font-serif font-bold text-[var(--ink)] leading-tight">
+                  {activeDest.name}
+                </h1>
+                <span className="inline-flex items-center gap-1 text-[11px] font-bold text-[var(--ocean-700)] bg-white/95 px-2.5 py-1 rounded-md shadow-sm border border-[var(--sky-200)]">
+                  <Clock className="w-3 h-3 text-[var(--ocean-500)] shrink-0" aria-hidden="true" />
+                  <span>{activeDest.duration}</span>
+                </span>
+              </div>
+              <p className="text-sm text-[var(--ink)] font-medium leading-relaxed mt-1">
+                {activeDest.tagline}
+              </p>
+            </div>
+
+            {/* Route & Inclusions Info Strip */}
+            <div className="flex flex-wrap items-center gap-2 text-xs py-2 px-3 rounded-xl bg-white/95 border border-[var(--sky-200)] shadow-sm text-[var(--ink)]">
+              <span className="inline-flex items-center gap-1.5 font-semibold text-[var(--ocean-700)]">
+                <Plane className="w-3.5 h-3.5 text-[var(--ocean-500)] shrink-0" aria-hidden="true" />
+                <span>{activeDest.flightRoute}</span>
+              </span>
+              <span className="text-[var(--sky-300)]">•</span>
+              <span className="text-[var(--muted)] text-[11px] font-medium">Flights + Visa + Hotels + Transfers</span>
+            </div>
+
+            {/* Action Buttons: perfectly proportioned, no clipping */}
+            <div className="grid grid-cols-2 gap-2.5 pt-0.5">
+              <a
+                href="#customizer"
+                onClick={() =>
+                  setCustomConfig((prev) => ({
+                    ...prev,
+                    destination: activeDest.country === 'Bali' ? 'Bali, Indonesia' : activeDest.country,
+                  }))
+                }
+                className="btn-coral w-full py-3 px-3 text-xs sm:text-sm font-semibold justify-center shadow-md"
+              >
+                <span>Get Free Quote</span>
+                <ArrowRight className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+              </a>
+
+              <a
+                href={`https://wa.me/94775841144?text=${encodeURIComponent(
+                  `Hello Yash Holidays! I would like a quote for ${activeDest.country} (${activeDest.duration}).`
+                )}`}
+                target="_blank"
+                rel="noreferrer"
+                className="btn-outline-ocean bg-white w-full py-3 px-3 text-xs sm:text-sm font-semibold justify-center shadow-sm"
+              >
+                <WhatsAppIcon className="w-4 h-4 shrink-0 text-[#15803D]" />
+                <span>WhatsApp</span>
+              </a>
+            </div>
+
+            {/* Curated Experience Highlights */}
+            <div className="pt-2">
+              <div className="flex items-center justify-between text-[11px] font-bold uppercase tracking-wider text-[var(--ocean-700)] mb-2">
+                <span>Featured Experiences</span>
+                <button
+                  type="button"
+                  onClick={() => {
+                    const el = document.getElementById('about-tour');
+                    if (el) {
+                      const y = el.getBoundingClientRect().top + window.scrollY - 80;
+                      window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+                    }
+                  }}
+                  className="text-[var(--ocean-700)] hover:underline lowercase font-semibold"
+                >
+                  view details &rarr;
+                </button>
+              </div>
+
+              <div className="flex overflow-x-auto no-scrollbar snap-x snap-mandatory gap-2.5 pb-1">
+                {activeDest.highlights.map((item, idx) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => {
+                      const el = document.getElementById('about-tour');
+                      if (el) {
+                        const y = el.getBoundingClientRect().top + window.scrollY - 80;
+                        window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+                      }
+                    }}
+                    className="snap-start w-36 shrink-0 relative rounded-2xl overflow-hidden border border-white shadow-card bg-white text-left group"
+                  >
+                    <div className="h-22 w-full overflow-hidden bg-[var(--sky-100)]">
+                      <img
+                        src={item.img}
+                        alt={item.label}
+                        referrerPolicy="no-referrer"
+                        className="w-full h-full object-cover card-photo-zoom"
+                      />
+                    </div>
+                    <div className="p-2 bg-white">
+                      <p className="text-[11px] font-bold text-[var(--ink)] truncate">{item.label}</p>
+                      <p className="text-[10px] text-[var(--muted)] truncate">{item.sub}</p>
                     </div>
                   </button>
                 ))}
@@ -994,117 +1105,8 @@ export const HomeSections = ({
               </div>
             </article>
           </div>
-
-          {/* Magazine Editorial Mosaic: Popular Destinations & Visit Visa Markets */}
-          <div className="mt-14 pt-12 border-t border-[var(--sky-200)]">
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 reveal-item">
-              <div>
-                <p className="text-xs uppercase tracking-[0.22em] text-[var(--ocean-700)] font-semibold">
-                  POPULAR DESTINATIONS &amp; VISA MARKETS
-                </p>
-                <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[var(--ink)] mt-1">
-                  Handcrafted <span className="editorial-italic">Holidays</span> &amp; Visit Visas
-                </h3>
-                <div className="heading-coral-accent mt-2.5" aria-hidden="true" />
-              </div>
-              <button
-                type="button"
-                onClick={() => navigateToTab('visa')}
-                className="link-underline text-sm self-start sm:self-end"
-              >
-                <span>Explore All {visaCountries.length} Visit Visa Countries</span>
-                <ArrowRight className="w-4 h-4" aria-hidden="true" />
-              </button>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-4 sm:gap-5">
-              {destinations.map((d, idx) => {
-                const spanClasses = [
-                  'sm:col-span-2 lg:col-span-5 lg:row-span-2 min-h-[280px] lg:min-h-[420px]',
-                  'lg:col-span-7 min-h-[210px] sm:min-h-[220px]',
-                  'lg:col-span-3 min-h-[200px]',
-                  'lg:col-span-4 min-h-[200px]',
-                  'lg:col-span-7 min-h-[215px]',
-                  'lg:col-span-5 min-h-[215px]',
-                  'lg:col-span-4 min-h-[210px]',
-                  'sm:col-span-2 lg:col-span-8 min-h-[210px]',
-                ][idx] || 'lg:col-span-4 min-h-[210px]';
-                const isActiveCard = d.id === selectedCountryId;
-
-                return (
-                  <button
-                    key={`mag-${d.id}`}
-                    type="button"
-                    onClick={() => {
-                      handleSelectCountry(d.id);
-                      document.getElementById('about-tour')?.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                    className={`reveal-item scroll-card-reveal group relative overflow-hidden rounded-[18px] border text-left shadow-card shadow-card-hover transition-all ${spanClasses} ${
-                      isActiveCard ? 'border-[var(--ocean-500)] ring-2 ring-[var(--sky-200)]' : 'border-[var(--sky-200)]'
-                    }`}
-                  >
-                    <img
-                      src={withUnsplashWidth(d.heroBg, idx === 0 || idx === 1 || idx === 7 ? 1100 : 800)}
-                      alt={`${d.country} travel destination`}
-                      loading="lazy"
-                      referrerPolicy="no-referrer"
-                      className="absolute inset-0 w-full h-full object-cover card-photo-zoom"
-                    />
-                    <div
-                      className="absolute inset-0"
-                      style={{
-                        background:
-                          'linear-gradient(to top, rgba(245,250,253,0.96) 0%, rgba(245,250,253,0.82) 38%, rgba(245,250,253,0.12) 72%, transparent 100%)',
-                      }}
-                    />
-                    <div className="relative h-full w-full p-5 sm:p-6 flex flex-col justify-end">
-                      <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[var(--ocean-700)]">
-                        {d.duration}
-                      </p>
-                      <div className="flex items-end justify-between gap-3 mt-1">
-                        <div>
-                          <h4 className="font-serif text-xl sm:text-2xl font-bold text-[var(--ink)] leading-tight">
-                            {d.country}
-                          </h4>
-                          <p className="text-xs font-semibold text-[var(--ocean-500)] mt-0.5">
-                            From {d.priceFrom}
-                          </p>
-                        </div>
-                        <span className="inline-flex items-center gap-1 text-xs font-semibold text-[var(--ocean-700)] group-hover:text-[var(--coral)] transition-colors shrink-0">
-                          <span>View</span>
-                          <ChevronRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
-                        </span>
-                      </div>
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
-
-            {/* Direct Visit Visa Markets Directory (editorial rectangular links, no pill badges) */}
-            <div className="mt-7 pt-6 border-t border-[var(--sky-100)] flex flex-wrap items-center gap-2.5">
-              <span className="text-xs uppercase tracking-[0.18em] text-[var(--muted)] font-semibold mr-2">
-                Visit Visa Consultation:
-              </span>
-              {visaCountries.map((visa) => (
-                <button
-                  key={`corridor-visa-${visa.id}`}
-                  type="button"
-                  onClick={() => {
-                    setSelectedVisaId(visa.id);
-                    navigateToTab('visa');
-                  }}
-                  className="px-3 py-1.5 rounded-[10px] border border-[var(--sky-200)] bg-[var(--mist)] hover:bg-[var(--sky-100)] hover:border-[var(--ocean-500)] text-xs font-semibold text-[var(--ink)] transition-colors min-h-[36px]"
-                >
-                  {visa.country}
-                </button>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
-
-      <FlightPathDivider label="Sample 3-Stage Itinerary Explorer" />
 
       {/* ================= "ABOUT THE TOUR" ITINERARY STAGE EXPLORER ================= */}
       <section id="about-tour" className="relative section-space bg-[var(--mist)]">

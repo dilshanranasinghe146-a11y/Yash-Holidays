@@ -278,7 +278,7 @@ export const VisaServicesPage = ({
                   onClick={() => sendVisaInquiryToWhatsApp(activeVisa.country, activeVisa.visaType)}
                   className="btn-coral w-full py-3 px-5 text-xs sm:text-sm"
                 >
-                  <WhatsAppIcon className="w-4 h-4" />
+                  <WhatsAppIcon className="w-4 h-4 shrink-0" />
                   <span>Inquire {activeVisa.country} Visa on WhatsApp</span>
                 </button>
 
@@ -632,9 +632,12 @@ export const AirTicketsPage = ({
                 />
               </div>
 
-              <button type="submit" className="btn-coral w-full py-3.5 text-sm">
-                <WhatsAppIcon className="w-5 h-5" />
-                <span>Check Lowest Fare on WhatsApp (+94 77 584 1144)</span>
+              <button
+                type="submit"
+                className="btn-coral w-full py-3.5 px-4 sm:px-6 text-xs sm:text-sm font-semibold inline-flex items-center justify-center gap-2.5 leading-snug"
+              >
+                <WhatsAppIcon className="w-5 h-5 shrink-0" />
+                <span className="text-center">Check Lowest Fare on WhatsApp (+94 77 584 1144)</span>
               </button>
             </form>
           </div>
@@ -907,7 +910,7 @@ export const ReviewsPage = ({
             rel="noreferrer"
             className="btn-coral px-5 py-2.5 text-xs"
           >
-            <WhatsAppIcon className="w-4 h-4" />
+            <WhatsAppIcon className="w-4 h-4 shrink-0" />
             <span>Submit Feedback via WhatsApp</span>
           </a>
         </div>
@@ -979,7 +982,7 @@ export const ReviewsPage = ({
                   rel="noreferrer"
                   className="btn-coral px-5 py-2.5 text-xs uppercase tracking-wider"
                 >
-                  <WhatsAppIcon className="w-4 h-4" />
+                  <WhatsAppIcon className="w-4 h-4 shrink-0" />
                   <span>Book Similar Singapore Tour</span>
                 </a>
                 <a
@@ -1083,7 +1086,7 @@ export const ReviewsPage = ({
                   rel="noreferrer"
                   className="btn-coral px-5 py-2.5 text-xs uppercase tracking-wider"
                 >
-                  <WhatsAppIcon className="w-4 h-4" />
+                  <WhatsAppIcon className="w-4 h-4 shrink-0" />
                   <span>Book Similar Malaysia Tour</span>
                 </a>
                 <button
@@ -1340,7 +1343,7 @@ export const ReviewsPage = ({
                       onClick={() => handleShareReviewWhatsApp(rev)}
                       className="btn-coral px-3.5 py-1.5 min-h-[34px] text-xs"
                     >
-                      <WhatsAppIcon className="w-3.5 h-3.5" />
+                      <WhatsAppIcon className="w-3.5 h-3.5 shrink-0" />
                       <span>Book Similar</span>
                     </button>
                   </div>

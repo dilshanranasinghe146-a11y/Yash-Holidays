@@ -168,6 +168,10 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  text-align: center;
+  box-sizing: border-box;
+  max-width: 100%;
   transition: background-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
   box-shadow: 0 6px 16px -6px rgba(20, 50, 74, 0.18);
 }
@@ -192,6 +196,10 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  text-align: center;
+  box-sizing: border-box;
+  max-width: 100%;
   transition: background-color 200ms ease, border-color 200ms ease, color 200ms ease, transform 200ms ease;
 }
 

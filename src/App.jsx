@@ -288,11 +288,11 @@ const DESTINATIONS = [
     footerBg: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=1920&q=80',
     introText: "We've planned a simple and convenient 6-day itinerary for your escape to Bali. You'll experience three breathtaking regions: Ubud's lush rainforests, Nusa Penida's dramatic turquoise cliffs, and Seminyak's sunset beach clubs.",
     highlights: [
-      { label: '3 regions in Bali', sub: 'Ubud • Penida • Seminyak', img: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/7/77/Pura_Ulun_Danu_Bratan%2C_2022.jpg/1280px-Pura_Ulun_Danu_Bratan%2C_2022.jpg' },
+      { label: '3 regions in Bali', sub: 'Ubud • Penida • Seminyak', img: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=600&q=80' },
       { label: '6 days', sub: 'Curated island pace', img: 'https://images.unsplash.com/photo-1532186651327-6ac23687d189?auto=format&fit=crop&w=600&q=80' },
-      { label: 'iconic temples & nature', sub: 'Lempuyang Gates of Heaven', img: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fa/Bali_Pura_Lempuyang_Luhur.jpg/1280px-Bali_Pura_Lempuyang_Luhur.jpg' },
+      { label: 'iconic temples & nature', sub: 'Lempuyang Gates of Heaven', img: 'https://images.unsplash.com/photo-1555400038-63f5ba517a47?auto=format&fit=crop&w=600&q=80' },
       { label: 'island dining', sub: 'Jimbaran candlelit seafood dinner', img: 'https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=600&q=80' },
-      { label: 'enjoy the vibe', sub: 'Kelingking T-Rex Cliff Penida', img: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c9/Broken_Bay%2C_Nusa_Penida.jpg/1280px-Broken_Bay%2C_Nusa_Penida.jpg' }
+      { label: 'enjoy the vibe', sub: 'Kelingking T-Rex Cliff Penida', img: 'https://images.unsplash.com/photo-1584810359583-96fc3448beaa?auto=format&fit=crop&w=600&q=80' }
     ]
   },
   {
@@ -307,11 +307,11 @@ const DESTINATIONS = [
     footerBg: 'https://images.unsplash.com/photo-1528181304800-259b08848526?auto=format&fit=crop&w=1920&q=80',
     introText: "We've planned a seamless 6-day holiday across Thailand's best highlights. You'll explore three unforgettable hubs: dazzling Bangkok, coastal Pattaya & Coral Island, or the turquoise limestone bays of Phuket & Krabi.",
     highlights: [
-      { label: '3 cities in Thailand', sub: 'Bangkok • Pattaya • Phuket', img: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c7/0005574_-_Wat_Phra_Kaew_006.jpg/1280px-0005574_-_Wat_Phra_Kaew_006.jpg' },
-      { label: '6 days', sub: 'Island & city combo', img: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2a/%E0%B9%80%E0%B8%88%E0%B8%94%E0%B8%B5%E0%B8%A2%E0%B9%8C%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%97%E0%B8%A3%E0%B8%87%E0%B8%9B%E0%B8%A3%E0%B8%B2%E0%B8%87%E0%B8%84%E0%B9%8C%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%AD%E0%B8%A3%E0%B8%B8%E0%B8%932.jpg/1280px-%E0%B9%80%E0%B8%88%E0%B8%94%E0%B8%B5%E0%B8%A2%E0%B9%8C%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%97%E0%B8%A3%E0%B8%87%E0%B8%9B%E0%B8%A3%E0%B8%B2%E0%B8%87%E0%B8%84%E0%B9%8C%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%AD%E0%B8%A3%E0%B8%B8%E0%B8%932.jpg' },
-      { label: 'private island tours', sub: 'Phi Phi Maya Bay speedboat', img: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9b/Isla_Ko_Phi_Phi_Don%2C_Tailandia%2C_2013-08-19%2C_DD_02.JPG/1280px-Isla_Ko_Phi_Phi_Don%2C_Tailandia%2C_2013-08-19%2C_DD_02.JPG' },
-      { label: 'street food & cruises', sub: 'Chao Phraya dinner cruise & food', img: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a5/Chao_Phraya_River_-_Bangkok_-_northwards_-_from_King_Taksin_Bridge_-_2021.jpg/1280px-Chao_Phraya_River_-_Bangkok_-_northwards_-_from_King_Taksin_Bridge_-_2021.jpg' },
-      { label: 'enjoy the vibe', sub: 'Sanctuary of Truth Pattaya', img: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fb/Santuaryoftruth2.jpg/1280px-Santuaryoftruth2.jpg' }
+      { label: '3 cities in Thailand', sub: 'Bangkok • Pattaya • Phuket', img: 'https://images.unsplash.com/photo-1563492065599-3520f775eeed?auto=format&fit=crop&w=600&q=80' },
+      { label: '6 days', sub: 'Island & city combo', img: 'https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=600&q=80' },
+      { label: 'private island tours', sub: 'Phi Phi Maya Bay speedboat', img: 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&w=600&q=80' },
+      { label: 'street food & cruises', sub: 'Chao Phraya dinner cruise & food', img: 'https://images.unsplash.com/photo-1506665531195-3566af2b4dfa?auto=format&fit=crop&w=600&q=80' },
+      { label: 'enjoy the vibe', sub: 'Sanctuary of Truth Pattaya', img: 'https://images.unsplash.com/photo-1528181304800-259b08848526?auto=format&fit=crop&w=600&q=80' }
     ]
   },
   {
