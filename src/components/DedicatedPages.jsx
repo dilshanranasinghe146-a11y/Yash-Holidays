@@ -21,6 +21,7 @@ import {
   MessageCircle,
   Sliders,
   Mail,
+  Clock,
 } from 'lucide-react';
 import {
   WhatsAppIcon,
@@ -40,7 +41,34 @@ export const VisaServicesPage = ({
   visaNote,
   setVisaNote,
   sendVisaInquiryToWhatsApp,
-}) => (
+  isTransitioning = false,
+}) => {
+  const [isVisaFading, setIsVisaFading] = React.useState(false);
+
+  const handleSelectCountry = (id) => {
+    if (id === selectedVisaId) return;
+    setIsVisaFading(true);
+    setTimeout(() => {
+      setSelectedVisaId(id);
+      setIsVisaFading(false);
+    }, 150);
+  };
+
+  React.useEffect(() => {
+    setIsVisaFading(true);
+    const t = setTimeout(() => setIsVisaFading(false), 50);
+    return () => clearTimeout(t);
+  }, [selectedVisaId]);
+
+  /* ── WhatsApp link helper for Canada / USA ── */
+  const buildContactUsLink = (country, visaType) => {
+    const msg = encodeURIComponent(
+      `Hi, I'd like to know the current processing time for a ${country} ${visaType}.`
+    );
+    return `https://wa.me/94775841144?text=${msg}`;
+  };
+
+  return (
   <div className="pt-16 min-[1101px]:pt-[74px]">
     {/* Visa Services Light Editorial Hero */}
     <section className="relative py-16 sm:py-20 overflow-hidden bg-mesh-sky border-b border-[var(--sky-200)]">
@@ -86,7 +114,7 @@ export const VisaServicesPage = ({
                 key={item.id}
                 type="button"
                 onClick={() => {
-                  setSelectedVisaId(item.id);
+                  handleSelectCountry(item.id);
                   document.getElementById('visa-checklist-box')?.scrollIntoView({ behavior: 'smooth' });
                 }}
                 className={`min-h-[44px] px-3.5 py-2 rounded-[9px] text-xs font-semibold transition-all border inline-flex items-center gap-2 ${
@@ -116,13 +144,10 @@ export const VisaServicesPage = ({
         <div className="p-6 sm:p-10 rounded-3xl bg-white border border-[var(--sky-200)] shadow-card">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             <div className="lg:col-span-7 space-y-6">
+              {/* Category badge */}
               <div className="flex flex-wrap items-center gap-4 text-xs font-semibold">
                 <span className="uppercase tracking-wider text-[var(--ocean-700)] border-l-2 border-[var(--ocean-500)] pl-2.5">
                   {activeVisa.category}
-                </span>
-                <span className="inline-flex items-center gap-1.5 text-[#15803D]">
-                  <CheckCircle2 className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
-                  <span>Processing Time: {activeVisa.processingTime}</span>
                 </span>
               </div>
 
@@ -135,6 +160,61 @@ export const VisaServicesPage = ({
                 </h2>
                 <p className="text-sm text-[var(--ocean-700)] font-medium mt-1.5">
                   {activeVisa.visaType} • Validity: {activeVisa.stayValidity}
+                </p>
+                {/* Intro sentence */}
+                <p
+                  className="text-xs sm:text-sm text-[#425F75] mt-3 leading-relaxed"
+                  style={{ opacity: isVisaFading ? 0 : 1, transition: 'opacity 300ms ease' }}
+                >
+                  Please provide the following basic documents to begin your {activeVisa.country} {activeVisa.visaType} application.
+                </p>
+              </div>
+
+              {/* ── Processing Time Info Strip ── */}
+              <div
+                role="status"
+                aria-live="polite"
+                aria-atomic="true"
+                style={{ opacity: isVisaFading ? 0 : 1, transition: 'opacity 300ms ease' }}
+                className="rounded-[14px] bg-[var(--sky-100)] px-4 py-3 w-full border-0"
+              >
+                <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2.5">
+                  <div className="inline-flex items-center gap-2 shrink-0">
+                    <Clock
+                      className="w-4 h-4 text-[var(--ocean-500)] shrink-0"
+                      aria-hidden="true"
+                    />
+                    <span
+                      className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#425F75]"
+                    >
+                      PROCESSING TIME
+                    </span>
+                  </div>
+                  <div>
+                    {activeVisa.contactUs ? (
+                      <span className="text-sm font-normal text-[var(--ocean-700)]">
+                        <a
+                          href={buildContactUsLink(activeVisa.country, activeVisa.visaType)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="underline underline-offset-2 hover:opacity-80 transition-opacity font-medium text-[var(--ocean-700)]"
+                        >
+                          Contact us
+                        </a>{' '}
+                        for the latest timeline
+                      </span>
+                    ) : (
+                      <span className="text-sm font-bold text-[var(--ocean-700)]">
+                        {activeVisa.processingTime}
+                      </span>
+                    )}
+                  </div>
+                </div>
+                <p
+                  className="mt-1 leading-snug"
+                  style={{ fontSize: '13px', color: '#425F75', fontStyle: 'italic' }}
+                >
+                  Processing times are estimates and may vary depending on the embassy and the season.
                 </p>
               </div>
 
@@ -258,7 +338,7 @@ export const VisaServicesPage = ({
                       <button
                         type="button"
                         onClick={() => {
-                          setSelectedVisaId(v.id);
+                          handleSelectCountry(v.id);
                           document.getElementById('visa-checklist-box')?.scrollIntoView({ behavior: 'smooth' });
                         }}
                         className="inline-flex items-center gap-2 hover:text-[var(--ocean-700)] text-left"
@@ -271,7 +351,18 @@ export const VisaServicesPage = ({
                     </td>
                     <td className="py-4 px-5 text-[var(--ink)]">{v.visaType}</td>
                     <td className="py-4 px-5 text-[#15803D] font-semibold whitespace-nowrap">
-                      {v.processingTime}
+                      {v.contactUs ? (
+                        <a
+                          href={buildContactUsLink(v.country, v.visaType)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="underline underline-offset-2 hover:opacity-80 transition-opacity text-[var(--ocean-500)]"
+                        >
+                          Contact us
+                        </a>
+                      ) : (
+                        v.processingTime
+                      )}
                     </td>
                     <td className="py-4 px-5 text-[var(--muted)]">{v.stayValidity}</td>
                     <td className="py-4 px-5 text-right whitespace-nowrap">
@@ -279,7 +370,7 @@ export const VisaServicesPage = ({
                         <button
                           type="button"
                           onClick={() => {
-                            setSelectedVisaId(v.id);
+                            handleSelectCountry(v.id);
                             document.getElementById('visa-checklist-box')?.scrollIntoView({ behavior: 'smooth' });
                           }}
                           className="btn-outline-ocean px-3 py-1.5 min-h-[36px] text-xs"
@@ -304,7 +395,8 @@ export const VisaServicesPage = ({
       </div>
     </section>
   </div>
-);
+  );
+};
 
 export const AirTicketsPage = ({
   flightForm,

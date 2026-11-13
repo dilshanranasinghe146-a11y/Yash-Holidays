@@ -480,7 +480,8 @@ const VISA_COUNTRIES = [
     country: 'Canada',
     flag: '🇨🇦',
     visaType: 'Visitor Visa (Temporary Resident Visa - Subclass TRV)',
-    processingTime: '4 – 8 Weeks',
+    processingTime: 'Contact us for the latest timeline',
+    contactUs: true,
     stayValidity: 'Up to 6 Months Stay (Multi-Entry up to Passport Validity)',
     category: 'Embassy / VFS Biometrics',
     docs: [
@@ -497,7 +498,7 @@ const VISA_COUNTRIES = [
     country: 'New Zealand',
     flag: '🇳🇿',
     visaType: 'Visitor Visa (Online Tourist / Family Visit File Submission)',
-    processingTime: '3 – 5 Weeks',
+    processingTime: '4 to 5 weeks',
     stayValidity: 'Up to 3 or 6 Months Stay (Single / Multiple Entry)',
     category: 'Online Immigration Filing',
     docs: [
@@ -514,7 +515,7 @@ const VISA_COUNTRIES = [
     country: 'United Kingdom (UK)',
     flag: '🇬🇧',
     visaType: 'Standard Visitor Visa (6 Months / 2, 5, 10-Year Long Term)',
-    processingTime: '3 – 4 Weeks',
+    processingTime: '14 working days',
     stayValidity: 'Up to 180 Days Per Visit (Multiple Entry)',
     category: 'GOV.UK & VFS Biometrics',
     docs: [
@@ -531,7 +532,8 @@ const VISA_COUNTRIES = [
     country: 'United States (USA)',
     flag: '🇺🇸',
     visaType: 'B1/B2 Tourist & Business Visit Visa',
-    processingTime: 'DS-160 Filing + US Embassy Interview Slot',
+    processingTime: 'Contact us for the latest timeline',
+    contactUs: true,
     stayValidity: 'Up to 5 Years Multiple Entry (180 Days per stay)',
     category: 'US Embassy Colombo Interview',
     docs: [
@@ -548,7 +550,7 @@ const VISA_COUNTRIES = [
     country: 'Malaysia',
     flag: '🇲🇾',
     visaType: 'Tourist e-Visa + MDAC Digital Arrival Card',
-    processingTime: '2 – 4 Working Days',
+    processingTime: '7 working days',
     stayValidity: '30 Days Stay (Single / Multiple Entry)',
     category: 'Fast e-Visa Processing',
     docs: [
@@ -564,7 +566,7 @@ const VISA_COUNTRIES = [
     country: 'Thailand',
     flag: '🇹🇭',
     visaType: 'Tourist Visa (TR Sticker Visa / e-Visa - 60 Days)',
-    processingTime: '5 – 7 Working Days',
+    processingTime: 'At least 7 working days',
     stayValidity: 'Up to 60 Days Single / Multiple Entry',
     category: 'Embassy / e-Visa',
     docs: [
@@ -580,7 +582,7 @@ const VISA_COUNTRIES = [
     country: 'Vietnam',
     flag: '🇻🇳',
     visaType: 'Tourist Visit e-Visa (30-Day / 90-Day)',
-    processingTime: '3 – 5 Working Days',
+    processingTime: '3 weeks',
     stayValidity: '30 to 90 Days Single or Multiple Entry',
     category: 'Fast e-Visa Processing',
     docs: [
@@ -595,7 +597,7 @@ const VISA_COUNTRIES = [
     country: 'India',
     flag: '🇮🇳',
     visaType: 'Tourist e-Visa / Double & Multiple Entry / Medical Visit Visa',
-    processingTime: '2 – 4 Working Days',
+    processingTime: '5 working days',
     stayValidity: '30 Days / 1 Year Multiple Entry',
     category: 'Fast e-Visa / High Commission',
     docs: [
@@ -610,7 +612,7 @@ const VISA_COUNTRIES = [
     country: 'China',
     flag: '🇨🇳',
     visaType: 'L-Tourist Visit Visa & M-Business Visa',
-    processingTime: '5 – 7 Working Days',
+    processingTime: '5 working days',
     stayValidity: '30 Days Single / Double Entry',
     category: 'Chinese Embassy Colombo',
     docs: [
@@ -626,7 +628,7 @@ const VISA_COUNTRIES = [
     country: 'Japan',
     flag: '🇯🇵',
     visaType: 'Tourist / Short-Term Visit Visa (Single & Multiple Entry)',
-    processingTime: '5 – 8 Working Days',
+    processingTime: '5 working days',
     stayValidity: '15 / 30 / 90 Days Stay',
     category: 'Embassy / VFS Japan',
     docs: [
@@ -957,7 +959,17 @@ const INITIAL_REVIEWS = [
 
 export default function App() {
   // 5 MAIN TABS: 'home' | 'visa' | 'airtickets' | 'reviews' | 'about'
-  const [activeTab, setActiveTab] = useState('home');
+  const [activeTab, setActiveTab] = useState(() => {
+    try {
+      if (typeof window !== 'undefined') {
+        const p = new URLSearchParams(window.location.search).get('tab');
+        if (['visa', 'airtickets', 'reviews', 'about', 'contact'].includes(p)) {
+          return p;
+        }
+      }
+    } catch {}
+    return 'home';
+  });
   const [activeNavSection, setActiveNavSection] = useState('home'); // 'home' | 'tours'
   const [selectedCountryId, setSelectedCountryId] = useState('bali');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -1458,6 +1470,7 @@ export default function App() {
             visaNote={visaNote}
             setVisaNote={setVisaNote}
             sendVisaInquiryToWhatsApp={sendVisaInquiryToWhatsApp}
+            isTransitioning={isTransitioning}
           />
         )}
 
