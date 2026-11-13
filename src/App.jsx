@@ -288,11 +288,11 @@ const DESTINATIONS = [
     footerBg: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=1920&q=80',
     introText: "We've planned a simple and convenient 6-day itinerary for your escape to Bali. You'll experience three breathtaking regions: Ubud's lush rainforests, Nusa Penida's dramatic turquoise cliffs, and Seminyak's sunset beach clubs.",
     highlights: [
-      { label: '3 regions in Bali', sub: 'Ubud • Penida • Seminyak', img: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=600&q=80' },
-      { label: '6 days', sub: 'Curated island pace', img: 'https://images.unsplash.com/photo-1532186651327-6ac23687d189?auto=format&fit=crop&w=600&q=80' },
-      { label: 'iconic temples & nature', sub: 'Lempuyang Gates of Heaven', img: 'https://images.unsplash.com/photo-1555400038-63f5ba517a47?auto=format&fit=crop&w=600&q=80' },
-      { label: 'island dining', sub: 'Jimbaran candlelit seafood dinner', img: 'https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=600&q=80' },
-      { label: 'enjoy the vibe', sub: 'Kelingking T-Rex Cliff Penida', img: 'https://images.unsplash.com/photo-1584810359583-96fc3448beaa?auto=format&fit=crop&w=600&q=80' }
+      { label: '3 regions in Bali', sub: 'Ubud • Penida • Seminyak', img: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=85' },
+      { label: '6 days', sub: 'Curated island pace', img: 'https://images.unsplash.com/photo-1532186651327-6ac23687d189?auto=format&fit=crop&w=800&q=85' },
+      { label: 'iconic temples & nature', sub: 'Lempuyang Gates of Heaven', img: 'https://images.unsplash.com/photo-1555400038-63f5ba517a47?auto=format&fit=crop&w=800&q=85' },
+      { label: 'island dining', sub: 'Jimbaran candlelit seafood dinner', img: 'https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=800&q=85' },
+      { label: 'enjoy the vibe', sub: 'Kelingking T-Rex Cliff Penida', img: 'https://images.unsplash.com/photo-1584810359583-96fc3448beaa?auto=format&fit=crop&w=800&q=85' }
     ]
   },
   {
@@ -307,11 +307,11 @@ const DESTINATIONS = [
     footerBg: 'https://images.unsplash.com/photo-1528181304800-259b08848526?auto=format&fit=crop&w=1920&q=80',
     introText: "We've planned a seamless 6-day holiday across Thailand's best highlights. You'll explore three unforgettable hubs: dazzling Bangkok, coastal Pattaya & Coral Island, or the turquoise limestone bays of Phuket & Krabi.",
     highlights: [
-      { label: '3 cities in Thailand', sub: 'Bangkok • Pattaya • Phuket', img: 'https://images.unsplash.com/photo-1563492065599-3520f775eeed?auto=format&fit=crop&w=600&q=80' },
-      { label: '6 days', sub: 'Island & city combo', img: 'https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=600&q=80' },
-      { label: 'private island tours', sub: 'Phi Phi Maya Bay speedboat', img: 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&w=600&q=80' },
-      { label: 'street food & cruises', sub: 'Chao Phraya dinner cruise & food', img: 'https://images.unsplash.com/photo-1506665531195-3566af2b4dfa?auto=format&fit=crop&w=600&q=80' },
-      { label: 'enjoy the vibe', sub: 'Sanctuary of Truth Pattaya', img: 'https://images.unsplash.com/photo-1528181304800-259b08848526?auto=format&fit=crop&w=600&q=80' }
+      { label: '3 cities in Thailand', sub: 'Bangkok • Pattaya • Phuket', img: 'https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=800&q=85' },
+      { label: '6 days', sub: 'Island & city combo', img: 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&w=800&q=85' },
+      { label: 'private island tours', sub: 'Phi Phi Maya Bay speedboat', img: 'https://images.unsplash.com/photo-1506665531195-3566af2b4dfa?auto=format&fit=crop&w=800&q=85' },
+      { label: 'street food & cruises', sub: 'Chao Phraya dinner cruise & food', img: 'https://images.unsplash.com/photo-1563492065599-3520f775eeed?auto=format&fit=crop&w=800&q=85' },
+      { label: 'enjoy the vibe', sub: 'Sanctuary of Truth Pattaya', img: 'https://images.unsplash.com/photo-1528181304800-259b08848526?auto=format&fit=crop&w=800&q=85' }
     ]
   },
   {
@@ -326,11 +326,11 @@ const DESTINATIONS = [
     footerBg: 'https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=1920&q=80',
     introText: "We've organized an effortless 5-day Malaysian getaway. Experience the dazzling skyline of Kuala Lumpur, the misty mountain resorts of Genting Highlands, and the colorful heritage of Batu Caves & Putrajaya.",
     highlights: [
-      { label: '3 hubs in Malaysia', sub: 'KL • Genting • Sunway', img: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/1/16/Dataran_Merdeka_2.jpg/1280px-Dataran_Merdeka_2.jpg' },
-      { label: '5 days', sub: 'Family & couple favorite', img: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/1/16/Masjid_Putra%2C_Putrajaya%2C_Malaysia.jpg/1280px-Masjid_Putra%2C_Putrajaya%2C_Malaysia.jpg' },
-      { label: 'iconic landmarks', sub: 'Petronas Towers & KLCC Park', img: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/The_Twins_SE_Asia_2019_%2849171985716%29.jpg/1280px-The_Twins_SE_Asia_2019_%2849171985716%29.jpg' },
-      { label: 'cable car & parks', sub: 'Awana SkyWay & Theme Park', img: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/2/21/Genting_SkyWorlds_Theme_Park.jpg/1280px-Genting_SkyWorlds_Theme_Park.jpg' },
-      { label: 'Batu Caves', sub: 'Murugan Temple & rainbow stairs', img: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8f/Batu_Caves_stairs_2022-05.jpg/1280px-Batu_Caves_stairs_2022-05.jpg' }
+      { label: '3 hubs in Malaysia', sub: 'KL • Genting • Sunway', img: 'https://images.unsplash.com/photo-1596422846543-75c6fc197f07?auto=format&fit=crop&w=800&q=85' },
+      { label: '5 days', sub: 'Family & couple favorite', img: 'https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?auto=format&fit=crop&w=800&q=85' },
+      { label: 'iconic landmarks', sub: 'Petronas Towers & KLCC Park', img: 'https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=800&q=85' },
+      { label: 'cable car & parks', sub: 'Awana SkyWay & Theme Park', img: 'https://images.unsplash.com/photo-1605647540924-852290f6b0d5?auto=format&fit=crop&w=800&q=85' },
+      { label: 'Batu Caves', sub: 'Murugan Temple & rainbow stairs', img: 'https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=800&q=85' }
     ]
   },
   {
@@ -341,15 +341,15 @@ const DESTINATIONS = [
     duration: '5 Days / 4 Nights',
     priceFrom: 'LKR 245,000',
     flightRoute: 'Colombo (CMB) — Singapore (SIN)',
-    heroBg: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c7/Marina_Bay_Sands_%28I%29.jpg/1280px-Marina_Bay_Sands_%28I%29.jpg',
+    heroBg: 'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&w=1920&q=85',
     footerBg: 'https://images.unsplash.com/photo-1496568816309-51d7c20e3b21?auto=format&fit=crop&w=1920&q=80',
     introText: "Experience the Lion City with zero stress. Our curated Singapore itinerary covers Marina Bay Sands, Gardens by the Bay, Sentosa Island, and Universal Studios in one sleek package.",
     highlights: [
-      { label: '3 iconic precincts', sub: 'Marina Bay • Sentosa • Orchard', img: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2e/Singapore_Skyline_2019-10.jpg/1280px-Singapore_Skyline_2019-10.jpg' },
-      { label: '5 days', sub: 'Action-packed luxury', img: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c3/1_sentosa_aerial_2016.jpg/1280px-1_sentosa_aerial_2016.jpg' },
-      { label: 'world-class wonders', sub: 'Supertree Grove & Cloud Forest', img: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5d/Supertree_Grove%2C_Gardens_by_the_Bay%2C_Singapore_-_20120712-02.jpg/1280px-Supertree_Grove%2C_Gardens_by_the_Bay%2C_Singapore_-_20120712-02.jpg' },
-      { label: 'theme park thrills', sub: 'Universal Studios Sentosa', img: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/f/ff/Universal_Studios_Singapore_globe_%28125026%29.jpg/1280px-Universal_Studios_Singapore_globe_%28125026%29.jpg' },
-      { label: 'enjoy the vibe', sub: 'Jewel Changi Rain Vortex', img: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/1/18/At_Jewel_Changi%2C_Singapore_2023_44.jpg/1280px-At_Jewel_Changi%2C_Singapore_2023_44.jpg' }
+      { label: '3 iconic precincts', sub: 'Marina Bay • Sentosa • Orchard', img: 'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&w=800&q=85' },
+      { label: '5 days', sub: 'Action-packed luxury', img: 'https://images.unsplash.com/photo-1565967511849-76a60a516170?auto=format&fit=crop&w=800&q=85' },
+      { label: 'world-class wonders', sub: 'Supertree Grove & Cloud Forest', img: 'https://images.unsplash.com/photo-1506351421178-63b52a2d2562?auto=format&fit=crop&w=800&q=85' },
+      { label: 'theme park thrills', sub: 'Universal Studios Sentosa', img: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=85' },
+      { label: 'enjoy the vibe', sub: 'Jewel Changi Rain Vortex', img: 'https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=800&q=85' }
     ]
   },
   {
@@ -364,11 +364,11 @@ const DESTINATIONS = [
     footerBg: 'https://images.unsplash.com/photo-1568849676085-51415703900f?auto=format&fit=crop&w=1920&q=80',
     introText: "Discover the magic of Vietnam across three iconic regions: historic Hanoi, an overnight luxury cruise on Ha Long Bay, and Central Vietnam's Golden Bridge at Ba Na Hills & Hoi An.",
     highlights: [
-      { label: '3 gems in Vietnam', sub: 'Hanoi • Ha Long • Da Nang', img: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8e/Hanoi_skyline_with_Ba_Vi_Mountain.jpg/1280px-Hanoi_skyline_with_Ba_Vi_Mountain.jpg' },
-      { label: '6 days', sub: 'Cruise & heritage tour', img: 'https://images.unsplash.com/photo-1504457047772-27faf1c00561?auto=format&fit=crop&w=600&q=80' },
-      { label: 'breathtaking views', sub: 'Golden Hand Bridge Ba Na Hills', img: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0c/Golden_Bridge_at_Ba_Na_Hills_20250718.jpg/1280px-Golden_Bridge_at_Ba_Na_Hills_20250718.jpg' },
-      { label: 'overnight bay cruise', sub: 'Ha Long luxury deck cruise', img: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/7/79/Ha_Long_Bay_in_2019.jpg/1280px-Ha_Long_Bay_in_2019.jpg' },
-      { label: 'enjoy the vibe', sub: 'Hoi An lantern boat on canal', img: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/7/75/Lanterns_in_Hoi_An_2.jpg/1280px-Lanterns_in_Hoi_An_2.jpg' }
+      { label: '3 gems in Vietnam', sub: 'Hanoi • Ha Long • Da Nang', img: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=800&q=85' },
+      { label: '6 days', sub: 'Cruise & heritage tour', img: 'https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=800&q=85' },
+      { label: 'breathtaking views', sub: 'Golden Hand Bridge Ba Na Hills', img: 'https://images.unsplash.com/photo-1568849676085-51415703900f?auto=format&fit=crop&w=800&q=85' },
+      { label: 'overnight bay cruise', sub: 'Ha Long luxury deck cruise', img: 'https://images.unsplash.com/photo-1504457047772-27faf1c00561?auto=format&fit=crop&w=800&q=85' },
+      { label: 'enjoy the vibe', sub: 'Hoi An lantern boat on canal', img: 'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=800&q=85' }
     ]
   },
   {
@@ -383,11 +383,11 @@ const DESTINATIONS = [
     footerBg: 'https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=1920&q=80',
     introText: "Just a 60-minute flight from Colombo! We arrange seamless speedboat or seaplane transfers to handpicked Maldivian island resorts with beach and overwater villa options.",
     highlights: [
-      { label: 'private island resorts', sub: 'North & South Malé Atolls', img: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/e/eb/Anantara_Kihavah_-_Aerial_Hero_Shot_2024.jpg/1280px-Anantara_Kihavah_-_Aerial_Hero_Shot_2024.jpg' },
-      { label: '4 days', sub: 'Pure tropical bliss', img: 'https://images.unsplash.com/photo-1512100356356-de1b84283e18?auto=format&fit=crop&w=600&q=80' },
-      { label: 'luxury water villas', sub: 'Overwater decks & plunge pool', img: 'https://images.unsplash.com/photo-1578922746465-3a80a228f223?auto=format&fit=crop&w=600&q=80' },
-      { label: 'all-inclusive dining', sub: 'Ocean dining & candlelit sunset', img: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/8/82/MaldivesBungalows.jpg/1280px-MaldivesBungalows.jpg' },
-      { label: 'enjoy the vibe', sub: 'Reef sharks, rays & coral diving', img: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=600&q=80' }
+      { label: 'private island resorts', sub: 'North & South Malé Atolls', img: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=800&q=85' },
+      { label: '4 days', sub: 'Pure tropical bliss', img: 'https://images.unsplash.com/photo-1512100356356-de1b84283e18?auto=format&fit=crop&w=800&q=85' },
+      { label: 'luxury water villas', sub: 'Overwater decks & plunge pool', img: 'https://images.unsplash.com/photo-1578922746465-3a80a228f223?auto=format&fit=crop&w=800&q=85' },
+      { label: 'all-inclusive dining', sub: 'Ocean dining & candlelit sunset', img: 'https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=800&q=85' },
+      { label: 'enjoy the vibe', sub: 'Reef sharks, rays & coral diving', img: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=85' }
     ]
   },
   {
@@ -402,11 +402,11 @@ const DESTINATIONS = [
     footerBg: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=1920&q=80',
     introText: "We've crafted rich itineraries across India—from the iconic Golden Triangle (Delhi, Agra & Jaipur) to snowy Kashmir, serene Kerala backwaters, and sacred Buddhist & Hindu pilgrimage tours.",
     highlights: [
-      { label: '3 royal cities', sub: 'Delhi • Agra • Jaipur', img: 'https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=600&q=80' },
-      { label: '6 days', sub: 'Heritage & culture', img: 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=600&q=80' },
-      { label: 'timeless wonders', sub: 'Hawa Mahal Palace of Winds', img: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/4/41/East_facade_Hawa_Mahal_Jaipur_from_ground_level_%28July_2022%29_-_img_01.jpg/1280px-East_facade_Hawa_Mahal_Jaipur_from_ground_level_%28July_2022%29_-_img_01.jpg' },
-      { label: 'authentic cuisine', sub: 'Royal Mughlai & street chai', img: 'https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=600&q=80' },
-      { label: 'enjoy the vibe', sub: 'Amer Fort & Jaipur palaces', img: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fb/20191219_Fort_Amber%2C_Amer%2C_Jaipur_0955_9481.jpg/1280px-20191219_Fort_Amber%2C_Amer%2C_Jaipur_0955_9481.jpg' }
+      { label: '3 royal cities', sub: 'Delhi • Agra • Jaipur', img: 'https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=800&q=85' },
+      { label: '6 days', sub: 'Heritage & culture', img: 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=800&q=85' },
+      { label: 'timeless wonders', sub: 'Hawa Mahal Palace of Winds', img: 'https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&w=800&q=85' },
+      { label: 'authentic cuisine', sub: 'Royal Mughlai & street chai', img: 'https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=800&q=85' },
+      { label: 'enjoy the vibe', sub: 'Amer Fort & Jaipur palaces', img: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=85' }
     ]
   },
   {
@@ -421,11 +421,11 @@ const DESTINATIONS = [
     footerBg: 'https://images.unsplash.com/photo-1622547748225-3fc4abd2cca0?auto=format&fit=crop&w=1920&q=80',
     introText: "Experience where East meets Europe! Our 6-day Azerbaijan tour takes you through ultra-modern Baku, the ancient Flame Temples of Absheron, and the alpine peaks of Gabala & Shahdag.",
     highlights: [
-      { label: '3 regions explored', sub: 'Baku • Gabala • Shahdag', img: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/d/db/Baku_city_at_night.jpg/1280px-Baku_city_at_night.jpg' },
-      { label: '6 days', sub: 'Euro-Asian luxury', img: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fe/Baku_Boulevard_pier.jpg/1280px-Baku_Boulevard_pier.jpg' },
-      { label: 'architectural icons', sub: 'Heydar Aliyev Center & Towers', img: 'https://thumb.wikimedia.org/wikipedia/en/thumb/d/d3/Heydar_Aliyev_Cultural_Center.jpg/1280px-Heydar_Aliyev_Cultural_Center.jpg' },
-      { label: 'mountain cable cars', sub: 'Shahdag & Tufandag snow resort', img: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/5/59/Shahdag01.jpg/1280px-Shahdag01.jpg' },
-      { label: 'enjoy the vibe', sub: 'Old City Maiden Tower & Caspian', img: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/5/50/Palace_of_Shirvanshahs_common.JPG/1280px-Palace_of_Shirvanshahs_common.JPG' }
+      { label: '3 regions explored', sub: 'Baku • Gabala • Shahdag', img: 'https://images.unsplash.com/photo-1596306499300-0b7b1689b9f6?auto=format&fit=crop&w=800&q=85' },
+      { label: '6 days', sub: 'Euro-Asian luxury', img: 'https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=800&q=85' },
+      { label: 'architectural icons', sub: 'Heydar Aliyev Center & Towers', img: 'https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=800&q=85' },
+      { label: 'mountain cable cars', sub: 'Shahdag & Tufandag snow resort', img: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=85' },
+      { label: 'enjoy the vibe', sub: 'Old City Maiden Tower & Caspian', img: 'https://images.unsplash.com/photo-1622547748225-3fc4abd2cca0?auto=format&fit=crop&w=800&q=85' }
     ]
   }
 ];

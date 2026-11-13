@@ -484,7 +484,7 @@ export const HomeSections = ({
                 </button>
               </div>
 
-              <div className="flex overflow-x-auto no-scrollbar snap-x snap-mandatory gap-2.5 pb-1">
+              <div className="flex overflow-x-auto no-scrollbar snap-x snap-mandatory gap-3 pb-1 -mx-1 px-1">
                 {activeDest.highlights.map((item, idx) => (
                   <button
                     key={idx}
@@ -496,19 +496,31 @@ export const HomeSections = ({
                         window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
                       }
                     }}
-                    className="snap-start w-36 shrink-0 relative rounded-2xl overflow-hidden border border-white shadow-card bg-white text-left group"
+                    className="snap-start w-[148px] sm:w-[162px] shrink-0 rounded-[18px] overflow-hidden border border-[var(--sky-200)] shadow-card bg-white text-left flex flex-col group transition-all duration-200 active:scale-[0.98]"
                   >
-                    <div className="h-22 w-full overflow-hidden bg-[var(--sky-100)]">
+                    <div className="relative w-full h-[116px] sm:h-32 overflow-hidden bg-[var(--sky-100)] shrink-0">
                       <img
                         src={item.img}
                         alt={item.label}
+                        loading="lazy"
                         referrerPolicy="no-referrer"
-                        className="w-full h-full object-cover card-photo-zoom"
+                        className="w-full h-full object-cover card-photo-zoom transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div
+                        className="absolute inset-0 pointer-events-none"
+                        style={{
+                          background:
+                            'linear-gradient(to top, rgba(20,50,74,0.3) 0%, transparent 60%)',
+                        }}
                       />
                     </div>
-                    <div className="p-2 bg-white">
-                      <p className="text-[11px] font-bold text-[var(--ink)] truncate">{item.label}</p>
-                      <p className="text-[10px] text-[var(--muted)] truncate">{item.sub}</p>
+                    <div className="p-2.5 sm:p-3 bg-white flex flex-col justify-center flex-1 min-h-[54px]">
+                      <p className="text-[12px] font-bold text-[var(--ink)] leading-snug line-clamp-1 group-hover:text-[var(--ocean-700)] transition-colors capitalize">
+                        {item.label}
+                      </p>
+                      <p className="text-[10px] sm:text-[11px] text-[var(--muted)] font-medium mt-0.5 line-clamp-1">
+                        {item.sub}
+                      </p>
                     </div>
                   </button>
                 ))}
